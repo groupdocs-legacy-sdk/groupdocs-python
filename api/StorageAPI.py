@@ -39,6 +39,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -71,6 +72,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/folders/{*path}?page={pageIndex}&count={pageSize}&order_by={orderBy}&order_asc={orderAsc}&filter={filter}&file_types={fileTypes}&extended={extended}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -119,6 +121,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/files/{fileId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -154,6 +157,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/shared/{userEmail}/{*filePath}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -191,6 +195,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/folders/{*path}?description={description}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -228,6 +233,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/urls?url={url}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -263,6 +269,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/files/{fileId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -298,6 +305,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/folders/{*path}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -334,6 +342,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/files/{*path}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -372,6 +381,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/folders/{*path}?override_mode={mode}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -409,6 +419,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/paths/{*path}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -444,6 +455,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/files/{fileId}/archive/{archiveType}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -480,6 +492,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/packages/{packageName}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -517,6 +530,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/trash/{*path}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -552,6 +566,7 @@ class StorageAPI(object):
         # Parse inputs
         resourcePath = '/storage/{userId}/trash/{*path}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}

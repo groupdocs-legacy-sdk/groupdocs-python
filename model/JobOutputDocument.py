@@ -32,6 +32,7 @@ class JobOutputDocument:
             'type': 'str',
             'ftype': 'str',
             'url': 'str',
+            'size': 'int',
             'version': 'int'
         }
 
@@ -67,6 +68,10 @@ class JobOutputDocument:
 
         # 
         self.url = None # str
+
+
+        # 
+        self.size = None # int
 
 
         # 

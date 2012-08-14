@@ -41,6 +41,7 @@ class PostAPI(object):
         # Parse inputs
         resourcePath = '/post/file.rename?user_id={userId}&file_id={fileId}&new_name={newName}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -78,6 +79,7 @@ class PostAPI(object):
         # Parse inputs
         resourcePath = '/post/file.delete?user_id={userId}&file_id={fileId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -113,6 +115,7 @@ class PostAPI(object):
         # Parse inputs
         resourcePath = '/post/file.delete.in?user_id={userId}&path={path}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -149,6 +152,7 @@ class PostAPI(object):
         # Parse inputs
         resourcePath = '/post/file.compress?user_id={userId}&file_id={fileId}&archive_type={archiveType}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}

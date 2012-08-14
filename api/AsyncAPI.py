@@ -40,6 +40,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs/{jobId}?format=xml'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -75,6 +76,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs/{jobId}?format=json'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -110,6 +112,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs/{jobId}/documents?format={format}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -145,6 +148,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -180,6 +184,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs/{jobId}/files/{fileId}?out_formats={formats}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -221,6 +226,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs/{jobId}/urls?absolute_url={absoluteUrl}&out_formats={formats}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -261,6 +267,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs/{jobId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -295,6 +302,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs?page={pageIndex}&count={pageSize}&actions={actions}&excluded_actions={excludedActions}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -334,6 +342,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/jobs/documents?page={pageIndex}&count={pageSize}&actions={actions}&excluded_actions={excludedActions}&order_by={orderBy}&order_asc={orderAsc}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -377,6 +386,7 @@ class AsyncAPI(object):
         # Parse inputs
         resourcePath = '/async/{userId}/files/{fileId}?new_type={targetType}&email_results={emailResults}&new_description={description}&print_script={printScript}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}

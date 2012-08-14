@@ -30,9 +30,10 @@ class JobInputDocument:
             'access': 'str',
             'url': 'str',
             'version': 'int',
+            'size': 'int',
             'file_type': 'str',
-            'id': 'float',
             'guid': 'str',
+            'id': 'float',
             'proc_date': 'int',
             'name': 'str',
             'outputs': 'list<JobOutputDocument>',
@@ -66,15 +67,19 @@ class JobInputDocument:
 
 
         # 
+        self.size = None # int
+
+
+        # 
         self.file_type = None # str
 
 
         # 
-        self.id = None # float
+        self.guid = None # str
 
 
         # 
-        self.guid = None # str
+        self.id = None # float
 
 
         # 

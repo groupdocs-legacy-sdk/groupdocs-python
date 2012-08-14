@@ -24,31 +24,31 @@ class MergeMergeInputFilesInputDatasourcesInput:
 
     def __init__(self):
         self.swaggerTypes = {
-            'userId': 'str',
-            'fileId': 'str',
-            'datasourceId': 'str',
-            'targetType': 'str',
-            'emailResults': 'str'
+            'userId': 'Str',
+            'fileId': 'Str',
+            'datasourceId': 'Str',
+            'targetType': 'Str',
+            'emailResults': 'Str'
         }
 
 
 
         # User GUID
-        self.userId = None # str
+        self.userId = None # Str
 
 
         # File GUID
-        self.fileId = None # str
+        self.fileId = None # Str
 
 
         # Datasource id
-        self.datasourceId = None # str
+        self.datasourceId = None # Str
 
 
         # Target type
-        self.targetType = None # str
+        self.targetType = None # Str
 
 
         # Email results
-        self.emailResults = None # str
+        self.emailResults = None # Str
 

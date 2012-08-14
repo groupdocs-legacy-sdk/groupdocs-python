@@ -25,26 +25,18 @@ class SharedDocumentInfo:
     def __init__(self):
         self.swaggerTypes = {
             'sharers': 'list<UserInfo>',
-            'folder_count': 'int',
-            'modified_on': 'int',
             'status': 'str',
-            'created_on': 'int',
             'shared_on': 'int',
-            'access': 'str',
             'type': 'str',
-            'supported_types': 'list<Str>',
+            'access': 'str',
             'url': 'str',
-            'file_type': 'str',
             'version': 'int',
             'size': 'int',
-            'guid': 'str',
+            'file_type': 'str',
             'id': 'float',
-            'thumbnail': 'list<int>',
-            'dir': 'bool',
+            'guid': 'str',
             'name': 'str',
-            'owner': 'UserInfo',
-            'file_count': 'int',
-            'known': 'bool'
+            'owner': 'UserInfo'
         }
 
 
@@ -54,19 +46,7 @@ class SharedDocumentInfo:
 
 
         # 
-        self.folder_count = None # int
-
-
-        # 
-        self.modified_on = None # int
-
-
-        # 
         self.status = None # str
-
-
-        # 
-        self.created_on = None # int
 
 
         # 
@@ -74,23 +54,15 @@ class SharedDocumentInfo:
 
 
         # 
-        self.access = None # str
-
-
-        # 
         self.type = None # str
 
 
         # 
-        self.supported_types = None # list<Str>
+        self.access = None # str
 
 
         # 
         self.url = None # str
-
-
-        # 
-        self.file_type = None # str
 
 
         # 
@@ -102,7 +74,7 @@ class SharedDocumentInfo:
 
 
         # 
-        self.guid = None # str
+        self.file_type = None # str
 
 
         # 
@@ -110,11 +82,7 @@ class SharedDocumentInfo:
 
 
         # 
-        self.thumbnail = None # list<int>
-
-
-        # 
-        self.dir = None # bool
+        self.guid = None # str
 
 
         # 
@@ -123,12 +91,4 @@ class SharedDocumentInfo:
 
         # 
         self.owner = None # UserInfo
-
-
-        # 
-        self.file_count = None # int
-
-
-        # 
-        self.known = None # bool
 

@@ -24,14 +24,11 @@ class SignatureEnvelopeFieldInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'check': 'str',
+            'regularExpression': 'str',
             'mandatory': 'bool',
             'data': 'list<int>',
             'graphSizeH': 'int',
-            'textRows': 'float',
             'id': 'str',
-            'input': 'float',
-            'textColumns': 'float',
             'recipientId': 'str',
             'order': 'float',
             'locations': 'list<SignatureEnvelopeFieldLocationInfo>',
@@ -46,7 +43,7 @@ class SignatureEnvelopeFieldInfo:
 
 
         # 
-        self.check = None # str
+        self.regularExpression = None # str
 
 
         # 
@@ -62,19 +59,7 @@ class SignatureEnvelopeFieldInfo:
 
 
         # 
-        self.textRows = None # float
-
-
-        # 
         self.id = None # str
-
-
-        # 
-        self.input = None # float
-
-
-        # 
-        self.textColumns = None # float
 
 
         # 

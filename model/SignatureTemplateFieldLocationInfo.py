@@ -24,22 +24,34 @@ class SignatureTemplateFieldLocationInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'id': 'str',
-            'page': 'int',
+            'locationHeight': 'float',
+            'fontName': 'str',
+            'fontColor': 'str',
             'locationX': 'float',
+            'fontBold': 'bool',
             'fieldId': 'str',
+            'fontSize': 'float',
             'locationY': 'float',
+            'id': 'str',
+            'fontItalic': 'bool',
+            'fontUnderline': 'bool',
+            'page': 'int',
+            'locationWidth': 'float',
             'documentId': 'str'
         }
 
 
 
         # 
-        self.id = None # str
+        self.locationHeight = None # float
 
 
         # 
-        self.page = None # int
+        self.fontName = None # str
+
+
+        # 
+        self.fontColor = None # str
 
 
         # 
@@ -47,11 +59,39 @@ class SignatureTemplateFieldLocationInfo:
 
 
         # 
+        self.fontBold = None # bool
+
+
+        # 
         self.fieldId = None # str
 
 
         # 
+        self.fontSize = None # float
+
+
+        # 
         self.locationY = None # float
+
+
+        # 
+        self.id = None # str
+
+
+        # 
+        self.fontItalic = None # bool
+
+
+        # 
+        self.fontUnderline = None # bool
+
+
+        # 
+        self.page = None # int
+
+
+        # 
+        self.locationWidth = None # float
 
 
         # 

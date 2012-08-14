@@ -24,7 +24,7 @@ class SignatureTemplateFieldInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'check': 'str',
+            'regularExpression': 'str',
             'mandatory': 'bool',
             'graphSizeH': 'int',
             'textRows': 'float',
@@ -43,7 +43,7 @@ class SignatureTemplateFieldInfo:
 
 
         # 
-        self.check = None # str
+        self.regularExpression = None # str
 
 
         # 

@@ -31,6 +31,7 @@ class DocumentInfo:
             'type': 'str',
             'url': 'str',
             'file_type': 'str',
+            'size': 'int',
             'version': 'int'
         }
 
@@ -62,6 +63,10 @@ class DocumentInfo:
 
         # 
         self.file_type = None # str
+
+
+        # 
+        self.size = None # int
 
 
         # 

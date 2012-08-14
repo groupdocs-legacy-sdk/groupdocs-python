@@ -32,7 +32,7 @@ def createAnnotation():
 
 def uploadFile():
     postData = "file://" + os.path.dirname(os.path.abspath(__file__)) + "/test.docx"
-    response = StorageAPI(apiClient).Upload(userId, "python3/test.docx", "uploaded from python3 client library", postData)
+    response = StorageAPI(apiClient).Upload(userId, "python/test.docx", "uploaded from python client library", postData)
     print(response)
 
 

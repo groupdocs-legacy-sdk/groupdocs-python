@@ -42,6 +42,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/jobs/{jobId}/files/{fileId}/datasources/{datasourceId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -83,6 +84,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/jobs/{jobId}/files/{fileId}/datasources'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -119,6 +121,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/files/{fileId}/datasources/{datasourceId}?new_type={targetType}&email_results={emailResults}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -159,6 +162,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/files/{fileId}/datasources?new_type={targetType}&email_results={emailResults}&assembly_name={assemblyName}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -199,6 +203,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -233,6 +238,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -266,6 +272,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -300,6 +307,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -335,6 +343,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -370,6 +379,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/files/{fileId}/questionnaires'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -406,6 +416,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/files/{fileId}/questionnaires'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -442,6 +453,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/files/{fileId}/questionnaires/{questionnaireId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -480,6 +492,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/files/{fileId}/questionnaires/{questionnaireId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -517,6 +530,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/datasources'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -551,6 +565,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/datasources/{datasourceId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -587,6 +602,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/datasources/{datasourceId}/fields'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -622,6 +638,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/datasources/{datasourceId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -658,6 +675,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/datasources/{datasourceId}?field={fields}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -696,6 +714,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/datasources?include_fields={includeFields}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -734,6 +753,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/executions'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -768,6 +788,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires/executions'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -802,6 +823,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires/executions/{executionId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -838,6 +860,7 @@ class MergeAPI(object):
         # Parse inputs
         resourcePath = '/merge/{userId}/questionnaires/executions/{executionId}/status'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}

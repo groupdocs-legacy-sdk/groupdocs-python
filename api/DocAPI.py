@@ -39,6 +39,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/thumbnails?page_number={pageNumber}&page_count={pageCount}&quality={quality}&use_pdf={usePdf}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -82,6 +83,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/views?page_index={startIndex}&page_size={pageSize}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -120,6 +122,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/sharers'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -157,6 +160,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/sharers'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -192,6 +196,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/folders/{folderId}/sharers'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -228,6 +233,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/folders/{folderId}/sharers'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -265,6 +271,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/folders/{folderId}/sharers'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -301,6 +308,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/accessinfo?mode={mode}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -338,6 +346,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/accessinfo'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -373,6 +382,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/metadata'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -409,6 +419,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/sharer'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -445,6 +456,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/shares/{sharesTypes}?page_index={pageIndex}&page_size={pageSize}&order_by={orderBy}&order_asc={orderAsc}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -488,6 +500,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/fields?include_geometry={includeGeometry}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -525,6 +538,7 @@ class DocAPI(object):
         # Parse inputs
         resourcePath = '/doc/{userId}/files/{fileId}/formats'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}

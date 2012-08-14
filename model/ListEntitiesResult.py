@@ -24,11 +24,16 @@ class ListEntitiesResult:
 
     def __init__(self):
         self.swaggerTypes = {
+            'files': 'list<FileSystemDocument>',
             'count': 'int',
             'path': 'str',
-            'entities': 'list<SharedDocumentInfo>'
+            'folders': 'list<FileSystemFolder>'
         }
 
+
+
+        # 
+        self.files = None # list<FileSystemDocument>
 
 
         # 
@@ -40,5 +45,5 @@ class ListEntitiesResult:
 
 
         # 
-        self.entities = None # list<SharedDocumentInfo>
+        self.folders = None # list<FileSystemFolder>
 

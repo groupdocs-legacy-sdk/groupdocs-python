@@ -39,6 +39,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{userId}/profile'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -72,6 +73,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{userId}/profile'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -105,6 +107,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{userId}/profile/password'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -138,6 +141,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/reset-tokens?token={token}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -173,6 +177,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/verif-tokens?token={token}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -208,6 +213,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/claimed-tokens?token={token}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -243,6 +249,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/users/{userId}/profile'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -279,6 +286,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/users/{userId}/profile'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -314,6 +322,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/users'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -348,6 +357,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/users/{userId}/logins'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -386,6 +396,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/users/{userId}/password'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -421,6 +432,7 @@ class MgmtAPI(object):
         # Parse inputs
         resourcePath = '/mgmt/{callerId}/users/{userId}/password'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -441,6 +453,113 @@ class MgmtAPI(object):
 
         responseObject = self.apiClient.deserialize(response,
                                                     'ResetPasswordResponse')
+        return responseObject
+
+
+    def GetStorageProviders(self, userId, ):
+        """Returns user's storage providers.
+        Args:
+            userId -- User GUID
+
+        Return:
+            GetStorageProvidersResponse -- an instance of GetStorageProvidersResponse"""
+
+        # Parse inputs
+        resourcePath = '/mgmt/{userId}/storages'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+
+        if userId != None:
+            resourcePath = resourcePath.replace('{userId}', userId)
+
+
+        # Make the API Call
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          None, headerParams)
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response,
+                                                    'GetStorageProvidersResponse')
+        return responseObject
+
+
+    def AddStorageProvider(self, userId, provider, postData, ):
+        """Adds a new storage provider configuration.
+        Args:
+            userId -- User GUID
+            provider -- Storage provider name
+            postData -- Storage provider configuration details
+
+        Return:
+            AddStorageProviderResponse -- an instance of AddStorageProviderResponse"""
+
+        # Parse inputs
+        resourcePath = '/mgmt/{userId}/storages/{provider}'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+
+        if userId != None:
+            resourcePath = resourcePath.replace('{userId}', userId)
+        if provider != None:
+            resourcePath = resourcePath.replace('{provider}', provider)
+
+
+        # Make the API Call
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response,
+                                                    'AddStorageProviderResponse')
+        return responseObject
+
+
+    def UpdateStorageProvider(self, userId, provider, postData, ):
+        """Updates user's storage provider configuration.
+        Args:
+            userId -- User GUID
+            provider -- Storage provider name
+            postData -- Storage provider configuration details
+
+        Return:
+            UpdateStorageProviderResponse -- an instance of UpdateStorageProviderResponse"""
+
+        # Parse inputs
+        resourcePath = '/mgmt/{userId}/storages/{provider}'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+
+        if userId != None:
+            resourcePath = resourcePath.replace('{userId}', userId)
+        if provider != None:
+            resourcePath = resourcePath.replace('{provider}', provider)
+
+
+        # Make the API Call
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response,
+                                                    'UpdateStorageProviderResponse')
         return responseObject
 
 

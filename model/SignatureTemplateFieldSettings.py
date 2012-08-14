@@ -24,23 +24,72 @@ class SignatureTemplateFieldSettings:
 
     def __init__(self):
         self.swaggerTypes = {
-            'textColumns': 'float',
+            'locationHeight': 'float',
+            'fontName': 'str',
+            'fontColor': 'str',
+            'forceNewField': 'bool',
+            'regularExpression': 'str',
+            'mandatory': 'bool',
+            'locationX': 'float',
+            'fontBold': 'bool',
+            'fontSize': 'float',
+            'locationY': 'float',
+            'fontItalic': 'bool',
+            'fontUnderline': 'bool',
             'order': 'int',
             'page': 'int',
-            'regex': 'str',
-            'mandatory': 'bool',
             'name': 'str',
-            'locationX': 'float',
-            'graphSizeH': 'float',
-            'graphSizeW': 'float',
-            'locationY': 'float',
-            'textRows': 'float'
+            'locationWidth': 'float'
         }
 
 
 
         # 
-        self.textColumns = None # float
+        self.locationHeight = None # float
+
+
+        # 
+        self.fontName = None # str
+
+
+        # 
+        self.fontColor = None # str
+
+
+        # 
+        self.forceNewField = None # bool
+
+
+        # 
+        self.regularExpression = None # str
+
+
+        # 
+        self.mandatory = None # bool
+
+
+        # 
+        self.locationX = None # float
+
+
+        # 
+        self.fontBold = None # bool
+
+
+        # 
+        self.fontSize = None # float
+
+
+        # 
+        self.locationY = None # float
+
+
+        # 
+        self.fontItalic = None # bool
+
+
+        # 
+        self.fontUnderline = None # bool
 
 
         # 
@@ -52,33 +101,9 @@ class SignatureTemplateFieldSettings:
 
 
         # 
-        self.regex = None # str
-
-
-        # 
-        self.mandatory = None # bool
-
-
-        # 
         self.name = None # str
 
 
         # 
-        self.locationX = None # float
-
-
-        # 
-        self.graphSizeH = None # float
-
-
-        # 
-        self.graphSizeW = None # float
-
-
-        # 
-        self.locationY = None # float
-
-
-        # 
-        self.textRows = None # float
+        self.locationWidth = None # float
 

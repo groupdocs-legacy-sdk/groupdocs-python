@@ -24,6 +24,7 @@ class SignatureEnvelopeDocumentInfo:
 
     def __init__(self):
         self.swaggerTypes = {
+            'fieldsCount': 'int',
             'order': 'int',
             'name': 'str',
             'envelopeId': 'str',
@@ -32,6 +33,10 @@ class SignatureEnvelopeDocumentInfo:
             'documentId': 'str'
         }
 
+
+
+        # 
+        self.fieldsCount = None # int
 
 
         # 

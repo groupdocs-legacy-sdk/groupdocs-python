@@ -24,36 +24,36 @@ class DocDocInputFilesInput:
 
     def __init__(self):
         self.swaggerTypes = {
-            'userId': 'str',
-            'fileId': 'str',
-            'pageNumber': 'str',
-            'pageCount': 'str',
-            'quality': 'str',
-            'usePdf': 'str'
+            'userId': 'Str',
+            'fileId': 'Str',
+            'pageNumber': 'Str',
+            'pageCount': 'Str',
+            'quality': 'Str',
+            'usePdf': 'Str'
         }
 
 
 
         # User GUID
-        self.userId = None # str
+        self.userId = None # Str
 
 
         # File GUID
-        self.fileId = None # str
+        self.fileId = None # Str
 
 
         # Page Number
-        self.pageNumber = None # str
+        self.pageNumber = None # Str
 
 
         # Page Count
-        self.pageCount = None # str
+        self.pageCount = None # Str
 
 
         # Quality
-        self.quality = None # str
+        self.quality = None # Str
 
 
         # Use Pdf
-        self.usePdf = None # str
+        self.usePdf = None # Str
 

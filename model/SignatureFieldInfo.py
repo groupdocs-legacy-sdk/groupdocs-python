@@ -24,18 +24,49 @@ class SignatureFieldInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'id': 'str',
-            'textColumns': 'float',
-            'input': 'float',
-            'check': 'str',
-            'name': 'str',
+            'fontName': 'str',
+            'fontColor': 'str',
+            'regularExpression': 'str',
             'graphSizeH': 'int',
-            'getDataFrom': 'str',
-            'graphSizeW': 'int',
+            'fontBold': 'bool',
+            'fontSize': 'float',
             'isSystem': 'bool',
-            'textRows': 'float'
+            'id': 'str',
+            'fontItalic': 'bool',
+            'fontUnderline': 'bool',
+            'name': 'str',
+            'getDataFrom': 'str',
+            'graphSizeW': 'int'
         }
 
+
+
+        # 
+        self.fontName = None # str
+
+
+        # 
+        self.fontColor = None # str
+
+
+        # 
+        self.regularExpression = None # str
+
+
+        # 
+        self.graphSizeH = None # int
+
+
+        # 
+        self.fontBold = None # bool
+
+
+        # 
+        self.fontSize = None # float
+
+
+        # 
+        self.isSystem = None # bool
 
 
         # 
@@ -43,23 +74,15 @@ class SignatureFieldInfo:
 
 
         # 
-        self.textColumns = None # float
+        self.fontItalic = None # bool
 
 
         # 
-        self.input = None # float
-
-
-        # 
-        self.check = None # str
+        self.fontUnderline = None # bool
 
 
         # 
         self.name = None # str
-
-
-        # 
-        self.graphSizeH = None # int
 
 
         # 
@@ -68,12 +91,4 @@ class SignatureFieldInfo:
 
         # 
         self.graphSizeW = None # int
-
-
-        # 
-        self.isSystem = None # bool
-
-
-        # 
-        self.textRows = None # float
 

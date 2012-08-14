@@ -41,6 +41,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/files/{fileId}/annotations'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -76,6 +77,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/files/{fileId}/annotations'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -111,6 +113,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/annotations/{annotationId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -147,6 +150,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/annotations/{annotationId}/replies'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -185,6 +189,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/replies/{replyGuid}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -223,6 +228,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/annotations/{annotationId}/replies?after={after}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -261,6 +267,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/files/{fileId}/collaborators'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -298,6 +305,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/files/{fileId}/collaborators'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -334,6 +342,7 @@ class AntAPI(object):
         # Parse inputs
         resourcePath = '/ant/{userId}/annotations/{annotationId}/position'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}

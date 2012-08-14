@@ -24,36 +24,36 @@ class DocDocInputSharesInput:
 
     def __init__(self):
         self.swaggerTypes = {
-            'userId': 'str',
-            'sharesTypes': 'str',
-            'pageIndex': 'str',
-            'pageSize': 'str',
-            'orderBy': 'str',
-            'orderAsc': 'str'
+            'userId': 'Str',
+            'sharesTypes': 'Str',
+            'pageIndex': 'Str',
+            'pageSize': 'Str',
+            'orderBy': 'Str',
+            'orderAsc': 'Str'
         }
 
 
 
         # User GUID
-        self.userId = None # str
+        self.userId = None # Str
 
 
         # Shares types
-        self.sharesTypes = None # str
+        self.sharesTypes = None # Str
 
 
         # Page index
-        self.pageIndex = None # str
+        self.pageIndex = None # Str
 
 
         # Page size
-        self.pageSize = None # str
+        self.pageSize = None # Str
 
 
         # Order by
-        self.orderBy = None # str
+        self.orderBy = None # Str
 
 
         # Order asc
-        self.orderAsc = None # str
+        self.orderAsc = None # Str
 

@@ -24,31 +24,31 @@ class SharedSharedInputFilesInput:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
-            'pageNumber': 'str',
-            'pageCount': 'str',
-            'quality': 'str',
-            'usePdf': 'str'
+            'guid': 'Str',
+            'pageNumber': 'Str',
+            'pageCount': 'Str',
+            'quality': 'Str',
+            'usePdf': 'Str'
         }
 
 
 
         # GUID
-        self.guid = None # str
+        self.guid = None # Str
 
 
         # Page number
-        self.pageNumber = None # str
+        self.pageNumber = None # Str
 
 
         # Page count
-        self.pageCount = None # str
+        self.pageCount = None # Str
 
 
         # Quality
-        self.quality = None # str
+        self.quality = None # Str
 
 
         # Use Pdf
-        self.usePdf = None # str
+        self.usePdf = None # Str
 

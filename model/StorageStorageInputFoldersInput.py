@@ -24,51 +24,51 @@ class StorageStorageInputFoldersInput:
 
     def __init__(self):
         self.swaggerTypes = {
-            'userId': 'str',
-            'path': 'str',
-            'pageIndex': 'str',
-            'pageSize': 'str',
-            'orderBy': 'str',
-            'orderAsc': 'str',
-            'filter': 'str',
-            'fileTypes': 'str',
-            'extended': 'str'
+            'userId': 'Str',
+            'path': 'Str',
+            'pageIndex': 'Str',
+            'pageSize': 'Str',
+            'orderBy': 'Str',
+            'orderAsc': 'Str',
+            'filter': 'Str',
+            'fileTypes': 'Str',
+            'extended': 'Str'
         }
 
 
 
         # User GUID
-        self.userId = None # str
+        self.userId = None # Str
 
 
         # Path
-        self.path = None # str
+        self.path = None # Str
 
 
         # Page Index
-        self.pageIndex = None # str
+        self.pageIndex = None # Str
 
 
         # Page Size
-        self.pageSize = None # str
+        self.pageSize = None # Str
 
 
         # Order By
-        self.orderBy = None # str
+        self.orderBy = None # Str
 
 
         # Order Asc
-        self.orderAsc = None # str
+        self.orderAsc = None # Str
 
 
         # Filter
-        self.filter = None # str
+        self.filter = None # Str
 
 
         # File Types
-        self.fileTypes = None # str
+        self.fileTypes = None # Str
 
 
         # Indicates whether an extended information should be returned
-        self.extended = None # str
+        self.extended = None # Str
 

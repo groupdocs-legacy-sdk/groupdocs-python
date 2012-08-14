@@ -28,56 +28,19 @@ class ComparisonAPI(object):
     def __init__(self, apiClient):
       self.apiClient = apiClient
 
-    def Compare(self, userId, sourceFileId, targetFileId, ):
-        """Compare
-        Args:
-            userId -- User GUID
-            sourceFileId -- Source File GUID
-            targetFileId -- Target File GUID
-
-        Return:
-            CompareResponse -- an instance of CompareResponse"""
-
-        # Parse inputs
-        resourcePath = '/comparison/{userId}/comparison/compare?source={sourceFileId}&target={targetFileId}'
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'GET'
-
-        queryParams = {}
-        headerParams = {}
-
-
-        if userId != None:
-            resourcePath = resourcePath.replace('{userId}', userId)
-        if sourceFileId != None:
-            resourcePath = resourcePath.replace('{sourceFileId}', sourceFileId)
-        if targetFileId != None:
-            resourcePath = resourcePath.replace('{targetFileId}', targetFileId)
-
-
-        # Make the API Call
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
-                                          None, headerParams)
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response,
-                                                    'CompareResponse')
-        return responseObject
-
-
-    def GetChanges(self, userId, resultFileId, ):
-        """Get changes
+    def DownloadResult(self, userId, resultFileId, ):
+        """Download comparison result file
         Args:
             userId -- User GUID
             resultFileId -- Comparison result file GUID
 
         Return:
-            ChangesResponse -- an instance of ChangesResponse"""
+            str -- an instance of str"""
 
         # Parse inputs
-        resourcePath = '/comparison/{userId}/comparison/changes?resultFileId={resultFileId}'
+        resourcePath = '/comparison/{userId}/comparison/download?resultFileId={resultFileId}&format={format}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -97,42 +60,7 @@ class ComparisonAPI(object):
             return None
 
         responseObject = self.apiClient.deserialize(response,
-                                                    'ChangesResponse')
-        return responseObject
-
-
-    def GetDocumentDetails(self, userId, guid, ):
-        """Get document details
-        Args:
-            userId -- User GUID
-            guid -- Document GUID
-
-        Return:
-            DocumentDetailsResponse -- an instance of DocumentDetailsResponse"""
-
-        # Parse inputs
-        resourcePath = '/comparison/{userId}/comparison/document?guid={guid}'
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'GET'
-
-        queryParams = {}
-        headerParams = {}
-
-
-        if userId != None:
-            resourcePath = resourcePath.replace('{userId}', userId)
-        if guid != None:
-            resourcePath = resourcePath.replace('{guid}', guid)
-
-
-        # Make the API Call
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
-                                          None, headerParams)
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response,
-                                                    'DocumentDetailsResponse')
+                                                    'str')
         return responseObject
 
 

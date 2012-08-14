@@ -25,7 +25,9 @@ class SignatureSignatureSettings:
     def __init__(self):
         self.swaggerTypes = {
             'position': 'str',
+            'initialsData': 'str',
             'lastName': 'str',
+            'signatureData': 'str',
             'name': 'str',
             'firstName': 'str',
             'companyName': 'str',
@@ -39,7 +41,15 @@ class SignatureSignatureSettings:
 
 
         # 
+        self.initialsData = None # str
+
+
+        # 
         self.lastName = None # str
+
+
+        # 
+        self.signatureData = None # str
 
 
         # 

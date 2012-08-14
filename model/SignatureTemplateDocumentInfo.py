@@ -25,6 +25,7 @@ class SignatureTemplateDocumentInfo:
     def __init__(self):
         self.swaggerTypes = {
             'templateId': 'str',
+            'fieldsCount': 'int',
             'order': 'int',
             'name': 'str',
             'originalDocumentPagesCount': 'int',
@@ -36,6 +37,10 @@ class SignatureTemplateDocumentInfo:
 
         # 
         self.templateId = None # str
+
+
+        # 
+        self.fieldsCount = None # int
 
 
         # 

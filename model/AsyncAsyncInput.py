@@ -24,31 +24,31 @@ class AsyncAsyncInput:
 
     def __init__(self):
         self.swaggerTypes = {
-            'userId': 'str',
-            'pageIndex': 'str',
-            'pageSize': 'str',
-            'actions': 'str',
-            'excludedActions': 'str'
+            'userId': 'Str',
+            'pageIndex': 'Str',
+            'pageSize': 'Str',
+            'actions': 'Str',
+            'excludedActions': 'Str'
         }
 
 
 
         # User GUID
-        self.userId = None # str
+        self.userId = None # Str
 
 
         # Page Index
-        self.pageIndex = None # str
+        self.pageIndex = None # Str
 
 
         # Page Size
-        self.pageSize = None # str
+        self.pageSize = None # Str
 
 
         # Actions
-        self.actions = None # str
+        self.actions = None # Str
 
 
         # Excluded actions
-        self.excludedActions = None # str
+        self.excludedActions = None # Str
 

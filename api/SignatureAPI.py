@@ -28,6 +28,45 @@ class SignatureAPI(object):
     def __init__(self, apiClient):
       self.apiClient = apiClient
 
+    def DelegateEnvelopeRecipient(self, userId, envelopeId, recipientId, ):
+        """Delegate envelope recipient
+        Args:
+            userId -- User GUID
+            envelopeId -- Envelope GUID
+            recipientId -- Recipient GUID
+
+        Return:
+            SignatureStatusResponse -- an instance of SignatureStatusResponse"""
+
+        # Parse inputs
+        resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/delegate?email={recipientEmail}&firstname={recipientFirstName}&lastname={recipientLastName}'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+
+        if userId != None:
+            resourcePath = resourcePath.replace('{userId}', userId)
+        if envelopeId != None:
+            resourcePath = resourcePath.replace('{envelopeId}', envelopeId)
+        if recipientId != None:
+            resourcePath = resourcePath.replace('{recipientId}', recipientId)
+
+
+        # Make the API Call
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          None, headerParams)
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response,
+                                                    'SignatureStatusResponse')
+        return responseObject
+
+
     def AddContact(self, userId, postData, ):
         """Add contact
         Args:
@@ -40,6 +79,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/contact'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -74,6 +114,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/contacts/{contactId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -108,22 +149,23 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/contacts?firstName={firstName}&lastName={lastName}&email={email}&records={count}&page={page}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
         if signatureSignatureInput != None and signatureSignatureInput.page != None:
-            queryParams['page'] = self.apiClient.toPathValue(signatureSignatureInput.page)
+            queryParams['page'] = signatureSignatureInput.page
 
         if signatureSignatureInput != None and signatureSignatureInput.firstName != None:
-            queryParams['firstName'] = self.apiClient.toPathValue(signatureSignatureInput.firstName)
+            queryParams['firstName'] = signatureSignatureInput.firstName
 
         if signatureSignatureInput != None and signatureSignatureInput.lastName != None:
-            queryParams['lastName'] = self.apiClient.toPathValue(signatureSignatureInput.lastName)
+            queryParams['lastName'] = signatureSignatureInput.lastName
 
         if signatureSignatureInput != None and signatureSignatureInput.email != None:
-            queryParams['email'] = self.apiClient.toPathValue(signatureSignatureInput.email)
+            queryParams['email'] = signatureSignatureInput.email
 
 
         if signatureSignatureInput != None and signatureSignatureInput.userId != None:
@@ -153,6 +195,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/contacts/{contactId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -187,6 +230,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/contacts'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -219,6 +263,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/resources'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -240,6 +285,49 @@ class SignatureAPI(object):
         return responseObject
 
 
+    def ModifySignatureEnvelopeFieldLocation(self, postData=None, signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput=None, ):
+        """Modify signature envelope field location
+        Args:
+            postData -- Settings of the field location
+            signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput -- 
+
+        Return:
+            SignatureEnvelopeFieldResponse -- an instance of SignatureEnvelopeFieldResponse"""
+
+        # Parse inputs
+        resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/fields/{fieldId}/locations/{locationId}'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.userId != None:
+            resourcePath = resourcePath.replace('{userId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.userId)
+        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.envelopeId != None:
+            resourcePath = resourcePath.replace('{envelopeId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.envelopeId)
+        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.documentId != None:
+            resourcePath = resourcePath.replace('{documentId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.documentId)
+        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.recipientId != None:
+            resourcePath = resourcePath.replace('{recipientId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.recipientId)
+        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.fieldId != None:
+            resourcePath = resourcePath.replace('{fieldId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.fieldId)
+        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.locationId != None:
+            resourcePath = resourcePath.replace('{locationId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.locationId)
+
+
+        # Make the API Call
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response,
+                                                    'SignatureEnvelopeFieldResponse')
+        return responseObject
+
+
     def GetSignatureTemplates(self, userId, page=None, ):
         """Get templates
         Args:
@@ -252,12 +340,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates?records={count}&page={page}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['page'] = self.apiClient.toPathValue(page)
+        queryParams['page'] = page
 
 
         if userId != None:
@@ -287,6 +376,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -324,13 +414,14 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/template?name={name}&templateId={templateId}&envelopeId={envelopeId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['name'] = self.apiClient.toPathValue(name)
-        queryParams['templateId'] = self.apiClient.toPathValue(templateId)
+        queryParams['name'] = name
+        queryParams['templateId'] = templateId
 
 
         if userId != None:
@@ -361,6 +452,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -397,12 +489,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/tempalates/{templateId}?name={name}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['name'] = self.apiClient.toPathValue(name)
+        queryParams['name'] = name
 
 
         if userId != None:
@@ -434,6 +527,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -471,13 +565,14 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/recipient?nickname={nickname}&role={roleId}&order={order}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['nickname'] = self.apiClient.toPathValue(nickname)
-        queryParams['order'] = self.apiClient.toPathValue(order)
+        queryParams['nickname'] = nickname
+        queryParams['order'] = order
 
 
         if userId != None:
@@ -509,6 +604,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/recipients'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -545,6 +641,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/recipients/{recipientId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -584,13 +681,14 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/recipient/{recipientId}?nickname={nickname}&role={roleId}&order={order}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['nickname'] = self.apiClient.toPathValue(nickname)
-        queryParams['order'] = self.apiClient.toPathValue(order)
+        queryParams['nickname'] = nickname
+        queryParams['order'] = order
 
 
         if userId != None:
@@ -624,12 +722,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/document/{documentId}?order={order}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['order'] = self.apiClient.toPathValue(order)
+        queryParams['order'] = order
 
 
         if userId != None:
@@ -663,6 +762,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/documents'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -699,6 +799,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/documents/{documentId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -736,6 +837,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/documents/{documentId}/recipient/{recipientId}/field/{fieldId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -762,6 +864,48 @@ class SignatureAPI(object):
         return responseObject
 
 
+    def ModifySignatureTemplateField(self, userId, templateId, documentId, fieldId, ):
+        """Modify signature template field
+        Args:
+            userId -- User GUID
+            templateId -- Template GUID
+            documentId -- Document GUID
+            fieldId -- Field GUID
+
+        Return:
+            SignatureTemplateFieldResponse -- an instance of SignatureTemplateFieldResponse"""
+
+        # Parse inputs
+        resourcePath = '/signature/{userId}/templates/{templateId}/documents/{documentId}/field/{fieldId}'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+
+        if userId != None:
+            resourcePath = resourcePath.replace('{userId}', userId)
+        if templateId != None:
+            resourcePath = resourcePath.replace('{templateId}', templateId)
+        if documentId != None:
+            resourcePath = resourcePath.replace('{documentId}', documentId)
+        if fieldId != None:
+            resourcePath = resourcePath.replace('{fieldId}', fieldId)
+
+
+        # Make the API Call
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          None, headerParams)
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response,
+                                                    'SignatureTemplateFieldResponse')
+        return responseObject
+
+
     def DeleteSignatureTemplateFieldLocation(self, userId, templateId, fieldId, locationId, ):
         """Delete signature template field location
         Args:
@@ -776,6 +920,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/fields/{fieldId}/locations/{locationId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -803,8 +948,8 @@ class SignatureAPI(object):
         return responseObject
 
 
-    def MoveSignatureTemplateFieldLocation(self, postData=None, signatureSignatureInputTemplatesInputDocumentsInputRecipientInputFieldsInputLocationsInput=None, ):
-        """Move signature template field location
+    def ModifySignatureTemplateFieldLocation(self, postData=None, signatureSignatureInputTemplatesInputDocumentsInputRecipientInputFieldsInputLocationsInput=None, ):
+        """Modify signature template field location
         Args:
             postData -- Settings of the field location
             signatureSignatureInputTemplatesInputDocumentsInputRecipientInputFieldsInputLocationsInput -- 
@@ -815,6 +960,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/documents/{documentId}/recipient/{recipientId}/fields/{fieldId}/locations/{locationId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -859,6 +1005,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/fields?document={documentId}&recipient={recipientId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -899,6 +1046,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/templates/{templateId}/fields/{fieldId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -935,6 +1083,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/signatures'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -968,6 +1117,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/signatures/{signatureId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -1004,12 +1154,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/signature?name={name}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['name'] = self.apiClient.toPathValue(name)
+        queryParams['name'] = name
 
 
         if userId != None:
@@ -1041,13 +1192,14 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/signature/{signatureId}/image?type={type}&datafrom={dataFrom}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['type'] = self.apiClient.toPathValue(type)
-        queryParams['dataFrom'] = self.apiClient.toPathValue(dataFrom)
+        queryParams['type'] = type
+        queryParams['dataFrom'] = dataFrom
 
 
         if userId != None:
@@ -1079,6 +1231,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/field/{fieldId}?signatureId={signatureId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -1120,6 +1273,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/sign'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -1158,6 +1312,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/decline'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -1183,45 +1338,7 @@ class SignatureAPI(object):
         return responseObject
 
 
-    def DelegateEnvelopeRecipient(self, userId, envelopeId, recipientId, ):
-        """Delegate envelope recipient
-        Args:
-            userId -- User GUID
-            envelopeId -- Envelope GUID
-            recipientId -- Recipient GUID
-
-        Return:
-            SignatureStatusResponse -- an instance of SignatureStatusResponse"""
-
-        # Parse inputs
-        resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}/delegate?email={recipientEmail}&firstname={recipientFirstName}&lastname={recipientLastName}'
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'POST'
-
-        queryParams = {}
-        headerParams = {}
-
-
-        if userId != None:
-            resourcePath = resourcePath.replace('{userId}', userId)
-        if envelopeId != None:
-            resourcePath = resourcePath.replace('{envelopeId}', envelopeId)
-        if recipientId != None:
-            resourcePath = resourcePath.replace('{recipientId}', recipientId)
-
-
-        # Make the API Call
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
-                                          None, headerParams)
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response,
-                                                    'SignatureStatusResponse')
-        return responseObject
-
-
-    def GetSignatureEnvelopes(self, userId, statusId=None, page=None, recipientEmail=None, date=None, ):
+    def GetSignatureEnvelopes(self, userId, statusId=None, page=None, recipientEmail=None, date=None, name=None, ):
         """Get signature envelopes
         Args:
             userId -- User GUID
@@ -1229,22 +1346,25 @@ class SignatureAPI(object):
             page -- Show records for page number
             recipientEmail -- Filter envelopes by recipient email
             date -- Filter envelopes by date
+            name -- Filter envelopes by name
 
         Return:
             SignatureEnvelopesResponse -- an instance of SignatureEnvelopesResponse"""
 
         # Parse inputs
-        resourcePath = '/signature/{userId}/envelopes?statusId={statusId}&records={count}&page={page}&document={originalDocumentMD5}&recipient={recipientEmail}&date={date}'
+        resourcePath = '/signature/{userId}/envelopes?statusId={statusId}&records={count}&page={page}&document={originalDocumentMD5}&recipient={recipientEmail}&date={date}&name={name}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['statusId'] = self.apiClient.toPathValue(statusId)
-        queryParams['page'] = self.apiClient.toPathValue(page)
-        queryParams['recipientEmail'] = self.apiClient.toPathValue(recipientEmail)
-        queryParams['date'] = self.apiClient.toPathValue(date)
+        queryParams['statusId'] = statusId
+        queryParams['page'] = page
+        queryParams['recipientEmail'] = recipientEmail
+        queryParams['date'] = date
+        queryParams['name'] = name
 
 
         if userId != None:
@@ -1275,13 +1395,14 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/recipient?statusId={statusId}&records={count}&page={page}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['statusId'] = self.apiClient.toPathValue(statusId)
-        queryParams['page'] = self.apiClient.toPathValue(page)
+        queryParams['statusId'] = statusId
+        queryParams['page'] = page
 
 
         if userId != None:
@@ -1311,6 +1432,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -1347,12 +1469,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelope?name={name}&templateId={templateId}&envelopeId={envelopeId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['name'] = self.apiClient.toPathValue(name)
+        queryParams['name'] = name
 
 
         if userId != None:
@@ -1383,6 +1506,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -1419,12 +1543,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}?name={name}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['name'] = self.apiClient.toPathValue(name)
+        queryParams['name'] = name
 
 
         if userId != None:
@@ -1456,6 +1581,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -1490,6 +1616,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/roles?id={roleId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -1522,6 +1649,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/fields?id={fieldId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -1555,6 +1683,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/field'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -1589,6 +1718,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/fields/{fieldId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -1624,6 +1754,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/fields/{fieldId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -1659,12 +1790,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient?email={recipientEmail}&firstname={recipientFirstName}&lastname={recipientLastName}&role={roleId}&order={order}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['order'] = self.apiClient.toPathValue(order)
+        queryParams['order'] = order
 
 
         if userId != None:
@@ -1694,6 +1826,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipients'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -1730,6 +1863,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipients/{recipientId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -1767,12 +1901,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/recipient/{recipientId}?email={recipientEmail}&firstname={recipientFirstName}&lastname={recipientLastName}&role={roleId}&order={order}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['order'] = self.apiClient.toPathValue(order)
+        queryParams['order'] = order
 
 
         if userId != None:
@@ -1804,12 +1939,13 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/document/{documentId}?order={order}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
-        queryParams['order'] = self.apiClient.toPathValue(order)
+        queryParams['order'] = order
 
 
         if userId != None:
@@ -1843,6 +1979,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -1879,6 +2016,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/document/{documentId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -1916,6 +2054,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/get'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -1952,6 +2091,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -1993,6 +2133,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/field/{fieldId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}
@@ -2036,6 +2177,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields?document={documentId}&recipient={recipientId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -2076,6 +2218,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields/{fieldId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -2101,6 +2244,45 @@ class SignatureAPI(object):
         return responseObject
 
 
+    def ModifySignatureEnvelopeField(self, postData=None, signatureSignatureInputEnvelopesInputDocumentsInputFieldInput=None, ):
+        """Modify signature envelope field
+        Args:
+            postData -- Settings of the field
+            signatureSignatureInputEnvelopesInputDocumentsInputFieldInput -- 
+
+        Return:
+            SignatureEnvelopeFieldResponse -- an instance of SignatureEnvelopeFieldResponse"""
+
+        # Parse inputs
+        resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/field/{fieldId}'
+        resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if signatureSignatureInputEnvelopesInputDocumentsInputFieldInput != None and signatureSignatureInputEnvelopesInputDocumentsInputFieldInput.userId != None:
+            resourcePath = resourcePath.replace('{userId}', signatureSignatureInputEnvelopesInputDocumentsInputFieldInput.userId)
+        if signatureSignatureInputEnvelopesInputDocumentsInputFieldInput != None and signatureSignatureInputEnvelopesInputDocumentsInputFieldInput.envelopeId != None:
+            resourcePath = resourcePath.replace('{envelopeId}', signatureSignatureInputEnvelopesInputDocumentsInputFieldInput.envelopeId)
+        if signatureSignatureInputEnvelopesInputDocumentsInputFieldInput != None and signatureSignatureInputEnvelopesInputDocumentsInputFieldInput.documentId != None:
+            resourcePath = resourcePath.replace('{documentId}', signatureSignatureInputEnvelopesInputDocumentsInputFieldInput.documentId)
+        if signatureSignatureInputEnvelopesInputDocumentsInputFieldInput != None and signatureSignatureInputEnvelopesInputDocumentsInputFieldInput.fieldId != None:
+            resourcePath = resourcePath.replace('{fieldId}', signatureSignatureInputEnvelopesInputDocumentsInputFieldInput.fieldId)
+
+
+        # Make the API Call
+        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+                                          postData, headerParams)
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response,
+                                                    'SignatureEnvelopeFieldResponse')
+        return responseObject
+
+
     def ArchiveSignatureEnvelope(self, userId, envelopeId, ):
         """Archive envelope
         Args:
@@ -2113,6 +2295,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/archive'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -2148,6 +2331,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/send'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'PUT'
 
         queryParams = {}
@@ -2185,6 +2369,7 @@ class SignatureAPI(object):
         # Parse inputs
         resourcePath = '/signature/{userId}/envelopes/{envelopeId}/fields/{fieldId}/locations/{locationId}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'DELETE'
 
         queryParams = {}
@@ -2209,48 +2394,6 @@ class SignatureAPI(object):
 
         responseObject = self.apiClient.deserialize(response,
                                                     'SignatureStatusResponse')
-        return responseObject
-
-
-    def MoveSignatureEnvelopeFieldLocation(self, postData=None, signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput=None, ):
-        """Move signature envelope field location
-        Args:
-            postData -- Settings of the field location
-            signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput -- 
-
-        Return:
-            SignatureEnvelopeFieldResponse -- an instance of SignatureEnvelopeFieldResponse"""
-
-        # Parse inputs
-        resourcePath = '/signature/{userId}/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/fields/{fieldId}/locations/{locationId}'
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'PUT'
-
-        queryParams = {}
-        headerParams = {}
-
-        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.userId != None:
-            resourcePath = resourcePath.replace('{userId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.userId)
-        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.envelopeId != None:
-            resourcePath = resourcePath.replace('{envelopeId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.envelopeId)
-        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.documentId != None:
-            resourcePath = resourcePath.replace('{documentId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.documentId)
-        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.recipientId != None:
-            resourcePath = resourcePath.replace('{recipientId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.recipientId)
-        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.fieldId != None:
-            resourcePath = resourcePath.replace('{fieldId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.fieldId)
-        if signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput != None and signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.locationId != None:
-            resourcePath = resourcePath.replace('{locationId}', signatureSignatureInputEnvelopesInputDocumentsInputRecipientInputFieldsInputLocationsInput.locationId)
-
-
-        # Make the API Call
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
-                                          postData, headerParams)
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response,
-                                                    'SignatureEnvelopeFieldResponse')
         return responseObject
 
 

@@ -24,28 +24,17 @@ class SignatureFieldSettings:
 
     def __init__(self):
         self.swaggerTypes = {
-            'textColumns': 'int',
-            'input': 'int',
-            'check': 'str',
+            'regularExpression': 'str',
             'name': 'str',
             'graphSizeH': 'int',
             'getDataFrom': 'str',
-            'graphSizeW': 'int',
-            'textRows': 'int'
+            'graphSizeW': 'int'
         }
 
 
 
         # 
-        self.textColumns = None # int
-
-
-        # 
-        self.input = None # int
-
-
-        # 
-        self.check = None # str
+        self.regularExpression = None # str
 
 
         # 
@@ -62,8 +51,4 @@ class SignatureFieldSettings:
 
         # 
         self.graphSizeW = None # int
-
-
-        # 
-        self.textRows = None # int
 

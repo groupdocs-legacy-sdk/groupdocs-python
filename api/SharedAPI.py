@@ -41,6 +41,7 @@ class SharedAPI(object):
         # Parse inputs
         resourcePath = '/shared/files/{guid}?filename={fileName}&render={render}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -77,6 +78,7 @@ class SharedAPI(object):
         # Parse inputs
         resourcePath = '/shared/files/{guid}/pages/{folio}/{dimension}?quality={quality}&use_pdf={usePdf}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -120,6 +122,7 @@ class SharedAPI(object):
         # Parse inputs
         resourcePath = '/shared/files/{guid}/pages/{folio}/{dimension}/url?quality={quality}&use_pdf={usePdf}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -160,6 +163,7 @@ class SharedAPI(object):
         # Parse inputs
         resourcePath = '/shared/files/{guid}/xml'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -192,6 +196,7 @@ class SharedAPI(object):
         # Parse inputs
         resourcePath = '/shared/packages/{*path}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'GET'
 
         queryParams = {}
@@ -224,6 +229,7 @@ class SharedAPI(object):
         # Parse inputs
         resourcePath = '/shared/files/{guid}/thumbnails?page_number={pageNumber}&page_count={pageCount}&quality={quality}&use_pdf={usePdf}'
         resourcePath = resourcePath.replace('{format}', 'json')
+        resourcePath = resourcePath.replace('*', '')
         method = 'POST'
 
         queryParams = {}

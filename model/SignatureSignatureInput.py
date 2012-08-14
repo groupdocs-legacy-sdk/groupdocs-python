@@ -24,31 +24,31 @@ class SignatureSignatureInput:
 
     def __init__(self):
         self.swaggerTypes = {
-            'userId': 'str',
-            'page': 'str',
-            'firstName': 'str',
-            'lastName': 'str',
-            'email': 'str'
+            'userId': 'Str',
+            'page': 'Str',
+            'firstName': 'Str',
+            'lastName': 'Str',
+            'email': 'Str'
         }
 
 
 
         # User GUID
-        self.userId = None # str
+        self.userId = None # Str
 
 
         # Page number
-        self.page = None # str
+        self.page = None # Str
 
 
         # Filter by firstName
-        self.firstName = None # str
+        self.firstName = None # Str
 
 
         # Filter by lastName
-        self.lastName = None # str
+        self.lastName = None # Str
 
 
         # Filter by email
-        self.email = None # str
+        self.email = None # Str
 

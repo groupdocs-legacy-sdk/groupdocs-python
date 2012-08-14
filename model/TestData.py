@@ -34,16 +34,23 @@ class TestData:
             'rectangleList': 'List<Rectangle>',
             'changeInfoList': 'List<ChangeInfo>',
             'resetPasswordResultList': 'List<ResetPasswordResult>',
-            'updateUserResultList': 'List<UpdateUserResult>',
-            'userInfoResponseList': 'List<UserInfoResponse>',
-            'resetPasswordResponseList': 'List<ResetPasswordResponse>',
             'createUserResultList': 'List<CreateUserResult>',
             'userPasswordInfoList': 'List<UserPasswordInfo>',
-            'userInfoList': 'List<UserInfo>',
+            'updateStorageProviderResponseList': 'List<UpdateStorageProviderResponse>',
             'createUserResponseList': 'List<CreateUserResponse>',
             'changePasswordResultList': 'List<ChangePasswordResult>',
             'updateUserResponseList': 'List<UpdateUserResponse>',
+            'addStorageProviderResponseList': 'List<AddStorageProviderResponse>',
+            'updateUserResultList': 'List<UpdateUserResult>',
+            'userInfoResponseList': 'List<UserInfoResponse>',
+            'getStorageProvidersResultList': 'List<GetStorageProvidersResult>',
+            'resetPasswordResponseList': 'List<ResetPasswordResponse>',
+            'updateStorageProviderResultList': 'List<UpdateStorageProviderResult>',
+            'userInfoList': 'List<UserInfo>',
+            'addStorageProviderResultList': 'List<AddStorageProviderResult>',
+            'getStorageProvidersResponseList': 'List<GetStorageProvidersResponse>',
             'userInfoResultList': 'List<UserInfoResult>',
+            'storageProviderInfoList': 'List<StorageProviderInfo>',
             'changePasswordResponseList': 'List<ChangePasswordResponse>',
             'setCollaboratorsResponseList': 'List<SetCollaboratorsResponse>',
             'listRepliesResultList': 'List<ListRepliesResult>',
@@ -99,6 +106,7 @@ class TestData:
             'folderMoveResultList': 'List<FolderMoveResult>',
             'fileMoveResultList': 'List<FileMoveResult>',
             'listEntitiesResultList': 'List<ListEntitiesResult>',
+            'fileSystemDocumentList': 'List<FileSystemDocument>',
             'createFolderResponseList': 'List<CreateFolderResponse>',
             'documentInfoList': 'List<DocumentInfo>',
             'compressRequestResultList': 'List<CompressRequestResult>',
@@ -107,10 +115,10 @@ class TestData:
             'createPackageResponseList': 'List<CreatePackageResponse>',
             'folderMoveResponseList': 'List<FolderMoveResponse>',
             'storageInfoResponseList': 'List<StorageInfoResponse>',
+            'fileSystemFolderList': 'List<FileSystemFolder>',
             'deleteResponseList': 'List<DeleteResponse>',
             'listEntitiesResponseList': 'List<ListEntitiesResponse>',
             'fileMoveResponseList': 'List<FileMoveResponse>',
-            'sharedDocumentInfoList': 'List<SharedDocumentInfo>',
             'getDocumentInfoResultList': 'List<GetDocumentInfoResult>',
             'templateFieldList': 'List<TemplateField>',
             'documentViewsResultList': 'List<DocumentViewsResult>',
@@ -129,6 +137,7 @@ class TestData:
             'templateFieldsResultList': 'List<TemplateFieldsResult>',
             'getDocumentForeignTypesResultList': 'List<GetDocumentForeignTypesResult>',
             'documentAccessInfoResponseList': 'List<DocumentAccessInfoResponse>',
+            'sharedDocumentInfoList': 'List<SharedDocumentInfo>',
             'questionnaireExecutionInfoList': 'List<QuestionnaireExecutionInfo>',
             'getQuestionnairesResponseList': 'List<GetQuestionnairesResponse>',
             'getDocumentQuestionnairesResultList': 'List<GetDocumentQuestionnairesResult>',
@@ -187,8 +196,8 @@ class TestData:
             'signatureTemplateFieldLocationSettingsList': 'List<SignatureTemplateFieldLocationSettings>',
             'signatureEnvelopeRecipientResultList': 'List<SignatureEnvelopeRecipientResult>',
             'signatureTemplateFieldResponseList': 'List<SignatureTemplateFieldResponse>',
-            'signatureEnvelopeFieldInfoList': 'List<SignatureEnvelopeFieldInfo>',
             'signatureEnvelopesResponseList': 'List<SignatureEnvelopesResponse>',
+            'signatureEnvelopeFieldInfoList': 'List<SignatureEnvelopeFieldInfo>',
             'signatureRoleInfoList': 'List<SignatureRoleInfo>',
             'signatureTemplateSettingsList': 'List<SignatureTemplateSettings>',
             'signatureTemplateFieldsResultList': 'List<SignatureTemplateFieldsResult>',
@@ -215,8 +224,8 @@ class TestData:
             'signatureContactResultList': 'List<SignatureContactResult>',
             'signatureEnvelopeRecipientResponseList': 'List<SignatureEnvelopeRecipientResponse>',
             'signatureTemplateRecipientsResponseList': 'List<SignatureTemplateRecipientsResponse>',
-            'signatureTemplateDocumentsResultList': 'List<SignatureTemplateDocumentsResult>',
             'signatureEnvelopeFieldResultList': 'List<SignatureEnvelopeFieldResult>',
+            'signatureTemplateDocumentsResultList': 'List<SignatureTemplateDocumentsResult>',
             'signatureEnvelopeResourcesResultList': 'List<SignatureEnvelopeResourcesResult>',
             'signatureEnvelopeDocumentsResultList': 'List<SignatureEnvelopeDocumentsResult>',
             'signatureTemplatesResultList': 'List<SignatureTemplatesResult>',
@@ -224,9 +233,9 @@ class TestData:
             'signatureFieldResponseList': 'List<SignatureFieldResponse>',
             'signatureFieldsResponseList': 'List<SignatureFieldsResponse>',
             'signatureStatusResponseList': 'List<SignatureStatusResponse>',
+            'signatureEnvelopeFieldLocationInfoList': 'List<SignatureEnvelopeFieldLocationInfo>',
             'signatureContactsResultList': 'List<SignatureContactsResult>',
             'signatureEnvelopeDocumentInfoList': 'List<SignatureEnvelopeDocumentInfo>',
-            'signatureEnvelopeFieldLocationInfoList': 'List<SignatureEnvelopeFieldLocationInfo>',
             'signatureTemplateRecipientInfoList': 'List<SignatureTemplateRecipientInfo>',
             'signatureTemplateDocumentsResponseList': 'List<SignatureTemplateDocumentsResponse>',
             'signatureSignatureResponseList': 'List<SignatureSignatureResponse>',
@@ -289,18 +298,6 @@ class TestData:
 
 
         # 
-        self.updateUserResultList = None # List<UpdateUserResult>
-
-
-        # 
-        self.userInfoResponseList = None # List<UserInfoResponse>
-
-
-        # 
-        self.resetPasswordResponseList = None # List<ResetPasswordResponse>
-
-
-        # 
         self.createUserResultList = None # List<CreateUserResult>
 
 
@@ -309,7 +306,7 @@ class TestData:
 
 
         # 
-        self.userInfoList = None # List<UserInfo>
+        self.updateStorageProviderResponseList = None # List<UpdateStorageProviderResponse>
 
 
         # 
@@ -325,7 +322,47 @@ class TestData:
 
 
         # 
+        self.addStorageProviderResponseList = None # List<AddStorageProviderResponse>
+
+
+        # 
+        self.updateUserResultList = None # List<UpdateUserResult>
+
+
+        # 
+        self.userInfoResponseList = None # List<UserInfoResponse>
+
+
+        # 
+        self.getStorageProvidersResultList = None # List<GetStorageProvidersResult>
+
+
+        # 
+        self.resetPasswordResponseList = None # List<ResetPasswordResponse>
+
+
+        # 
+        self.updateStorageProviderResultList = None # List<UpdateStorageProviderResult>
+
+
+        # 
+        self.userInfoList = None # List<UserInfo>
+
+
+        # 
+        self.addStorageProviderResultList = None # List<AddStorageProviderResult>
+
+
+        # 
+        self.getStorageProvidersResponseList = None # List<GetStorageProvidersResponse>
+
+
+        # 
         self.userInfoResultList = None # List<UserInfoResult>
+
+
+        # 
+        self.storageProviderInfoList = None # List<StorageProviderInfo>
 
 
         # 
@@ -549,6 +586,10 @@ class TestData:
 
 
         # 
+        self.fileSystemDocumentList = None # List<FileSystemDocument>
+
+
+        # 
         self.createFolderResponseList = None # List<CreateFolderResponse>
 
 
@@ -581,6 +622,10 @@ class TestData:
 
 
         # 
+        self.fileSystemFolderList = None # List<FileSystemFolder>
+
+
+        # 
         self.deleteResponseList = None # List<DeleteResponse>
 
 
@@ -590,10 +635,6 @@ class TestData:
 
         # 
         self.fileMoveResponseList = None # List<FileMoveResponse>
-
-
-        # 
-        self.sharedDocumentInfoList = None # List<SharedDocumentInfo>
 
 
         # 
@@ -666,6 +707,10 @@ class TestData:
 
         # 
         self.documentAccessInfoResponseList = None # List<DocumentAccessInfoResponse>
+
+
+        # 
+        self.sharedDocumentInfoList = None # List<SharedDocumentInfo>
 
 
         # 
@@ -901,11 +946,11 @@ class TestData:
 
 
         # 
-        self.signatureEnvelopeFieldInfoList = None # List<SignatureEnvelopeFieldInfo>
+        self.signatureEnvelopesResponseList = None # List<SignatureEnvelopesResponse>
 
 
         # 
-        self.signatureEnvelopesResponseList = None # List<SignatureEnvelopesResponse>
+        self.signatureEnvelopeFieldInfoList = None # List<SignatureEnvelopeFieldInfo>
 
 
         # 
@@ -1013,11 +1058,11 @@ class TestData:
 
 
         # 
-        self.signatureTemplateDocumentsResultList = None # List<SignatureTemplateDocumentsResult>
+        self.signatureEnvelopeFieldResultList = None # List<SignatureEnvelopeFieldResult>
 
 
         # 
-        self.signatureEnvelopeFieldResultList = None # List<SignatureEnvelopeFieldResult>
+        self.signatureTemplateDocumentsResultList = None # List<SignatureTemplateDocumentsResult>
 
 
         # 
@@ -1049,15 +1094,15 @@ class TestData:
 
 
         # 
+        self.signatureEnvelopeFieldLocationInfoList = None # List<SignatureEnvelopeFieldLocationInfo>
+
+
+        # 
         self.signatureContactsResultList = None # List<SignatureContactsResult>
 
 
         # 
         self.signatureEnvelopeDocumentInfoList = None # List<SignatureEnvelopeDocumentInfo>
-
-
-        # 
-        self.signatureEnvelopeFieldLocationInfoList = None # List<SignatureEnvelopeFieldLocationInfo>
 
 
         # 

@@ -24,36 +24,36 @@ class SignatureSignatureInputTemplatesInputDocumentsInputRecipientInputFieldsInp
 
     def __init__(self):
         self.swaggerTypes = {
-            'userId': 'str',
-            'templateId': 'str',
-            'documentId': 'str',
-            'recipientId': 'str',
-            'fieldId': 'str',
-            'locationId': 'str'
+            'userId': 'Str',
+            'templateId': 'Str',
+            'documentId': 'Str',
+            'recipientId': 'Str',
+            'fieldId': 'Str',
+            'locationId': 'Str'
         }
 
 
 
         # User GUID
-        self.userId = None # str
+        self.userId = None # Str
 
 
         # Template GUID
-        self.templateId = None # str
+        self.templateId = None # Str
 
 
         # Document GUID
-        self.documentId = None # str
+        self.documentId = None # Str
 
 
         # Recipient GUID
-        self.recipientId = None # str
+        self.recipientId = None # Str
 
 
         # Field GUID
-        self.fieldId = None # str
+        self.fieldId = None # Str
 
 
         # Field location GUID
-        self.locationId = None # str
+        self.locationId = None # Str
 
