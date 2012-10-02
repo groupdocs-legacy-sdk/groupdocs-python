@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
+<head>      
+	<title>GroupDocs Ruby SDK Annotations Sample App</title>
+</head>
+<body>
+
+<tal:block metal:define-slot="content">
+</tal:block>
+        
+</body>
+</html>
