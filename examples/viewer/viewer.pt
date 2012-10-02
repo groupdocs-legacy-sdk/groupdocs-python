@@ -4,7 +4,7 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
         
-        <iframe src="https://apps.groupdocs.com/document-annotation/Embed/${guid}" frameborder="0" width="720" height="600"></iframe> 
+        <iframe src="https://apps.groupdocs.com/document-viewer/Embed/${guid}" frameborder="0" width="720" height="600"></iframe> 
 		<br />
 		<br />
         

@@ -39,7 +39,7 @@ def upload(request):
 	response = StorageAPI(apiClient).Upload(client_id, input_file.filename, "uploaded from python client library", 'file://' + str(file_path))
 
 	os.remove(file_path)
-	return render_to_response('__main__:annotation.pt',
+	return render_to_response('__main__:viewer.pt',
                               {'guid':response.result.guid},
                               request=request)
 

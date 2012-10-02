@@ -10,3 +10,5 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 4) To start app: python app.py
+
+5) Your app available by url: http://localhost:8080/
