@@ -26,7 +26,7 @@ class UploadRequestResult:
         self.swaggerTypes = {
             'guid': 'str',
             'id': 'float',
-            'thumbnail': 'list<int>',
+            'thumbnail': 'str',
             'adj_name': 'str',
             'type': 'str',
             'url': 'str',

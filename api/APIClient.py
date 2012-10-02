@@ -145,7 +145,7 @@ class APIClient:
                     setattr(instance, attr, subValues)
                 else:
                     setattr(instance, attr, self.deserialize(value,
-                                                             objClass))
+                                                             attrType))
 
         return instance
 

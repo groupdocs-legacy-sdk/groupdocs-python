@@ -8,3 +8,5 @@ source venv/bin/activate
 
 3) To install all requrments:
 pip install -r requirements.txt
+
+4) To start app: python app.py
