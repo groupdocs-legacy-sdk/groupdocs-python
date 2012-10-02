@@ -1,0 +1,35 @@
+<metal:main
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: layout.pt">
+    <tal:block metal:fill-slot="content">
+        
+        <h4>Upload file</h4>
+
+		<form action='/upload' method='post' enctype='multipart/form-data'>
+		  <label for='client_id'>GroupDocs Client ID</label>
+		  <br />
+		  
+		  <input type='text', name='client_id' />
+		  <br />
+		  
+		  <label for='private_key'>GroupDocs Private Key</label>
+		  <br />
+		  
+		  <input type='text', name='private_key' />
+		  <br />
+		  
+		  <label for='file'>File</label>
+		  <br />
+		  
+		  <input type='file' name='file'  />
+		  <br /><br />
+		  
+		  <input type='submit' value='Upload'/>
+		</form> 
+        
+    </tal:block>
+</metal:main>
+
+
+
