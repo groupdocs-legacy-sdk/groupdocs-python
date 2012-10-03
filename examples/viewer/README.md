@@ -18,4 +18,4 @@
 	6) Your app available by url: http://localhost:8080/
 
 
-* Steps are not required but highly recommended.
+/* Steps are not required but highly recommended.
