@@ -1,14 +1,21 @@
-Installation instruction
+###Installation instruction
 
-1) Create a Virtualenv http://pypi.python.org/pypi/virtualenv:
-virtualenv venv --distribute
+	1) Clone Git repo
+	
+	2) cd examples/viewer
+	
+	3* ) Create a Virtualenv http://pypi.python.org/pypi/virtualenv:
+	virtualenv venv --distribute
 
-2) To activate local environment:
-source venv/bin/activate
+	3.1* ) To activate local environment:
+	source venv/bin/activate
 
-3) To install all requrments:
-pip install -r requirements.txt
+	4) To install all requrments:
+	pip install -r requirements.txt
 
-4) To start app: python app.py
+	5) To start app: python app.py
 
-5) Your app available by url: http://localhost:8080/
+	6) Your app available by url: http://localhost:8080/
+
+
+* Steps are not required but highly recommended.

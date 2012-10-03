@@ -49,8 +49,11 @@ def upload(request):
 def annotation(request):
 	session = request.session
 	apiClient = APIClient(session['private_key'], "https://api.groupdocs.com/v2.0")
-	response = AntAPI(apiClient).ListAnnotations(session['client_id'], session['guid'])
-	
+	try:
+		response = AntAPI(apiClient).ListAnnotations(session['client_id'], session['guid'])
+	except Exception: 
+		return "Server error or no annotations"
+		
 	output = ''
 	for annotation in response.result.annotations:
 		replies = []
