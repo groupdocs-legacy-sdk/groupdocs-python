@@ -1,0 +1,11 @@
+/*.pyc
+/groupdocs/*.pyc
+/groupdocs/models/*.pyc
+/tests/*.pyc
+/tests/unit/*.pyc
+/tests/integration/*.pyc
+/build/
+/dist/
+MANIFEST
+.project
+.pydevproject
