@@ -32,9 +32,6 @@ class RequestSigner(object):
 
 class DefaultRequestSigner(RequestSigner):
     
-    def __init__(self, apiKey):
-        self.apiKey = apiKey
-        
     def signUrl(self, url):
         return url
         
@@ -45,26 +42,19 @@ class DefaultRequestSigner(RequestSigner):
 class ApiClient:
     """Generic API client for Swagger client library builds"""
 
-    def __init__(self, apiKey=None, apiServer=None, requestSigner=DefaultRequestSigner):
-        if apiKey == None:
-            raise Exception('You must pass an apiKey when instantiating the '
-                            'APIClient')
-        self.signer = requestSigner(apiKey)
-        self.apiServer = apiServer
+    def __init__(self, requestSigner=None):
+        self.signer = requestSigner if requestSigner != None else DefaultRequestSigner()
         self.cookie = None
 
-    def callAPI(self, resourcePath, method, queryParams, postData,
+    def callAPI(self, apiServer, resourcePath, method, queryParams, postData,
                 headerParams=None):
 
-        url = self.apiServer + resourcePath
+        url = apiServer + resourcePath
         headers = {}
         if headerParams:
             for param, value in headerParams.iteritems():
                 headers[param] = value
 
-        if type(self.signer) == DefaultRequestSigner:
-            headers['api_key'] = self.signer.apiKey
-        
         filename = False
         if not postData:
             headers['Content-type'] = 'text/html'

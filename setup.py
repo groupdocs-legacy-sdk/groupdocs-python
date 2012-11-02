@@ -5,7 +5,7 @@ if __name__ == '__main__':
 
 	setup(
 		name = 'groupdocs-python',
-		version = '1.1',
+		version = '1.2',
 
 		author = "GroupDocs Team",
 		author_email = "support@groupdocs.com",

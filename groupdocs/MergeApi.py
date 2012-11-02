@@ -26,7 +26,16 @@ from models import *
 class MergeApi(object):
 
     def __init__(self, apiClient):
-      self.apiClient = apiClient
+        self.apiClient = apiClient
+        self.__basePath = "https://api.groupdocs.com/v2.0"
+
+    @property
+    def basePath(self):
+        return self.__basePath
+    
+    @basePath.setter
+    def basePath(self, value):
+        self.__basePath = value
 
     
     def AddJobDocumentDataSource(self, userId, jobId, fileId, datasourceId, **kwargs):
@@ -75,7 +84,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -127,7 +136,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -188,7 +197,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -249,7 +258,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -311,7 +320,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -357,7 +366,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -407,7 +416,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -449,7 +458,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -496,7 +505,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -542,7 +551,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -588,7 +597,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -635,7 +644,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -686,7 +695,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -737,7 +746,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -779,7 +788,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -826,7 +835,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -873,7 +882,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -919,7 +928,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -970,7 +979,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1021,7 +1030,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1068,7 +1077,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1114,7 +1123,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1160,7 +1169,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1207,7 +1216,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1254,7 +1263,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1300,7 +1309,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1346,7 +1355,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1393,7 +1402,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1440,7 +1449,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1486,7 +1495,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1527,7 +1536,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
@@ -1578,7 +1587,7 @@ class MergeApi(object):
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
 
-        response = self.apiClient.callAPI(resourcePath, method, queryParams,
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:

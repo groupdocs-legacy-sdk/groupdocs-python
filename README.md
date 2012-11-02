@@ -1,7 +1,21 @@
-groupdocs-python
-================
+GroupDocs Python SDK [![Build Status](https://secure.travis-ci.org/groupdocs/groupdocs-python.png)](http://travis-ci.org/groupdocs/groupdocs-python)
+=============
 
-GroupDocs Python SDK
+## Requirements
+
+* SDK requires Python 2.7 (or later). 
+If you need Python 3 version of SDK please go to [groupdocs-python3](https://github.com/groupdocs/groupdocs-python3)
+
+## Installation
+
+You can use the [Pip](http://www.pip-installer.org/) to download and install SDK.
+GroupDocs SDK is now in [PyPi](http://pypi.python.org/pypi/groupdocs-python).
+
+### Usage Example
+	apiClient = ApiClient(GroupDocsRequestSigner(privateKey))
+	api = AntApi(apiClient)
+	response = api.ListAnnotations(userId, fileId)
+
 
 ###[Sign, Manage, Annotate, Assemble, Compare and Convert Documents with GroupDocs](http://groupdocs.com)
 1. [Sign documents online with GroupDocs Signature](http://groupdocs.com/apps/signature)
