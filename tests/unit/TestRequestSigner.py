@@ -1,6 +1,6 @@
  
 import unittest
-from groupdocs.swagger import ApiClient
+from groupdocs.ApiClient import ApiClient
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 
 class TestRequestSigner(unittest.TestCase):
