@@ -20,7 +20,7 @@ import hmac
 
 from hashlib import sha1
 from base64 import b64encode
-from swagger import RequestSigner, ApiClient
+from ApiClient import RequestSigner, ApiClient
 
 
 class GroupDocsRequestSigner(RequestSigner):

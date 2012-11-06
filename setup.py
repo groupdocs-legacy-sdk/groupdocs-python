@@ -11,7 +11,7 @@ if __name__ == '__main__':
 		author_email = "support@groupdocs.com",
 		description = "A Python interface to the GroupDocs API",
 		keywords = "groupdocs, document management, viewer, annotation, signature",
-		license = "Python license",
+		license = "Apache License (2.0)",
 		long_description = """This package implements an interface to the GroupDocs
 		API, defined at http://groupdocs.com/api.""",
 		platforms = 'any',
@@ -25,5 +25,6 @@ if __name__ == '__main__':
 			"Programming Language :: Python :: 2.6",
 			"Programming Language :: Python :: 2.7",
 			"Topic :: Software Development :: Libraries :: Python Modules",
+			"License :: OSI Approved :: Apache Software License"
 		]
 	)
