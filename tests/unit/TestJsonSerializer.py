@@ -15,9 +15,9 @@ Copyright 2012 GroupDocs.
     limitations under the License.
 """
 
-import unittest
+import unittest2
 
-class TestJsonSerializer(unittest.TestCase):
+class TestJsonSerializer(unittest2.TestCase):
     """Test cases to ensure correctness of Object to JSON serialization and Object from JSON deserialization"""
 
     def setUp(self):
@@ -38,17 +38,17 @@ class TestJsonSerializer(unittest.TestCase):
     def test_ListOfPrimitivesSerilization(self):
         pass
     
-    @unittest.skip("Currently there are no such methods in GroupDocs API")
+    @unittest2.skip("Currently there are no such methods in GroupDocs API")
     def test_ListOfPrimitivesDeserilization(self):
         pass
     
     def test_ListOfObjectsSerilization(self):
         pass
     
-    @unittest.skip("Currently there are no such methods in GroupDocs API")
+    @unittest2.skip("Currently there are no such methods in GroupDocs API")
     def test_ListOfObjectsDeserilization(self):
         pass
     
     
 if __name__ == '__main__':
-    unittest.main()
+    unittest2.main()

@@ -15,11 +15,11 @@ Copyright 2012 GroupDocs.
     limitations under the License.
 """
  
-import unittest
+import unittest2
 from groupdocs.ApiClient import ApiClient
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 
-class TestRequestSigner(unittest.TestCase):
+class TestRequestSigner(unittest2.TestCase):
     """Test cases to ensure correctness of request signature generation"""
 
     def sign(self, url):
@@ -65,7 +65,7 @@ class TestRequestSigner(unittest.TestCase):
         expected = self.basePath + "alpha123%20-%20_%20.%20!%20~%20*%20'%20(%20)&signature=6ZTSvVrJ3Wvp9aZ93wtp5oH2hJ4"
         self.assertEquals(expected, self.sign(requestUrl))
     
-    @unittest.skip("TODO: Fails due to different signature")
+    @unittest2.skip("TODO: Fails due to different signature")
     def test_PathWithEncodeURI(self):
         # https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/encodeURI
         requestUrl = self.basePath + "alpha123 ; , / ? : @ & = + "; # omitted # 
@@ -74,4 +74,4 @@ class TestRequestSigner(unittest.TestCase):
 
     
 if __name__ == '__main__':
-    unittest.main()
+    unittest2.main()

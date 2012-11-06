@@ -136,9 +136,11 @@ class ApiClient:
                 objDict = obj
             else:
                 objDict = obj.__dict__
-            return {key: self.sanitizeForSerialization(val)
-                    for (key, val) in objDict.iteritems()
-                    if key != 'swaggerTypes' and val != None}
+            ret_dict = {}
+            for (key, val) in objDict.iteritems():
+                if key != 'swaggerTypes' and val != None:
+                    ret_dict[key] =  self.sanitizeForSerialization(val)
+            return ret_dict
 
     def deserialize(self, obj, objClass):
         """Derialize a JSON string into an object.
