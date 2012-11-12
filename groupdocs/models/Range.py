@@ -23,12 +23,12 @@ class Range:
 
     def __init__(self):
         self.swaggerTypes = {
-            'Length': 'int',
-            'Position': 'int'
+            'position': 'int',
+            'length': 'int'
 
         }
 
 
-        self.Length = None # int
-        self.Position = None # int
+        self.position = None # int
+        self.length = None # int
         

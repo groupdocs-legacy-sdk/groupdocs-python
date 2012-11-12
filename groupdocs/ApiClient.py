@@ -15,6 +15,7 @@ import datetime
 import mimetypes
 
 from models import *
+from groupdocs.FileStream import FileStream
 
 
 class RequestSigner(object):
@@ -39,29 +40,48 @@ class DefaultRequestSigner(RequestSigner):
         return requestBody
     
     
-class ApiClient:
+class ApiClient(object):
     """Generic API client for Swagger client library builds"""
 
     def __init__(self, requestSigner=None):
         self.signer = requestSigner if requestSigner != None else DefaultRequestSigner()
         self.cookie = None
+        self.headers = None
+        self.__debug = False
+
+
+    @property
+    def debug(self):
+        return self.__debug
+    
+    @debug.setter
+    def debug(self, value):
+        self.__debug = value
+
+    def addHeaders(self, **headers):
+        self.headers = headers
 
     def callAPI(self, apiServer, resourcePath, method, queryParams, postData,
-                headerParams=None):
+                headerParams=None, returnType=str):
 
         url = apiServer + resourcePath
+        
         headers = {}
+        if self.headers:
+            for param, value in self.headers.iteritems():
+                headers[param] = value
+            
         if headerParams:
             for param, value in headerParams.iteritems():
                 headers[param] = value
 
-        filename = False
+        isFileUpload = False
         if not postData:
             headers['Content-type'] = 'text/html'
-        elif isinstance(postData, str) and postData.startswith('file://'):
-            filename = postData[7:len(postData)]
-            headers['Content-type'] = mimetypes.guess_type(filename)[0] or 'application/octet-stream'
-            headers['Content-Length'] = str(os.path.getsize(filename))
+        elif isinstance(postData, FileStream):
+            isFileUpload = True
+            headers['Content-type'] = postData.contentType
+            headers['Content-Length'] = str(postData.size)
         else:
             headers['Content-type'] = 'application/json'
 
@@ -82,8 +102,8 @@ class ApiClient:
 
         elif method in ['POST', 'PUT', 'DELETE']:
 
-            if filename:
-                data = open(filename, "rb")
+            if isFileUpload:
+                data = postData.inputStream
             elif type(postData) not in [str, int, float, bool]:
                 data = self.signer.signContent(json.dumps(self.sanitizeForSerialization(postData)), headers)
             else: 
@@ -92,15 +112,28 @@ class ApiClient:
         else:
             raise Exception('Method ' + method + ' is not recognized.')
 
+        if self.__debug:
+            print "asdf"
+            handler=urllib2.HTTPHandler(debuglevel=1)
+            opener = urllib2.build_opener(handler)
+            urllib2.install_opener(opener)
+
         request = MethodRequest(method=method, url=self.encodeURI(self.signer.signUrl(url)), headers=headers,
                                 data=data)
 
         # Make the request
         response = urllib2.urlopen(request)
+        
         if 'Set-Cookie' in response.headers:
             self.cookie = response.headers['Set-Cookie']
+        
+        if returnType == FileStream:
+            fs = FileStream.fromHttp(response)
+            if self.__debug: print(">>>stream info: fileName=%s contentType=%s size=%s" % (fs.fileName, fs.contentType, fs.size))
+            return fs
+            
         string = response.read()
-
+        if self.__debug: print(string)
         try:
             data = json.loads(string)
         except ValueError:  # PUT requests don't return anything
@@ -180,28 +213,38 @@ class ApiClient:
         instance = objClass()
 
         for attr, attrType in instance.swaggerTypes.iteritems():
+            lc_attr = attr[0].lower() + attr[1:]
+            uc_attr = attr[0].upper() + attr[1:]
+            real_attr = None
             if attr in obj:
-                value = obj[attr]
+                real_attr = attr
+            elif lc_attr in obj:
+                real_attr = lc_attr
+            elif uc_attr in obj:
+                real_attr = uc_attr
+            
+            if real_attr != None:
+                value = obj[real_attr]
                 if attrType in ['str', 'int', 'long', 'float', 'bool']:
                     attrType = eval(attrType)
                     try:
                         value = attrType(value)
                     except UnicodeEncodeError:
                         value = unicode(value)
-                    setattr(instance, attr, value)
+                    setattr(instance, real_attr, value)
                 elif 'list[' in attrType:
                     match = re.match('list\[(.*)\]', attrType)
                     subClass = match.group(1)
                     subValues = []
                     if not value:
-                        setattr(instance, attr, None)
+                        setattr(instance, real_attr, None)
                     else:
                         for subValue in value:
                             subValues.append(self.deserialize(subValue,
                                                               subClass))
-                    setattr(instance, attr, subValues)
+                    setattr(instance, real_attr, subValues)
                 else:
-                    setattr(instance, attr, self.deserialize(value,
+                    setattr(instance, real_attr, self.deserialize(value,
                                                              attrType))
 
         return instance

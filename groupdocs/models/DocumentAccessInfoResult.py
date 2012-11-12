@@ -27,12 +27,12 @@ class DocumentAccessInfoResult:
             'status': 'str',
             'type_str': 'str',
             'shared_on': 'long',
-            'access': 'str',
             'type': 'str',
+            'access': 'str',
             'url': 'str',
+            'file_type': 'str',
             'version': 'int',
             'size': 'long',
-            'file_type': 'str',
             'guid': 'str',
             'id': 'float',
             'document_path': 'str',
@@ -47,12 +47,12 @@ class DocumentAccessInfoResult:
         self.status = None # str
         self.type_str = None # str
         self.shared_on = None # long
-        self.access = None # str
         self.type = None # str
+        self.access = None # str
         self.url = None # str
+        self.file_type = None # str
         self.version = None # int
         self.size = None # long
-        self.file_type = None # str
         self.guid = None # str
         self.id = None # float
         self.document_path = None # str

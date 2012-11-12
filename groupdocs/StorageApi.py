@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class StorageApi(object):
 
@@ -45,7 +45,8 @@ class StorageApi(object):
             
         Returns: StorageInfoResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -67,7 +68,6 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -78,7 +78,7 @@ class StorageApi(object):
         return responseObject
         
         
-    def ListEntities(self, userId, path, pageIndex, pageSize, orderBy, orderAsc, filter, fileTypes, extended, **kwargs):
+    def ListEntities(self, userId, path, **kwargs):
         """List entities
 
         Args:
@@ -94,7 +94,8 @@ class StorageApi(object):
             
         Returns: ListEntitiesResponse
         """
-
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path', 'pageIndex', 'pageSize', 'orderBy', 'orderAsc', 'filter', 'fileTypes', 'extended']
 
         params = locals()
@@ -104,13 +105,30 @@ class StorageApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/storage/{userId}/folders/{*path}?page={pageIndex}&amp;count={pageSize}&amp;order_by={orderBy}&amp;order_asc={orderAsc}&amp;filter={filter}&amp;file_types={fileTypes}&amp;extended={extended}'.replace('*', '')
+        resourcePath = '/storage/{userId}/folders/{*path}?page={pageIndex}&count={pageSize}&order_by={orderBy}&order_asc={orderAsc}&filter={filter}&file_types={fileTypes}&extended={extended}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('pageIndex' in params):
+            queryParams['page'] = self.apiClient.toPathValue(params['pageIndex'])
+        if ('pageSize' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['pageSize'])
+        if ('orderBy' in params):
+            queryParams['order_by'] = self.apiClient.toPathValue(params['orderBy'])
+        if ('orderAsc' in params):
+            queryParams['order_asc'] = self.apiClient.toPathValue(params['orderAsc'])
+        if ('filter' in params):
+            queryParams['filter'] = self.apiClient.toPathValue(params['filter'])
+        if ('fileTypes' in params):
+            queryParams['file_types'] = self.apiClient.toPathValue(params['fileTypes'])
+        if ('extended' in params):
+            queryParams['extended'] = self.apiClient.toPathValue(params['extended'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -119,36 +137,7 @@ class StorageApi(object):
             replacement = str(self.apiClient.toPathValue(params['path']))
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
-        if ('pageIndex' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageIndex']))
-            resourcePath = resourcePath.replace('{' + 'pageIndex' + '}',
-                                                replacement)
-        if ('pageSize' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageSize']))
-            resourcePath = resourcePath.replace('{' + 'pageSize' + '}',
-                                                replacement)
-        if ('orderBy' in params):
-            replacement = str(self.apiClient.toPathValue(params['orderBy']))
-            resourcePath = resourcePath.replace('{' + 'orderBy' + '}',
-                                                replacement)
-        if ('orderAsc' in params):
-            replacement = str(self.apiClient.toPathValue(params['orderAsc']))
-            resourcePath = resourcePath.replace('{' + 'orderAsc' + '}',
-                                                replacement)
-        if ('filter' in params):
-            replacement = str(self.apiClient.toPathValue(params['filter']))
-            resourcePath = resourcePath.replace('{' + 'filter' + '}',
-                                                replacement)
-        if ('fileTypes' in params):
-            replacement = str(self.apiClient.toPathValue(params['fileTypes']))
-            resourcePath = resourcePath.replace('{' + 'fileTypes' + '}',
-                                                replacement)
-        if ('extended' in params):
-            replacement = str(self.apiClient.toPathValue(params['extended']))
-            resourcePath = resourcePath.replace('{' + 'extended' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -166,9 +155,10 @@ class StorageApi(object):
             userId, str: User GUID (required)
             fileId, str: File GUID (required)
             
-        Returns: str
+        Returns: stream
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -194,16 +184,8 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
-        
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
     def GetSharedFile(self, userEmail, filePath, **kwargs):
         """Get shared file
@@ -212,9 +194,10 @@ class StorageApi(object):
             userEmail, str: User Email (required)
             filePath, str: File path (required)
             
-        Returns: str
+        Returns: stream
         """
-
+        if( userEmail == None or filePath == None ):
+            raise Exception("missing required parameters")
         allParams = ['userEmail', 'filePath']
 
         params = locals()
@@ -240,18 +223,10 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'filePath' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
-        
-    def Upload(self, userId, path, description, body, **kwargs):
+    def Upload(self, userId, path, body, **kwargs):
         """Upload
 
         Args:
@@ -262,7 +237,8 @@ class StorageApi(object):
             
         Returns: UploadResponse
         """
-
+        if( userId == None or path == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path', 'description', 'body']
 
         params = locals()
@@ -273,12 +249,17 @@ class StorageApi(object):
         del params['kwargs']
 
         resourcePath = '/storage/{userId}/folders/{*path}?description={description}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('description' in params):
+            queryParams['description'] = self.apiClient.toPathValue(params['description'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -287,12 +268,63 @@ class StorageApi(object):
             replacement = str(self.apiClient.toPathValue(params['path']))
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'UploadResponse')
+        return responseObject
+        
+        
+    def Decompress(self, userId, path, body, **kwargs):
+        """UploadAndUnzip
+
+        Args:
+            userId, str: User GUID (required)
+            path, str: Path (required)
+            description, str: Description (optional)
+            archiveType, str: Archive type (optional)
+            body, stream: Stream (required)
+            
+        Returns: UploadResponse
+        """
+        if( userId == None or path == None or body == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'path', 'description', 'archiveType', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method Decompress" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/storage/{userId}/decompress/{*path}?description={description}&archiveType={archiveType}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
         if ('description' in params):
-            replacement = str(self.apiClient.toPathValue(params['description']))
-            resourcePath = resourcePath.replace('{' + 'description' + '}',
+            queryParams['description'] = self.apiClient.toPathValue(params['description'])
+        if ('archiveType' in params):
+            queryParams['archiveType'] = self.apiClient.toPathValue(params['archiveType'])
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('path' in params):
+            replacement = str(self.apiClient.toPathValue(params['path']))
+            resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -312,7 +344,8 @@ class StorageApi(object):
             
         Returns: UploadResponse
         """
-
+        if( userId == None or url == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'url']
 
         params = locals()
@@ -323,22 +356,22 @@ class StorageApi(object):
         del params['kwargs']
 
         resourcePath = '/storage/{userId}/urls?url={url}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('url' in params):
+            queryParams['url'] = self.apiClient.toPathValue(params['url'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('url' in params):
-            replacement = str(self.apiClient.toPathValue(params['url']))
-            resourcePath = resourcePath.replace('{' + 'url' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -349,7 +382,7 @@ class StorageApi(object):
         return responseObject
         
         
-    def UploadGoogle(self, userId, path, fileId, **kwargs):
+    def UploadGoogle(self, userId, path, **kwargs):
         """Upload Google
 
         Args:
@@ -359,7 +392,8 @@ class StorageApi(object):
             
         Returns: UploadResponse
         """
-
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path', 'fileId']
 
         params = locals()
@@ -370,12 +404,17 @@ class StorageApi(object):
         del params['kwargs']
 
         resourcePath = '/storage/{userId}/google/files/{*path}?file_id={fileId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('fileId' in params):
+            queryParams['file_id'] = self.apiClient.toPathValue(params['fileId'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -384,12 +423,7 @@ class StorageApi(object):
             replacement = str(self.apiClient.toPathValue(params['path']))
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
-        if ('fileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['fileId']))
-            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -409,7 +443,8 @@ class StorageApi(object):
             
         Returns: DeleteResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -435,7 +470,6 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -455,7 +489,8 @@ class StorageApi(object):
             
         Returns: DeleteResponse
         """
-
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -481,7 +516,6 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -492,20 +526,21 @@ class StorageApi(object):
         return responseObject
         
         
-    def MoveFile(self, userId, path, mode, **kwargs):
+    def MoveFile(self, userId, path, **kwargs):
         """Move file
 
         Args:
             userId, str: User GUID (required)
             path, str: Path (required)
             mode, str: Mode (optional)
-            Groupdocs-Move, str: File ID (move) (optional)
             Groupdocs-Copy, str: File ID (copy) (optional)
+            Groupdocs-Move, str: File ID (move) (optional)
             
         Returns: FileMoveResponse
         """
-
-        allParams = ['userId', 'path', 'mode', 'Groupdocs-Move', 'Groupdocs-Copy']
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'path', 'mode', 'Groupdocs-Copy', 'Groupdocs-Move']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -515,16 +550,21 @@ class StorageApi(object):
         del params['kwargs']
 
         resourcePath = '/storage/{userId}/files/{*path}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
-        if ('Groupdocs-Move' in params):
-            headerParams['Groupdocs-Move'] = params['Groupdocs-Move']
+        if ('mode' in params):
+            queryParams['mode'] = self.apiClient.toPathValue(params['mode'])
         if ('Groupdocs-Copy' in params):
             headerParams['Groupdocs-Copy'] = params['Groupdocs-Copy']
+        if ('Groupdocs-Move' in params):
+            headerParams['Groupdocs-Move'] = params['Groupdocs-Move']
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -533,12 +573,7 @@ class StorageApi(object):
             replacement = str(self.apiClient.toPathValue(params['path']))
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
-        if ('mode' in params):
-            replacement = str(self.apiClient.toPathValue(params['mode']))
-            resourcePath = resourcePath.replace('{' + 'mode' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -549,20 +584,21 @@ class StorageApi(object):
         return responseObject
         
         
-    def MoveFolder(self, userId, path, mode, **kwargs):
+    def MoveFolder(self, userId, path, **kwargs):
         """Move folder
 
         Args:
             userId, str: User GUID (required)
             path, str: Destination Path (required)
             mode, str: Mode (optional)
-            Groupdocs-Copy, str: Source path (copy) (optional)
             Groupdocs-Move, str: Source path (move) (optional)
+            Groupdocs-Copy, str: Source path (copy) (optional)
             
         Returns: FolderMoveResponse
         """
-
-        allParams = ['userId', 'path', 'mode', 'Groupdocs-Copy', 'Groupdocs-Move']
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'path', 'mode', 'Groupdocs-Move', 'Groupdocs-Copy']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -572,16 +608,21 @@ class StorageApi(object):
         del params['kwargs']
 
         resourcePath = '/storage/{userId}/folders/{*path}?override_mode={mode}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
-        if ('Groupdocs-Copy' in params):
-            headerParams['Groupdocs-Copy'] = params['Groupdocs-Copy']
+        if ('mode' in params):
+            queryParams['override_mode'] = self.apiClient.toPathValue(params['mode'])
         if ('Groupdocs-Move' in params):
             headerParams['Groupdocs-Move'] = params['Groupdocs-Move']
+        if ('Groupdocs-Copy' in params):
+            headerParams['Groupdocs-Copy'] = params['Groupdocs-Copy']
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -590,12 +631,7 @@ class StorageApi(object):
             replacement = str(self.apiClient.toPathValue(params['path']))
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
-        if ('mode' in params):
-            replacement = str(self.apiClient.toPathValue(params['mode']))
-            resourcePath = resourcePath.replace('{' + 'mode' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -615,7 +651,8 @@ class StorageApi(object):
             
         Returns: CreateFolderResponse
         """
-
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -641,7 +678,6 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -662,7 +698,8 @@ class StorageApi(object):
             
         Returns: CompressResponse
         """
-
+        if( userId == None or fileId == None or archiveType == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'archiveType']
 
         params = locals()
@@ -692,7 +729,6 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'archiveType' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -703,7 +739,7 @@ class StorageApi(object):
         return responseObject
         
         
-    def CreatePackage(self, userId, packageName, storeRelativePath, **kwargs):
+    def CreatePackage(self, userId, packageName, **kwargs):
         """Create Package
 
         Args:
@@ -714,7 +750,8 @@ class StorageApi(object):
             
         Returns: CreatePackageResponse
         """
-
+        if( userId == None or packageName == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'packageName', 'storeRelativePath', 'body']
 
         params = locals()
@@ -725,12 +762,17 @@ class StorageApi(object):
         del params['kwargs']
 
         resourcePath = '/storage/{userId}/packages/{packageName}?storeRelativePath={storeRelativePath}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('storeRelativePath' in params):
+            queryParams['storeRelativePath'] = self.apiClient.toPathValue(params['storeRelativePath'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -739,12 +781,7 @@ class StorageApi(object):
             replacement = str(self.apiClient.toPathValue(params['packageName']))
             resourcePath = resourcePath.replace('{' + 'packageName' + '}',
                                                 replacement)
-        if ('storeRelativePath' in params):
-            replacement = str(self.apiClient.toPathValue(params['storeRelativePath']))
-            resourcePath = resourcePath.replace('{' + 'storeRelativePath' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -764,7 +801,8 @@ class StorageApi(object):
             
         Returns: FolderMoveResponse
         """
-
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -790,7 +828,6 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -810,7 +847,8 @@ class StorageApi(object):
             
         Returns: DeleteResponse
         """
-
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -836,7 +874,6 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 

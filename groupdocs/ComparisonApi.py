@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class ComparisonApi(object):
 
@@ -37,7 +37,7 @@ class ComparisonApi(object):
         self.__basePath = value
 
     
-    def DownloadResult(self, userId, resultFileId, format, **kwargs):
+    def DownloadResult(self, userId, resultFileId, **kwargs):
         """Download comparison result file
 
         Args:
@@ -45,9 +45,10 @@ class ComparisonApi(object):
             resultFileId, str: Comparison result file GUID (required)
             format, str: Comparison result file format (optional)
             
-        Returns: str
+        Returns: stream
         """
-
+        if( userId == None or resultFileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'resultFileId', 'format']
 
         params = locals()
@@ -57,49 +58,42 @@ class ComparisonApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/comparison/{userId}/comparison/download?resultFileId={resultFileId}&amp;format={format}'.replace('*', '')
+        resourcePath = '/comparison/{userId}/comparison/download?resultFileId={resultFileId}&format={format}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('resultFileId' in params):
+            queryParams['resultFileId'] = self.apiClient.toPathValue(params['resultFileId'])
+        if ('format' in params):
+            queryParams['format'] = self.apiClient.toPathValue(params['format'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('resultFileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['resultFileId']))
-            resourcePath = resourcePath.replace('{' + 'resultFileId' + '}',
-                                                replacement)
-        if ('format' in params):
-            replacement = str(self.apiClient.toPathValue(params['format']))
-            resourcePath = resourcePath.replace('{' + 'format' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
-        
-    def Compare(self, userId, sourceFileId, targetFileId, **kwargs):
+    def Compare(self, userId, sourceFileId, targetFileId, callbackUrl, **kwargs):
         """Compare
 
         Args:
             userId, str: User GUID (required)
             sourceFileId, str: Source File GUID (required)
             targetFileId, str: Target File GUID (required)
+            callbackUrl, str: Callback Url (required)
             
         Returns: CompareResponse
         """
-
-        allParams = ['userId', 'sourceFileId', 'targetFileId']
+        if( userId == None or sourceFileId == None or targetFileId == None or callbackUrl == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'sourceFileId', 'targetFileId', 'callbackUrl']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -108,27 +102,27 @@ class ComparisonApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/comparison/{userId}/comparison/compare?source={sourceFileId}&amp;target={targetFileId}'.replace('*', '')
+        resourcePath = '/comparison/{userId}/comparison/compare?source={sourceFileId}&target={targetFileId}&callback={callbackUrl}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('sourceFileId' in params):
+            queryParams['source'] = self.apiClient.toPathValue(params['sourceFileId'])
+        if ('targetFileId' in params):
+            queryParams['target'] = self.apiClient.toPathValue(params['targetFileId'])
+        if ('callbackUrl' in params):
+            queryParams['callback'] = self.apiClient.toPathValue(params['callbackUrl'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('sourceFileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['sourceFileId']))
-            resourcePath = resourcePath.replace('{' + 'sourceFileId' + '}',
-                                                replacement)
-        if ('targetFileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['targetFileId']))
-            resourcePath = resourcePath.replace('{' + 'targetFileId' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -148,7 +142,8 @@ class ComparisonApi(object):
             
         Returns: ChangesResponse
         """
-
+        if( userId == None or resultFileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'resultFileId']
 
         params = locals()
@@ -159,22 +154,22 @@ class ComparisonApi(object):
         del params['kwargs']
 
         resourcePath = '/comparison/{userId}/comparison/changes?resultFileId={resultFileId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('resultFileId' in params):
+            queryParams['resultFileId'] = self.apiClient.toPathValue(params['resultFileId'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('resultFileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['resultFileId']))
-            resourcePath = resourcePath.replace('{' + 'resultFileId' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -195,7 +190,8 @@ class ComparisonApi(object):
             
         Returns: ChangesResponse
         """
-
+        if( userId == None or resultFileId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'resultFileId', 'body']
 
         params = locals()
@@ -206,22 +202,22 @@ class ComparisonApi(object):
         del params['kwargs']
 
         resourcePath = '/comparison/{userId}/comparison/changes?resultFileId={resultFileId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
+        if ('resultFileId' in params):
+            queryParams['resultFileId'] = self.apiClient.toPathValue(params['resultFileId'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('resultFileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['resultFileId']))
-            resourcePath = resourcePath.replace('{' + 'resultFileId' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -241,7 +237,8 @@ class ComparisonApi(object):
             
         Returns: DocumentDetailsResponse
         """
-
+        if( userId == None or guid == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'guid']
 
         params = locals()
@@ -252,22 +249,22 @@ class ComparisonApi(object):
         del params['kwargs']
 
         resourcePath = '/comparison/{userId}/comparison/document?guid={guid}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('guid' in params):
+            queryParams['guid'] = self.apiClient.toPathValue(params['guid'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('guid' in params):
-            replacement = str(self.apiClient.toPathValue(params['guid']))
-            resourcePath = resourcePath.replace('{' + 'guid' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 

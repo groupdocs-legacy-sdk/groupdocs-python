@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class MergeApi(object):
 
@@ -48,7 +48,8 @@ class MergeApi(object):
             
         Returns: AddDocumentDataSourceResponse
         """
-
+        if( userId == None or jobId == None or fileId == None or datasourceId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobId', 'fileId', 'datasourceId']
 
         params = locals()
@@ -82,7 +83,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'datasourceId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -104,7 +104,8 @@ class MergeApi(object):
             
         Returns: AddDocumentDataSourceResponse
         """
-
+        if( userId == None or jobId == None or fileId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobId', 'fileId', 'body']
 
         params = locals()
@@ -134,7 +135,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -145,7 +145,7 @@ class MergeApi(object):
         return responseObject
         
         
-    def FillQuestionnaire(self, userId, collectorId, datasourceId, targetType, emailResults, **kwargs):
+    def FillQuestionnaire(self, userId, collectorId, datasourceId, **kwargs):
         """Merge datasource
 
         Args:
@@ -157,7 +157,8 @@ class MergeApi(object):
             
         Returns: MergeTemplateResponse
         """
-
+        if( userId == None or collectorId == None or datasourceId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'collectorId', 'datasourceId', 'targetType', 'emailResults']
 
         params = locals()
@@ -167,13 +168,20 @@ class MergeApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}/datasources/{datasourceId}?new_type={targetType}&amp;email_results={emailResults}'.replace('*', '')
+        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}/datasources/{datasourceId}?new_type={targetType}&email_results={emailResults}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('targetType' in params):
+            queryParams['new_type'] = self.apiClient.toPathValue(params['targetType'])
+        if ('emailResults' in params):
+            queryParams['email_results'] = self.apiClient.toPathValue(params['emailResults'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -186,16 +194,7 @@ class MergeApi(object):
             replacement = str(self.apiClient.toPathValue(params['datasourceId']))
             resourcePath = resourcePath.replace('{' + 'datasourceId' + '}',
                                                 replacement)
-        if ('targetType' in params):
-            replacement = str(self.apiClient.toPathValue(params['targetType']))
-            resourcePath = resourcePath.replace('{' + 'targetType' + '}',
-                                                replacement)
-        if ('emailResults' in params):
-            replacement = str(self.apiClient.toPathValue(params['emailResults']))
-            resourcePath = resourcePath.replace('{' + 'emailResults' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -206,7 +205,67 @@ class MergeApi(object):
         return responseObject
         
         
-    def MergeDatasource(self, userId, fileId, datasourceId, targetType, emailResults, **kwargs):
+    def FillExecution(self, userId, executionId, datasourceId, **kwargs):
+        """Scheduled questionnaire execution fullfilment job
+
+        Args:
+            userId, str: User global unique identifier (required)
+            executionId, str: Execution global unique identifier to fill (required)
+            datasourceId, str: Datasource identifier (required)
+            targetType, str: Filled document type (optional)
+            emailResults, str: Email results (optional)
+            
+        Returns: MergeTemplateResponse
+        """
+        if( userId == None or executionId == None or datasourceId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'executionId', 'datasourceId', 'targetType', 'emailResults']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method FillExecution" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/executions/{executionId}/datasources/{datasourceId}?new_type={targetType}&email_results={emailResults}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('targetType' in params):
+            queryParams['new_type'] = self.apiClient.toPathValue(params['targetType'])
+        if ('emailResults' in params):
+            queryParams['email_results'] = self.apiClient.toPathValue(params['emailResults'])
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('executionId' in params):
+            replacement = str(self.apiClient.toPathValue(params['executionId']))
+            resourcePath = resourcePath.replace('{' + 'executionId' + '}',
+                                                replacement)
+        if ('datasourceId' in params):
+            replacement = str(self.apiClient.toPathValue(params['datasourceId']))
+            resourcePath = resourcePath.replace('{' + 'datasourceId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'MergeTemplateResponse')
+        return responseObject
+        
+        
+    def MergeDatasource(self, userId, fileId, datasourceId, **kwargs):
         """Merge datasource
 
         Args:
@@ -218,7 +277,8 @@ class MergeApi(object):
             
         Returns: MergeTemplateResponse
         """
-
+        if( userId == None or fileId == None or datasourceId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'datasourceId', 'targetType', 'emailResults']
 
         params = locals()
@@ -228,13 +288,20 @@ class MergeApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/merge/{userId}/files/{fileId}/datasources/{datasourceId}?new_type={targetType}&amp;email_results={emailResults}'.replace('*', '')
+        resourcePath = '/merge/{userId}/files/{fileId}/datasources/{datasourceId}?new_type={targetType}&email_results={emailResults}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('targetType' in params):
+            queryParams['new_type'] = self.apiClient.toPathValue(params['targetType'])
+        if ('emailResults' in params):
+            queryParams['email_results'] = self.apiClient.toPathValue(params['emailResults'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -247,16 +314,7 @@ class MergeApi(object):
             replacement = str(self.apiClient.toPathValue(params['datasourceId']))
             resourcePath = resourcePath.replace('{' + 'datasourceId' + '}',
                                                 replacement)
-        if ('targetType' in params):
-            replacement = str(self.apiClient.toPathValue(params['targetType']))
-            resourcePath = resourcePath.replace('{' + 'targetType' + '}',
-                                                replacement)
-        if ('emailResults' in params):
-            replacement = str(self.apiClient.toPathValue(params['emailResults']))
-            resourcePath = resourcePath.replace('{' + 'emailResults' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -267,7 +325,7 @@ class MergeApi(object):
         return responseObject
         
         
-    def MergeDatasourceFields(self, userId, fileId, targetType, emailResults, assemblyName, body, **kwargs):
+    def MergeDatasourceFields(self, userId, fileId, body, **kwargs):
         """Merge datasource fields
 
         Args:
@@ -280,7 +338,8 @@ class MergeApi(object):
             
         Returns: MergeTemplateResponse
         """
-
+        if( userId == None or fileId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'targetType', 'emailResults', 'assemblyName', 'body']
 
         params = locals()
@@ -290,13 +349,22 @@ class MergeApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/merge/{userId}/files/{fileId}/datasources?new_type={targetType}&amp;email_results={emailResults}&amp;assembly_name={assemblyName}'.replace('*', '')
+        resourcePath = '/merge/{userId}/files/{fileId}/datasources?new_type={targetType}&email_results={emailResults}&assembly_name={assemblyName}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('targetType' in params):
+            queryParams['new_type'] = self.apiClient.toPathValue(params['targetType'])
+        if ('emailResults' in params):
+            queryParams['email_results'] = self.apiClient.toPathValue(params['emailResults'])
+        if ('assemblyName' in params):
+            queryParams['assembly_name'] = self.apiClient.toPathValue(params['assemblyName'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -305,20 +373,7 @@ class MergeApi(object):
             replacement = str(self.apiClient.toPathValue(params['fileId']))
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
-        if ('targetType' in params):
-            replacement = str(self.apiClient.toPathValue(params['targetType']))
-            resourcePath = resourcePath.replace('{' + 'targetType' + '}',
-                                                replacement)
-        if ('emailResults' in params):
-            replacement = str(self.apiClient.toPathValue(params['emailResults']))
-            resourcePath = resourcePath.replace('{' + 'emailResults' + '}',
-                                                replacement)
-        if ('assemblyName' in params):
-            replacement = str(self.apiClient.toPathValue(params['assemblyName']))
-            resourcePath = resourcePath.replace('{' + 'assemblyName' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -338,7 +393,8 @@ class MergeApi(object):
             
         Returns: GetQuestionnaireResponse
         """
-
+        if( userId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -364,7 +420,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -386,7 +441,8 @@ class MergeApi(object):
             
         Returns: GetQuestionnairesResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'status', 'pageNumber', 'pageSize']
 
         params = locals()
@@ -396,7 +452,10 @@ class MergeApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/merge/{userId}/questionnaires?status={status}&amp;page_number={pageNumber}&amp;page_size={pageSize}'.replace('*', '')
+        resourcePath = '/merge/{userId}/questionnaires?status={status}&page_number={pageNumber}&page_size={pageSize}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -406,15 +465,14 @@ class MergeApi(object):
         if ('status' in params):
             queryParams['status'] = self.apiClient.toPathValue(params['status'])
         if ('pageNumber' in params):
-            queryParams['pageNumber'] = self.apiClient.toPathValue(params['pageNumber'])
+            queryParams['page_number'] = self.apiClient.toPathValue(params['pageNumber'])
         if ('pageSize' in params):
-            queryParams['pageSize'] = self.apiClient.toPathValue(params['pageSize'])
+            queryParams['page_size'] = self.apiClient.toPathValue(params['pageSize'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -434,7 +492,8 @@ class MergeApi(object):
             
         Returns: CreateQuestionnaireResponse
         """
-
+        if( userId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -456,7 +515,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -477,7 +535,8 @@ class MergeApi(object):
             
         Returns: UpdateQuestionnaireResponse
         """
-
+        if( userId == None or questionnaireId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'body']
 
         params = locals()
@@ -503,7 +562,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -523,7 +581,8 @@ class MergeApi(object):
             
         Returns: DeleteQuestionnaireResponse
         """
-
+        if( userId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -549,7 +608,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -569,7 +627,8 @@ class MergeApi(object):
             
         Returns: GetDocumentQuestionnairesResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -595,7 +654,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -616,7 +674,8 @@ class MergeApi(object):
             
         Returns: AddDocumentQuestionnaireResponse
         """
-
+        if( userId == None or fileId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -642,7 +701,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -663,7 +721,8 @@ class MergeApi(object):
             
         Returns: AddDocumentQuestionnaireResponse
         """
-
+        if( userId == None or fileId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'questionnaireId']
 
         params = locals()
@@ -693,7 +752,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -714,7 +772,8 @@ class MergeApi(object):
             
         Returns: DeleteDocumentQuestionnaireResponse
         """
-
+        if( userId == None or fileId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'questionnaireId']
 
         params = locals()
@@ -744,7 +803,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -764,7 +822,8 @@ class MergeApi(object):
             
         Returns: AddDatasourceResponse
         """
-
+        if( userId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -786,7 +845,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -807,7 +865,8 @@ class MergeApi(object):
             
         Returns: AddDatasourceResponse
         """
-
+        if( userId == None or datasourceId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'datasourceId', 'body']
 
         params = locals()
@@ -833,7 +892,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'datasourceId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -854,7 +912,8 @@ class MergeApi(object):
             
         Returns: AddDatasourceResponse
         """
-
+        if( userId == None or datasourceId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'datasourceId', 'body']
 
         params = locals()
@@ -880,7 +939,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'datasourceId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -900,7 +958,8 @@ class MergeApi(object):
             
         Returns: DeleteDatasourceResponse
         """
-
+        if( userId == None or datasourceId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'datasourceId']
 
         params = locals()
@@ -926,7 +985,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'datasourceId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -937,7 +995,7 @@ class MergeApi(object):
         return responseObject
         
         
-    def GetDataSource(self, userId, datasourceId, fields, **kwargs):
+    def GetDataSource(self, userId, datasourceId, **kwargs):
         """Get datasource
 
         Args:
@@ -947,7 +1005,8 @@ class MergeApi(object):
             
         Returns: GetDatasourceResponse
         """
-
+        if( userId == None or datasourceId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'datasourceId', 'fields']
 
         params = locals()
@@ -958,12 +1017,17 @@ class MergeApi(object):
         del params['kwargs']
 
         resourcePath = '/merge/{userId}/datasources/{datasourceId}?field={fields}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('fields' in params):
+            queryParams['field'] = self.apiClient.toPathValue(params['fields'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -972,12 +1036,7 @@ class MergeApi(object):
             replacement = str(self.apiClient.toPathValue(params['datasourceId']))
             resourcePath = resourcePath.replace('{' + 'datasourceId' + '}',
                                                 replacement)
-        if ('fields' in params):
-            replacement = str(self.apiClient.toPathValue(params['fields']))
-            resourcePath = resourcePath.replace('{' + 'fields' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -988,7 +1047,7 @@ class MergeApi(object):
         return responseObject
         
         
-    def GetQuestionnaireDataSources(self, userId, questionnaireId, includeFields, **kwargs):
+    def GetQuestionnaireDataSources(self, userId, questionnaireId, **kwargs):
         """Get questionnaire datasources
 
         Args:
@@ -998,7 +1057,8 @@ class MergeApi(object):
             
         Returns: GetDatasourcesResponse
         """
-
+        if( userId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'includeFields']
 
         params = locals()
@@ -1009,12 +1069,17 @@ class MergeApi(object):
         del params['kwargs']
 
         resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/datasources?include_fields={includeFields}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('includeFields' in params):
+            queryParams['include_fields'] = self.apiClient.toPathValue(params['includeFields'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -1023,12 +1088,7 @@ class MergeApi(object):
             replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
-        if ('includeFields' in params):
-            replacement = str(self.apiClient.toPathValue(params['includeFields']))
-            resourcePath = resourcePath.replace('{' + 'includeFields' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1049,7 +1109,8 @@ class MergeApi(object):
             
         Returns: AddQuestionnaireExecutionResponse
         """
-
+        if( userId == None or collectorId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'collectorId', 'body']
 
         params = locals()
@@ -1075,7 +1136,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1086,16 +1146,63 @@ class MergeApi(object):
         return responseObject
         
         
+    def GetQuestionnaireCollectorExecutions(self, userId, collectorId, **kwargs):
+        """Get questionnaire collector executions
+
+        Args:
+            userId, str: User GUID (required)
+            collectorId, str: Questionnaire collector global unique identifier (required)
+            
+        Returns: GetQuestionnaireExecutionsResponse
+        """
+        if( userId == None or collectorId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'collectorId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireCollectorExecutions" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}/executions'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('collectorId' in params):
+            replacement = str(self.apiClient.toPathValue(params['collectorId']))
+            resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireExecutionsResponse')
+        return responseObject
+        
+        
     def GetQuestionnaireExecutions(self, userId, questionnaireId, **kwargs):
         """Get questionnaire executions
 
         Args:
             userId, str: User GUID (required)
-            questionnaireId, str: QuestionnaireId global unique identifier (required)
+            questionnaireId, str: Questionnaire global unique identifier (required)
             
         Returns: GetQuestionnaireExecutionsResponse
         """
-
+        if( userId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -1121,7 +1228,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1129,6 +1235,52 @@ class MergeApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireExecutionsResponse')
+        return responseObject
+        
+        
+    def GetQuestionnaireExecution(self, userId, executionId, **kwargs):
+        """Get questionnaire execution
+
+        Args:
+            userId, str: User GUID (required)
+            executionId, str: Questionnaire execution global unique identifier (required)
+            
+        Returns: GetQuestionnaireExecutionResponse
+        """
+        if( userId == None or executionId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'executionId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireExecution" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/executions/{executionId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('executionId' in params):
+            replacement = str(self.apiClient.toPathValue(params['executionId']))
+            resourcePath = resourcePath.replace('{' + 'executionId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireExecutionResponse')
         return responseObject
         
         
@@ -1141,7 +1293,8 @@ class MergeApi(object):
             
         Returns: DeleteQuestionnaireExecutionResponse
         """
-
+        if( userId == None or executionId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'executionId']
 
         params = locals()
@@ -1167,7 +1320,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'executionId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1188,7 +1340,8 @@ class MergeApi(object):
             
         Returns: UpdateQuestionnaireExecutionResponse
         """
-
+        if( userId == None or executionId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'executionId', 'body']
 
         params = locals()
@@ -1214,7 +1367,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'executionId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1235,7 +1387,8 @@ class MergeApi(object):
             
         Returns: UpdateQuestionnaireExecutionResponse
         """
-
+        if( userId == None or executionId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'executionId', 'body']
 
         params = locals()
@@ -1261,7 +1414,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'executionId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1281,7 +1433,8 @@ class MergeApi(object):
             
         Returns: GetQuestionnaireCollectorsResponse
         """
-
+        if( userId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -1307,7 +1460,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1327,7 +1479,8 @@ class MergeApi(object):
             
         Returns: GetQuestionnaireCollectorResponse
         """
-
+        if( userId == None or collectorId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'collectorId']
 
         params = locals()
@@ -1353,7 +1506,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1374,7 +1526,8 @@ class MergeApi(object):
             
         Returns: AddQuestionnaireCollectorResponse
         """
-
+        if( userId == None or questionnaireId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'body']
 
         params = locals()
@@ -1400,7 +1553,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1421,7 +1573,8 @@ class MergeApi(object):
             
         Returns: UpdateQuestionnaireCollectorResponse
         """
-
+        if( userId == None or collectorId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'collectorId', 'body']
 
         params = locals()
@@ -1447,7 +1600,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1467,7 +1619,8 @@ class MergeApi(object):
             
         Returns: DeleteQuestionnaireCollectorResponse
         """
-
+        if( userId == None or collectorId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'collectorId']
 
         params = locals()
@@ -1493,7 +1646,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1512,7 +1664,8 @@ class MergeApi(object):
             
         Returns: GetTemplatesResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -1534,7 +1687,6 @@ class MergeApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1545,7 +1697,7 @@ class MergeApi(object):
         return responseObject
         
         
-    def GetQuestionnaireFields(self, userId, questionnaireId, includeGeometry, **kwargs):
+    def GetQuestionnaireFields(self, userId, questionnaireId, **kwargs):
         """Get questionnaire fields
 
         Args:
@@ -1555,7 +1707,8 @@ class MergeApi(object):
             
         Returns: TemplateFieldsResponse
         """
-
+        if( userId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'includeGeometry']
 
         params = locals()
@@ -1566,6 +1719,57 @@ class MergeApi(object):
         del params['kwargs']
 
         resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/fields?include_geometry={includeGeometry}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('includeGeometry' in params):
+            queryParams['include_geometry'] = self.apiClient.toPathValue(params['includeGeometry'])
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('questionnaireId' in params):
+            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
+            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'TemplateFieldsResponse')
+        return responseObject
+        
+        
+    def GetQuestionnaireMetadata(self, userId, questionnaireId, **kwargs):
+        """Get questionnaire metadata
+
+        Args:
+            userId, str: User global unique identifier (required)
+            questionnaireId, str: Questionnaire global unique identifier (required)
+            
+        Returns: GetQuestionnaireMetadataResponse
+        """
+        if( userId == None or questionnaireId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'questionnaireId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireMetadata" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -1580,19 +1784,61 @@ class MergeApi(object):
             replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
             resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
                                                 replacement)
-        if ('includeGeometry' in params):
-            replacement = str(self.apiClient.toPathValue(params['includeGeometry']))
-            resourcePath = resourcePath.replace('{' + 'includeGeometry' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'TemplateFieldsResponse')
+        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireMetadataResponse')
+        return responseObject
+        
+        
+    def UpdateQuestionnaireMetadata(self, userId, questionnaireId, body, **kwargs):
+        """Update questionnaire metadata
+
+        Args:
+            userId, str: User global unique identifier (required)
+            questionnaireId, str: Questionnaire global unique identifier (required)
+            body, QuestionnaireMetadata: Questionnaire metadata to update (required)
+            
+        Returns: UpdateQuestionnaireResponse
+        """
+        if( userId == None or questionnaireId == None or body == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'questionnaireId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method UpdateQuestionnaireMetadata" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('questionnaireId' in params):
+            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
+            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'UpdateQuestionnaireResponse')
         return responseObject
         
         

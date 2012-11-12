@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class AntApi(object):
 
@@ -47,7 +47,8 @@ class AntApi(object):
             
         Returns: CreateAnnotationResponse
         """
-
+        if( userId == None or fileId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -73,7 +74,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -93,7 +93,8 @@ class AntApi(object):
             
         Returns: ListAnnotationsResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -119,7 +120,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -139,7 +139,8 @@ class AntApi(object):
             
         Returns: DeleteAnnotationResponse
         """
-
+        if( userId == None or annotationId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'annotationId']
 
         params = locals()
@@ -165,7 +166,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -182,11 +182,12 @@ class AntApi(object):
         Args:
             userId, str: User GUID (required)
             annotationId, str: Annotation ID (required)
-            body, AnnotationReplyInfo: Message (required)
+            body, AnnotationReplyInfo: Reply (required)
             
         Returns: AddReplyResponse
         """
-
+        if( userId == None or annotationId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'annotationId', 'body']
 
         params = locals()
@@ -212,7 +213,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -233,7 +233,8 @@ class AntApi(object):
             
         Returns: EditReplyResponse
         """
-
+        if( userId == None or replyGuid == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'replyGuid', 'body']
 
         params = locals()
@@ -259,7 +260,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'replyGuid' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -279,7 +279,8 @@ class AntApi(object):
             
         Returns: DeleteReplyResponse
         """
-
+        if( userId == None or replyGuid == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'replyGuid']
 
         params = locals()
@@ -305,7 +306,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'replyGuid' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -326,7 +326,8 @@ class AntApi(object):
             
         Returns: ListRepliesResponse
         """
-
+        if( userId == None or annotationId == None or after == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'annotationId', 'after']
 
         params = locals()
@@ -337,12 +338,17 @@ class AntApi(object):
         del params['kwargs']
 
         resourcePath = '/ant/{userId}/annotations/{annotationId}/replies?after={after}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('after' in params):
+            queryParams['after'] = self.apiClient.toPathValue(params['after'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -351,12 +357,7 @@ class AntApi(object):
             replacement = str(self.apiClient.toPathValue(params['annotationId']))
             resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
                                                 replacement)
-        if ('after' in params):
-            replacement = str(self.apiClient.toPathValue(params['after']))
-            resourcePath = resourcePath.replace('{' + 'after' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -378,7 +379,8 @@ class AntApi(object):
             
         Returns: SetCollaboratorsResponse
         """
-
+        if( userId == None or fileId == None or version == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'version', 'body']
 
         params = locals()
@@ -408,7 +410,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'version' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -428,7 +429,8 @@ class AntApi(object):
             
         Returns: GetCollaboratorsResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -454,7 +456,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -471,11 +472,12 @@ class AntApi(object):
         Args:
             userId, str: User GUID (required)
             fileId, str: File ID (required)
-            body, str: Collaborator (optional)
+            body, ReviewerInfo: Reviewer Info (optional)
             
         Returns: AddCollaboratorResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -501,7 +503,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -520,7 +521,8 @@ class AntApi(object):
             
         Returns: GetReviewerContactsResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -542,7 +544,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -558,11 +559,13 @@ class AntApi(object):
 
         Args:
             userId, str: User GUID (required)
+            body, List[ReviewerContactInfo]: Reviewer Contacts Array (optional)
             
         Returns: GetReviewerContactsResponse
         """
-
-        allParams = ['userId']
+        if( userId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'body']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -583,7 +586,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -604,7 +606,8 @@ class AntApi(object):
             
         Returns: MoveAnnotationResponse
         """
-
+        if( userId == None or annotationId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'annotationId', 'body']
 
         params = locals()
@@ -630,7 +633,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -651,7 +653,8 @@ class AntApi(object):
             
         Returns: SetAnnotationAccessResponse
         """
-
+        if( userId == None or annotationId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'annotationId', 'body']
 
         params = locals()
@@ -677,7 +680,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -685,6 +687,53 @@ class AntApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'SetAnnotationAccessResponse')
+        return responseObject
+        
+        
+    def MoveAnnotationMarker(self, userId, annotationId, body, **kwargs):
+        """Move Annotation Marker
+
+        Args:
+            userId, str: User GUID (required)
+            annotationId, str: Annotation ID (required)
+            body, Point: position (required)
+            
+        Returns: MoveAnnotationResponse
+        """
+        if( userId == None or annotationId == None or body == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'annotationId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method MoveAnnotationMarker" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/ant/{userId}/annotations/{annotationId}/markerPosition'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('annotationId' in params):
+            replacement = str(self.apiClient.toPathValue(params['annotationId']))
+            resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'MoveAnnotationResponse')
         return responseObject
         
         
@@ -696,9 +745,10 @@ class AntApi(object):
             fileId, str: File ID (required)
             body, List[ReviewerInfo]: Collaborators (required)
             
-        Returns: SetDocumentRightsResponse
+        Returns: SetReviewerRightsResponse
         """
-
+        if( userId == None or fileId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -724,14 +774,59 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'SetDocumentRightsResponse')
+        responseObject = self.apiClient.deserialize(response, 'SetReviewerRightsResponse')
+        return responseObject
+        
+        
+    def GetSharedLinkAccessRights(self, userId, fileId, **kwargs):
+        """Get Shared Link Access Rights
+
+        Args:
+            userId, str: User GUID (required)
+            fileId, str: File ID (required)
+            
+        Returns: GetSharedLinkAccessRightsResponse
+        """
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'fileId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetSharedLinkAccessRights" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/ant/{userId}/files/{fileId}/sharedLinkAccessRights'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetSharedLinkAccessRightsResponse')
         return responseObject
         
         
@@ -745,7 +840,8 @@ class AntApi(object):
             
         Returns: SetSharedLinkAccessRightsResponse
         """
-
+        if( userId == None or fileId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -771,7 +867,6 @@ class AntApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 

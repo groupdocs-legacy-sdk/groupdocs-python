@@ -23,12 +23,14 @@ class CreateQuestionnaireResult:
 
     def __init__(self):
         self.swaggerTypes = {
+            'questionnaire_guid': 'str',
             'questionnaire_id': 'float',
             'adjusted_name': 'str'
 
         }
 
 
+        self.questionnaire_guid = None # str
         self.questionnaire_id = None # float
         self.adjusted_name = None # str
         

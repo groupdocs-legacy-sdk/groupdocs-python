@@ -23,16 +23,16 @@ class Rectangle:
 
     def __init__(self):
         self.swaggerTypes = {
-            'Height': 'float',
-            'Width': 'float',
-            'Y': 'float',
-            'X': 'float'
+            'height': 'float',
+            'width': 'float',
+            'y': 'float',
+            'x': 'float'
 
         }
 
 
-        self.Height = None # float
-        self.Width = None # float
-        self.Y = None # float
-        self.X = None # float
+        self.height = None # float
+        self.width = None # float
+        self.y = None # float
+        self.x = None # float
         

@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class AsyncApi(object):
 
@@ -46,7 +46,8 @@ class AsyncApi(object):
             
         Returns: GetJobResponse
         """
-
+        if( userId == None or jobId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobId']
 
         params = locals()
@@ -72,7 +73,6 @@ class AsyncApi(object):
             resourcePath = resourcePath.replace('{' + 'jobId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -92,7 +92,8 @@ class AsyncApi(object):
             
         Returns: GetJobResponse
         """
-
+        if( userId == None or jobId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobId']
 
         params = locals()
@@ -118,7 +119,6 @@ class AsyncApi(object):
             resourcePath = resourcePath.replace('{' + 'jobId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -129,7 +129,60 @@ class AsyncApi(object):
         return responseObject
         
         
-    def GetJobDocuments(self, userId, jobId, format, **kwargs):
+    def GetJobResources(self, userId, statusIds, **kwargs):
+        """Get job resources
+
+        Args:
+            userId, str: User GUID (required)
+            statusIds, str: Comma separated job status identifiers (required)
+            actions, str: Actions (optional)
+            excludedActions, str: Excluded actions (optional)
+            
+        Returns: GetJobResourcesResponse
+        """
+        if( userId == None or statusIds == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'statusIds', 'actions', 'excludedActions']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetJobResources" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/async/{userId}/jobs/resources?statusIds={statusIds}&actions={actions}&excluded_actions={excludedActions}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('statusIds' in params):
+            queryParams['statusIds'] = self.apiClient.toPathValue(params['statusIds'])
+        if ('actions' in params):
+            queryParams['actions'] = self.apiClient.toPathValue(params['actions'])
+        if ('excludedActions' in params):
+            queryParams['excluded_actions'] = self.apiClient.toPathValue(params['excludedActions'])
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetJobResourcesResponse')
+        return responseObject
+        
+        
+    def GetJobDocuments(self, userId, jobId, **kwargs):
         """Get job documents
 
         Args:
@@ -139,7 +192,8 @@ class AsyncApi(object):
             
         Returns: GetJobDocumentsResponse
         """
-
+        if( userId == None or jobId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobId', 'format']
 
         params = locals()
@@ -150,12 +204,17 @@ class AsyncApi(object):
         del params['kwargs']
 
         resourcePath = '/async/{userId}/jobs/{jobId}/documents?format={format}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('format' in params):
+            queryParams['format'] = self.apiClient.toPathValue(params['format'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -164,12 +223,7 @@ class AsyncApi(object):
             replacement = str(self.apiClient.toPathValue(params['jobId']))
             resourcePath = resourcePath.replace('{' + 'jobId' + '}',
                                                 replacement)
-        if ('format' in params):
-            replacement = str(self.apiClient.toPathValue(params['format']))
-            resourcePath = resourcePath.replace('{' + 'format' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -189,7 +243,8 @@ class AsyncApi(object):
             
         Returns: CreateJobResponse
         """
-
+        if( userId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -211,7 +266,6 @@ class AsyncApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -231,7 +285,8 @@ class AsyncApi(object):
             
         Returns: DeleteResult
         """
-
+        if( userId == None or jobGuid == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobGuid']
 
         params = locals()
@@ -257,7 +312,6 @@ class AsyncApi(object):
             resourcePath = resourcePath.replace('{' + 'jobGuid' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -268,7 +322,7 @@ class AsyncApi(object):
         return responseObject
         
         
-    def AddJobDocument(self, userId, jobId, fileId, checkOwnership, formats, **kwargs):
+    def AddJobDocument(self, userId, jobId, fileId, checkOwnership, **kwargs):
         """Add job document
 
         Args:
@@ -280,7 +334,8 @@ class AsyncApi(object):
             
         Returns: AddJobDocumentResponse
         """
-
+        if( userId == None or jobId == None or fileId == None or checkOwnership == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobId', 'fileId', 'checkOwnership', 'formats']
 
         params = locals()
@@ -290,13 +345,20 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/jobs/{jobId}/files/{fileId}?check_ownership={checkOwnership}&amp;out_formats={formats}'.replace('*', '')
+        resourcePath = '/async/{userId}/jobs/{jobId}/files/{fileId}?check_ownership={checkOwnership}&out_formats={formats}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
+        if ('checkOwnership' in params):
+            queryParams['check_ownership'] = self.apiClient.toPathValue(params['checkOwnership'])
+        if ('formats' in params):
+            queryParams['out_formats'] = self.apiClient.toPathValue(params['formats'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -309,16 +371,7 @@ class AsyncApi(object):
             replacement = str(self.apiClient.toPathValue(params['fileId']))
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
-        if ('checkOwnership' in params):
-            replacement = str(self.apiClient.toPathValue(params['checkOwnership']))
-            resourcePath = resourcePath.replace('{' + 'checkOwnership' + '}',
-                                                replacement)
-        if ('formats' in params):
-            replacement = str(self.apiClient.toPathValue(params['formats']))
-            resourcePath = resourcePath.replace('{' + 'formats' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -339,7 +392,8 @@ class AsyncApi(object):
             
         Returns: DeleteResponse
         """
-
+        if( userId == None or jobGuid == None or documentId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobGuid', 'documentId']
 
         params = locals()
@@ -369,7 +423,6 @@ class AsyncApi(object):
             resourcePath = resourcePath.replace('{' + 'documentId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -380,7 +433,7 @@ class AsyncApi(object):
         return responseObject
         
         
-    def AddJobDocumentUrl(self, userId, jobId, absoluteUrl, formats, **kwargs):
+    def AddJobDocumentUrl(self, userId, jobId, absoluteUrl, **kwargs):
         """Add job document url
 
         Args:
@@ -391,7 +444,8 @@ class AsyncApi(object):
             
         Returns: AddJobDocumentResponse
         """
-
+        if( userId == None or jobId == None or absoluteUrl == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobId', 'absoluteUrl', 'formats']
 
         params = locals()
@@ -401,13 +455,20 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/jobs/{jobId}/urls?absolute_url={absoluteUrl}&amp;out_formats={formats}'.replace('*', '')
+        resourcePath = '/async/{userId}/jobs/{jobId}/urls?absolute_url={absoluteUrl}&out_formats={formats}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
+        if ('absoluteUrl' in params):
+            queryParams['absolute_url'] = self.apiClient.toPathValue(params['absoluteUrl'])
+        if ('formats' in params):
+            queryParams['out_formats'] = self.apiClient.toPathValue(params['formats'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -416,16 +477,7 @@ class AsyncApi(object):
             replacement = str(self.apiClient.toPathValue(params['jobId']))
             resourcePath = resourcePath.replace('{' + 'jobId' + '}',
                                                 replacement)
-        if ('absoluteUrl' in params):
-            replacement = str(self.apiClient.toPathValue(params['absoluteUrl']))
-            resourcePath = resourcePath.replace('{' + 'absoluteUrl' + '}',
-                                                replacement)
-        if ('formats' in params):
-            replacement = str(self.apiClient.toPathValue(params['formats']))
-            resourcePath = resourcePath.replace('{' + 'formats' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -446,7 +498,8 @@ class AsyncApi(object):
             
         Returns: UpdateJobResponse
         """
-
+        if( userId == None or jobId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'jobId', 'body']
 
         params = locals()
@@ -472,7 +525,6 @@ class AsyncApi(object):
             resourcePath = resourcePath.replace('{' + 'jobId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -483,7 +535,7 @@ class AsyncApi(object):
         return responseObject
         
         
-    def GetJobs(self, userId, pageIndex, pageSize, datetime, status, actions, excludedActions, **kwargs):
+    def GetJobs(self, userId, **kwargs):
         """Get jobs
 
         Args:
@@ -491,14 +543,15 @@ class AsyncApi(object):
             pageIndex, str: Page Index (optional)
             pageSize, str: Page Size (optional)
             datetime, str: Date (optional)
-            status, str: Status (optional)
+            statusIds, str: Comma separated status identifiers (optional)
             actions, str: Actions (optional)
             excludedActions, str: Excluded actions (optional)
             
         Returns: GetJobsResponse
         """
-
-        allParams = ['userId', 'pageIndex', 'pageSize', 'datetime', 'status', 'actions', 'excludedActions']
+        if( userId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'pageIndex', 'pageSize', 'datetime', 'statusIds', 'actions', 'excludedActions']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -507,43 +560,33 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/jobs?page={pageIndex}&amp;count={pageSize}&amp;date={date}&amp;status={status}&amp;actions={actions}&amp;excluded_actions={excludedActions}'.replace('*', '')
+        resourcePath = '/async/{userId}/jobs?page={pageIndex}&count={pageSize}&date={date}&statusIds={statusIds}&actions={actions}&excluded_actions={excludedActions}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('pageIndex' in params):
+            queryParams['page'] = self.apiClient.toPathValue(params['pageIndex'])
+        if ('pageSize' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['pageSize'])
+        if ('datetime' in params):
+            queryParams['date'] = self.apiClient.toPathValue(params['datetime'])
+        if ('statusIds' in params):
+            queryParams['statusIds'] = self.apiClient.toPathValue(params['statusIds'])
+        if ('actions' in params):
+            queryParams['actions'] = self.apiClient.toPathValue(params['actions'])
+        if ('excludedActions' in params):
+            queryParams['excluded_actions'] = self.apiClient.toPathValue(params['excludedActions'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('pageIndex' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageIndex']))
-            resourcePath = resourcePath.replace('{' + 'pageIndex' + '}',
-                                                replacement)
-        if ('pageSize' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageSize']))
-            resourcePath = resourcePath.replace('{' + 'pageSize' + '}',
-                                                replacement)
-        if ('datetime' in params):
-            replacement = str(self.apiClient.toPathValue(params['datetime']))
-            resourcePath = resourcePath.replace('{' + 'date' + '}',
-                                                replacement)
-        if ('status' in params):
-            replacement = str(self.apiClient.toPathValue(params['status']))
-            resourcePath = resourcePath.replace('{' + 'status' + '}',
-                                                replacement)
-        if ('actions' in params):
-            replacement = str(self.apiClient.toPathValue(params['actions']))
-            resourcePath = resourcePath.replace('{' + 'actions' + '}',
-                                                replacement)
-        if ('excludedActions' in params):
-            replacement = str(self.apiClient.toPathValue(params['excludedActions']))
-            resourcePath = resourcePath.replace('{' + 'excludedActions' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -554,7 +597,7 @@ class AsyncApi(object):
         return responseObject
         
         
-    def GetJobsDocuments(self, userId, pageIndex, pageSize, actions, excludedActions, orderBy, orderAsc, **kwargs):
+    def GetJobsDocuments(self, userId, **kwargs):
         """Get jobs documents
 
         Args:
@@ -568,7 +611,8 @@ class AsyncApi(object):
             
         Returns: GetJobsDocumentsResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'pageIndex', 'pageSize', 'actions', 'excludedActions', 'orderBy', 'orderAsc']
 
         params = locals()
@@ -578,43 +622,33 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/jobs/documents?page={pageIndex}&amp;count={pageSize}&amp;actions={actions}&amp;excluded_actions={excludedActions}&amp;order_by={orderBy}&amp;order_asc={orderAsc}'.replace('*', '')
+        resourcePath = '/async/{userId}/jobs/documents?page={pageIndex}&count={pageSize}&actions={actions}&excluded_actions={excludedActions}&order_by={orderBy}&order_asc={orderAsc}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('pageIndex' in params):
+            queryParams['page'] = self.apiClient.toPathValue(params['pageIndex'])
+        if ('pageSize' in params):
+            queryParams['count'] = self.apiClient.toPathValue(params['pageSize'])
+        if ('actions' in params):
+            queryParams['actions'] = self.apiClient.toPathValue(params['actions'])
+        if ('excludedActions' in params):
+            queryParams['excluded_actions'] = self.apiClient.toPathValue(params['excludedActions'])
+        if ('orderBy' in params):
+            queryParams['order_by'] = self.apiClient.toPathValue(params['orderBy'])
+        if ('orderAsc' in params):
+            queryParams['order_asc'] = self.apiClient.toPathValue(params['orderAsc'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('pageIndex' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageIndex']))
-            resourcePath = resourcePath.replace('{' + 'pageIndex' + '}',
-                                                replacement)
-        if ('pageSize' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageSize']))
-            resourcePath = resourcePath.replace('{' + 'pageSize' + '}',
-                                                replacement)
-        if ('actions' in params):
-            replacement = str(self.apiClient.toPathValue(params['actions']))
-            resourcePath = resourcePath.replace('{' + 'actions' + '}',
-                                                replacement)
-        if ('excludedActions' in params):
-            replacement = str(self.apiClient.toPathValue(params['excludedActions']))
-            resourcePath = resourcePath.replace('{' + 'excludedActions' + '}',
-                                                replacement)
-        if ('orderBy' in params):
-            replacement = str(self.apiClient.toPathValue(params['orderBy']))
-            resourcePath = resourcePath.replace('{' + 'orderBy' + '}',
-                                                replacement)
-        if ('orderAsc' in params):
-            replacement = str(self.apiClient.toPathValue(params['orderAsc']))
-            resourcePath = resourcePath.replace('{' + 'orderAsc' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -625,7 +659,7 @@ class AsyncApi(object):
         return responseObject
         
         
-    def Convert(self, userId, fileId, targetType, emailResults, description, printScript, callbackUrl, **kwargs):
+    def Convert(self, userId, fileId, **kwargs):
         """Convert
 
         Args:
@@ -636,11 +670,13 @@ class AsyncApi(object):
             description, str: Description (optional)
             printScript, bool: Print (optional)
             callbackUrl, str: Callback url (optional)
+            checkDocumentOwnership, bool: Check Document Ownership (optional)
             
         Returns: ConvertResponse
         """
-
-        allParams = ['userId', 'fileId', 'targetType', 'emailResults', 'description', 'printScript', 'callbackUrl']
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'fileId', 'targetType', 'emailResults', 'description', 'printScript', 'callbackUrl', 'checkDocumentOwnership']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -649,13 +685,28 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/files/{fileId}?new_type={targetType}&amp;email_results={emailResults}&amp;new_description={description}&amp;print_script={printScript}&amp;callback={callbackUrl}'.replace('*', '')
+        resourcePath = '/async/{userId}/files/{fileId}?new_type={targetType}&email_results={emailResults}&new_description={description}&print_script={printScript}&callback={callbackUrl}&checkDocumentOwnership={checkDocumentOwnership}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('targetType' in params):
+            queryParams['new_type'] = self.apiClient.toPathValue(params['targetType'])
+        if ('emailResults' in params):
+            queryParams['email_results'] = self.apiClient.toPathValue(params['emailResults'])
+        if ('description' in params):
+            queryParams['new_description'] = self.apiClient.toPathValue(params['description'])
+        if ('printScript' in params):
+            queryParams['print_script'] = self.apiClient.toPathValue(params['printScript'])
+        if ('callbackUrl' in params):
+            queryParams['callback'] = self.apiClient.toPathValue(params['callbackUrl'])
+        if ('checkDocumentOwnership' in params):
+            queryParams['checkDocumentOwnership'] = self.apiClient.toPathValue(params['checkDocumentOwnership'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -664,28 +715,7 @@ class AsyncApi(object):
             replacement = str(self.apiClient.toPathValue(params['fileId']))
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
-        if ('targetType' in params):
-            replacement = str(self.apiClient.toPathValue(params['targetType']))
-            resourcePath = resourcePath.replace('{' + 'targetType' + '}',
-                                                replacement)
-        if ('emailResults' in params):
-            replacement = str(self.apiClient.toPathValue(params['emailResults']))
-            resourcePath = resourcePath.replace('{' + 'emailResults' + '}',
-                                                replacement)
-        if ('description' in params):
-            replacement = str(self.apiClient.toPathValue(params['description']))
-            resourcePath = resourcePath.replace('{' + 'description' + '}',
-                                                replacement)
-        if ('printScript' in params):
-            replacement = str(self.apiClient.toPathValue(params['printScript']))
-            resourcePath = resourcePath.replace('{' + 'printScript' + '}',
-                                                replacement)
-        if ('callbackUrl' in params):
-            replacement = str(self.apiClient.toPathValue(params['callbackUrl']))
-            resourcePath = resourcePath.replace('{' + 'callbackUrl' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 

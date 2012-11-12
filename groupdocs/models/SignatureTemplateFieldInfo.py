@@ -26,20 +26,15 @@ class SignatureTemplateFieldInfo:
             'regularExpression': 'str',
             'fieldType': 'int',
             'mandatory': 'bool',
-            'graphSizeH': 'int',
-            'textRows': 'float',
             'id': 'str',
             'templateId': 'str',
             'acceptableValues': 'str',
-            'input': 'float',
-            'textColumns': 'float',
             'recipientId': 'str',
             'order': 'float',
-            'locations': 'list[SignatureTemplateFieldLocationInfo]',
             'signatureFieldId': 'float',
+            'locations': 'list[SignatureTemplateFieldLocationInfo]',
             'name': 'str',
             'defaultValue': 'str',
-            'graphSizeW': 'int',
             'tooltip': 'str'
 
         }
@@ -48,19 +43,14 @@ class SignatureTemplateFieldInfo:
         self.regularExpression = None # str
         self.fieldType = None # int
         self.mandatory = None # bool
-        self.graphSizeH = None # int
-        self.textRows = None # float
         self.id = None # str
         self.templateId = None # str
         self.acceptableValues = None # str
-        self.input = None # float
-        self.textColumns = None # float
         self.recipientId = None # str
         self.order = None # float
-        self.locations = None # list[SignatureTemplateFieldLocationInfo]
         self.signatureFieldId = None # float
+        self.locations = None # list[SignatureTemplateFieldLocationInfo]
         self.name = None # str
         self.defaultValue = None # str
-        self.graphSizeW = None # int
         self.tooltip = None # str
         

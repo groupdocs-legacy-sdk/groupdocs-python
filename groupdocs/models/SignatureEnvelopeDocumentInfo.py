@@ -24,6 +24,7 @@ class SignatureEnvelopeDocumentInfo:
     def __init__(self):
         self.swaggerTypes = {
             'fieldsCount': 'int',
+            'originalDocumentImportedFields': 'list[SignatureDocumentFieldInfo]',
             'finalDocumentMD5': 'str',
             'order': 'int',
             'name': 'str',
@@ -36,6 +37,7 @@ class SignatureEnvelopeDocumentInfo:
 
 
         self.fieldsCount = None # int
+        self.originalDocumentImportedFields = None # list[SignatureDocumentFieldInfo]
         self.finalDocumentMD5 = None # str
         self.order = None # int
         self.name = None # str

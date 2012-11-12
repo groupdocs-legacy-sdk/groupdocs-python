@@ -27,7 +27,7 @@ class QuestionnaireExecutionInfo:
             'datasource_id': 'float',
             'guid': 'str',
             'executive': 'UserIdentity',
-            'document': 'DocumentIdentity',
+            'document': 'DocumentDownloadInfo',
             'collector_id': 'float',
             'collector_guid': 'str',
             'status': 'str',
@@ -43,7 +43,7 @@ class QuestionnaireExecutionInfo:
         self.datasource_id = None # float
         self.guid = None # str
         self.executive = None # UserIdentity
-        self.document = None # DocumentIdentity
+        self.document = None # DocumentDownloadInfo
         self.collector_id = None # float
         self.collector_guid = None # str
         self.status = None # str

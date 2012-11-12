@@ -25,7 +25,6 @@ class SignatureTemplateInfo:
         self.swaggerTypes = {
             'ownerShouldSign': 'bool',
             'recipients': 'list[SignatureTemplateRecipientInfo]',
-            'ownerId': 'float',
             'reminderTime': 'float',
             'emailSubject': 'str',
             'id': 'str',
@@ -43,7 +42,6 @@ class SignatureTemplateInfo:
 
         self.ownerShouldSign = None # bool
         self.recipients = None # list[SignatureTemplateRecipientInfo]
-        self.ownerId = None # float
         self.reminderTime = None # float
         self.emailSubject = None # str
         self.id = None # str

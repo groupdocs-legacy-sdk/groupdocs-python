@@ -25,6 +25,7 @@ class ReviewerInfo:
         self.swaggerTypes = {
             'guid': 'str',
             'id': 'float',
+            'customEmailMessage': 'str',
             'color': 'int',
             'primary_email': 'str',
             'access_rights': 'int',
@@ -35,6 +36,7 @@ class ReviewerInfo:
 
         self.guid = None # str
         self.id = None # float
+        self.customEmailMessage = None # str
         self.color = None # int
         self.primary_email = None # str
         self.access_rights = None # int

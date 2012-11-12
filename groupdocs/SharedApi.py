@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class SharedApi(object):
 
@@ -37,7 +37,7 @@ class SharedApi(object):
         self.__basePath = value
 
     
-    def Download(self, guid, fileName, render, **kwargs):
+    def Download(self, guid, fileName, **kwargs):
         """Download
 
         Args:
@@ -45,9 +45,10 @@ class SharedApi(object):
             fileName, str: File name (required)
             render, bool: Render (optional)
             
-        Returns: str
+        Returns: stream
         """
-
+        if( guid == None or fileName == None ):
+            raise Exception("missing required parameters")
         allParams = ['guid', 'fileName', 'render']
 
         params = locals()
@@ -57,36 +58,27 @@ class SharedApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/shared/files/{guid}?filename={fileName}&amp;render={render}'.replace('*', '')
+        resourcePath = '/shared/files/{guid}?filename={fileName}&render={render}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('fileName' in params):
+            queryParams['filename'] = self.apiClient.toPathValue(params['fileName'])
+        if ('render' in params):
+            queryParams['render'] = self.apiClient.toPathValue(params['render'])
         if ('guid' in params):
             replacement = str(self.apiClient.toPathValue(params['guid']))
             resourcePath = resourcePath.replace('{' + 'guid' + '}',
                                                 replacement)
-        if ('fileName' in params):
-            replacement = str(self.apiClient.toPathValue(params['fileName']))
-            resourcePath = resourcePath.replace('{' + 'fileName' + '}',
-                                                replacement)
-        if ('render' in params):
-            replacement = str(self.apiClient.toPathValue(params['render']))
-            resourcePath = resourcePath.replace('{' + 'render' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
-        
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
     def GetXml(self, guid, **kwargs):
         """Get xml
@@ -94,9 +86,10 @@ class SharedApi(object):
         Args:
             guid, str: GUID (required)
             
-        Returns: str
+        Returns: stream
         """
-
+        if( guid == None ):
+            raise Exception("missing required parameters")
         allParams = ['guid']
 
         params = locals()
@@ -118,16 +111,8 @@ class SharedApi(object):
             resourcePath = resourcePath.replace('{' + 'guid' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
-        
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
     def GetPackage(self, path, **kwargs):
         """Get package
@@ -135,9 +120,10 @@ class SharedApi(object):
         Args:
             path, str: Path (required)
             
-        Returns: str
+        Returns: stream
         """
-
+        if( path == None ):
+            raise Exception("missing required parameters")
         allParams = ['path']
 
         params = locals()
@@ -159,16 +145,8 @@ class SharedApi(object):
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
-        
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
     
 

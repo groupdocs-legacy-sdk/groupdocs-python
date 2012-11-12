@@ -28,7 +28,6 @@ class SignatureEnvelopeInfo:
             'recipients': 'list[SignatureEnvelopeRecipientInfo]',
             'status': 'int',
             'envelopeExpireTime': 'float',
-            'ownerId': 'float',
             'reminderTime': 'float',
             'emailSubject': 'str',
             'statusDateTime': 'str',
@@ -49,7 +48,6 @@ class SignatureEnvelopeInfo:
         self.recipients = None # list[SignatureEnvelopeRecipientInfo]
         self.status = None # int
         self.envelopeExpireTime = None # float
-        self.ownerId = None # float
         self.reminderTime = None # float
         self.emailSubject = None # str
         self.statusDateTime = None # str

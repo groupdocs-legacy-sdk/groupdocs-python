@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class PostApi(object):
 
@@ -47,7 +47,8 @@ class PostApi(object):
             
         Returns: RenameResponse
         """
-
+        if( userId == None or fileId == None or newName == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'newName']
 
         params = locals()
@@ -57,7 +58,10 @@ class PostApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/post/file.rename?user_id={userId}&amp;file_id={fileId}&amp;new_name={newName}'.replace('*', '')
+        resourcePath = '/post/file.rename?user_id={userId}&file_id={fileId}&new_name={newName}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
@@ -65,19 +69,12 @@ class PostApi(object):
         headerParams = {}
 
         if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
+            queryParams['user_id'] = self.apiClient.toPathValue(params['userId'])
         if ('fileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['fileId']))
-            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
-                                                replacement)
+            queryParams['file_id'] = self.apiClient.toPathValue(params['fileId'])
         if ('newName' in params):
-            replacement = str(self.apiClient.toPathValue(params['newName']))
-            resourcePath = resourcePath.replace('{' + 'newName' + '}',
-                                                replacement)
+            queryParams['new_name'] = self.apiClient.toPathValue(params['newName'])
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -97,7 +94,8 @@ class PostApi(object):
             
         Returns: DeleteResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -107,7 +105,10 @@ class PostApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/post/file.delete?user_id={userId}&amp;file_id={fileId}'.replace('*', '')
+        resourcePath = '/post/file.delete?user_id={userId}&file_id={fileId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
@@ -115,15 +116,10 @@ class PostApi(object):
         headerParams = {}
 
         if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
+            queryParams['user_id'] = self.apiClient.toPathValue(params['userId'])
         if ('fileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['fileId']))
-            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
-                                                replacement)
+            queryParams['file_id'] = self.apiClient.toPathValue(params['fileId'])
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -143,7 +139,8 @@ class PostApi(object):
             
         Returns: DeleteResponse
         """
-
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -153,7 +150,10 @@ class PostApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/post/file.delete.in?user_id={userId}&amp;path={path}'.replace('*', '')
+        resourcePath = '/post/file.delete.in?user_id={userId}&path={path}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
@@ -161,15 +161,10 @@ class PostApi(object):
         headerParams = {}
 
         if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
+            queryParams['user_id'] = self.apiClient.toPathValue(params['userId'])
         if ('path' in params):
-            replacement = str(self.apiClient.toPathValue(params['path']))
-            resourcePath = resourcePath.replace('{' + 'path' + '}',
-                                                replacement)
+            queryParams['path'] = self.apiClient.toPathValue(params['path'])
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -190,7 +185,8 @@ class PostApi(object):
             
         Returns: CompressResponse
         """
-
+        if( userId == None or fileId == None or archiveType == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'archiveType']
 
         params = locals()
@@ -200,7 +196,10 @@ class PostApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/post/file.compress?user_id={userId}&amp;file_id={fileId}&amp;archive_type={archiveType}'.replace('*', '')
+        resourcePath = '/post/file.compress?user_id={userId}&file_id={fileId}&archive_type={archiveType}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
@@ -208,19 +207,12 @@ class PostApi(object):
         headerParams = {}
 
         if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
+            queryParams['user_id'] = self.apiClient.toPathValue(params['userId'])
         if ('fileId' in params):
-            replacement = str(self.apiClient.toPathValue(params['fileId']))
-            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
-                                                replacement)
+            queryParams['file_id'] = self.apiClient.toPathValue(params['fileId'])
         if ('archiveType' in params):
-            replacement = str(self.apiClient.toPathValue(params['archiveType']))
-            resourcePath = resourcePath.replace('{' + 'archiveType' + '}',
-                                                replacement)
+            queryParams['archive_type'] = self.apiClient.toPathValue(params['archiveType'])
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 

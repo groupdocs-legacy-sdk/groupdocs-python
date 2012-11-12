@@ -23,14 +23,14 @@ class AddCollaboratorResponse:
 
     def __init__(self):
         self.swaggerTypes = {
-            'result': 'AddCollaboratorResult',
+            'result': 'SetCollaboratorsResult',
             'status': 'str',
             'error_message': 'str'
 
         }
 
 
-        self.result = None # AddCollaboratorResult
+        self.result = None # SetCollaboratorsResult
         self.status = None # str
         self.error_message = None # str
         

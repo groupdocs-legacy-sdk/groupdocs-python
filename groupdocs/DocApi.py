@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class DocApi(object):
 
@@ -37,7 +37,7 @@ class DocApi(object):
         self.__basePath = value
 
     
-    def ViewDocument(self, userId, fileId, pageNumber, pageCount, width, quality, usePdf, **kwargs):
+    def ViewDocument(self, userId, fileId, **kwargs):
         """View Document
 
         Args:
@@ -51,7 +51,8 @@ class DocApi(object):
             
         Returns: ViewDocumentResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'pageNumber', 'pageCount', 'width', 'quality', 'usePdf']
 
         params = locals()
@@ -61,13 +62,26 @@ class DocApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/doc/{userId}/files/{fileId}/thumbnails?page_number={pageNumber}&amp;page_count={pageCount}&amp;width={width}&amp;quality={quality}&amp;use_pdf={usePdf}'.replace('*', '')
+        resourcePath = '/doc/{userId}/files/{fileId}/thumbnails?page_number={pageNumber}&page_count={pageCount}&width={width}&quality={quality}&use_pdf={usePdf}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('pageNumber' in params):
+            queryParams['page_number'] = self.apiClient.toPathValue(params['pageNumber'])
+        if ('pageCount' in params):
+            queryParams['page_count'] = self.apiClient.toPathValue(params['pageCount'])
+        if ('width' in params):
+            queryParams['width'] = self.apiClient.toPathValue(params['width'])
+        if ('quality' in params):
+            queryParams['quality'] = self.apiClient.toPathValue(params['quality'])
+        if ('usePdf' in params):
+            queryParams['use_pdf'] = self.apiClient.toPathValue(params['usePdf'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -76,28 +90,7 @@ class DocApi(object):
             replacement = str(self.apiClient.toPathValue(params['fileId']))
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
-        if ('pageNumber' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageNumber']))
-            resourcePath = resourcePath.replace('{' + 'pageNumber' + '}',
-                                                replacement)
-        if ('pageCount' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageCount']))
-            resourcePath = resourcePath.replace('{' + 'pageCount' + '}',
-                                                replacement)
-        if ('width' in params):
-            replacement = str(self.apiClient.toPathValue(params['width']))
-            resourcePath = resourcePath.replace('{' + 'width' + '}',
-                                                replacement)
-        if ('quality' in params):
-            replacement = str(self.apiClient.toPathValue(params['quality']))
-            resourcePath = resourcePath.replace('{' + 'quality' + '}',
-                                                replacement)
-        if ('usePdf' in params):
-            replacement = str(self.apiClient.toPathValue(params['usePdf']))
-            resourcePath = resourcePath.replace('{' + 'usePdf' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -108,7 +101,7 @@ class DocApi(object):
         return responseObject
         
         
-    def GetDocumentViews(self, userId, startIndex, pageSize, **kwargs):
+    def GetDocumentViews(self, userId, **kwargs):
         """Get Document Views
 
         Args:
@@ -118,7 +111,8 @@ class DocApi(object):
             
         Returns: DocumentViewsResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'startIndex', 'pageSize']
 
         params = locals()
@@ -128,27 +122,25 @@ class DocApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/doc/{userId}/views?page_index={startIndex}&amp;page_size={pageSize}'.replace('*', '')
+        resourcePath = '/doc/{userId}/views?page_index={startIndex}&page_size={pageSize}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('startIndex' in params):
+            queryParams['page_index'] = self.apiClient.toPathValue(params['startIndex'])
+        if ('pageSize' in params):
+            queryParams['page_size'] = self.apiClient.toPathValue(params['pageSize'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('startIndex' in params):
-            replacement = str(self.apiClient.toPathValue(params['startIndex']))
-            resourcePath = resourcePath.replace('{' + 'startIndex' + '}',
-                                                replacement)
-        if ('pageSize' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageSize']))
-            resourcePath = resourcePath.replace('{' + 'pageSize' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -169,7 +161,8 @@ class DocApi(object):
             
         Returns: SharedUsersResponse
         """
-
+        if( userId == None or fileId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -195,7 +188,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -215,7 +207,8 @@ class DocApi(object):
             
         Returns: SharedUsersResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -241,7 +234,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -261,7 +253,8 @@ class DocApi(object):
             
         Returns: SharedUsersResponse
         """
-
+        if( userId == None or folderId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'folderId']
 
         params = locals()
@@ -287,7 +280,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'folderId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -308,7 +300,8 @@ class DocApi(object):
             
         Returns: SharedUsersResponse
         """
-
+        if( userId == None or folderId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'folderId', 'body']
 
         params = locals()
@@ -334,7 +327,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'folderId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -354,7 +346,8 @@ class DocApi(object):
             
         Returns: SharedUsersResponse
         """
-
+        if( userId == None or folderId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'folderId']
 
         params = locals()
@@ -380,7 +373,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'folderId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -391,7 +383,7 @@ class DocApi(object):
         return responseObject
         
         
-    def SetDocumentAccessMode(self, userId, fileId, mode, **kwargs):
+    def SetDocumentAccessMode(self, userId, fileId, **kwargs):
         """Set document access mode
 
         Args:
@@ -401,7 +393,8 @@ class DocApi(object):
             
         Returns: DocumentAccessInfoResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'mode']
 
         params = locals()
@@ -412,12 +405,17 @@ class DocApi(object):
         del params['kwargs']
 
         resourcePath = '/doc/{userId}/files/{fileId}/accessinfo?mode={mode}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
+        if ('mode' in params):
+            queryParams['mode'] = self.apiClient.toPathValue(params['mode'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -426,12 +424,7 @@ class DocApi(object):
             replacement = str(self.apiClient.toPathValue(params['fileId']))
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
-        if ('mode' in params):
-            replacement = str(self.apiClient.toPathValue(params['mode']))
-            resourcePath = resourcePath.replace('{' + 'mode' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -451,7 +444,8 @@ class DocApi(object):
             
         Returns: DocumentAccessInfoResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -477,7 +471,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -497,7 +490,8 @@ class DocApi(object):
             
         Returns: GetDocumentInfoResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -523,7 +517,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -543,7 +536,8 @@ class DocApi(object):
             
         Returns: GetDocumentInfoResponse
         """
-
+        if( userId == None or path == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -569,7 +563,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -590,7 +583,8 @@ class DocApi(object):
             
         Returns: DocumentUserStatusResponse
         """
-
+        if( userId == None or fileId == None or status == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'status']
 
         params = locals()
@@ -601,12 +595,17 @@ class DocApi(object):
         del params['kwargs']
 
         resourcePath = '/doc/{userId}/files/{fileId}/sharer'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'PUT'
 
         queryParams = {}
         headerParams = {}
 
+        if ('status' in params):
+            queryParams['status'] = self.apiClient.toPathValue(params['status'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -615,12 +614,7 @@ class DocApi(object):
             replacement = str(self.apiClient.toPathValue(params['fileId']))
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
-        if ('status' in params):
-            replacement = str(self.apiClient.toPathValue(params['status']))
-            resourcePath = resourcePath.replace('{' + 'status' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -631,7 +625,7 @@ class DocApi(object):
         return responseObject
         
         
-    def GetSharedDocuments(self, userId, sharesTypes, pageIndex, pageSize, orderBy, orderAsc, **kwargs):
+    def GetSharedDocuments(self, userId, sharesTypes, **kwargs):
         """Get shared documents
 
         Args:
@@ -644,7 +638,8 @@ class DocApi(object):
             
         Returns: SharedDocumentsResponse
         """
-
+        if( userId == None or sharesTypes == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'sharesTypes', 'pageIndex', 'pageSize', 'orderBy', 'orderAsc']
 
         params = locals()
@@ -654,13 +649,24 @@ class DocApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/doc/{userId}/shares/{sharesTypes}?page_index={pageIndex}&amp;page_size={pageSize}&amp;order_by={orderBy}&amp;order_asc={orderAsc}'.replace('*', '')
+        resourcePath = '/doc/{userId}/shares/{sharesTypes}?page_index={pageIndex}&page_size={pageSize}&order_by={orderBy}&order_asc={orderAsc}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('pageIndex' in params):
+            queryParams['page_index'] = self.apiClient.toPathValue(params['pageIndex'])
+        if ('pageSize' in params):
+            queryParams['page_size'] = self.apiClient.toPathValue(params['pageSize'])
+        if ('orderBy' in params):
+            queryParams['order_by'] = self.apiClient.toPathValue(params['orderBy'])
+        if ('orderAsc' in params):
+            queryParams['order_asc'] = self.apiClient.toPathValue(params['orderAsc'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -669,24 +675,7 @@ class DocApi(object):
             replacement = str(self.apiClient.toPathValue(params['sharesTypes']))
             resourcePath = resourcePath.replace('{' + 'sharesTypes' + '}',
                                                 replacement)
-        if ('pageIndex' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageIndex']))
-            resourcePath = resourcePath.replace('{' + 'pageIndex' + '}',
-                                                replacement)
-        if ('pageSize' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageSize']))
-            resourcePath = resourcePath.replace('{' + 'pageSize' + '}',
-                                                replacement)
-        if ('orderBy' in params):
-            replacement = str(self.apiClient.toPathValue(params['orderBy']))
-            resourcePath = resourcePath.replace('{' + 'orderBy' + '}',
-                                                replacement)
-        if ('orderAsc' in params):
-            replacement = str(self.apiClient.toPathValue(params['orderAsc']))
-            resourcePath = resourcePath.replace('{' + 'orderAsc' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -697,7 +686,7 @@ class DocApi(object):
         return responseObject
         
         
-    def GetTemplateFields(self, userId, fileId, includeGeometry, **kwargs):
+    def GetTemplateFields(self, userId, fileId, **kwargs):
         """Get template fields
 
         Args:
@@ -707,7 +696,8 @@ class DocApi(object):
             
         Returns: TemplateFieldsResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'includeGeometry']
 
         params = locals()
@@ -718,12 +708,17 @@ class DocApi(object):
         del params['kwargs']
 
         resourcePath = '/doc/{userId}/files/{fileId}/fields?include_geometry={includeGeometry}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('includeGeometry' in params):
+            queryParams['include_geometry'] = self.apiClient.toPathValue(params['includeGeometry'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -732,12 +727,7 @@ class DocApi(object):
             replacement = str(self.apiClient.toPathValue(params['fileId']))
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
-        if ('includeGeometry' in params):
-            replacement = str(self.apiClient.toPathValue(params['includeGeometry']))
-            resourcePath = resourcePath.replace('{' + 'includeGeometry' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -757,7 +747,8 @@ class DocApi(object):
             
         Returns: GetDocumentForeignTypesResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -783,7 +774,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -794,7 +784,7 @@ class DocApi(object):
         return responseObject
         
         
-    def GetDocumentPageImage(self, userId, fileId, pageNumber, dimension, quality, usePdf, expiresOn, **kwargs):
+    def GetDocumentPageImage(self, userId, fileId, pageNumber, dimension, **kwargs):
         """Returns a stream of bytes representing a particular document page image.
 
         Args:
@@ -808,7 +798,8 @@ class DocApi(object):
             
         Returns: stream
         """
-
+        if( userId == None or fileId == None or pageNumber == None or dimension == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'pageNumber', 'dimension', 'quality', 'usePdf', 'expiresOn']
 
         params = locals()
@@ -818,13 +809,22 @@ class DocApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/doc/{userId}/files/{fileId}/pages/{pageNumber}/images/{dimension}?quality={quality}&amp;use_pdf={usePdf}&amp;expires={expiresOn}'.replace('*', '')
+        resourcePath = '/doc/{userId}/files/{fileId}/pages/{pageNumber}/images/{dimension}?quality={quality}&use_pdf={usePdf}&expires={expiresOn}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('quality' in params):
+            queryParams['quality'] = self.apiClient.toPathValue(params['quality'])
+        if ('usePdf' in params):
+            queryParams['use_pdf'] = self.apiClient.toPathValue(params['usePdf'])
+        if ('expiresOn' in params):
+            queryParams['expires'] = self.apiClient.toPathValue(params['expiresOn'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -841,31 +841,11 @@ class DocApi(object):
             replacement = str(self.apiClient.toPathValue(params['dimension']))
             resourcePath = resourcePath.replace('{' + 'dimension' + '}',
                                                 replacement)
-        if ('quality' in params):
-            replacement = str(self.apiClient.toPathValue(params['quality']))
-            resourcePath = resourcePath.replace('{' + 'quality' + '}',
-                                                replacement)
-        if ('usePdf' in params):
-            replacement = str(self.apiClient.toPathValue(params['usePdf']))
-            resourcePath = resourcePath.replace('{' + 'usePdf' + '}',
-                                                replacement)
-        if ('expiresOn' in params):
-            replacement = str(self.apiClient.toPathValue(params['expiresOn']))
-            resourcePath = resourcePath.replace('{' + 'expiresOn' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'stream')
-        return responseObject
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
-        
-    def GetDocumentPagesImageUrls(self, userId, fileId, firstPage, pageCount, dimension, quality, usePdf, token, **kwargs):
+    def GetDocumentPagesImageUrls(self, userId, fileId, dimension, **kwargs):
         """Returns a list of URLs pointing to document page images.
 
         Args:
@@ -880,7 +860,8 @@ class DocApi(object):
             
         Returns: GetImageUrlsResponse
         """
-
+        if( userId == None or fileId == None or dimension == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId', 'firstPage', 'pageCount', 'dimension', 'quality', 'usePdf', 'token']
 
         params = locals()
@@ -890,13 +871,26 @@ class DocApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/doc/{userId}/files/{fileId}/pages/images/{dimension}/urls?first_page={firstPage}&amp;page_count={pageCount}&amp;quality={quality}&amp;use_pdf={usePdf}&amp;token={token}'.replace('*', '')
+        resourcePath = '/doc/{userId}/files/{fileId}/pages/images/{dimension}/urls?first_page={firstPage}&page_count={pageCount}&quality={quality}&use_pdf={usePdf}&token={token}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('firstPage' in params):
+            queryParams['first_page'] = self.apiClient.toPathValue(params['firstPage'])
+        if ('pageCount' in params):
+            queryParams['page_count'] = self.apiClient.toPathValue(params['pageCount'])
+        if ('quality' in params):
+            queryParams['quality'] = self.apiClient.toPathValue(params['quality'])
+        if ('usePdf' in params):
+            queryParams['use_pdf'] = self.apiClient.toPathValue(params['usePdf'])
+        if ('token' in params):
+            queryParams['token'] = self.apiClient.toPathValue(params['token'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -905,32 +899,11 @@ class DocApi(object):
             replacement = str(self.apiClient.toPathValue(params['fileId']))
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
-        if ('firstPage' in params):
-            replacement = str(self.apiClient.toPathValue(params['firstPage']))
-            resourcePath = resourcePath.replace('{' + 'firstPage' + '}',
-                                                replacement)
-        if ('pageCount' in params):
-            replacement = str(self.apiClient.toPathValue(params['pageCount']))
-            resourcePath = resourcePath.replace('{' + 'pageCount' + '}',
-                                                replacement)
         if ('dimension' in params):
             replacement = str(self.apiClient.toPathValue(params['dimension']))
             resourcePath = resourcePath.replace('{' + 'dimension' + '}',
                                                 replacement)
-        if ('quality' in params):
-            replacement = str(self.apiClient.toPathValue(params['quality']))
-            resourcePath = resourcePath.replace('{' + 'quality' + '}',
-                                                replacement)
-        if ('usePdf' in params):
-            replacement = str(self.apiClient.toPathValue(params['usePdf']))
-            resourcePath = resourcePath.replace('{' + 'usePdf' + '}',
-                                                replacement)
-        if ('token' in params):
-            replacement = str(self.apiClient.toPathValue(params['token']))
-            resourcePath = resourcePath.replace('{' + 'token' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -950,7 +923,8 @@ class DocApi(object):
             
         Returns: GetEditLockResponse
         """
-
+        if( userId == None or fileId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -976,7 +950,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -987,17 +960,19 @@ class DocApi(object):
         return responseObject
         
         
-    def RemoveEditLock(self, userId, fileId, **kwargs):
+    def RemoveEditLock(self, userId, fileId, lockId, **kwargs):
         """Removes edit lock for a document and replaces the document with its edited copy.
 
         Args:
             userId, str: GroupDocs user global unique identifier. (required)
             fileId, str: Document global unique identifier. (required)
+            lockId, str: Lock Id. (required)
             
         Returns: RemoveEditLockResponse
         """
-
-        allParams = ['userId', 'fileId']
+        if( userId == None or fileId == None or lockId == None ):
+            raise Exception("missing required parameters")
+        allParams = ['userId', 'fileId', 'lockId']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -1007,12 +982,17 @@ class DocApi(object):
         del params['kwargs']
 
         resourcePath = '/doc/{userId}/files/{fileId}/editlock'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'DELETE'
 
         queryParams = {}
         headerParams = {}
 
+        if ('lockId' in params):
+            queryParams['lockId'] = self.apiClient.toPathValue(params['lockId'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -1022,7 +1002,6 @@ class DocApi(object):
             resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 

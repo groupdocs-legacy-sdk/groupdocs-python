@@ -29,8 +29,9 @@ class QuestionnaireInfo:
             'expires': 'long',
             'status': 'str',
             'resolved_executions': 'int',
-            'pages': 'list[QuestionnairePageInfo]',
             'name': 'str',
+            'pages': 'list[QuestionnairePageInfo]',
+            'document_ids': 'list[str]',
             'descr': 'str',
             'modified': 'long',
             'total_questions': 'int'
@@ -44,8 +45,9 @@ class QuestionnaireInfo:
         self.expires = None # long
         self.status = None # str
         self.resolved_executions = None # int
-        self.pages = None # list[QuestionnairePageInfo]
         self.name = None # str
+        self.pages = None # list[QuestionnairePageInfo]
+        self.document_ids = None # list[str]
         self.descr = None # str
         self.modified = None # long
         self.total_questions = None # int

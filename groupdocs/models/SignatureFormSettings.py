@@ -24,7 +24,6 @@ class SignatureFormSettings:
     def __init__(self):
         self.swaggerTypes = {
             'canParticipantDownloadForm': 'bool',
-            'templateGuid': 'str',
             'name': 'str',
             'fieldsInFinalFileName': 'str'
 
@@ -32,7 +31,6 @@ class SignatureFormSettings:
 
 
         self.canParticipantDownloadForm = None # bool
-        self.templateGuid = None # str
         self.name = None # str
         self.fieldsInFinalFileName = None # str
         

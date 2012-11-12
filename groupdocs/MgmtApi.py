@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class MgmtApi(object):
 
@@ -45,7 +45,8 @@ class MgmtApi(object):
             
         Returns: UserInfoResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -67,7 +68,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -87,7 +87,8 @@ class MgmtApi(object):
             
         Returns: UpdateUserResponse
         """
-
+        if( userId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -109,7 +110,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -129,7 +129,8 @@ class MgmtApi(object):
             
         Returns: ChangePasswordResponse
         """
-
+        if( userId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -151,7 +152,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -171,7 +171,8 @@ class MgmtApi(object):
             
         Returns: UserInfoResponse
         """
-
+        if( callerId == None or token == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'token']
 
         params = locals()
@@ -182,22 +183,22 @@ class MgmtApi(object):
         del params['kwargs']
 
         resourcePath = '/mgmt/{callerId}/reset-tokens?token={token}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('token' in params):
+            queryParams['token'] = self.apiClient.toPathValue(params['token'])
         if ('callerId' in params):
             replacement = str(self.apiClient.toPathValue(params['callerId']))
             resourcePath = resourcePath.replace('{' + 'callerId' + '}',
                                                 replacement)
-        if ('token' in params):
-            replacement = str(self.apiClient.toPathValue(params['token']))
-            resourcePath = resourcePath.replace('{' + 'token' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -217,7 +218,8 @@ class MgmtApi(object):
             
         Returns: UserInfoResponse
         """
-
+        if( callerId == None or token == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'token']
 
         params = locals()
@@ -228,22 +230,22 @@ class MgmtApi(object):
         del params['kwargs']
 
         resourcePath = '/mgmt/{callerId}/verif-tokens?token={token}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('token' in params):
+            queryParams['token'] = self.apiClient.toPathValue(params['token'])
         if ('callerId' in params):
             replacement = str(self.apiClient.toPathValue(params['callerId']))
             resourcePath = resourcePath.replace('{' + 'callerId' + '}',
                                                 replacement)
-        if ('token' in params):
-            replacement = str(self.apiClient.toPathValue(params['token']))
-            resourcePath = resourcePath.replace('{' + 'token' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -263,7 +265,8 @@ class MgmtApi(object):
             
         Returns: UserInfoResponse
         """
-
+        if( callerId == None or token == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'token']
 
         params = locals()
@@ -274,22 +277,22 @@ class MgmtApi(object):
         del params['kwargs']
 
         resourcePath = '/mgmt/{callerId}/claimed-tokens?token={token}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
         queryParams = {}
         headerParams = {}
 
+        if ('token' in params):
+            queryParams['token'] = self.apiClient.toPathValue(params['token'])
         if ('callerId' in params):
             replacement = str(self.apiClient.toPathValue(params['callerId']))
             resourcePath = resourcePath.replace('{' + 'callerId' + '}',
                                                 replacement)
-        if ('token' in params):
-            replacement = str(self.apiClient.toPathValue(params['token']))
-            resourcePath = resourcePath.replace('{' + 'token' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -309,7 +312,8 @@ class MgmtApi(object):
             
         Returns: UserInfoResponse
         """
-
+        if( callerId == None or userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'userId']
 
         params = locals()
@@ -335,7 +339,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -356,7 +359,8 @@ class MgmtApi(object):
             
         Returns: UpdateUserResponse
         """
-
+        if( callerId == None or userId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'userId', 'body']
 
         params = locals()
@@ -382,7 +386,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -402,7 +405,8 @@ class MgmtApi(object):
             
         Returns: CreateUserResponse
         """
-
+        if( callerId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'body']
 
         params = locals()
@@ -424,7 +428,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'callerId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -445,7 +448,8 @@ class MgmtApi(object):
             
         Returns: UserInfoResponse
         """
-
+        if( callerId == None or userId == None or password == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'userId', 'password']
 
         params = locals()
@@ -456,12 +460,17 @@ class MgmtApi(object):
         del params['kwargs']
 
         resourcePath = '/mgmt/{callerId}/users/{userId}/logins'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'POST'
 
         queryParams = {}
         headerParams = {}
 
+        if ('password' in params):
+            queryParams['password'] = self.apiClient.toPathValue(params['password'])
         if ('callerId' in params):
             replacement = str(self.apiClient.toPathValue(params['callerId']))
             resourcePath = resourcePath.replace('{' + 'callerId' + '}',
@@ -470,12 +479,7 @@ class MgmtApi(object):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
-        if ('password' in params):
-            replacement = str(self.apiClient.toPathValue(params['password']))
-            resourcePath = resourcePath.replace('{' + 'password' + '}',
-                                                replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -496,7 +500,8 @@ class MgmtApi(object):
             
         Returns: ChangePasswordResponse
         """
-
+        if( callerId == None or userId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'userId', 'body']
 
         params = locals()
@@ -522,7 +527,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -542,7 +546,8 @@ class MgmtApi(object):
             
         Returns: ResetPasswordResponse
         """
-
+        if( callerId == None or userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'userId']
 
         params = locals()
@@ -568,7 +573,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -587,7 +591,8 @@ class MgmtApi(object):
             
         Returns: GetStorageProvidersResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -609,7 +614,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -630,7 +634,8 @@ class MgmtApi(object):
             
         Returns: AddStorageProviderResponse
         """
-
+        if( userId == None or provider == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'provider', 'body']
 
         params = locals()
@@ -656,7 +661,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'provider' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -677,7 +681,8 @@ class MgmtApi(object):
             
         Returns: UpdateStorageProviderResponse
         """
-
+        if( userId == None or provider == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'provider', 'body']
 
         params = locals()
@@ -703,7 +708,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'provider' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -722,7 +726,8 @@ class MgmtApi(object):
             
         Returns: GetRolesResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -744,7 +749,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -764,7 +768,8 @@ class MgmtApi(object):
             
         Returns: GetRolesResponse
         """
-
+        if( callerId == None or userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'userId']
 
         params = locals()
@@ -790,7 +795,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -811,7 +815,8 @@ class MgmtApi(object):
             
         Returns: SetUserRolesResponse
         """
-
+        if( callerId == None or userId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'userId', 'body']
 
         params = locals()
@@ -837,7 +842,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -856,7 +860,8 @@ class MgmtApi(object):
             
         Returns: GetAccountResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -878,7 +883,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -897,7 +901,8 @@ class MgmtApi(object):
             
         Returns: DeleteAccountResponse
         """
-
+        if( userId == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -919,7 +924,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -938,7 +942,8 @@ class MgmtApi(object):
             
         Returns: GetAccountUsersResponse
         """
-
+        if( adminId == None ):
+            raise Exception("missing required parameters")
         allParams = ['adminId']
 
         params = locals()
@@ -960,7 +965,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'adminId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -981,7 +985,8 @@ class MgmtApi(object):
             
         Returns: UpdateAccountUserResponse
         """
-
+        if( adminId == None or userName == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['adminId', 'userName', 'body']
 
         params = locals()
@@ -1007,7 +1012,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userName' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1027,7 +1031,8 @@ class MgmtApi(object):
             
         Returns: DeleteAccountUserResponse
         """
-
+        if( adminId == None or userName == None ):
+            raise Exception("missing required parameters")
         allParams = ['adminId', 'userName']
 
         params = locals()
@@ -1053,7 +1058,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'userName' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1073,7 +1077,8 @@ class MgmtApi(object):
             
         Returns: GetUserEmbedKeyResponse
         """
-
+        if( userId == None or area == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'area']
 
         params = locals()
@@ -1099,7 +1104,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'area' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1119,7 +1123,8 @@ class MgmtApi(object):
             
         Returns: GetUserEmbedKeyResponse
         """
-
+        if( callerId == None or guid == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'guid']
 
         params = locals()
@@ -1145,7 +1150,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'guid' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -1165,7 +1169,8 @@ class MgmtApi(object):
             
         Returns: GetUserEmbedKeyResponse
         """
-
+        if( userId == None or area == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'area']
 
         params = locals()
@@ -1191,7 +1196,6 @@ class MgmtApi(object):
             resourcePath = resourcePath.replace('{' + 'area' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 

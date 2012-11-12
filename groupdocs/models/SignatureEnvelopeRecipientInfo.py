@@ -32,13 +32,12 @@ class SignatureEnvelopeRecipientInfo:
             'signatureBrowser': 'str',
             'order': 'int',
             'email': 'str',
-            'userId': 'float',
             'signatureLocation': 'str',
             'signatureFingerprint': 'str',
             'firstName': 'str',
-            'signatureHost': 'str',
             'userGuid': 'str',
-            'roleId': 'float'
+            'roleId': 'float',
+            'signatureHost': 'str'
 
         }
 
@@ -52,11 +51,10 @@ class SignatureEnvelopeRecipientInfo:
         self.signatureBrowser = None # str
         self.order = None # int
         self.email = None # str
-        self.userId = None # float
         self.signatureLocation = None # str
         self.signatureFingerprint = None # str
         self.firstName = None # str
-        self.signatureHost = None # str
         self.userGuid = None # str
         self.roleId = None # float
+        self.signatureHost = None # str
         

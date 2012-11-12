@@ -20,7 +20,7 @@ import sys
 import os
 
 from models import *
-
+from groupdocs.FileStream import FileStream
 
 class SystemApi(object):
 
@@ -45,7 +45,8 @@ class SystemApi(object):
             
         Returns: GetPlanResponse
         """
-
+        if( callerId == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -67,7 +68,6 @@ class SystemApi(object):
             resourcePath = resourcePath.replace('{' + 'callerId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -86,7 +86,8 @@ class SystemApi(object):
             
         Returns: GetUserSubscriptionPlanResponse
         """
-
+        if( callerId == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -108,7 +109,6 @@ class SystemApi(object):
             resourcePath = resourcePath.replace('{' + 'callerId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -128,7 +128,8 @@ class SystemApi(object):
             
         Returns: GetSubscriptionPlansResponse
         """
-
+        if( callerId == None or family == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'family']
 
         params = locals()
@@ -154,7 +155,6 @@ class SystemApi(object):
             resourcePath = resourcePath.replace('{' + 'family' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -175,7 +175,8 @@ class SystemApi(object):
             
         Returns: SetUserSubscriptionPlanResponse
         """
-
+        if( userId == None or productId == None or body == None ):
+            raise Exception("missing required parameters")
         allParams = ['userId', 'productId', 'body']
 
         params = locals()
@@ -201,7 +202,6 @@ class SystemApi(object):
             resourcePath = resourcePath.replace('{' + 'productId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -220,7 +220,8 @@ class SystemApi(object):
             
         Returns: GetCountriesResponse
         """
-
+        if( callerId == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -242,7 +243,6 @@ class SystemApi(object):
             resourcePath = resourcePath.replace('{' + 'callerId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
@@ -262,7 +262,8 @@ class SystemApi(object):
             
         Returns: GetStatesResponse
         """
-
+        if( callerId == None or countryName == None ):
+            raise Exception("missing required parameters")
         allParams = ['callerId', 'countryName']
 
         params = locals()
@@ -288,7 +289,6 @@ class SystemApi(object):
             resourcePath = resourcePath.replace('{' + 'countryName' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 

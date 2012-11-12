@@ -23,10 +23,12 @@ class GetQuestionnaireExecutionsResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'executions': 'list[QuestionnaireExecutionInfo]'
+            'executions': 'list[QuestionnaireExecutionInfo]',
+            'questionnaire_guid': 'str'
 
         }
 
 
         self.executions = None # list[QuestionnaireExecutionInfo]
+        self.questionnaire_guid = None # str
         
