@@ -1,0 +1,1 @@
+You can install pyramids manually or use pip install -r pip_req.txt command to download requirements.
