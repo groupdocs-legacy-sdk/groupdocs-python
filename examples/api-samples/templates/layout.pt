@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>      
+		<title>GroupDocs Python SDK Samples</title>
+		<link rel="stylesheet" href="style.css" type="text/css">
+	</head>
+	<body>
+	
+		<tal:block metal:define-slot="content">
+		</tal:block>
+	        
+	</body>
+</html>
