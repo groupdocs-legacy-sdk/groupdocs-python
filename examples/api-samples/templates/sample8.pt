@@ -12,29 +12,29 @@
 		   <i>This sample will show how to return a URL representing a single page of a Document using Python SDK</i> <br/>
 		   
 		   <br/><p>You entered: 
-		   <p>UserId = ${userId|''}
-		   <p>PrivateKey = ${privateKey|''}
-		   <p>File Id = ${fileId|''}
-		   <p>Page number = ${pageNumber|''}
-		   <p><font color="red">${error|''}</font>
+		   <p>UserId = ${userId|''}</p>
+		   <p>PrivateKey = ${privateKey|''}</p>
+		   <p>File Id = ${fileId|''}</p>
+		   <p>Page number = ${pageNumber|''}</p>
+		   <p><font color="red">${error|''}</font></p>
 		   <div id="requestForm" style="padding:20px; border:1px solid black;">
 		   <p> Enter data for request and press "Make request" button </p>
 		        <form action="/sample8" method = "post" enctype = 'multipart/form-data'>
 		            <label for='client_id'>GroupDocs Client ID</label>
 		            <br />
-		            <input type='text', name='client_id' value="${userId|''}" />
+		            <input type='text' name='client_id' value="${userId|''}" />
 		            <br />
 		            <label for='private_key'>GroupDocs Private Key</label>
 		            <br />
-		            <input type='text', name='private_key'  value="${privateKey|''}" />
+		            <input type='text' name='private_key' value="${privateKey|''}" />
 		            <br />
-		            <label for='private_key'>GroupDocs file ID</label>
+		            <label for='fileId'>GroupDocs file ID</label>
 		            <br />
-		            <input type='text', name='fileId'  value="${fileId|''}" />
+		            <input type='text' name='fileId' value="${fileId|''}" />
 		            <br />
-		            <label for='private_key'>GroupDocs page number</label>
+		            <label for='pageNumber'>GroupDocs page number</label>
 		            <br />
-		            <input type='text', name='pageNumber'  value="${pageNumber|''}" />
+		            <input type='text' name='pageNumber' value="${pageNumber|''}" />
 		            <br />
 		            <input type='submit' value='Make Request'/>
 		        </form>

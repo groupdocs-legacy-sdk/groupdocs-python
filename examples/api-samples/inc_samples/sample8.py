@@ -12,7 +12,7 @@ def sample8(request):
     privateKey = request.POST.get('private_key');
     fileGuId = request.POST.get('fileId');
     pageNumber = request.POST.get('pageNumber') or 0
-    if clientId == None or privateKey == None or fileGuId == None:
+    if clientId == None or clientId == '' or privateKey == None or privateKey == '' or fileGuId == None or fileGuId == '':
         return render_to_response('__main__:templates/sample8.pt', 
                                   { 'error' : 'You do not enter all parameters' })
 

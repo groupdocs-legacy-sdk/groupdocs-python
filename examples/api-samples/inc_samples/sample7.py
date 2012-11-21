@@ -11,7 +11,7 @@ from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 def sample7(request):
     clientId = request.POST.get("client_id")
     privateKey = request.POST.get("private_key")
-    if clientId == None or privateKey == None:
+    if clientId == None or clientId == '' or privateKey == None or privateKey == '':
         return render_to_response('__main__:templates/sample7.pt', 
                                   { 'error' : 'You do not enter you User id or Private key' })
 
