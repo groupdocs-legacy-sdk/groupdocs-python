@@ -28,18 +28,15 @@ def sample10(request):
 
     try:
         files = api.ListEntities(userId = clientId, path = '', pageIndex = 0)
-        name = ''
         for item in files.result.files: #selecting file names
            if item.guid == fileGuId:
-               name = item.name
                fileGuId = item.id
         docApi = DocApi(apiClient)
-        docApi.ShareDocument(clientId, fileGuId, body = [ email.encode(), ])
+        docApi.ShareDocument(clientId, fileGuId, body = [ email, ])
     except Exception, e:
         return render_to_response('__main__:templates/sample10.pt', 
                                   { 'error' : str(e) })
 
-    print dir(shared_document_url)
     return render_to_response('__main__:templates/sample10.pt', 
                               { 'userId' : clientId, 
                                'privateKey' : privateKey, 
