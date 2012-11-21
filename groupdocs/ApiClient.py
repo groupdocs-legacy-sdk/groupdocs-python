@@ -104,7 +104,7 @@ class ApiClient(object):
 
             if isFileUpload:
                 data = postData.inputStream
-            elif type(postData) not in [str, int, float, bool]:
+            elif type(postData) not in [unicode, str, int, float, bool]:
                 data = self.signer.signContent(json.dumps(self.sanitizeForSerialization(postData)), headers)
             else: 
                 data = self.signer.signContent(postData, headers)
@@ -157,7 +157,7 @@ class ApiClient(object):
 
         if not obj:
             return None
-        elif type(obj) in [str, int, long, float, bool]:
+        elif type(obj) in [unicode, str, int, long, float, bool]:
             return obj
         elif type(obj) == list:
             return [self.sanitizeForSerialization(subObj) for subObj in obj]
@@ -200,7 +200,7 @@ class ApiClient(object):
             else:  # not a native type, must be model class
                 objClass = eval(objClass + '.' + objClass)
 
-        if objClass in [str, int, long, float, bool]:
+        if objClass in [unicode, str, int, long, float, bool]:
             return objClass(obj)
         elif objClass == datetime:
             # Server will always return a time stamp in UTC, but with
