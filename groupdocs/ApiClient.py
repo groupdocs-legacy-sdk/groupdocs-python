@@ -113,7 +113,6 @@ class ApiClient(object):
             raise Exception('Method ' + method + ' is not recognized.')
 
         if self.__debug:
-            print "asdf"
             handler=urllib2.HTTPHandler(debuglevel=1)
             opener = urllib2.build_opener(handler)
             urllib2.install_opener(opener)
@@ -225,7 +224,9 @@ class ApiClient(object):
             
             if real_attr != None:
                 value = obj[real_attr]
-                if attrType in ['str', 'int', 'long', 'float', 'bool']:
+                if not value:
+                    setattr(instance, real_attr, None)
+                elif attrType in ['str', 'int', 'long', 'float', 'bool']:
                     attrType = eval(attrType)
                     try:
                         value = attrType(value)
@@ -236,12 +237,9 @@ class ApiClient(object):
                     match = re.match('list\[(.*)\]', attrType)
                     subClass = match.group(1)
                     subValues = []
-                    if not value:
-                        setattr(instance, real_attr, None)
-                    else:
-                        for subValue in value:
-                            subValues.append(self.deserialize(subValue,
-                                                              subClass))
+                    for subValue in value:
+                        subValues.append(self.deserialize(subValue,
+                                                          subClass))
                     setattr(instance, real_attr, subValues)
                 else:
                     setattr(instance, real_attr, self.deserialize(value,
