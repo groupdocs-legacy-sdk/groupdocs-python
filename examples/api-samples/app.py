@@ -3,6 +3,7 @@ from wsgiref.simple_server import make_server
 from pyramid.renderers import render_to_response
 from pyramid.config import Configurator
     
+import inc_samples.sample6 as sample6
 import inc_samples.sample7 as sample7
 import inc_samples.sample8 as sample8
 import inc_samples.sample9 as sample9
@@ -15,12 +16,14 @@ if __name__ == '__main__':
     config = Configurator()
 
     config.add_route('index', '/')
+    config.add_route('sample6', '/sample6')
     config.add_route('sample7', '/sample7')
     config.add_route('sample8', '/sample8')
     config.add_route('sample9', '/sample9')
     config.add_route('sample10', '/sample10')
 
     config.add_view(index, route_name='index', renderer='__main__:templates/index.pt')
+    config.add_view(sample6.sample6, route_name='sample6')
     config.add_view(sample7.sample7, route_name='sample7')
     config.add_view(sample8.sample8, route_name='sample8')
     config.add_view(sample9.sample9, route_name='sample9')
