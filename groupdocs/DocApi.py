@@ -21,6 +21,7 @@ import os
 
 from models import *
 from groupdocs.FileStream import FileStream
+from groupdocs.ApiClient import ApiException
 
 class DocApi(object):
 
@@ -52,7 +53,7 @@ class DocApi(object):
         Returns: ViewDocumentResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'pageNumber', 'pageCount', 'width', 'quality', 'usePdf']
 
         params = locals()
@@ -112,7 +113,7 @@ class DocApi(object):
         Returns: DocumentViewsResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'startIndex', 'pageSize']
 
         params = locals()
@@ -162,7 +163,7 @@ class DocApi(object):
         Returns: SharedUsersResponse
         """
         if( userId == None or fileId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -208,7 +209,7 @@ class DocApi(object):
         Returns: SharedUsersResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -254,7 +255,7 @@ class DocApi(object):
         Returns: SharedUsersResponse
         """
         if( userId == None or folderId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'folderId']
 
         params = locals()
@@ -301,7 +302,7 @@ class DocApi(object):
         Returns: SharedUsersResponse
         """
         if( userId == None or folderId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'folderId', 'body']
 
         params = locals()
@@ -347,7 +348,7 @@ class DocApi(object):
         Returns: SharedUsersResponse
         """
         if( userId == None or folderId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'folderId']
 
         params = locals()
@@ -394,7 +395,7 @@ class DocApi(object):
         Returns: DocumentAccessInfoResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'mode']
 
         params = locals()
@@ -445,7 +446,7 @@ class DocApi(object):
         Returns: DocumentAccessInfoResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -491,7 +492,7 @@ class DocApi(object):
         Returns: GetDocumentInfoResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -537,7 +538,7 @@ class DocApi(object):
         Returns: GetDocumentInfoResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -584,7 +585,7 @@ class DocApi(object):
         Returns: DocumentUserStatusResponse
         """
         if( userId == None or fileId == None or status == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'status']
 
         params = locals()
@@ -639,7 +640,7 @@ class DocApi(object):
         Returns: SharedDocumentsResponse
         """
         if( userId == None or sharesTypes == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'sharesTypes', 'pageIndex', 'pageSize', 'orderBy', 'orderAsc']
 
         params = locals()
@@ -697,7 +698,7 @@ class DocApi(object):
         Returns: TemplateFieldsResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'includeGeometry']
 
         params = locals()
@@ -748,7 +749,7 @@ class DocApi(object):
         Returns: GetDocumentForeignTypesResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -799,7 +800,7 @@ class DocApi(object):
         Returns: stream
         """
         if( userId == None or fileId == None or pageNumber == None or dimension == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'pageNumber', 'dimension', 'quality', 'usePdf', 'expiresOn']
 
         params = locals()
@@ -861,7 +862,7 @@ class DocApi(object):
         Returns: GetImageUrlsResponse
         """
         if( userId == None or fileId == None or dimension == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'firstPage', 'pageCount', 'dimension', 'quality', 'usePdf', 'token']
 
         params = locals()
@@ -924,7 +925,7 @@ class DocApi(object):
         Returns: GetEditLockResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -971,7 +972,7 @@ class DocApi(object):
         Returns: RemoveEditLockResponse
         """
         if( userId == None or fileId == None or lockId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'lockId']
 
         params = locals()

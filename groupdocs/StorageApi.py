@@ -21,6 +21,7 @@ import os
 
 from models import *
 from groupdocs.FileStream import FileStream
+from groupdocs.ApiClient import ApiException
 
 class StorageApi(object):
 
@@ -46,7 +47,7 @@ class StorageApi(object):
         Returns: StorageInfoResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -95,7 +96,7 @@ class StorageApi(object):
         Returns: ListEntitiesResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path', 'pageIndex', 'pageSize', 'orderBy', 'orderAsc', 'filter', 'fileTypes', 'extended']
 
         params = locals()
@@ -158,7 +159,7 @@ class StorageApi(object):
         Returns: stream
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -197,7 +198,7 @@ class StorageApi(object):
         Returns: stream
         """
         if( userEmail == None or filePath == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userEmail', 'filePath']
 
         params = locals()
@@ -238,7 +239,7 @@ class StorageApi(object):
         Returns: UploadResponse
         """
         if( userId == None or path == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path', 'description', 'body']
 
         params = locals()
@@ -292,7 +293,7 @@ class StorageApi(object):
         Returns: UploadResponse
         """
         if( userId == None or path == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path', 'description', 'archiveType', 'body']
 
         params = locals()
@@ -345,7 +346,7 @@ class StorageApi(object):
         Returns: UploadResponse
         """
         if( userId == None or url == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'url']
 
         params = locals()
@@ -393,7 +394,7 @@ class StorageApi(object):
         Returns: UploadResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path', 'fileId']
 
         params = locals()
@@ -444,7 +445,7 @@ class StorageApi(object):
         Returns: DeleteResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -490,7 +491,7 @@ class StorageApi(object):
         Returns: DeleteResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -539,7 +540,7 @@ class StorageApi(object):
         Returns: FileMoveResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path', 'mode', 'Groupdocs-Copy', 'Groupdocs-Move']
 
         params = locals()
@@ -597,7 +598,7 @@ class StorageApi(object):
         Returns: FolderMoveResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path', 'mode', 'Groupdocs-Move', 'Groupdocs-Copy']
 
         params = locals()
@@ -652,7 +653,7 @@ class StorageApi(object):
         Returns: CreateFolderResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -699,7 +700,7 @@ class StorageApi(object):
         Returns: CompressResponse
         """
         if( userId == None or fileId == None or archiveType == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'archiveType']
 
         params = locals()
@@ -751,7 +752,7 @@ class StorageApi(object):
         Returns: CreatePackageResponse
         """
         if( userId == None or packageName == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'packageName', 'storeRelativePath', 'body']
 
         params = locals()
@@ -802,7 +803,7 @@ class StorageApi(object):
         Returns: FolderMoveResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -848,7 +849,7 @@ class StorageApi(object):
         Returns: DeleteResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()

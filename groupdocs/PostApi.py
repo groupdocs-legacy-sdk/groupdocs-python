@@ -21,6 +21,7 @@ import os
 
 from models import *
 from groupdocs.FileStream import FileStream
+from groupdocs.ApiClient import ApiException
 
 class PostApi(object):
 
@@ -48,7 +49,7 @@ class PostApi(object):
         Returns: RenameResponse
         """
         if( userId == None or fileId == None or newName == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'newName']
 
         params = locals()
@@ -95,7 +96,7 @@ class PostApi(object):
         Returns: DeleteResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -140,7 +141,7 @@ class PostApi(object):
         Returns: DeleteResponse
         """
         if( userId == None or path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'path']
 
         params = locals()
@@ -186,7 +187,7 @@ class PostApi(object):
         Returns: CompressResponse
         """
         if( userId == None or fileId == None or archiveType == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'archiveType']
 
         params = locals()

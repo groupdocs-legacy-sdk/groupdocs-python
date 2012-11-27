@@ -121,30 +121,45 @@ class ApiClient(object):
         request = MethodRequest(method=method, url=self.encodeURI(self.signer.signUrl(url)), headers=headers,
                                 data=data)
 
-        # Make the request
-        response = urllib2.urlopen(request)
-        
-        if 'Set-Cookie' in response.headers:
-            self.cookie = response.headers['Set-Cookie']
-        
-        if returnType == FileStream:
-            fs = FileStream.fromHttp(response)
-            if self.__debug: print(">>>stream info: fileName=%s contentType=%s size=%s" % (fs.fileName, fs.contentType, fs.size))
-            return fs
+        try:
+            # Make the request
+            response = urllib2.urlopen(request)
             
-        string = response.read()
-        if self.__debug: 
-            print(string)
-            if self.__logFilepath:
+            if 'Set-Cookie' in response.headers:
+                self.cookie = response.headers['Set-Cookie']
+        
+            if response.code == 200 or response.code == 201 or response.code == 202:
+                if returnType == FileStream:
+                    fs = FileStream.fromHttp(response)
+                    if self.__debug: print(">>>stream info: fileName=%s contentType=%s size=%s" % (fs.fileName, fs.contentType, fs.size))
+                    return fs if 'Transfer-Encoding' in response.headers or (fs.size != None and int(fs.size) > 0) else None
+                else:                
+                    string = response.read()
+                    if self.__debug: print(string)
+                    try:
+                        data = json.loads(string)
+                    except ValueError:  # PUT requests don't return anything
+                        data = None
+                    return data
+                
+            elif response.code == 404:
+                return None
+            
+            else:
+                string = response.read()
+                try:
+                    msg = json.loads(string)['error_message']
+                except ValueError:
+                    msg = string
+                raise ApiException(response.code, msg)
+        except urllib2.HTTPError, e:
+            raise ApiException(e.code, e.msg)
+                
+        finally:
+            if self.__debug and self.__logFilepath:
                 sys.stdout = stdOut
                 logFile.close()
-                        
-        try:
-            data = json.loads(string)
-        except ValueError:  # PUT requests don't return anything
-            data = None
-
-        return data
+            
 
     def toPathValue(self, obj):
         """Serialize a list to a CSV string, if necessary.
@@ -278,3 +293,7 @@ class MethodRequest(urllib2.Request):
     def get_method(self):
         return getattr(self, 'method', urllib2.Request.get_method(self))
 
+class ApiException(Exception):
+    def __init__(self, code, *args):
+        super(Exception, self).__init__(args)
+        self.code = code

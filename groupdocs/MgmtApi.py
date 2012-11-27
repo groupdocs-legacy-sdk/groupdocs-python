@@ -21,6 +21,7 @@ import os
 
 from models import *
 from groupdocs.FileStream import FileStream
+from groupdocs.ApiClient import ApiException
 
 class MgmtApi(object):
 
@@ -46,7 +47,7 @@ class MgmtApi(object):
         Returns: UserInfoResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -88,7 +89,7 @@ class MgmtApi(object):
         Returns: UpdateUserResponse
         """
         if( userId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -130,7 +131,7 @@ class MgmtApi(object):
         Returns: ChangePasswordResponse
         """
         if( userId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -172,7 +173,7 @@ class MgmtApi(object):
         Returns: UserInfoResponse
         """
         if( callerId == None or token == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'token']
 
         params = locals()
@@ -219,7 +220,7 @@ class MgmtApi(object):
         Returns: UserInfoResponse
         """
         if( callerId == None or token == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'token']
 
         params = locals()
@@ -266,7 +267,7 @@ class MgmtApi(object):
         Returns: UserInfoResponse
         """
         if( callerId == None or token == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'token']
 
         params = locals()
@@ -313,7 +314,7 @@ class MgmtApi(object):
         Returns: UserInfoResponse
         """
         if( callerId == None or userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'userId']
 
         params = locals()
@@ -360,7 +361,7 @@ class MgmtApi(object):
         Returns: UpdateUserResponse
         """
         if( callerId == None or userId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'userId', 'body']
 
         params = locals()
@@ -406,7 +407,7 @@ class MgmtApi(object):
         Returns: CreateUserResponse
         """
         if( callerId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'body']
 
         params = locals()
@@ -449,7 +450,7 @@ class MgmtApi(object):
         Returns: UserInfoResponse
         """
         if( callerId == None or userId == None or password == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'userId', 'password']
 
         params = locals()
@@ -501,7 +502,7 @@ class MgmtApi(object):
         Returns: ChangePasswordResponse
         """
         if( callerId == None or userId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'userId', 'body']
 
         params = locals()
@@ -547,7 +548,7 @@ class MgmtApi(object):
         Returns: ResetPasswordResponse
         """
         if( callerId == None or userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'userId']
 
         params = locals()
@@ -592,7 +593,7 @@ class MgmtApi(object):
         Returns: GetStorageProvidersResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -635,7 +636,7 @@ class MgmtApi(object):
         Returns: AddStorageProviderResponse
         """
         if( userId == None or provider == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'provider', 'body']
 
         params = locals()
@@ -682,7 +683,7 @@ class MgmtApi(object):
         Returns: UpdateStorageProviderResponse
         """
         if( userId == None or provider == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'provider', 'body']
 
         params = locals()
@@ -727,7 +728,7 @@ class MgmtApi(object):
         Returns: GetRolesResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -769,7 +770,7 @@ class MgmtApi(object):
         Returns: GetRolesResponse
         """
         if( callerId == None or userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'userId']
 
         params = locals()
@@ -816,7 +817,7 @@ class MgmtApi(object):
         Returns: SetUserRolesResponse
         """
         if( callerId == None or userId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'userId', 'body']
 
         params = locals()
@@ -861,7 +862,7 @@ class MgmtApi(object):
         Returns: GetAccountResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -902,7 +903,7 @@ class MgmtApi(object):
         Returns: DeleteAccountResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -943,7 +944,7 @@ class MgmtApi(object):
         Returns: GetAccountUsersResponse
         """
         if( adminId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['adminId']
 
         params = locals()
@@ -986,7 +987,7 @@ class MgmtApi(object):
         Returns: UpdateAccountUserResponse
         """
         if( adminId == None or userName == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['adminId', 'userName', 'body']
 
         params = locals()
@@ -1032,7 +1033,7 @@ class MgmtApi(object):
         Returns: DeleteAccountUserResponse
         """
         if( adminId == None or userName == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['adminId', 'userName']
 
         params = locals()
@@ -1078,7 +1079,7 @@ class MgmtApi(object):
         Returns: GetUserEmbedKeyResponse
         """
         if( userId == None or area == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'area']
 
         params = locals()
@@ -1124,7 +1125,7 @@ class MgmtApi(object):
         Returns: GetUserEmbedKeyResponse
         """
         if( callerId == None or guid == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'guid']
 
         params = locals()
@@ -1170,7 +1171,7 @@ class MgmtApi(object):
         Returns: GetUserEmbedKeyResponse
         """
         if( userId == None or area == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'area']
 
         params = locals()

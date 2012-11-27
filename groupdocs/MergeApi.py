@@ -21,6 +21,7 @@ import os
 
 from models import *
 from groupdocs.FileStream import FileStream
+from groupdocs.ApiClient import ApiException
 
 class MergeApi(object):
 
@@ -49,7 +50,7 @@ class MergeApi(object):
         Returns: AddDocumentDataSourceResponse
         """
         if( userId == None or jobId == None or fileId == None or datasourceId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'jobId', 'fileId', 'datasourceId']
 
         params = locals()
@@ -105,7 +106,7 @@ class MergeApi(object):
         Returns: AddDocumentDataSourceResponse
         """
         if( userId == None or jobId == None or fileId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'jobId', 'fileId', 'body']
 
         params = locals()
@@ -158,7 +159,7 @@ class MergeApi(object):
         Returns: MergeTemplateResponse
         """
         if( userId == None or collectorId == None or datasourceId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'collectorId', 'datasourceId', 'targetType', 'emailResults']
 
         params = locals()
@@ -218,7 +219,7 @@ class MergeApi(object):
         Returns: MergeTemplateResponse
         """
         if( userId == None or executionId == None or datasourceId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'executionId', 'datasourceId', 'targetType', 'emailResults']
 
         params = locals()
@@ -278,7 +279,7 @@ class MergeApi(object):
         Returns: MergeTemplateResponse
         """
         if( userId == None or fileId == None or datasourceId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'datasourceId', 'targetType', 'emailResults']
 
         params = locals()
@@ -339,7 +340,7 @@ class MergeApi(object):
         Returns: MergeTemplateResponse
         """
         if( userId == None or fileId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'targetType', 'emailResults', 'assemblyName', 'body']
 
         params = locals()
@@ -394,7 +395,7 @@ class MergeApi(object):
         Returns: GetQuestionnaireResponse
         """
         if( userId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -442,7 +443,7 @@ class MergeApi(object):
         Returns: GetQuestionnairesResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'status', 'pageNumber', 'pageSize']
 
         params = locals()
@@ -493,7 +494,7 @@ class MergeApi(object):
         Returns: CreateQuestionnaireResponse
         """
         if( userId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -536,7 +537,7 @@ class MergeApi(object):
         Returns: UpdateQuestionnaireResponse
         """
         if( userId == None or questionnaireId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'body']
 
         params = locals()
@@ -582,7 +583,7 @@ class MergeApi(object):
         Returns: DeleteQuestionnaireResponse
         """
         if( userId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -628,7 +629,7 @@ class MergeApi(object):
         Returns: GetDocumentQuestionnairesResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -675,7 +676,7 @@ class MergeApi(object):
         Returns: AddDocumentQuestionnaireResponse
         """
         if( userId == None or fileId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -722,7 +723,7 @@ class MergeApi(object):
         Returns: AddDocumentQuestionnaireResponse
         """
         if( userId == None or fileId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'questionnaireId']
 
         params = locals()
@@ -773,7 +774,7 @@ class MergeApi(object):
         Returns: DeleteDocumentQuestionnaireResponse
         """
         if( userId == None or fileId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'questionnaireId']
 
         params = locals()
@@ -823,7 +824,7 @@ class MergeApi(object):
         Returns: AddDatasourceResponse
         """
         if( userId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -866,7 +867,7 @@ class MergeApi(object):
         Returns: AddDatasourceResponse
         """
         if( userId == None or datasourceId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'datasourceId', 'body']
 
         params = locals()
@@ -913,7 +914,7 @@ class MergeApi(object):
         Returns: AddDatasourceResponse
         """
         if( userId == None or datasourceId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'datasourceId', 'body']
 
         params = locals()
@@ -959,7 +960,7 @@ class MergeApi(object):
         Returns: DeleteDatasourceResponse
         """
         if( userId == None or datasourceId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'datasourceId']
 
         params = locals()
@@ -1006,7 +1007,7 @@ class MergeApi(object):
         Returns: GetDatasourceResponse
         """
         if( userId == None or datasourceId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'datasourceId', 'fields']
 
         params = locals()
@@ -1058,7 +1059,7 @@ class MergeApi(object):
         Returns: GetDatasourcesResponse
         """
         if( userId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'includeFields']
 
         params = locals()
@@ -1110,7 +1111,7 @@ class MergeApi(object):
         Returns: AddQuestionnaireExecutionResponse
         """
         if( userId == None or collectorId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'collectorId', 'body']
 
         params = locals()
@@ -1156,7 +1157,7 @@ class MergeApi(object):
         Returns: GetQuestionnaireExecutionsResponse
         """
         if( userId == None or collectorId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'collectorId']
 
         params = locals()
@@ -1202,7 +1203,7 @@ class MergeApi(object):
         Returns: GetQuestionnaireExecutionsResponse
         """
         if( userId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -1248,7 +1249,7 @@ class MergeApi(object):
         Returns: GetQuestionnaireExecutionResponse
         """
         if( userId == None or executionId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'executionId']
 
         params = locals()
@@ -1294,7 +1295,7 @@ class MergeApi(object):
         Returns: DeleteQuestionnaireExecutionResponse
         """
         if( userId == None or executionId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'executionId']
 
         params = locals()
@@ -1341,7 +1342,7 @@ class MergeApi(object):
         Returns: UpdateQuestionnaireExecutionResponse
         """
         if( userId == None or executionId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'executionId', 'body']
 
         params = locals()
@@ -1388,7 +1389,7 @@ class MergeApi(object):
         Returns: UpdateQuestionnaireExecutionResponse
         """
         if( userId == None or executionId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'executionId', 'body']
 
         params = locals()
@@ -1434,7 +1435,7 @@ class MergeApi(object):
         Returns: GetQuestionnaireCollectorsResponse
         """
         if( userId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -1480,7 +1481,7 @@ class MergeApi(object):
         Returns: GetQuestionnaireCollectorResponse
         """
         if( userId == None or collectorId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'collectorId']
 
         params = locals()
@@ -1527,7 +1528,7 @@ class MergeApi(object):
         Returns: AddQuestionnaireCollectorResponse
         """
         if( userId == None or questionnaireId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'body']
 
         params = locals()
@@ -1574,7 +1575,7 @@ class MergeApi(object):
         Returns: UpdateQuestionnaireCollectorResponse
         """
         if( userId == None or collectorId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'collectorId', 'body']
 
         params = locals()
@@ -1620,7 +1621,7 @@ class MergeApi(object):
         Returns: DeleteQuestionnaireCollectorResponse
         """
         if( userId == None or collectorId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'collectorId']
 
         params = locals()
@@ -1665,7 +1666,7 @@ class MergeApi(object):
         Returns: GetTemplatesResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -1708,7 +1709,7 @@ class MergeApi(object):
         Returns: TemplateFieldsResponse
         """
         if( userId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'includeGeometry']
 
         params = locals()
@@ -1759,7 +1760,7 @@ class MergeApi(object):
         Returns: GetQuestionnaireMetadataResponse
         """
         if( userId == None or questionnaireId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId']
 
         params = locals()
@@ -1806,7 +1807,7 @@ class MergeApi(object):
         Returns: UpdateQuestionnaireResponse
         """
         if( userId == None or questionnaireId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'questionnaireId', 'body']
 
         params = locals()

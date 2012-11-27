@@ -21,6 +21,7 @@ import os
 
 from models import *
 from groupdocs.FileStream import FileStream
+from groupdocs.ApiClient import ApiException
 
 class SystemApi(object):
 
@@ -46,7 +47,7 @@ class SystemApi(object):
         Returns: GetPlanResponse
         """
         if( callerId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -87,7 +88,7 @@ class SystemApi(object):
         Returns: GetUserSubscriptionPlanResponse
         """
         if( callerId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -129,7 +130,7 @@ class SystemApi(object):
         Returns: GetSubscriptionPlansResponse
         """
         if( callerId == None or family == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'family']
 
         params = locals()
@@ -176,7 +177,7 @@ class SystemApi(object):
         Returns: SetUserSubscriptionPlanResponse
         """
         if( userId == None or productId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'productId', 'body']
 
         params = locals()
@@ -221,7 +222,7 @@ class SystemApi(object):
         Returns: GetCountriesResponse
         """
         if( callerId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -263,7 +264,7 @@ class SystemApi(object):
         Returns: GetStatesResponse
         """
         if( callerId == None or countryName == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['callerId', 'countryName']
 
         params = locals()

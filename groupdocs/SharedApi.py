@@ -21,6 +21,7 @@ import os
 
 from models import *
 from groupdocs.FileStream import FileStream
+from groupdocs.ApiClient import ApiException
 
 class SharedApi(object):
 
@@ -48,7 +49,7 @@ class SharedApi(object):
         Returns: stream
         """
         if( guid == None or fileName == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['guid', 'fileName', 'render']
 
         params = locals()
@@ -89,7 +90,7 @@ class SharedApi(object):
         Returns: stream
         """
         if( guid == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['guid']
 
         params = locals()
@@ -123,7 +124,7 @@ class SharedApi(object):
         Returns: stream
         """
         if( path == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['path']
 
         params = locals()

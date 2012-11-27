@@ -21,6 +21,7 @@ import os
 
 from models import *
 from groupdocs.FileStream import FileStream
+from groupdocs.ApiClient import ApiException
 
 class AntApi(object):
 
@@ -48,7 +49,7 @@ class AntApi(object):
         Returns: CreateAnnotationResponse
         """
         if( userId == None or fileId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -94,7 +95,7 @@ class AntApi(object):
         Returns: ListAnnotationsResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -140,7 +141,7 @@ class AntApi(object):
         Returns: DeleteAnnotationResponse
         """
         if( userId == None or annotationId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'annotationId']
 
         params = locals()
@@ -187,7 +188,7 @@ class AntApi(object):
         Returns: AddReplyResponse
         """
         if( userId == None or annotationId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'annotationId', 'body']
 
         params = locals()
@@ -234,7 +235,7 @@ class AntApi(object):
         Returns: EditReplyResponse
         """
         if( userId == None or replyGuid == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'replyGuid', 'body']
 
         params = locals()
@@ -280,7 +281,7 @@ class AntApi(object):
         Returns: DeleteReplyResponse
         """
         if( userId == None or replyGuid == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'replyGuid']
 
         params = locals()
@@ -327,7 +328,7 @@ class AntApi(object):
         Returns: ListRepliesResponse
         """
         if( userId == None or annotationId == None or after == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'annotationId', 'after']
 
         params = locals()
@@ -380,7 +381,7 @@ class AntApi(object):
         Returns: SetCollaboratorsResponse
         """
         if( userId == None or fileId == None or version == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'version', 'body']
 
         params = locals()
@@ -430,7 +431,7 @@ class AntApi(object):
         Returns: GetCollaboratorsResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -477,7 +478,7 @@ class AntApi(object):
         Returns: AddCollaboratorResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -522,7 +523,7 @@ class AntApi(object):
         Returns: GetReviewerContactsResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -564,7 +565,7 @@ class AntApi(object):
         Returns: GetReviewerContactsResponse
         """
         if( userId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -607,7 +608,7 @@ class AntApi(object):
         Returns: MoveAnnotationResponse
         """
         if( userId == None or annotationId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'annotationId', 'body']
 
         params = locals()
@@ -654,7 +655,7 @@ class AntApi(object):
         Returns: SetAnnotationAccessResponse
         """
         if( userId == None or annotationId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'annotationId', 'body']
 
         params = locals()
@@ -701,7 +702,7 @@ class AntApi(object):
         Returns: MoveAnnotationResponse
         """
         if( userId == None or annotationId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'annotationId', 'body']
 
         params = locals()
@@ -748,7 +749,7 @@ class AntApi(object):
         Returns: SetReviewerRightsResponse
         """
         if( userId == None or fileId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
@@ -794,7 +795,7 @@ class AntApi(object):
         Returns: GetSharedLinkAccessRightsResponse
         """
         if( userId == None or fileId == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId']
 
         params = locals()
@@ -841,7 +842,7 @@ class AntApi(object):
         Returns: SetSharedLinkAccessRightsResponse
         """
         if( userId == None or fileId == None or body == None ):
-            raise Exception("missing required parameters")
+            raise ApiException("missing required parameters")
         allParams = ['userId', 'fileId', 'body']
 
         params = locals()
