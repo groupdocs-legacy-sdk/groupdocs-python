@@ -4,6 +4,7 @@ server communication, and is invariant across implementations. Specifics of
 the methods and models for each application are generated from the Swagger
 templates."""
 
+from __future__ import print_function
 import sys
 import os
 import re
@@ -50,19 +51,19 @@ class ApiClient(object):
         self.__debug = False
 
 
-    @property
-    def debug(self):
-        return self.__debug
-    
-    @debug.setter
-    def debug(self, value):
-        self.__debug = value
+    def setDebug(self, flag, logFilepath=None):
+        self.__debug = flag
+        self.__logFilepath = logFilepath
 
     def addHeaders(self, **headers):
         self.headers = headers
 
     def callAPI(self, apiServer, resourcePath, method, queryParams, postData,
                 headerParams=None, returnType=str):
+        if self.__debug and self.__logFilepath:
+            stdOut = sys.stdout
+            logFile = open(self.__logFilepath, 'a')
+            sys.stdout = logFile
 
         url = apiServer + resourcePath
         
@@ -113,7 +114,7 @@ class ApiClient(object):
             raise Exception('Method ' + method + ' is not recognized.')
 
         if self.__debug:
-            handler=urllib2.HTTPHandler(debuglevel=1)
+            handler = urllib2.HTTPSHandler(debuglevel=1) if url.lower().startswith('https') else urllib2.HTTPHandler(debuglevel=1)
             opener = urllib2.build_opener(handler)
             urllib2.install_opener(opener)
 
@@ -132,7 +133,12 @@ class ApiClient(object):
             return fs
             
         string = response.read()
-        if self.__debug: print(string)
+        if self.__debug: 
+            print(string)
+            if self.__logFilepath:
+                sys.stdout = stdOut
+                logFile.close()
+                        
         try:
             data = json.loads(string)
         except ValueError:  # PUT requests don't return anything
