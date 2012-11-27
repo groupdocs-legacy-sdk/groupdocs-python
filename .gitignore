@@ -10,3 +10,4 @@ MANIFEST
 .project
 .pydevproject
 ignored
+/docs/_build/

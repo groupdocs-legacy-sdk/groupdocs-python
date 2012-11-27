@@ -6,14 +6,12 @@ if __name__ == '__main__':
 	setup(
 		name = 'groupdocs-python',
 		version = '1.2',
-
 		author = "GroupDocs Team",
 		author_email = "support@groupdocs.com",
 		description = "A Python interface to the GroupDocs API",
 		keywords = "groupdocs, document management, viewer, annotation, signature",
 		license = "Apache License (2.0)",
-		long_description = """This package implements an interface to the GroupDocs
-		API, defined at http://groupdocs.com/api.""",
+		long_description = open('README.rst').read(),
 		platforms = 'any',
 		packages = ['groupdocs', 'groupdocs.models'],
 		url = "http://groupdocs.com/",
