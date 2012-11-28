@@ -47,7 +47,7 @@ class SystemApi(object):
         Returns: GetPlanResponse
         """
         if( callerId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -88,7 +88,7 @@ class SystemApi(object):
         Returns: GetUserSubscriptionPlanResponse
         """
         if( callerId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -130,7 +130,7 @@ class SystemApi(object):
         Returns: GetSubscriptionPlansResponse
         """
         if( callerId == None or family == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['callerId', 'family']
 
         params = locals()
@@ -177,7 +177,7 @@ class SystemApi(object):
         Returns: SetUserSubscriptionPlanResponse
         """
         if( userId == None or productId == None or body == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'productId', 'body']
 
         params = locals()
@@ -222,7 +222,7 @@ class SystemApi(object):
         Returns: GetCountriesResponse
         """
         if( callerId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['callerId']
 
         params = locals()
@@ -264,7 +264,7 @@ class SystemApi(object):
         Returns: GetStatesResponse
         """
         if( callerId == None or countryName == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['callerId', 'countryName']
 
         params = locals()

@@ -53,7 +53,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateFieldResponse
         """
         if( userId == None or templateId == None or documentId == None or recipientId == None or fieldId == None or locationId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'documentId', 'recipientId', 'fieldId', 'locationId', 'body']
 
         params = locals()
@@ -117,7 +117,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateFieldsResponse
         """
         if( userId == None or templateId == None or documentId == None or recipientId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'documentId', 'recipientId']
 
         params = locals()
@@ -171,7 +171,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateResponse
         """
         if( userId == None or templateId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'fieldId']
 
         params = locals()
@@ -220,7 +220,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateResourcesResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId']
 
         params = locals()
@@ -262,7 +262,7 @@ class SignatureApi(object):
         Returns: SignatureRolesResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'id']
 
         params = locals()
@@ -309,7 +309,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -351,7 +351,7 @@ class SignatureApi(object):
         Returns: SignatureSignDocumentResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -393,7 +393,7 @@ class SignatureApi(object):
         Returns: SignaturePredefinedListResponse
         """
         if( userId == None or body == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -435,7 +435,7 @@ class SignatureApi(object):
         Returns: SignaturePredefinedListResponse
         """
         if( userId == None or listId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'listId']
 
         params = locals()
@@ -481,7 +481,7 @@ class SignatureApi(object):
         Returns: SignatureFieldsResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'fieldId']
 
         params = locals()
@@ -528,7 +528,7 @@ class SignatureApi(object):
         Returns: SignatureFieldResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -571,7 +571,7 @@ class SignatureApi(object):
         Returns: SignatureFieldResponse
         """
         if( userId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'fieldId', 'body']
 
         params = locals()
@@ -617,7 +617,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'fieldId']
 
         params = locals()
@@ -663,7 +663,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or formId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId']
 
         params = locals()
@@ -709,7 +709,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or formId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId']
 
         params = locals()
@@ -758,7 +758,7 @@ class SignatureApi(object):
         Returns: SignatureFormResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'name', 'templateId', 'assemblyId', 'body']
 
         params = locals()
@@ -809,7 +809,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or formId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId']
 
         params = locals()
@@ -857,7 +857,7 @@ class SignatureApi(object):
         Returns: SignatureFormDocumentResponse
         """
         if( userId == None or formId == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'documentId', 'order']
 
         params = locals()
@@ -913,7 +913,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or formId == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'documentId']
 
         params = locals()
@@ -963,7 +963,7 @@ class SignatureApi(object):
         Returns: SignatureFormDocumentsResponse
         """
         if( userId == None or formId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId']
 
         params = locals()
@@ -1012,7 +1012,7 @@ class SignatureApi(object):
         Returns: SignatureFormFieldResponse
         """
         if( userId == None or formId == None or documentId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'documentId', 'fieldId', 'body']
 
         params = locals()
@@ -1070,7 +1070,7 @@ class SignatureApi(object):
         Returns: SignatureFormFieldResponse
         """
         if( userId == None or formId == None or documentId == None or fieldId == None or locationId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'documentId', 'fieldId', 'locationId', 'body']
 
         params = locals()
@@ -1130,7 +1130,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or formId == None or fieldId == None or locationId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'fieldId', 'locationId']
 
         params = locals()
@@ -1187,7 +1187,7 @@ class SignatureApi(object):
         Returns: SignatureFormFieldResponse
         """
         if( userId == None or formId == None or documentId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'documentId', 'fieldId', 'body']
 
         params = locals()
@@ -1242,7 +1242,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or formId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'fieldId']
 
         params = locals()
@@ -1293,7 +1293,7 @@ class SignatureApi(object):
         Returns: SignatureFormFieldsResponse
         """
         if( userId == None or formId == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'documentId']
 
         params = locals()
@@ -1343,7 +1343,7 @@ class SignatureApi(object):
         Returns: SignatureFormResponse
         """
         if( userId == None or formId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId']
 
         params = locals()
@@ -1390,7 +1390,7 @@ class SignatureApi(object):
         Returns: SignatureFormResponse
         """
         if( userId == None or formId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'body']
 
         params = locals()
@@ -1436,7 +1436,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or formId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId']
 
         params = locals()
@@ -1483,7 +1483,7 @@ class SignatureApi(object):
         Returns: SignatureFormResponse
         """
         if( userId == None or formId == None or name == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'name']
 
         params = locals()
@@ -1535,7 +1535,7 @@ class SignatureApi(object):
         Returns: SignatureFormResponse
         """
         if( userId == None or formId == None or templateId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'formId', 'templateId']
 
         params = locals()
@@ -1590,7 +1590,7 @@ class SignatureApi(object):
         Returns: SignatureFormsResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'statusId', 'page', 'datetime', 'name', 'records', 'documentId']
 
         params = locals()
@@ -1647,7 +1647,7 @@ class SignatureApi(object):
         Returns: SignatureFormResourcesResponse
         """
         if( userId == None or statusIds == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'statusIds']
 
         params = locals()
@@ -1698,7 +1698,7 @@ class SignatureApi(object):
         Returns: SignatureTemplatesResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'page', 'documentGuid', 'recipientName', 'name', 'records']
 
         params = locals()
@@ -1753,7 +1753,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateResponse
         """
         if( userId == None or templateId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId']
 
         params = locals()
@@ -1802,7 +1802,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateResponse
         """
         if( userId == None or envelopetId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'name', 'templateId', 'body', 'envelopetId']
 
         params = locals()
@@ -1854,7 +1854,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateResponse
         """
         if( userId == None or templateId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'body']
 
         params = locals()
@@ -1901,7 +1901,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateResponse
         """
         if( userId == None or templateId == None or name == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'name']
 
         params = locals()
@@ -1952,7 +1952,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or templateId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId']
 
         params = locals()
@@ -2001,7 +2001,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateResponse
         """
         if( userId == None or templateId == None or nickname == None or roleId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'nickname', 'roleId', 'order']
 
         params = locals()
@@ -2056,7 +2056,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateRecipientsResponse
         """
         if( userId == None or templateId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId']
 
         params = locals()
@@ -2103,7 +2103,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or templateId == None or recipientId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'recipientId']
 
         params = locals()
@@ -2157,7 +2157,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateResponse
         """
         if( userId == None or templateId == None or recipientId == None or nickname == None or roleId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'recipientId', 'nickname', 'roleId', 'order']
 
         params = locals()
@@ -2218,7 +2218,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateDocumentResponse
         """
         if( userId == None or templateId == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'documentId', 'order']
 
         params = locals()
@@ -2273,7 +2273,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateDocumentsResponse
         """
         if( userId == None or templateId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId']
 
         params = locals()
@@ -2320,7 +2320,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or templateId == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'documentId']
 
         params = locals()
@@ -2374,7 +2374,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateFieldResponse
         """
         if( userId == None or templateId == None or documentId == None or recipientId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'documentId', 'recipientId', 'fieldId', 'body']
 
         params = locals()
@@ -2435,7 +2435,7 @@ class SignatureApi(object):
         Returns: SignatureTemplateFieldResponse
         """
         if( userId == None or templateId == None or documentId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'documentId', 'fieldId', 'body']
 
         params = locals()
@@ -2491,7 +2491,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or templateId == None or fieldId == None or locationId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'templateId', 'fieldId', 'locationId']
 
         params = locals()
@@ -2545,7 +2545,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -2591,7 +2591,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeAuditLogsResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -2640,7 +2640,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'name', 'body', 'envelopeGuid', 'templateGuid']
 
         params = locals()
@@ -2692,7 +2692,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None or recipientId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'recipientId']
 
         params = locals()
@@ -2746,7 +2746,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None or recipientId == None or recipientEmail == None or recipientFirstName == None or recipientLastName == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'recipientId', 'recipientEmail', 'recipientFirstName', 'recipientLastName']
 
         params = locals()
@@ -2805,7 +2805,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -2853,7 +2853,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeDocumentResponse
         """
         if( userId == None or envelopeId == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'documentId', 'order']
 
         params = locals()
@@ -2909,7 +2909,7 @@ class SignatureApi(object):
         Returns: stream
         """
         if( userId == None or envelopeId == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'documentId']
 
         params = locals()
@@ -2953,7 +2953,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'documentId']
 
         params = locals()
@@ -3003,7 +3003,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeDocumentsResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -3049,7 +3049,7 @@ class SignatureApi(object):
         Returns: stream
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -3092,7 +3092,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeFieldsResponse
         """
         if( userId == None or envelopeId == None or documentId == None or recipientId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'documentId', 'recipientId', 'fieldId', 'body']
 
         params = locals()
@@ -3155,7 +3155,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeFieldResponse
         """
         if( userId == None or envelopeId == None or documentId == None or recipientId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'documentId', 'recipientId', 'fieldId', 'signatureId', 'body']
 
         params = locals()
@@ -3223,7 +3223,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeFieldResponse
         """
         if( userId == None or envelopeId == None or documentId == None or recipientId == None or fieldId == None or locationId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'documentId', 'recipientId', 'fieldId', 'locationId', 'body']
 
         params = locals()
@@ -3287,7 +3287,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None or fieldId == None or locationId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'fieldId', 'locationId']
 
         params = locals()
@@ -3344,7 +3344,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeFieldResponse
         """
         if( userId == None or envelopeId == None or documentId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'documentId', 'fieldId', 'body']
 
         params = locals()
@@ -3399,7 +3399,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None or fieldId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'fieldId']
 
         params = locals()
@@ -3451,7 +3451,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeFieldsResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'documentId', 'recipientId']
 
         params = locals()
@@ -3504,7 +3504,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -3551,7 +3551,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'body']
 
         params = locals()
@@ -3602,7 +3602,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeRecipientResponse
         """
         if( userId == None or envelopeId == None or recipientEmail == None or recipientFirstName == None or recipientLastName == None or role == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'recipientEmail', 'recipientFirstName', 'recipientLastName', 'order', 'role']
 
         params = locals()
@@ -3667,7 +3667,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeRecipientResponse
         """
         if( userId == None or envelopeId == None or recipientId == None or recipientEmail == None or recipientFirstName == None or recipientLastName == None or role == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'recipientId', 'recipientEmail', 'recipientFirstName', 'recipientLastName', 'order', 'role']
 
         params = locals()
@@ -3731,7 +3731,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None or recipientId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'recipientId']
 
         params = locals()
@@ -3781,7 +3781,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeRecipientsResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -3828,7 +3828,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeResponse
         """
         if( userId == None or envelopeId == None or name == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'name']
 
         params = locals()
@@ -3879,7 +3879,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -3925,7 +3925,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId']
 
         params = locals()
@@ -3972,7 +3972,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or envelopeId == None or recipientId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'envelopeId', 'recipientId']
 
         params = locals()
@@ -4028,7 +4028,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopesResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'statusId', 'page', 'datetime', 'name', 'records', 'document', 'recipient']
 
         params = locals()
@@ -4087,7 +4087,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopeResourcesResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'statusIds']
 
         params = locals()
@@ -4136,7 +4136,7 @@ class SignatureApi(object):
         Returns: SignatureEnvelopesResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'statusId', 'page', 'records']
 
         params = locals()
@@ -4191,7 +4191,7 @@ class SignatureApi(object):
         Returns: SignatureContactsResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'page', 'firstName', 'lastName', 'email', 'records']
 
         params = locals()
@@ -4246,7 +4246,7 @@ class SignatureApi(object):
         Returns: SignatureContactResponse
         """
         if( userId == None or body == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -4289,7 +4289,7 @@ class SignatureApi(object):
         Returns: SignatureContactResponse
         """
         if( userId == None or contactId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'contactId', 'body']
 
         params = locals()
@@ -4335,7 +4335,7 @@ class SignatureApi(object):
         Returns: SignatureContactResponse
         """
         if( userId == None or contactId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'contactId']
 
         params = locals()
@@ -4381,7 +4381,7 @@ class SignatureApi(object):
         Returns: SignatureContactsImportResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -4425,7 +4425,7 @@ class SignatureApi(object):
         Returns: SignatureSignaturesResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'page', 'name', 'records']
 
         params = locals()
@@ -4476,7 +4476,7 @@ class SignatureApi(object):
         Returns: SignatureStatusResponse
         """
         if( userId == None or signatureId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'signatureId']
 
         params = locals()
@@ -4523,7 +4523,7 @@ class SignatureApi(object):
         Returns: SignatureSignatureResponse
         """
         if( userId == None or name == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'name', 'body']
 
         params = locals()
@@ -4569,7 +4569,7 @@ class SignatureApi(object):
         Returns: SignaturePredefinedListsResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId']
 
         params = locals()

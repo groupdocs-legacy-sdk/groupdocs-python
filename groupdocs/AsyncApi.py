@@ -48,7 +48,7 @@ class AsyncApi(object):
         Returns: GetJobResponse
         """
         if( userId == None or jobId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'jobId']
 
         params = locals()
@@ -94,7 +94,7 @@ class AsyncApi(object):
         Returns: GetJobResponse
         """
         if( userId == None or jobId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'jobId']
 
         params = locals()
@@ -142,7 +142,7 @@ class AsyncApi(object):
         Returns: GetJobResourcesResponse
         """
         if( userId == None or statusIds == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'statusIds', 'actions', 'excludedActions']
 
         params = locals()
@@ -194,7 +194,7 @@ class AsyncApi(object):
         Returns: GetJobDocumentsResponse
         """
         if( userId == None or jobId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'jobId', 'format']
 
         params = locals()
@@ -245,7 +245,7 @@ class AsyncApi(object):
         Returns: CreateJobResponse
         """
         if( userId == None or body == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'body']
 
         params = locals()
@@ -287,7 +287,7 @@ class AsyncApi(object):
         Returns: DeleteResult
         """
         if( userId == None or jobGuid == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'jobGuid']
 
         params = locals()
@@ -336,7 +336,7 @@ class AsyncApi(object):
         Returns: AddJobDocumentResponse
         """
         if( userId == None or jobId == None or fileId == None or checkOwnership == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'jobId', 'fileId', 'checkOwnership', 'formats']
 
         params = locals()
@@ -394,7 +394,7 @@ class AsyncApi(object):
         Returns: DeleteResponse
         """
         if( userId == None or jobGuid == None or documentId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'jobGuid', 'documentId']
 
         params = locals()
@@ -446,7 +446,7 @@ class AsyncApi(object):
         Returns: AddJobDocumentResponse
         """
         if( userId == None or jobId == None or absoluteUrl == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'jobId', 'absoluteUrl', 'formats']
 
         params = locals()
@@ -500,7 +500,7 @@ class AsyncApi(object):
         Returns: UpdateJobResponse
         """
         if( userId == None or jobId == None or body == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'jobId', 'body']
 
         params = locals()
@@ -551,7 +551,7 @@ class AsyncApi(object):
         Returns: GetJobsResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'pageIndex', 'pageSize', 'datetime', 'statusIds', 'actions', 'excludedActions']
 
         params = locals()
@@ -613,7 +613,7 @@ class AsyncApi(object):
         Returns: GetJobsDocumentsResponse
         """
         if( userId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'pageIndex', 'pageSize', 'actions', 'excludedActions', 'orderBy', 'orderAsc']
 
         params = locals()
@@ -676,7 +676,7 @@ class AsyncApi(object):
         Returns: ConvertResponse
         """
         if( userId == None or fileId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'fileId', 'targetType', 'emailResults', 'description', 'printScript', 'callbackUrl', 'checkDocumentOwnership']
 
         params = locals()

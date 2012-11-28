@@ -49,7 +49,7 @@ class SharedApi(object):
         Returns: stream
         """
         if( guid == None or fileName == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['guid', 'fileName', 'render']
 
         params = locals()
@@ -90,7 +90,7 @@ class SharedApi(object):
         Returns: stream
         """
         if( guid == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['guid']
 
         params = locals()
@@ -124,7 +124,7 @@ class SharedApi(object):
         Returns: stream
         """
         if( path == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['path']
 
         params = locals()

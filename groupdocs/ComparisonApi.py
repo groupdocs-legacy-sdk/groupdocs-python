@@ -49,7 +49,7 @@ class ComparisonApi(object):
         Returns: stream
         """
         if( userId == None or resultFileId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'resultFileId', 'format']
 
         params = locals()
@@ -93,7 +93,7 @@ class ComparisonApi(object):
         Returns: CompareResponse
         """
         if( userId == None or sourceFileId == None or targetFileId == None or callbackUrl == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'sourceFileId', 'targetFileId', 'callbackUrl']
 
         params = locals()
@@ -144,7 +144,7 @@ class ComparisonApi(object):
         Returns: ChangesResponse
         """
         if( userId == None or resultFileId == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'resultFileId']
 
         params = locals()
@@ -192,7 +192,7 @@ class ComparisonApi(object):
         Returns: ChangesResponse
         """
         if( userId == None or resultFileId == None or body == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'resultFileId', 'body']
 
         params = locals()
@@ -239,7 +239,7 @@ class ComparisonApi(object):
         Returns: DocumentDetailsResponse
         """
         if( userId == None or guid == None ):
-            raise ApiException("missing required parameters")
+            raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'guid']
 
         params = locals()

@@ -295,5 +295,5 @@ class MethodRequest(urllib2.Request):
 
 class ApiException(Exception):
     def __init__(self, code, *args):
-        super(Exception, self).__init__(args)
+        super(Exception, self).__init__((code, ) + args)
         self.code = code
