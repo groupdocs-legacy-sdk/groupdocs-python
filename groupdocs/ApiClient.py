@@ -164,11 +164,12 @@ class ApiClient(object):
 
     def toPathValue(self, obj):
         """Serialize a list to a CSV string, if necessary.
+        
         Args:
             obj -- data object to be serialized
         Returns:
-            string -- json serialization of object
-        """
+            string -- json serialization of object"""
+
         if type(obj) == list:
             return ','.join(obj)
         else:
@@ -201,8 +202,7 @@ class ApiClient(object):
 
         Args:
             obj -- string or object to be deserialized
-            objClass -- class literal for deserialzied object, or string
-                of class name
+            objClass -- class literal for deserialzied object, or string of class name
         Returns:
             object -- deserialized object"""
 

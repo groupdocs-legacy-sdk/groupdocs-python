@@ -7,6 +7,7 @@
 /build/
 /dist/
 MANIFEST
+/.settings/
 .project
 .pydevproject
 ignored

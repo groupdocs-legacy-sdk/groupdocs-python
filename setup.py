@@ -24,5 +24,6 @@ if __name__ == '__main__':
 			"Programming Language :: Python :: 2.7",
 			"Topic :: Software Development :: Libraries :: Python Modules",
 			"License :: OSI Approved :: Apache Software License"
-		]
+		],
+		data_files=[('', ['README.rst'])]
 	)
