@@ -40,6 +40,7 @@ def sample4(request):
         if fs:
             filePath = os.path.dirname(os.path.abspath(__file__)) + "/../tmp/" + fileName
         
+        os.makedirs('../tmp')
         with open(filePath, 'wb') as fp:
             shutil.copyfileobj(fs.inputStream, fp)
             

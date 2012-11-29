@@ -4,7 +4,7 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
 		
-<h3 style="text-align:center;"><a href="/index.php">GroupDocs PHP SDK Samples</a> - Sample3</h3>
+<h3 style="text-align:center;"><a href="/index.php">GroupDocs Python SDK Samples</a> - Sample3</h3>
 
 <div class='samplecontent' style="padding:10px;">
    <i>This sample will show how to use StorageApi to upload file at GroupDocs using PHP SDK</i> <br/>
