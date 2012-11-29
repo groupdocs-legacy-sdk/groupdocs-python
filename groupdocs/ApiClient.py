@@ -106,6 +106,8 @@ class ApiClient(object):
 
             if isFileUpload:
                 data = postData.inputStream
+            elif not postData:
+                data = ""
             elif type(postData) not in [unicode, str, int, float, bool]:
                 data = self.signer.signContent(json.dumps(self.sanitizeForSerialization(postData)), headers)
             else: 
