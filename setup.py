@@ -5,7 +5,7 @@ if __name__ == '__main__':
 
 	setup(
 		name = 'groupdocs-python',
-		version = '1.2',
+		version = '1.3',
 		author = "GroupDocs Team",
 		author_email = "support@groupdocs.com",
 		description = "A Python interface to the GroupDocs API",
