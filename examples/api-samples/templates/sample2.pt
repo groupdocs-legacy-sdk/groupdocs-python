@@ -1,0 +1,63 @@
+<metal:main
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    use-macro="load: layout.pt">
+    <tal:block metal:fill-slot="content">
+
+<h3 style="text-align:center;"><a href="/index.php">GroupDocs PHP SDK Samples</a> - Sample2</h3>
+
+<div class='samplecontent' style="padding:10px;">
+   <i>This sample will show how to use StorageApi to list user files using PHP SDK</i> <br/>
+   
+   <br/><p>You entered: 
+   <p>UserId = ${userId|''}
+   <p>PrivateKey = ${privateKey|''}
+   <p><font color="red">${error|''}</font>
+   <div id="requestForm" style="padding:20px; border:1px solid black;">
+   <p> Enter data for request and press "Make request" button </p>
+   <form action="/sample2" method = "post" enctype = 'multipart/form-data'>
+       <label for='client_id'>GroupDocs Client ID</label>
+       <br />
+       <input type='text', name='client_id' value="${userId|''}" />
+       <br />
+       <label for='private_key'>GroupDocs Private Key</label>
+       <br />
+       <input type='text', name='private_key'  value="${privateKey|''}" />
+       <br />
+       <input type='submit' value='Make Request'/>
+   </form>
+   </div>
+   <div  style="padding:20px; border:1px solid black;">
+        <p> Results: </p>
+        <table style="border:1px double black;">
+          <tr>
+              <th>Field</th><th>Value</th>
+          </tr>
+          <tr>
+               <td>Files list</td><td>${structure:names|''}</td>
+          </tr>
+        </table>
+        
+   </div>
+   <br/>
+ </div>
+
+<div style="padding:10px;">
+Choose anothe one sample:
+<ul>
+    <li> <a href="/sample1">Sample1 - How to login to GroupDocs using the API</li>
+    <li> <a href="/sample2">Sample2 - How to list files within GroupDocs Storage using the Storage API</li>
+    <li> <a href="/sample3">Sample3 - How to upload a file to GroupDocs using the Storage API</li>
+    <li> <a href="/sample4">Sample4 - How to download a file from GroupDocs Storage using the Storage API</li>
+    <li> <a href="/sample5">Sample5 - How to copy / move a file using the GroupDocs Storage API</li>
+    <li> <a href="/sample6">Sample6 - How to add a Signature to a document in GroupDocs Signature</li>
+    <li> <a href="/sample7">Sample7 - How to create a list of thumbnails for a document</li>
+    <li> <a href="/sample8">Sample8 - How to return a URL representing a single page of a Document</li>
+    <li> <a href="/sample9">Sample9 - How to generate a embedded Viewer URL for a DocumentI</li>
+    <li> <a href="/sample10">Sample10 - How to share a document to other users</li>
+</ul>
+</div>
+
+    </tal:block>
+</metal:main>
+
