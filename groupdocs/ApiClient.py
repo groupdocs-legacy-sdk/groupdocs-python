@@ -17,6 +17,7 @@ import mimetypes
 
 from models import *
 from groupdocs.FileStream import FileStream
+import base64
 
 
 class RequestSigner(object):
@@ -163,11 +164,12 @@ class ApiClient(object):
 
     def toPathValue(self, obj):
         """Serialize a list to a CSV string, if necessary.
+        
         Args:
             obj -- data object to be serialized
         Returns:
-            string -- json serialization of object
-        """
+            string -- json serialization of object"""
+
         if type(obj) == list:
             return ','.join(obj)
         else:
@@ -200,8 +202,7 @@ class ApiClient(object):
 
         Args:
             obj -- string or object to be deserialized
-            objClass -- class literal for deserialzied object, or string
-                of class name
+            objClass -- class literal for deserialzied object, or string of class name
         Returns:
             object -- deserialized object"""
 
@@ -276,6 +277,12 @@ class ApiClient(object):
     @staticmethod
     def encodeURIComponent(url):
         return urllib.quote(url, safe='~()*!.\'')
+
+    @staticmethod
+    def readAsDataURL(filePath):
+        mimetype = mimetypes.guess_type(filePath, False)[0] or "application/octet-stream"
+        filecontents = open(filePath, 'rb').read()
+        return 'data:' + mimetype + ';base64,' + base64.b64encode(filecontents).decode()
 
 
 class MethodRequest(urllib2.Request):
