@@ -3,7 +3,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal">
 <head>      
-	<title>GroupDocs Ruby SDK Annotations Sample App</title>
+	<title>GroupDocs Python SDK Annotations Sample App</title>
 	<script src="http://rightjs.org/hotlink/right.js"  type="text/javascript"></script>
     <script  type="text/javascript">
 		"#annotations".onClick(function(event) {
