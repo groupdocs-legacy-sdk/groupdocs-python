@@ -15,12 +15,13 @@ def IsNotNull(value):
 def sample5(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
-    fileGuId = request.POST.get('file_id')
+    srcPath = request.POST.get('srcPath')
+    destPath = request.POST.get('destPath')
     copy = request.POST.get('copy')
     move = request.POST.get('move')
-    folder = request.POST.get('folder')
 
-    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileGuId) == False:
+
+    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(srcPath) == False or IsNotNull(destPath) == False:
         return render_to_response('__main__:templates/sample5.pt', 
                                   { 'error' : 'You do not enter all parameters' })
 
@@ -29,12 +30,18 @@ def sample5(request):
     api = StorageApi(apiClient)
 
     try:
-        files = api.ListEntities(userId = clientId, path = '', pageIndex = 0)
-        for item in files.result.files: #selecting file names
-           if item.guid == fileGuId:
-               fileGuId = item.id
         docApi = DocApi(apiClient)
-        docApi.ShareDocument(clientId, fileGuId, body = [ email, ])
+        srcFile = docApi.GetDocumentMetadataByPath(clientId, srcPath)
+        
+        fileName = srcFile.result.last_view.document.name
+        fileID = int(srcFile.result.last_view.document.id)
+
+        if copy:
+           file = api.MoveFile(clientId, destPath, Groupdocs_Copy = fileID)
+
+        if move:
+           file = api.MoveFile(clientId, destPath, Groupdocs_Move = fileID)
+
     except Exception, e:
         return render_to_response('__main__:templates/sample5.pt', 
                                   { 'error' : str(e) })
@@ -42,6 +49,6 @@ def sample5(request):
     return render_to_response('__main__:templates/sample5.pt', 
                               { 'userId' : clientId, 
                                'privateKey' : privateKey, 
-                               'fileId' : fileGuId, 
-                               'email' : email }, 
+                               'destPath' : destPath, 
+                               'srcPath' : srcPath }, 
                               request=request)

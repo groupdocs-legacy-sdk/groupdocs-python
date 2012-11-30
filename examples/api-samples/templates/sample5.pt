@@ -4,7 +4,7 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
 		
-<h3 style="text-align:center;"><a href="/index.php">GroupDocs Python SDK Samples</a> - Sample5</h3>
+<h3 style="text-align:center;"><a href="/index.php">GroupDocs Pyhton SDK Samples</a> - Sample5</h3>
 
 <div class='samplecontent' style="padding:10px;">
    <i>This sample will show how to Copy/Move file from GroupDocs using PHP SDK</i> <br/>
@@ -24,13 +24,13 @@
        <br />
        <input type='text', name='private_key'  value="${privateKey|''}" />
        <br />
-       <label for='private_key'>File ID</label>
+       <label for='private_key'>Source Path</label>
        <br />
-       <input type='text', name='file_id'  value="${file_id|''}" />
+       <input type='text', name='srcPath'  value="${srcPath|''}" placeholder='myFile.doc or myFolder/myFile.doc'/>
        <br />
-       <label for='private_key'>Folder in which you want to copy file</label>
+       <label for='private_key'>Destination Path</label>
        <br />
-       <input type='text', name='folder'  value="${folder|''}" />
+       <input type='text', name='destPath'  value="${destPath|''}" placeholder='myNewFile.doc or myFolder/myNewFile.doc'/>
        <br />
        <input name='copy' type='submit' value='Copy'/>
        <input name='move' type='submit' value='Move'/>
