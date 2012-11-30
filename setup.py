@@ -1,11 +1,15 @@
+#!/usr/bin/env python
+
 from distutils.core import setup
 
 if __name__ == '__main__':
 	import sys
+	
+	execfile("groupdocs/version.py")
 
 	setup(
-		name = 'groupdocs-python',
-		version = '1.3',
+		name = __pkgname__,
+		version = __version__,
 		author = "GroupDocs Team",
 		author_email = "support@groupdocs.com",
 		description = "A Python interface to the GroupDocs API",

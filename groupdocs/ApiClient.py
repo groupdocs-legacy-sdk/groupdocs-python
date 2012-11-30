@@ -14,10 +14,11 @@ import httplib
 import json
 import datetime
 import mimetypes
+import base64
 
 from models import *
 from groupdocs.FileStream import FileStream
-import base64
+from groupdocs import version
 
 
 class RequestSigner(object):
@@ -48,7 +49,7 @@ class ApiClient(object):
     def __init__(self, requestSigner=None):
         self.signer = requestSigner if requestSigner != None else DefaultRequestSigner()
         self.cookie = None
-        self.headers = None
+        self.headers = {'Groupdocs-Referer': '/'.join((version.__pkgname__, version.__version__))}
         self.__debug = False
 
 
