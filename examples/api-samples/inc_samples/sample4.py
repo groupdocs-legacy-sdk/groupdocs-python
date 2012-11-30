@@ -28,25 +28,30 @@ def sample4(request):
     api = StorageApi(apiClient)
                
     try:
+        
         files = api.ListEntities(userId = clientId, path = '', pageIndex = 0)
         for item in files.result.files: #selecting file names
            if item.guid == file_id:
                fileName = item.name
                
         currentDir = os.path.dirname(os.path.realpath(__file__))
-        #~      
-        fs = api.GetFile(clientId, file_id);
-        #~ import pdb;  pdb.set_trace()
-        if fs:
-            filePath = os.path.dirname(os.path.abspath(__file__)) + "/../tmp/" + fileName
         
-        os.makedirs('../tmp')
-        with open(filePath, 'wb') as fp:
-            shutil.copyfileobj(fs.inputStream, fp)
-            
-        #~ file = api.GetFile(clientId, file_id);
-        massage = '<font color="green">File was downloaded to the <font color="blue">' + filePath + '</font> folder</font> <br />';
+        newpath = currentDir + "/../tmp/"
+        if not os.path.exists(newpath):
+            os.makedirs(newpath)   
+         
+        fs = api.GetFile(clientId, file_id);
 
+        if fs:
+            #~ import pdb;  pdb.set_trace()
+            filePath = newpath + fileName
+        
+            with open(filePath, 'wb') as fp:
+                shutil.copyfileobj(fs.inputStream, fp)
+            
+            massage = '<font color="green">File was downloaded to the <font color="blue">' + filePath + '</font> folder</font> <br />';
+        else:
+			raise Exception('Wrong file ID!')
     except Exception, e:
         return render_to_response('__main__:templates/sample4.pt', 
                                   { 'error' : str(e) })
