@@ -1,13 +1,13 @@
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
-
+import os
 from pyramid.renderers import render_to_response
 from pyramid.view import view_config
 
-from groupdocs.api.APIClient import APIClient
-from groupdocs.api.StorageAPI import StorageAPI
-import groupdocs.model
-	
+from groupdocs.ApiClient import ApiClient
+from groupdocs.StorageApi import StorageApi
+from groupdocs.FileStream import FileStream
+from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 
 def index(request):
     return {}
@@ -18,7 +18,7 @@ def upload(request):
 	
 	input_file = request.POST['file']
 
-	import os
+	
 	current_dir = os.path.dirname(os.path.realpath(__file__))
 
 	# Using the filename like this without cleaning it is very
@@ -34,9 +34,13 @@ def upload(request):
 			break
 		output_file.write(data)
 	output_file.close()	
+	
+	signer = GroupDocsRequestSigner(private_key)
+	apiClient = ApiClient(signer)
+	api = StorageApi(apiClient)
 
-	apiClient = APIClient(private_key, "https://api.groupdocs.com/v2.0")
-	response = StorageAPI(apiClient).Upload(client_id, input_file.filename, "uploaded from python client library", 'file://' + str(file_path))
+	fs = FileStream.fromFile(file_path);
+	response = api.Upload(client_id, input_file.filename, fs)
 
 	os.remove(file_path)
 	return render_to_response('__main__:viewer.pt',

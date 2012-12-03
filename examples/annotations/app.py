@@ -4,11 +4,11 @@ from pyramid.config import Configurator
 from pyramid.renderers import render_to_response
 from pyramid.view import view_config
 
-from groupdocs.api.APIClient import APIClient
-from groupdocs.api.StorageAPI import StorageAPI
-from groupdocs.api.AntAPI import AntAPI
-import groupdocs.model
-	
+from groupdocs.ApiClient import ApiClient
+from groupdocs.StorageApi import StorageApi
+from groupdocs.FileStream import FileStream
+from groupdocs.AntApi import AntApi
+from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 
 def index(request):
     return {}
@@ -37,8 +37,12 @@ def upload(request):
 		output_file.write(data)
 	output_file.close()	
 
-	apiClient = APIClient(session['private_key'], "https://api.groupdocs.com/v2.0")
-	response = StorageAPI(apiClient).Upload(session['client_id'], input_file.filename, "uploaded from python client library", 'file://' + str(file_path))
+	signer = GroupDocsRequestSigner(session['private_key'])
+	apiClient = ApiClient(signer)
+	api = StorageApi(apiClient)
+	
+	fs = FileStream.fromFile(file_path);
+	response = api.Upload(session['client_id'], input_file.filename, fs)
 	session['guid'] = response.result.guid
 
 	os.remove(file_path)
@@ -48,19 +52,25 @@ def upload(request):
 
 def annotation(request):
 	session = request.session
-	apiClient = APIClient(session['private_key'], "https://api.groupdocs.com/v2.0")
+	session['private_key'] = 'cebff9b66782df9e519c1fc11c0a7ac3'
+	session['client_id'] = '60bef2f950c9cd0e'
+	session['guid'] = '35fba5ae4b3032be2046e93e516cf4ef74a2c5d1d7c4cad497912990dc3975a5'
+	signer = GroupDocsRequestSigner(session['private_key'])
+	apiClient = ApiClient(signer)
+	api = AntApi(apiClient)
 	try:
-		response = AntAPI(apiClient).ListAnnotations(session['client_id'], session['guid'])
-	except Exception: 
-		return "Server error or no annotations"
-		
-	output = ''
-	for annotation in response.result.annotations:
-		replies = []
-		for reply in annotation.replies:
-			replies.append(reply.userName + ": " + reply.text)
-		output += "Annotation Type: " +  str(annotation.type) + " -- Replies: " + str(replies) + "<br/>"
+		response = api.ListAnnotations(session['client_id'], session['guid'])
+		#~ import pdb;  pdb.set_trace()
+		output = ''
+		for annotation in response.result.annotations:
+			replies = []
+			for reply in annotation.replies:
+				replies.append(reply.userName + ": " + reply.text)
+			output += "Annotation Type: " +  str(annotation.type) + " -- Replies: " + str(replies) + "<br/>"
 	
+	except Exception as e: 
+		return e.value + "Server error or no annotations"
+		
 	return output
 
 if __name__ == '__main__':
