@@ -30,7 +30,7 @@ def sample3(request):
         # Using the filename like this without cleaning it is very
         # insecure so please keep that in mind when writing your own
         # file handling.
-        filePath = os.path.join(currentDir, inputFile.filename)
+        filePath = os.path.join(currentDir, '../tmp', inputFile.filename)
         outputFile = open(filePath, 'wb')
 
         inputFile.file.seek(0)
@@ -46,7 +46,7 @@ def sample3(request):
 
         response = api.Upload(clientId, inputFile.filename, fs)
 
-        os.remove(filePath)
+        #os.remove(filePath)
         iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + response.result.guid + '" frameborder="0" width="720" height="600""></iframe>'
         massage = '<p>File was uploaded to GroupDocs. Here you can see your <strong>' + inputFile.filename + '</strong> file in the GroupDocs Embedded Viewer.</p>'
     except Exception, e:
