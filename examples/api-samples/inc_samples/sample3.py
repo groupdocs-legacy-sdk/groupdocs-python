@@ -24,31 +24,19 @@ def sample3(request):
     signer = GroupDocsRequestSigner(privateKey)
     apiClient = ApiClient(signer)
     api = StorageApi(apiClient)
+#    apiClient.setDebug(True)
 
     try:
-        currentDir = os.path.dirname(os.path.realpath(__file__))
-        # Using the filename like this without cleaning it is very
-        # insecure so please keep that in mind when writing your own
-        # file handling.
-        filePath = os.path.join(currentDir, '../tmp', inputFile.filename)
-        outputFile = open(filePath, 'wb')
-
+        # a hack to get uploaded file size
+        inputFile.file.seek(0, 2)
+        fileSize = inputFile.file.tell()
         inputFile.file.seek(0)
-        while 1:
-            data = inputFile.file.read(2<<16)
-            if not data:
-                break
-            outputFile.write(data)
-        outputFile.close()    
-
-        fs = FileStream.fromFile(filePath);
+        
+        fs = FileStream.fromStream(inputFile.file, fileSize)
         #~ import pdb;  pdb.set_trace()
 
         response = api.Upload(clientId, inputFile.filename, fs)
-        fs.inputStream.close()
-        os.remove(filePath)
 
-        #os.remove(filePath)
         iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + response.result.guid + '" frameborder="0" width="720" height="600""></iframe>'
         massage = '<p>File was uploaded to GroupDocs. Here you can see your <strong>' + inputFile.filename + '</strong> file in the GroupDocs Embedded Viewer.</p>'
     except Exception, e:
