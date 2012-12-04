@@ -45,6 +45,8 @@ def sample3(request):
         #~ import pdb;  pdb.set_trace()
 
         response = api.Upload(clientId, inputFile.filename, fs)
+        fs.inputStream.close()
+        os.remove(filePath)
 
         #os.remove(filePath)
         iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + response.result.guid + '" frameborder="0" width="720" height="600""></iframe>'

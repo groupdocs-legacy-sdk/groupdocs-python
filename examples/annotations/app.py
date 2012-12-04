@@ -44,7 +44,7 @@ def upload(request):
 	fs = FileStream.fromFile(file_path);
 	response = api.Upload(session['client_id'], input_file.filename, fs)
 	session['guid'] = response.result.guid
-
+	fs.inputStream.close()
 	os.remove(file_path)
 	return render_to_response('__main__:annotation.pt',
                               {'guid':session['guid']},
@@ -61,15 +61,18 @@ def annotation(request):
 	try:
 		response = api.ListAnnotations(session['client_id'], session['guid'])
 		#~ import pdb;  pdb.set_trace()
+		if not response.result.annotations:
+			return 'No annotations found.'
 		output = ''
 		for annotation in response.result.annotations:
 			replies = []
-			for reply in annotation.replies:
-				replies.append(reply.userName + ": " + reply.text)
+			if annotation.replies:
+				for reply in annotation.replies:
+					replies.append(reply.userName + ": " + reply.text)
 			output += "Annotation Type: " +  str(annotation.type) + " -- Replies: " + str(replies) + "<br/>"
 	
 	except Exception as e: 
-		return e.value + "Server error or no annotations"
+		return "Server error: " + str(e)
 		
 	return output
 

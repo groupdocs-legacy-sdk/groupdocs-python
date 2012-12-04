@@ -41,7 +41,7 @@ def upload(request):
 
 	fs = FileStream.fromFile(file_path);
 	response = api.Upload(client_id, input_file.filename, fs)
-
+	fs.inputStream.close()
 	os.remove(file_path)
 	return render_to_response('__main__:viewer.pt',
                               {'guid':response.result.guid},
