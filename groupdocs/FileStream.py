@@ -26,19 +26,31 @@ class FileStream(object):
     To use this class for file download call fromHttp(response) method.
     """
     
-    def __init__(self, filePath=None, response=None):
+    def __init__(self, filePath=None, response=None, stream=None):
         self.__response = response # used for file download
         self.__filePath = filePath # used for file upload
         self.__fileName = None
         self.__contentType = None
         self.__size = None
-        self.__inputStream = None
+        self.__inputStream = stream
             
     @classmethod
     def fromFile(cls, filePath):
         """filePath is an absolute path to file on your filesystem.
         """
         return cls(filePath, None)
+    
+    @classmethod
+    def fromStream(cls, stream, size, contentType="application/octet-stream"):
+        """stream is a file-like object, i.e. stream = fopen(filename)
+        """
+        if not size or int(size) <= 0:
+            raise ValueError('Invalid stream size provided')
+        
+        instance = cls(None, None, stream)
+        instance.size = size
+        instance.contentType = contentType
+        return instance
     
     @classmethod
     def fromHttp(cls, response):

@@ -83,8 +83,10 @@ class ApiClient(object):
             headers['Content-type'] = 'text/html'
         elif isinstance(postData, FileStream):
             isFileUpload = True
-            headers['Content-type'] = postData.contentType
-            headers['Content-Length'] = str(postData.size)
+            if postData.contentType:
+                headers['Content-type'] = postData.contentType
+            if postData.size: 
+                headers['Content-Length'] = str(postData.size)
         else:
             headers['Content-type'] = 'application/json'
 
@@ -160,6 +162,11 @@ class ApiClient(object):
             raise ApiException(e.code, e.msg)
                 
         finally:
+            if isFileUpload:
+                try:
+                    postData.inputStream.close()
+                except Exception, e:
+                    sys.exc_clear()
             if self.__debug and self.__logFilepath:
                 sys.stdout = stdOut
                 logFile.close()
