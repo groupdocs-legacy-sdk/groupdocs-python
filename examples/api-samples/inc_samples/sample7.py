@@ -33,7 +33,7 @@ def sample7(request):
     name = '';
     for i in range(len(files.result.files)):
         if files.result.files[i].thumbnail != None:
-            fp = open('templates/thumbnail' + str(i) + '.jpg', 'wb')
+            fp = open('examples/api-samples/templates/thumbnail' + str(i) + '.jpg', 'wb')
             fp.write(base64.b64decode(files.result.files[i].thumbnail))
             fp.close()
             name = files.result.files[i].name
