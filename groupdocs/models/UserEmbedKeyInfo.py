@@ -23,18 +23,18 @@ class UserEmbedKeyInfo:
 
     def __init__(self):
         self.swaggerTypes = {
+            'user': 'UserIdentity',
             'guid': 'str',
             'area': 'str',
             'active': 'bool',
-            'hit_count': 'int',
-            'user': 'UserIdentity'
+            'hit_count': 'int'
 
         }
 
 
+        self.user = None # UserIdentity
         self.guid = None # str
         self.area = None # str
         self.active = None # bool
         self.hit_count = None # int
-        self.user = None # UserIdentity
         

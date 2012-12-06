@@ -23,18 +23,18 @@ class GetDocumentInfoResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
-            'id': 'float',
+            'page_count': 'int',
             'views_count': 'int',
             'last_view': 'DocumentViewInfo',
-            'page_count': 'int'
+            'id': 'float',
+            'guid': 'str'
 
         }
 
 
-        self.guid = None # str
-        self.id = None # float
+        self.page_count = None # int
         self.views_count = None # int
         self.last_view = None # DocumentViewInfo
-        self.page_count = None # int
+        self.id = None # float
+        self.guid = None # str
         

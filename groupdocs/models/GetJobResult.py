@@ -23,34 +23,34 @@ class GetJobResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'status': 'str',
-            'documents': 'JobDocumentsEntry',
-            'out_formats': 'list[str]',
-            'email_results': 'bool',
-            'url_only': 'bool',
-            'requested_time': 'long',
             'id': 'float',
-            'guid': 'str',
-            'scheduled_time': 'long',
+            'out_formats': 'list[str]',
+            'actions': 'str',
+            'status': 'str',
+            'email_results': 'bool',
             'priority': 'float',
+            'url_only': 'bool',
+            'documents': 'JobDocumentsEntry',
+            'requested_time': 'long',
+            'scheduled_time': 'long',
+            'guid': 'str',
             'name': 'str',
-            'callback_url': 'str',
-            'actions': 'str'
+            'callback_url': 'str'
 
         }
 
 
-        self.status = None # str
-        self.documents = None # JobDocumentsEntry
-        self.out_formats = None # list[str]
-        self.email_results = None # bool
-        self.url_only = None # bool
-        self.requested_time = None # long
         self.id = None # float
-        self.guid = None # str
-        self.scheduled_time = None # long
+        self.out_formats = None # list[str]
+        self.actions = None # str
+        self.status = None # str
+        self.email_results = None # bool
         self.priority = None # float
+        self.url_only = None # bool
+        self.documents = None # JobDocumentsEntry
+        self.requested_time = None # long
+        self.scheduled_time = None # long
+        self.guid = None # str
         self.name = None # str
         self.callback_url = None # str
-        self.actions = None # str
         

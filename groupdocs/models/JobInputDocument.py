@@ -24,45 +24,45 @@ class JobInputDocument:
     def __init__(self):
         self.swaggerTypes = {
             'status': 'str',
+            'proc_date': 'long',
             'output_formats': 'str',
-            'type_str': 'str',
-            'access': 'str',
-            'type': 'str',
-            'url': 'str',
-            'file_type': 'str',
+            'outputs': 'list[JobOutputDocument]',
+            'job_errors': 'list[JobErrorInfo]',
+            'actions': 'str',
+            'supported_output_file_types': 'list[str]',
+            'name': 'str',
             'version': 'int',
             'size': 'long',
-            'guid': 'str',
-            'id': 'float',
-            'document_path': 'str',
-            'supported_output_file_types': 'list[str]',
-            'proc_date': 'long',
-            'name': 'str',
+            'type': 'str',
+            'type_str': 'str',
             'file_type_str': 'str',
-            'outputs': 'list[JobOutputDocument]',
-            'actions': 'str',
-            'job_errors': 'list[JobErrorInfo]'
+            'document_path': 'str',
+            'access': 'str',
+            'url': 'str',
+            'file_type': 'str',
+            'id': 'float',
+            'guid': 'str'
 
         }
 
 
         self.status = None # str
+        self.proc_date = None # long
         self.output_formats = None # str
-        self.type_str = None # str
-        self.access = None # str
-        self.type = None # str
-        self.url = None # str
-        self.file_type = None # str
+        self.outputs = None # list[JobOutputDocument]
+        self.job_errors = None # list[JobErrorInfo]
+        self.actions = None # str
+        self.supported_output_file_types = None # list[str]
+        self.name = None # str
         self.version = None # int
         self.size = None # long
-        self.guid = None # str
-        self.id = None # float
-        self.document_path = None # str
-        self.supported_output_file_types = None # list[str]
-        self.proc_date = None # long
-        self.name = None # str
+        self.type = None # str
+        self.type_str = None # str
         self.file_type_str = None # str
-        self.outputs = None # list[JobOutputDocument]
-        self.actions = None # str
-        self.job_errors = None # list[JobErrorInfo]
+        self.document_path = None # str
+        self.access = None # str
+        self.url = None # str
+        self.file_type = None # str
+        self.id = None # float
+        self.guid = None # str
         

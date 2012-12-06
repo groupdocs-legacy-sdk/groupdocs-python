@@ -23,14 +23,14 @@ class SignaturePredefinedListSettings:
 
     def __init__(self):
         self.swaggerTypes = {
-            'values': 'str',
             'name': 'str',
+            'values': 'str',
             'defaultValue': 'str'
 
         }
 
 
-        self.values = None # str
         self.name = None # str
+        self.values = None # str
         self.defaultValue = None # str
         

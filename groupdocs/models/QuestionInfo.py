@@ -25,20 +25,20 @@ class QuestionInfo:
         self.swaggerTypes = {
             'field': 'str',
             'text': 'str',
-            'answers': 'list[AnswerInfo]',
             'def_answer': 'str',
-            'type': 'str',
             'required': 'bool',
-            'disabled': 'bool'
+            'disabled': 'bool',
+            'type': 'str',
+            'answers': 'list[AnswerInfo]'
 
         }
 
 
         self.field = None # str
         self.text = None # str
-        self.answers = None # list[AnswerInfo]
         self.def_answer = None # str
-        self.type = None # str
         self.required = None # bool
         self.disabled = None # bool
+        self.type = None # str
+        self.answers = None # list[AnswerInfo]
         

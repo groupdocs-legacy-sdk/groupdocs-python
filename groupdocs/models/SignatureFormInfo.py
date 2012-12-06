@@ -24,31 +24,31 @@ class SignatureFormInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'str',
-            'canParticipantDownloadForm': 'bool',
-            'participantsCount': 'float',
+            'name': 'str',
+            'ownerGuid': 'str',
             'templateGuid': 'str',
             'createdTimeStamp': 'str',
-            'documentsCount': 'float',
             'status': 'int',
+            'statusDateTime': 'str',
+            'documentsCount': 'float',
             'documentsPages': 'float',
-            'ownerGuid': 'str',
-            'name': 'str',
+            'participantsCount': 'float',
             'fieldsInFinalFileName': 'list[str]',
-            'statusDateTime': 'str'
+            'canParticipantDownloadForm': 'bool'
 
         }
 
 
         self.id = None # str
-        self.canParticipantDownloadForm = None # bool
-        self.participantsCount = None # float
+        self.name = None # str
+        self.ownerGuid = None # str
         self.templateGuid = None # str
         self.createdTimeStamp = None # str
-        self.documentsCount = None # float
         self.status = None # int
-        self.documentsPages = None # float
-        self.ownerGuid = None # str
-        self.name = None # str
-        self.fieldsInFinalFileName = None # list[str]
         self.statusDateTime = None # str
+        self.documentsCount = None # float
+        self.documentsPages = None # float
+        self.participantsCount = None # float
+        self.fieldsInFinalFileName = None # list[str]
+        self.canParticipantDownloadForm = None # bool
         

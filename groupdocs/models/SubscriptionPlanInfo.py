@@ -23,26 +23,26 @@ class SubscriptionPlanInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'userCount': 'int',
-            'expirationDate': 'datetime',
-            'firstNameOnCard': 'str',
-            'address': 'BillingAddressInfo',
-            'lastNameOnCard': 'str',
+            'productId': 'int',
             'name': 'str',
-            'cvv': 'str',
+            'userCount': 'int',
+            'firstNameOnCard': 'str',
+            'lastNameOnCard': 'str',
             'number': 'str',
-            'productId': 'int'
+            'expirationDate': 'datetime',
+            'cvv': 'str',
+            'address': 'BillingAddressInfo'
 
         }
 
 
-        self.userCount = None # int
-        self.expirationDate = None # datetime
-        self.firstNameOnCard = None # str
-        self.address = None # BillingAddressInfo
-        self.lastNameOnCard = None # str
-        self.name = None # str
-        self.cvv = None # str
-        self.number = None # str
         self.productId = None # int
+        self.name = None # str
+        self.userCount = None # int
+        self.firstNameOnCard = None # str
+        self.lastNameOnCard = None # str
+        self.number = None # str
+        self.expirationDate = None # datetime
+        self.cvv = None # str
+        self.address = None # BillingAddressInfo
         

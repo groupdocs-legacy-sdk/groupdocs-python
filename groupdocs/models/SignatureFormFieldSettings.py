@@ -23,46 +23,46 @@ class SignatureFormFieldSettings:
 
     def __init__(self):
         self.swaggerTypes = {
-            'locationHeight': 'float',
-            'fontName': 'str',
-            'fontColor': 'str',
-            'forceNewField': 'bool',
-            'regularExpression': 'str',
+            'name': 'str',
             'mandatory': 'bool',
-            'locationX': 'float',
-            'fontBold': 'bool',
-            'fontSize': 'float',
-            'locationY': 'float',
-            'acceptableValues': 'str',
-            'fontItalic': 'bool',
-            'fontUnderline': 'bool',
             'order': 'int',
             'page': 'int',
-            'name': 'str',
+            'locationX': 'float',
+            'locationY': 'float',
             'locationWidth': 'float',
+            'locationHeight': 'float',
+            'regularExpression': 'str',
+            'fontName': 'str',
+            'fontColor': 'str',
+            'fontSize': 'float',
+            'fontBold': 'bool',
+            'fontItalic': 'bool',
+            'fontUnderline': 'bool',
+            'forceNewField': 'bool',
+            'acceptableValues': 'str',
             'defaultValue': 'str',
             'tooltip': 'str'
 
         }
 
 
-        self.locationHeight = None # float
-        self.fontName = None # str
-        self.fontColor = None # str
-        self.forceNewField = None # bool
-        self.regularExpression = None # str
+        self.name = None # str
         self.mandatory = None # bool
-        self.locationX = None # float
-        self.fontBold = None # bool
-        self.fontSize = None # float
-        self.locationY = None # float
-        self.acceptableValues = None # str
-        self.fontItalic = None # bool
-        self.fontUnderline = None # bool
         self.order = None # int
         self.page = None # int
-        self.name = None # str
+        self.locationX = None # float
+        self.locationY = None # float
         self.locationWidth = None # float
+        self.locationHeight = None # float
+        self.regularExpression = None # str
+        self.fontName = None # str
+        self.fontColor = None # str
+        self.fontSize = None # float
+        self.fontBold = None # bool
+        self.fontItalic = None # bool
+        self.fontUnderline = None # bool
+        self.forceNewField = None # bool
+        self.acceptableValues = None # str
         self.defaultValue = None # str
         self.tooltip = None # str
         

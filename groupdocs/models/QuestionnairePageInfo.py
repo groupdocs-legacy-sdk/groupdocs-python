@@ -23,14 +23,14 @@ class QuestionnairePageInfo:
 
     def __init__(self):
         self.swaggerTypes = {
+            'number': 'int',
             'title': 'str',
-            'questions': 'list[QuestionInfo]',
-            'number': 'int'
+            'questions': 'list[QuestionInfo]'
 
         }
 
 
+        self.number = None # int
         self.title = None # str
         self.questions = None # list[QuestionInfo]
-        self.number = None # int
         

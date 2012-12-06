@@ -23,12 +23,12 @@ class SignatureContactsImportResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'ignored': 'str',
-            'imported': 'str'
+            'imported': 'str',
+            'ignored': 'str'
 
         }
 
 
-        self.ignored = None # str
         self.imported = None # str
+        self.ignored = None # str
         

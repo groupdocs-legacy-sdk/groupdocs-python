@@ -23,14 +23,14 @@ class Page:
 
     def __init__(self):
         self.swaggerTypes = {
-            'w': 'float',
             'id': 'int',
+            'w': 'float',
             'h': 'float'
 
         }
 
 
-        self.w = None # float
         self.id = None # int
+        self.w = None # float
         self.h = None # float
         

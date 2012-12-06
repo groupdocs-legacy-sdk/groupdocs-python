@@ -23,12 +23,12 @@ class ListRepliesResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'replies': 'list[AnnotationReplyInfo]',
-            'annotationGuid': 'str'
+            'annotationGuid': 'str',
+            'replies': 'list[AnnotationReplyInfo]'
 
         }
 
 
-        self.replies = None # list[AnnotationReplyInfo]
         self.annotationGuid = None # str
+        self.replies = None # list[AnnotationReplyInfo]
         

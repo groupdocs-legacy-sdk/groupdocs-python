@@ -23,16 +23,16 @@ class DocumentDownloadInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
-            'id': 'float',
             'url': 'str',
-            'file_type': 'str'
+            'file_type': 'str',
+            'id': 'float',
+            'guid': 'str'
 
         }
 
 
-        self.guid = None # str
-        self.id = None # float
         self.url = None # str
         self.file_type = None # str
+        self.id = None # float
+        self.guid = None # str
         

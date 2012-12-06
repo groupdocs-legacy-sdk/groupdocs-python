@@ -23,32 +23,32 @@ class SignatureEnvelopeFieldLocationSettings:
 
     def __init__(self):
         self.swaggerTypes = {
-            'locationHeight': 'float',
-            'fontItalic': 'bool',
-            'fontColor': 'str',
-            'fontName': 'str',
-            'forceNewField': 'bool',
-            'fontUnderline': 'bool',
             'page': 'int',
-            'locationWidth': 'float',
             'locationX': 'float',
-            'fontBold': 'bool',
+            'locationY': 'float',
+            'locationWidth': 'float',
+            'locationHeight': 'float',
+            'fontName': 'str',
+            'fontColor': 'str',
             'fontSize': 'float',
-            'locationY': 'float'
+            'fontBold': 'bool',
+            'fontItalic': 'bool',
+            'fontUnderline': 'bool',
+            'forceNewField': 'bool'
 
         }
 
 
-        self.locationHeight = None # float
-        self.fontItalic = None # bool
-        self.fontColor = None # str
-        self.fontName = None # str
-        self.forceNewField = None # bool
-        self.fontUnderline = None # bool
         self.page = None # int
-        self.locationWidth = None # float
         self.locationX = None # float
-        self.fontBold = None # bool
-        self.fontSize = None # float
         self.locationY = None # float
+        self.locationWidth = None # float
+        self.locationHeight = None # float
+        self.fontName = None # str
+        self.fontColor = None # str
+        self.fontSize = None # float
+        self.fontBold = None # bool
+        self.fontItalic = None # bool
+        self.fontUnderline = None # bool
+        self.forceNewField = None # bool
         

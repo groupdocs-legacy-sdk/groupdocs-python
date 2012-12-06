@@ -23,38 +23,38 @@ class SignatureSignatureInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'position': 'str',
-            'lastName': 'str',
-            'companyName': 'str',
             'id': 'str',
-            'signatureImageFileId': 'float',
+            'userGuid': 'str',
             'recipientId': 'float',
-            'createdTimeStamp': 'datetime',
-            'initialsImageUrl': 'str',
             'name': 'str',
-            'initialsImageFileId': 'float',
-            'fullName': 'str',
-            'signatureImageUrl': 'str',
+            'companyName': 'str',
+            'position': 'str',
             'firstName': 'str',
+            'lastName': 'str',
+            'fullName': 'str',
             'textInitials': 'str',
-            'userGuid': 'str'
+            'signatureImageFileId': 'float',
+            'initialsImageFileId': 'float',
+            'signatureImageUrl': 'str',
+            'initialsImageUrl': 'str',
+            'createdTimeStamp': 'datetime'
 
         }
 
 
-        self.position = None # str
-        self.lastName = None # str
-        self.companyName = None # str
         self.id = None # str
-        self.signatureImageFileId = None # float
-        self.recipientId = None # float
-        self.createdTimeStamp = None # datetime
-        self.initialsImageUrl = None # str
-        self.name = None # str
-        self.initialsImageFileId = None # float
-        self.fullName = None # str
-        self.signatureImageUrl = None # str
-        self.firstName = None # str
-        self.textInitials = None # str
         self.userGuid = None # str
+        self.recipientId = None # float
+        self.name = None # str
+        self.companyName = None # str
+        self.position = None # str
+        self.firstName = None # str
+        self.lastName = None # str
+        self.fullName = None # str
+        self.textInitials = None # str
+        self.signatureImageFileId = None # float
+        self.initialsImageFileId = None # float
+        self.signatureImageUrl = None # str
+        self.initialsImageUrl = None # str
+        self.createdTimeStamp = None # datetime
         

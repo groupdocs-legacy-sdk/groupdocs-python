@@ -25,14 +25,14 @@ class TemplateField:
         self.swaggerTypes = {
             'page': 'int',
             'name': 'str',
-            'rect': 'Rectangle',
-            'type': 'str'
+            'type': 'str',
+            'rect': 'Rectangle'
 
         }
 
 
         self.page = None # int
         self.name = None # str
-        self.rect = None # Rectangle
         self.type = None # str
+        self.rect = None # Rectangle
         

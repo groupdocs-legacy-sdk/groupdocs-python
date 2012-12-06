@@ -23,26 +23,26 @@ class StorageProviderInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'publicKey': 'str',
             'id': 'float',
-            'serviceHost': 'str',
-            'isPrimary': 'bool',
-            'privateKey': 'str',
-            'token': 'list[int]',
-            'rootFolder': 'str',
             'provider': 'str',
-            'type': 'str'
+            'type': 'str',
+            'token': 'list[int]',
+            'publicKey': 'str',
+            'privateKey': 'str',
+            'rootFolder': 'str',
+            'isPrimary': 'bool',
+            'serviceHost': 'str'
 
         }
 
 
-        self.publicKey = None # str
         self.id = None # float
-        self.serviceHost = None # str
-        self.isPrimary = None # bool
-        self.privateKey = None # str
-        self.token = None # list[int]
-        self.rootFolder = None # str
         self.provider = None # str
         self.type = None # str
+        self.token = None # list[int]
+        self.publicKey = None # str
+        self.privateKey = None # str
+        self.rootFolder = None # str
+        self.isPrimary = None # bool
+        self.serviceHost = None # str
         

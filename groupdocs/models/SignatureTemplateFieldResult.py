@@ -23,16 +23,16 @@ class SignatureTemplateFieldResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'field': 'SignatureTemplateFieldInfo',
             'templateId': 'str',
+            'documentId': 'str',
             'recipientId': 'str',
-            'documentId': 'str'
+            'field': 'SignatureTemplateFieldInfo'
 
         }
 
 
-        self.field = None # SignatureTemplateFieldInfo
         self.templateId = None # str
-        self.recipientId = None # str
         self.documentId = None # str
+        self.recipientId = None # str
+        self.field = None # SignatureTemplateFieldInfo
         

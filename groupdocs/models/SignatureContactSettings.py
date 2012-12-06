@@ -23,14 +23,14 @@ class SignatureContactSettings:
 
     def __init__(self):
         self.swaggerTypes = {
+            'firstName': 'str',
             'lastName': 'str',
-            'email': 'str',
-            'firstName': 'str'
+            'email': 'str'
 
         }
 
 
+        self.firstName = None # str
         self.lastName = None # str
         self.email = None # str
-        self.firstName = None # str
         

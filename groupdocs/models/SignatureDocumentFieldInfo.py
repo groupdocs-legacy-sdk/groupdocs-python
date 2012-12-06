@@ -24,12 +24,12 @@ class SignatureDocumentFieldInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'str',
-            'acceptableValues': 'str',
-            'locations': 'list[SignatureDocumentFieldLocationInfo]',
-            'signatureFieldId': 'float',
-            'fieldType': 'int',
-            'mandatory': 'bool',
             'name': 'str',
+            'mandatory': 'bool',
+            'signatureFieldId': 'float',
+            'locations': 'list[SignatureDocumentFieldLocationInfo]',
+            'fieldType': 'int',
+            'acceptableValues': 'str',
             'defaultValue': 'str',
             'tooltip': 'str'
 
@@ -37,12 +37,12 @@ class SignatureDocumentFieldInfo:
 
 
         self.id = None # str
-        self.acceptableValues = None # str
-        self.locations = None # list[SignatureDocumentFieldLocationInfo]
-        self.signatureFieldId = None # float
-        self.fieldType = None # int
-        self.mandatory = None # bool
         self.name = None # str
+        self.mandatory = None # bool
+        self.signatureFieldId = None # float
+        self.locations = None # list[SignatureDocumentFieldLocationInfo]
+        self.fieldType = None # int
+        self.acceptableValues = None # str
         self.defaultValue = None # str
         self.tooltip = None # str
         

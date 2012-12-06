@@ -23,30 +23,30 @@ class FileSystemFolder:
 
     def __init__(self):
         self.swaggerTypes = {
-            'sharers': 'list[UserInfo]',
-            'guid': 'str',
-            'id': 'float',
             'folder_count': 'int',
-            'modified_on': 'long',
-            'dir': 'bool',
-            'created_on': 'long',
-            'name': 'str',
-            'owner': 'UserInfo',
             'file_count': 'int',
-            'access': 'str'
+            'id': 'float',
+            'guid': 'str',
+            'name': 'str',
+            'access': 'str',
+            'owner': 'UserInfo',
+            'sharers': 'list[UserInfo]',
+            'dir': 'bool',
+            'modified_on': 'long',
+            'created_on': 'long'
 
         }
 
 
-        self.sharers = None # list[UserInfo]
-        self.guid = None # str
-        self.id = None # float
         self.folder_count = None # int
-        self.modified_on = None # long
-        self.dir = None # bool
-        self.created_on = None # long
-        self.name = None # str
-        self.owner = None # UserInfo
         self.file_count = None # int
+        self.id = None # float
+        self.guid = None # str
+        self.name = None # str
         self.access = None # str
+        self.owner = None # UserInfo
+        self.sharers = None # list[UserInfo]
+        self.dir = None # bool
+        self.modified_on = None # long
+        self.created_on = None # long
         

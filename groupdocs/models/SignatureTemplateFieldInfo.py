@@ -23,34 +23,34 @@ class SignatureTemplateFieldInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'regularExpression': 'str',
-            'fieldType': 'int',
-            'mandatory': 'bool',
             'id': 'str',
             'templateId': 'str',
-            'acceptableValues': 'str',
             'recipientId': 'str',
+            'name': 'str',
+            'mandatory': 'bool',
             'order': 'float',
+            'regularExpression': 'str',
             'signatureFieldId': 'float',
             'locations': 'list[SignatureTemplateFieldLocationInfo]',
-            'name': 'str',
+            'fieldType': 'int',
+            'acceptableValues': 'str',
             'defaultValue': 'str',
             'tooltip': 'str'
 
         }
 
 
-        self.regularExpression = None # str
-        self.fieldType = None # int
-        self.mandatory = None # bool
         self.id = None # str
         self.templateId = None # str
-        self.acceptableValues = None # str
         self.recipientId = None # str
+        self.name = None # str
+        self.mandatory = None # bool
         self.order = None # float
+        self.regularExpression = None # str
         self.signatureFieldId = None # float
         self.locations = None # list[SignatureTemplateFieldLocationInfo]
-        self.name = None # str
+        self.fieldType = None # int
+        self.acceptableValues = None # str
         self.defaultValue = None # str
         self.tooltip = None # str
         

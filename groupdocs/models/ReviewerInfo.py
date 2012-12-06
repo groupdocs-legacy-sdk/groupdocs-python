@@ -23,22 +23,22 @@ class ReviewerInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
             'id': 'float',
-            'customEmailMessage': 'str',
-            'color': 'int',
+            'guid': 'str',
             'primary_email': 'str',
+            'firstname': 'str',
             'access_rights': 'int',
-            'firstname': 'str'
+            'color': 'int',
+            'customEmailMessage': 'str'
 
         }
 
 
-        self.guid = None # str
         self.id = None # float
-        self.customEmailMessage = None # str
-        self.color = None # int
+        self.guid = None # str
         self.primary_email = None # str
-        self.access_rights = None # int
         self.firstname = None # str
+        self.access_rights = None # int
+        self.color = None # int
+        self.customEmailMessage = None # str
         

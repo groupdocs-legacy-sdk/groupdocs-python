@@ -23,16 +23,16 @@ class ListEntitiesResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'files': 'list[FileSystemDocument]',
-            'count': 'int',
             'path': 'str',
-            'folders': 'list[FileSystemFolder]'
+            'count': 'int',
+            'folders': 'list[FileSystemFolder]',
+            'files': 'list[FileSystemDocument]'
 
         }
 
 
-        self.files = None # list[FileSystemDocument]
-        self.count = None # int
         self.path = None # str
+        self.count = None # int
         self.folders = None # list[FileSystemFolder]
+        self.files = None # list[FileSystemDocument]
         

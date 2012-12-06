@@ -23,12 +23,12 @@ class FileMoveResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'dst_file': 'DocumentInfo',
-            'src_file': 'DocumentInfo'
+            'src_file': 'DocumentInfo',
+            'dst_file': 'DocumentInfo'
 
         }
 
 
-        self.dst_file = None # DocumentInfo
         self.src_file = None # DocumentInfo
+        self.dst_file = None # DocumentInfo
         

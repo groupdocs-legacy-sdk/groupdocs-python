@@ -23,12 +23,12 @@ class GetPlanResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'name': 'str',
-            'ref_id': 'str'
+            'ref_id': 'str',
+            'name': 'str'
 
         }
 
 
-        self.name = None # str
         self.ref_id = None # str
+        self.name = None # str
         

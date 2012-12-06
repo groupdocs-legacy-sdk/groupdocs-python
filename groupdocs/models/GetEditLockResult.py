@@ -23,14 +23,14 @@ class GetEditLockResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'edit_url': 'str',
+            'doc_guid': 'str',
             'file_id': 'str',
-            'doc_guid': 'str'
+            'edit_url': 'str'
 
         }
 
 
-        self.edit_url = None # str
-        self.file_id = None # str
         self.doc_guid = None # str
+        self.file_id = None # str
+        self.edit_url = None # str
         

@@ -23,12 +23,12 @@ class SignatureTemplateResourcesResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'recipients': 'list[SignatureTemplateRecipientInfo]',
-            'documents': 'list[SignatureTemplateDocumentInfo]'
+            'documents': 'list[SignatureTemplateDocumentInfo]',
+            'recipients': 'list[SignatureTemplateRecipientInfo]'
 
         }
 
 
-        self.recipients = None # list[SignatureTemplateRecipientInfo]
         self.documents = None # list[SignatureTemplateDocumentInfo]
+        self.recipients = None # list[SignatureTemplateRecipientInfo]
         

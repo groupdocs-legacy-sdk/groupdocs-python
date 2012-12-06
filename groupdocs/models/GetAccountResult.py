@@ -23,12 +23,12 @@ class GetAccountResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'users': 'list[UserInfo]',
-            'max_users': 'int'
+            'max_users': 'int',
+            'users': 'list[UserInfo]'
 
         }
 
 
-        self.users = None # list[UserInfo]
         self.max_users = None # int
+        self.users = None # list[UserInfo]
         

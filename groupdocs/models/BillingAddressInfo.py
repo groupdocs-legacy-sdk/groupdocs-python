@@ -23,32 +23,32 @@ class BillingAddressInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'zip': 'str',
-            'lastName': 'str',
-            'phone': 'str',
-            'fax': 'str',
-            'email': 'str',
-            'company': 'str',
-            'state': 'str',
             'address1': 'str',
             'address2': 'str',
-            'firstName': 'str',
+            'city': 'str',
+            'company': 'str',
             'country': 'str',
-            'city': 'str'
+            'email': 'str',
+            'fax': 'str',
+            'firstName': 'str',
+            'lastName': 'str',
+            'phone': 'str',
+            'state': 'str',
+            'zip': 'str'
 
         }
 
 
-        self.zip = None # str
-        self.lastName = None # str
-        self.phone = None # str
-        self.fax = None # str
-        self.email = None # str
-        self.company = None # str
-        self.state = None # str
         self.address1 = None # str
         self.address2 = None # str
-        self.firstName = None # str
-        self.country = None # str
         self.city = None # str
+        self.company = None # str
+        self.country = None # str
+        self.email = None # str
+        self.fax = None # str
+        self.firstName = None # str
+        self.lastName = None # str
+        self.phone = None # str
+        self.state = None # str
+        self.zip = None # str
         

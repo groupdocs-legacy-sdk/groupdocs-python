@@ -24,19 +24,19 @@ class CreateAnnotationResult:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'float',
-            'sessionGuid': 'str',
-            'documentGuid': 'str',
             'annotationGuid': 'str',
-            'access': 'str',
-            'replyGuid': 'str'
+            'replyGuid': 'str',
+            'documentGuid': 'str',
+            'sessionGuid': 'str',
+            'access': 'str'
 
         }
 
 
         self.id = None # float
-        self.sessionGuid = None # str
-        self.documentGuid = None # str
         self.annotationGuid = None # str
-        self.access = None # str
         self.replyGuid = None # str
+        self.documentGuid = None # str
+        self.sessionGuid = None # str
+        self.access = None # str
         

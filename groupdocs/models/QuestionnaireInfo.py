@@ -23,32 +23,32 @@ class QuestionnaireInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'assigned_questions': 'int',
-            'guid': 'str',
-            'id': 'float',
-            'expires': 'long',
-            'status': 'str',
             'resolved_executions': 'int',
-            'name': 'str',
             'pages': 'list[QuestionnairePageInfo]',
             'document_ids': 'list[str]',
+            'id': 'float',
+            'guid': 'str',
+            'name': 'str',
             'descr': 'str',
+            'status': 'str',
+            'assigned_questions': 'int',
+            'total_questions': 'int',
             'modified': 'long',
-            'total_questions': 'int'
+            'expires': 'long'
 
         }
 
 
-        self.assigned_questions = None # int
-        self.guid = None # str
-        self.id = None # float
-        self.expires = None # long
-        self.status = None # str
         self.resolved_executions = None # int
-        self.name = None # str
         self.pages = None # list[QuestionnairePageInfo]
         self.document_ids = None # list[str]
+        self.id = None # float
+        self.guid = None # str
+        self.name = None # str
         self.descr = None # str
-        self.modified = None # long
+        self.status = None # str
+        self.assigned_questions = None # int
         self.total_questions = None # int
+        self.modified = None # long
+        self.expires = None # long
         

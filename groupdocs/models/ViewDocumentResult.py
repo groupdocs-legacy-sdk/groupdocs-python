@@ -23,28 +23,28 @@ class ViewDocumentResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
-            'id': 'float',
-            'page_size': 'Dimension',
-            'token': 'str',
             'name': 'str',
-            'image_urls': 'list[str]',
-            'doc_type': 'str',
-            'url': 'str',
+            'version': 'int',
             'page_count': 'int',
-            'version': 'int'
+            'page_size': 'Dimension',
+            'url': 'str',
+            'doc_type': 'str',
+            'image_urls': 'list[str]',
+            'token': 'str',
+            'id': 'float',
+            'guid': 'str'
 
         }
 
 
-        self.guid = None # str
-        self.id = None # float
-        self.page_size = None # Dimension
-        self.token = None # str
         self.name = None # str
-        self.image_urls = None # list[str]
-        self.doc_type = None # str
-        self.url = None # str
-        self.page_count = None # int
         self.version = None # int
+        self.page_count = None # int
+        self.page_size = None # Dimension
+        self.url = None # str
+        self.doc_type = None # str
+        self.image_urls = None # list[str]
+        self.token = None # str
+        self.id = None # float
+        self.guid = None # str
         

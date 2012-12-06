@@ -23,12 +23,12 @@ class Dimension:
 
     def __init__(self):
         self.swaggerTypes = {
-            'height': 'int',
-            'width': 'int'
+            'width': 'int',
+            'height': 'int'
 
         }
 
 
-        self.height = None # int
         self.width = None # int
+        self.height = None # int
         

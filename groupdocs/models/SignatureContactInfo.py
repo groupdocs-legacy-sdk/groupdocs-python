@@ -24,17 +24,17 @@ class SignatureContactInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'str',
+            'firstName': 'str',
             'lastName': 'str',
             'email': 'str',
-            'provider': 'str',
-            'firstName': 'str'
+            'provider': 'str'
 
         }
 
 
         self.id = None # str
+        self.firstName = None # str
         self.lastName = None # str
         self.email = None # str
         self.provider = None # str
-        self.firstName = None # str
         

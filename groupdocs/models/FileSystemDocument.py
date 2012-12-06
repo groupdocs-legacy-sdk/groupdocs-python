@@ -23,40 +23,40 @@ class FileSystemDocument:
 
     def __init__(self):
         self.swaggerTypes = {
-            'sharers': 'list[UserInfo]',
-            'modified_on': 'long',
-            'created_on': 'long',
-            'type': 'str',
-            'access': 'str',
-            'supported_types': 'list[str]',
             'url': 'str',
             'version': 'int',
+            'type': 'str',
             'file_type': 'str',
             'size': 'long',
+            'thumbnail': 'str',
+            'supported_types': 'list[str]',
             'id': 'float',
             'guid': 'str',
-            'thumbnail': 'str',
-            'dir': 'bool',
             'name': 'str',
-            'owner': 'UserInfo'
+            'access': 'str',
+            'owner': 'UserInfo',
+            'sharers': 'list[UserInfo]',
+            'dir': 'bool',
+            'modified_on': 'long',
+            'created_on': 'long'
 
         }
 
 
-        self.sharers = None # list[UserInfo]
-        self.modified_on = None # long
-        self.created_on = None # long
-        self.type = None # str
-        self.access = None # str
-        self.supported_types = None # list[str]
         self.url = None # str
         self.version = None # int
+        self.type = None # str
         self.file_type = None # str
         self.size = None # long
+        self.thumbnail = None # str
+        self.supported_types = None # list[str]
         self.id = None # float
         self.guid = None # str
-        self.thumbnail = None # str
-        self.dir = None # bool
         self.name = None # str
+        self.access = None # str
         self.owner = None # UserInfo
+        self.sharers = None # list[UserInfo]
+        self.dir = None # bool
+        self.modified_on = None # long
+        self.created_on = None # long
         

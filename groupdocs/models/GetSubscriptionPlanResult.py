@@ -23,12 +23,12 @@ class GetSubscriptionPlanResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'subscription': 'SubscriptionPlanInfo',
-            'metrics': 'list[ProductMetrics]'
+            'metrics': 'list[ProductMetrics]',
+            'subscription': 'SubscriptionPlanInfo'
 
         }
 
 
-        self.subscription = None # SubscriptionPlanInfo
         self.metrics = None # list[ProductMetrics]
+        self.subscription = None # SubscriptionPlanInfo
         

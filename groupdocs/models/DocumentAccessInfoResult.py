@@ -23,40 +23,40 @@ class DocumentAccessInfoResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'sharers': 'list[UserInfo]',
             'status': 'str',
-            'type_str': 'str',
+            'owner': 'UserInfo',
+            'sharers': 'list[UserInfo]',
             'shared_on': 'long',
+            'name': 'str',
+            'version': 'int',
+            'size': 'long',
             'type': 'str',
+            'type_str': 'str',
+            'file_type_str': 'str',
+            'document_path': 'str',
             'access': 'str',
             'url': 'str',
             'file_type': 'str',
-            'version': 'int',
-            'size': 'long',
-            'guid': 'str',
             'id': 'float',
-            'document_path': 'str',
-            'name': 'str',
-            'owner': 'UserInfo',
-            'file_type_str': 'str'
+            'guid': 'str'
 
         }
 
 
-        self.sharers = None # list[UserInfo]
         self.status = None # str
-        self.type_str = None # str
+        self.owner = None # UserInfo
+        self.sharers = None # list[UserInfo]
         self.shared_on = None # long
+        self.name = None # str
+        self.version = None # int
+        self.size = None # long
         self.type = None # str
+        self.type_str = None # str
+        self.file_type_str = None # str
+        self.document_path = None # str
         self.access = None # str
         self.url = None # str
         self.file_type = None # str
-        self.version = None # int
-        self.size = None # long
-        self.guid = None # str
         self.id = None # float
-        self.document_path = None # str
-        self.name = None # str
-        self.owner = None # UserInfo
-        self.file_type_str = None # str
+        self.guid = None # str
         

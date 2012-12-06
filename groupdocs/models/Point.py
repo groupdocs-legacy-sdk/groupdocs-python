@@ -23,12 +23,12 @@ class Point:
 
     def __init__(self):
         self.swaggerTypes = {
-            'y': 'float',
-            'x': 'float'
+            'x': 'float',
+            'y': 'float'
 
         }
 
 
-        self.y = None # float
         self.x = None # float
+        self.y = None # float
         

@@ -24,15 +24,15 @@ class SignatureTemplateRecipientInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'str',
-            'order': 'int',
             'nickname': 'str',
+            'order': 'int',
             'roleId': 'float'
 
         }
 
 
         self.id = None # str
-        self.order = None # int
         self.nickname = None # str
+        self.order = None # int
         self.roleId = None # float
         

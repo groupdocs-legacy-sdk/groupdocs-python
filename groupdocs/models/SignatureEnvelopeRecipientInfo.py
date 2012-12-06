@@ -23,38 +23,38 @@ class SignatureEnvelopeRecipientInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'lastName': 'str',
-            'delegatedRecipientId': 'float',
-            'status': 'int',
-            'statusDateTime': 'datetime',
-            'statusMessage': 'str',
             'id': 'str',
-            'signatureBrowser': 'str',
-            'order': 'int',
-            'email': 'str',
-            'signatureLocation': 'str',
-            'signatureFingerprint': 'str',
             'firstName': 'str',
+            'lastName': 'str',
+            'email': 'str',
             'userGuid': 'str',
+            'order': 'int',
             'roleId': 'float',
-            'signatureHost': 'str'
+            'status': 'int',
+            'statusMessage': 'str',
+            'statusDateTime': 'datetime',
+            'delegatedRecipientId': 'float',
+            'signatureFingerprint': 'str',
+            'signatureHost': 'str',
+            'signatureLocation': 'str',
+            'signatureBrowser': 'str'
 
         }
 
 
-        self.lastName = None # str
-        self.delegatedRecipientId = None # float
-        self.status = None # int
-        self.statusDateTime = None # datetime
-        self.statusMessage = None # str
         self.id = None # str
-        self.signatureBrowser = None # str
-        self.order = None # int
-        self.email = None # str
-        self.signatureLocation = None # str
-        self.signatureFingerprint = None # str
         self.firstName = None # str
+        self.lastName = None # str
+        self.email = None # str
         self.userGuid = None # str
+        self.order = None # int
         self.roleId = None # float
+        self.status = None # int
+        self.statusMessage = None # str
+        self.statusDateTime = None # datetime
+        self.delegatedRecipientId = None # float
+        self.signatureFingerprint = None # str
         self.signatureHost = None # str
+        self.signatureLocation = None # str
+        self.signatureBrowser = None # str
         

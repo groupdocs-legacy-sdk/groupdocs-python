@@ -23,14 +23,14 @@ class AddReplyResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'replyDateTime': 'datetime',
+            'replyGuid': 'str',
             'annotationGuid': 'str',
-            'replyGuid': 'str'
+            'replyDateTime': 'datetime'
 
         }
 
 
-        self.replyDateTime = None # datetime
-        self.annotationGuid = None # str
         self.replyGuid = None # str
+        self.annotationGuid = None # str
+        self.replyDateTime = None # datetime
         

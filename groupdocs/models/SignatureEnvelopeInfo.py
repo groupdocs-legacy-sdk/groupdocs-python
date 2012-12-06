@@ -23,40 +23,40 @@ class SignatureEnvelopeInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'creationDateTime': 'str',
-            'ownerShouldSign': 'bool',
-            'recipients': 'list[SignatureEnvelopeRecipientInfo]',
-            'status': 'int',
-            'envelopeExpireTime': 'float',
-            'reminderTime': 'float',
-            'emailSubject': 'str',
-            'statusDateTime': 'str',
             'id': 'str',
+            'name': 'str',
+            'creationDateTime': 'str',
+            'ownerGuid': 'str',
+            'status': 'int',
+            'statusDateTime': 'str',
+            'reminderTime': 'float',
             'stepExpireTime': 'float',
+            'envelopeExpireTime': 'float',
+            'ownerShouldSign': 'bool',
+            'orderedSignature': 'bool',
+            'emailSubject': 'str',
             'emailBody': 'str',
             'documentsCount': 'float',
-            'orderedSignature': 'bool',
             'documentsPages': 'float',
-            'ownerGuid': 'str',
-            'name': 'str'
+            'recipients': 'list[SignatureEnvelopeRecipientInfo]'
 
         }
 
 
-        self.creationDateTime = None # str
-        self.ownerShouldSign = None # bool
-        self.recipients = None # list[SignatureEnvelopeRecipientInfo]
-        self.status = None # int
-        self.envelopeExpireTime = None # float
-        self.reminderTime = None # float
-        self.emailSubject = None # str
-        self.statusDateTime = None # str
         self.id = None # str
+        self.name = None # str
+        self.creationDateTime = None # str
+        self.ownerGuid = None # str
+        self.status = None # int
+        self.statusDateTime = None # str
+        self.reminderTime = None # float
         self.stepExpireTime = None # float
+        self.envelopeExpireTime = None # float
+        self.ownerShouldSign = None # bool
+        self.orderedSignature = None # bool
+        self.emailSubject = None # str
         self.emailBody = None # str
         self.documentsCount = None # float
-        self.orderedSignature = None # bool
         self.documentsPages = None # float
-        self.ownerGuid = None # str
-        self.name = None # str
+        self.recipients = None # list[SignatureEnvelopeRecipientInfo]
         

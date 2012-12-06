@@ -23,16 +23,16 @@ class JobErrorInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'error_code': 'int',
-            'expected_format': 'str',
+            'job_id': 'float',
             'original_document_id': 'float',
-            'job_id': 'float'
+            'error_code': 'int',
+            'expected_format': 'str'
 
         }
 
 
+        self.job_id = None # float
+        self.original_document_id = None # float
         self.error_code = None # int
         self.expected_format = None # str
-        self.original_document_id = None # float
-        self.job_id = None # float
         

@@ -25,14 +25,14 @@ class DocumentUserStatusResult:
         self.swaggerTypes = {
             'doc_info': 'DocumentInfo',
             'owner_id': 'float',
-            'user_status': 'str',
-            'user_id': 'float'
+            'user_id': 'float',
+            'user_status': 'str'
 
         }
 
 
         self.doc_info = None # DocumentInfo
         self.owner_id = None # float
-        self.user_status = None # str
         self.user_id = None # float
+        self.user_status = None # str
         

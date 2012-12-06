@@ -23,14 +23,14 @@ class AddQuestionnaireExecutionResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'execution_guid': 'str',
             'collector_id': 'float',
-            'execution_id': 'float'
+            'execution_id': 'float',
+            'execution_guid': 'str'
 
         }
 
 
-        self.execution_guid = None # str
         self.collector_id = None # float
         self.execution_id = None # float
+        self.execution_guid = None # str
         

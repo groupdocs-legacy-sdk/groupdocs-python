@@ -23,40 +23,40 @@ class SignatureEnvelopeFieldInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'regularExpression': 'str',
-            'fieldType': 'int',
-            'mandatory': 'bool',
-            'data': 'list[int]',
             'id': 'str',
-            'acceptableValues': 'str',
+            'envelopeId': 'str',
             'recipientId': 'str',
+            'name': 'str',
+            'mandatory': 'bool',
             'order': 'float',
+            'regularExpression': 'str',
+            'getDataFrom': 'str',
+            'data': 'list[int]',
+            'fillTimeStamp': 'str',
             'signatureFieldId': 'float',
             'locations': 'list[SignatureEnvelopeFieldLocationInfo]',
-            'envelopeId': 'str',
-            'name': 'str',
-            'fillTimeStamp': 'str',
-            'getDataFrom': 'str',
+            'fieldType': 'int',
+            'acceptableValues': 'str',
             'defaultValue': 'str',
             'tooltip': 'str'
 
         }
 
 
-        self.regularExpression = None # str
-        self.fieldType = None # int
-        self.mandatory = None # bool
-        self.data = None # list[int]
         self.id = None # str
-        self.acceptableValues = None # str
+        self.envelopeId = None # str
         self.recipientId = None # str
+        self.name = None # str
+        self.mandatory = None # bool
         self.order = None # float
+        self.regularExpression = None # str
+        self.getDataFrom = None # str
+        self.data = None # list[int]
+        self.fillTimeStamp = None # str
         self.signatureFieldId = None # float
         self.locations = None # list[SignatureEnvelopeFieldLocationInfo]
-        self.envelopeId = None # str
-        self.name = None # str
-        self.fillTimeStamp = None # str
-        self.getDataFrom = None # str
+        self.fieldType = None # int
+        self.acceptableValues = None # str
         self.defaultValue = None # str
         self.tooltip = None # str
         

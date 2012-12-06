@@ -23,40 +23,40 @@ class SignatureFieldInfo:
 
     def __init__(self):
         self.swaggerTypes = {
+            'id': 'str',
+            'name': 'str',
+            'graphSizeW': 'int',
+            'graphSizeH': 'int',
+            'getDataFrom': 'str',
+            'regularExpression': 'str',
             'fontName': 'str',
             'fontColor': 'str',
-            'regularExpression': 'str',
-            'fieldType': 'int',
-            'graphSizeH': 'int',
-            'fontBold': 'bool',
             'fontSize': 'float',
-            'isSystem': 'bool',
-            'id': 'str',
-            'acceptableValues': 'str',
+            'fontBold': 'bool',
             'fontItalic': 'bool',
             'fontUnderline': 'bool',
-            'name': 'str',
-            'getDataFrom': 'str',
-            'defaultValue': 'str',
-            'graphSizeW': 'int'
+            'isSystem': 'bool',
+            'fieldType': 'int',
+            'acceptableValues': 'str',
+            'defaultValue': 'str'
 
         }
 
 
+        self.id = None # str
+        self.name = None # str
+        self.graphSizeW = None # int
+        self.graphSizeH = None # int
+        self.getDataFrom = None # str
+        self.regularExpression = None # str
         self.fontName = None # str
         self.fontColor = None # str
-        self.regularExpression = None # str
-        self.fieldType = None # int
-        self.graphSizeH = None # int
-        self.fontBold = None # bool
         self.fontSize = None # float
-        self.isSystem = None # bool
-        self.id = None # str
-        self.acceptableValues = None # str
+        self.fontBold = None # bool
         self.fontItalic = None # bool
         self.fontUnderline = None # bool
-        self.name = None # str
-        self.getDataFrom = None # str
+        self.isSystem = None # bool
+        self.fieldType = None # int
+        self.acceptableValues = None # str
         self.defaultValue = None # str
-        self.graphSizeW = None # int
         

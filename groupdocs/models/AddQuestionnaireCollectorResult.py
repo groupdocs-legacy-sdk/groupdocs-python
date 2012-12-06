@@ -23,14 +23,14 @@ class AddQuestionnaireCollectorResult:
 
     def __init__(self):
         self.swaggerTypes = {
+            'questionnaire_id': 'float',
             'collector_id': 'float',
-            'collector_guid': 'str',
-            'questionnaire_id': 'float'
+            'collector_guid': 'str'
 
         }
 
 
+        self.questionnaire_id = None # float
         self.collector_id = None # float
         self.collector_guid = None # str
-        self.questionnaire_id = None # float
         

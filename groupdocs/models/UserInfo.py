@@ -23,52 +23,52 @@ class UserInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'signin_count': 'int',
-            'signedupOn': 'long',
             'nickname': 'str',
-            'pkey': 'str',
-            'lastname': 'str',
-            'alerts_eanbled': 'bool',
             'firstname': 'str',
-            'news_eanbled': 'bool',
-            'support_eanbled': 'bool',
-            'photo': 'list[int]',
-            'support_email': 'str',
-            'guid': 'str',
-            'id': 'float',
+            'lastname': 'str',
+            'pkey': 'str',
             'pswd_salt': 'str',
-            'token': 'str',
-            'primary_email': 'str',
-            'roles': 'list[RoleInfo]',
-            'active': 'bool',
-            'signedinOn': 'long',
-            'trial': 'bool',
             'claimed_id': 'str',
-            'storage': 'int'
+            'token': 'str',
+            'storage': 'int',
+            'photo': 'list[int]',
+            'active': 'bool',
+            'trial': 'bool',
+            'news_eanbled': 'bool',
+            'alerts_eanbled': 'bool',
+            'support_eanbled': 'bool',
+            'support_email': 'str',
+            'signedupOn': 'long',
+            'signedinOn': 'long',
+            'signin_count': 'int',
+            'roles': 'list[RoleInfo]',
+            'id': 'float',
+            'guid': 'str',
+            'primary_email': 'str'
 
         }
 
 
-        self.signin_count = None # int
-        self.signedupOn = None # long
         self.nickname = None # str
-        self.pkey = None # str
-        self.lastname = None # str
-        self.alerts_eanbled = None # bool
         self.firstname = None # str
-        self.news_eanbled = None # bool
-        self.support_eanbled = None # bool
-        self.photo = None # list[int]
-        self.support_email = None # str
-        self.guid = None # str
-        self.id = None # float
+        self.lastname = None # str
+        self.pkey = None # str
         self.pswd_salt = None # str
-        self.token = None # str
-        self.primary_email = None # str
-        self.roles = None # list[RoleInfo]
-        self.active = None # bool
-        self.signedinOn = None # long
-        self.trial = None # bool
         self.claimed_id = None # str
+        self.token = None # str
         self.storage = None # int
+        self.photo = None # list[int]
+        self.active = None # bool
+        self.trial = None # bool
+        self.news_eanbled = None # bool
+        self.alerts_eanbled = None # bool
+        self.support_eanbled = None # bool
+        self.support_email = None # str
+        self.signedupOn = None # long
+        self.signedinOn = None # long
+        self.signin_count = None # int
+        self.roles = None # list[RoleInfo]
+        self.id = None # float
+        self.guid = None # str
+        self.primary_email = None # str
         

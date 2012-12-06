@@ -24,23 +24,23 @@ class SignatureFormDocumentInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'str',
-            'documentGuid': 'str',
-            'order': 'int',
-            'originalDocumentGuid': 'str',
             'name': 'str',
-            'assignedDateTime': 'str',
             'formGuid': 'str',
-            'originalDocumentMD5': 'str'
+            'documentGuid': 'str',
+            'originalDocumentGuid': 'str',
+            'originalDocumentMD5': 'str',
+            'assignedDateTime': 'str',
+            'order': 'int'
 
         }
 
 
         self.id = None # str
-        self.documentGuid = None # str
-        self.order = None # int
-        self.originalDocumentGuid = None # str
         self.name = None # str
-        self.assignedDateTime = None # str
         self.formGuid = None # str
+        self.documentGuid = None # str
+        self.originalDocumentGuid = None # str
         self.originalDocumentMD5 = None # str
+        self.assignedDateTime = None # str
+        self.order = None # int
         
