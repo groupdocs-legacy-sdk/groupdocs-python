@@ -103,7 +103,8 @@ class ApiClient(object):
                 for param, value in queryParams.items():
                     if value != None:
                         sentQueryParams[param] = value
-                url = url + '?' + urllib.urlencode(sentQueryParams)
+                if sentQueryParams:
+                    url = url + '?' + urllib.urlencode(sentQueryParams)
 
         elif method in ['POST', 'PUT', 'DELETE']:
 
