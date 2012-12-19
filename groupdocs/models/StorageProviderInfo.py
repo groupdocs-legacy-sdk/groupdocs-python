@@ -26,7 +26,7 @@ class StorageProviderInfo:
             'id': 'float',
             'provider': 'str',
             'type': 'str',
-            'token': 'list[int]',
+            'token': 'str',
             'publicKey': 'str',
             'privateKey': 'str',
             'rootFolder': 'str',
@@ -39,7 +39,7 @@ class StorageProviderInfo:
         self.id = None # float
         self.provider = None # str
         self.type = None # str
-        self.token = None # list[int]
+        self.token = None # str
         self.publicKey = None # str
         self.privateKey = None # str
         self.rootFolder = None # str

@@ -31,7 +31,7 @@ class UserInfo:
             'claimed_id': 'str',
             'token': 'str',
             'storage': 'int',
-            'photo': 'list[int]',
+            'photo': 'str',
             'active': 'bool',
             'trial': 'bool',
             'news_eanbled': 'bool',
@@ -57,7 +57,7 @@ class UserInfo:
         self.claimed_id = None # str
         self.token = None # str
         self.storage = None # int
-        self.photo = None # list[int]
+        self.photo = None # str
         self.active = None # bool
         self.trial = None # bool
         self.news_eanbled = None # bool

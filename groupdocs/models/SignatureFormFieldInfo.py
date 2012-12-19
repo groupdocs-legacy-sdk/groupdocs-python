@@ -29,7 +29,7 @@ class SignatureFormFieldInfo:
             'name': 'str',
             'mandatory': 'bool',
             'regularExpression': 'str',
-            'data': 'list[int]',
+            'data': 'str',
             'fillTimeStamp': 'str',
             'locations': 'list[SignatureFormFieldLocationInfo]',
             'fieldType': 'int',
@@ -45,7 +45,7 @@ class SignatureFormFieldInfo:
         self.name = None # str
         self.mandatory = None # bool
         self.regularExpression = None # str
-        self.data = None # list[int]
+        self.data = None # str
         self.fillTimeStamp = None # str
         self.locations = None # list[SignatureFormFieldLocationInfo]
         self.fieldType = None # int
