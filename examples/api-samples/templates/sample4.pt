@@ -4,10 +4,10 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
 		
-<h3 style="text-align:center;"><a href="/index.php">GroupDocs Python SDK Samples</a> - Sample4</h3>
+<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample4</h3>
 
 <div class='samplecontent' style="padding:10px;">
-   <i>This sample will show how to use download from GroupDocs using PHP SDK</i> <br/>
+   <i>This sample will show how to use download from GroupDocs using Python SDK</i> <br/>
    
    <br/><p>You entered: 
    <p>UserId = ${userId|''}
