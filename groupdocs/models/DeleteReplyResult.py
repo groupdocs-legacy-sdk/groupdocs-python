@@ -23,14 +23,14 @@ class DeleteReplyResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'replies': 'list[AnnotationReplyInfo]',
+            'replyGuid': 'str',
             'annotationGuid': 'str',
-            'replyGuid': 'str'
+            'replies': 'list[AnnotationReplyInfo]'
 
         }
 
 
-        self.replies = None # list[AnnotationReplyInfo]
-        self.annotationGuid = None # str
         self.replyGuid = None # str
+        self.annotationGuid = None # str
+        self.replies = None # list[AnnotationReplyInfo]
         

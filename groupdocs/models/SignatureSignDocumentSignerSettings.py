@@ -23,22 +23,22 @@ class SignatureSignDocumentSignerSettings:
 
     def __init__(self):
         self.swaggerTypes = {
+            'name': 'str',
+            'top': 'float',
+            'left': 'float',
+            'width': 'float',
             'height': 'float',
             'placeSingatureOn': 'str',
-            'width': 'float',
-            'name': 'str',
-            'data': 'str',
-            'left': 'float',
-            'top': 'float'
+            'data': 'str'
 
         }
 
 
+        self.name = None # str
+        self.top = None # float
+        self.left = None # float
+        self.width = None # float
         self.height = None # float
         self.placeSingatureOn = None # str
-        self.width = None # float
-        self.name = None # str
         self.data = None # str
-        self.left = None # float
-        self.top = None # float
         

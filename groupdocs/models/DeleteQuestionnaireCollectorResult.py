@@ -23,12 +23,12 @@ class DeleteQuestionnaireCollectorResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'collector_id': 'float',
-            'questionnaire_id': 'float'
+            'questionnaire_id': 'float',
+            'collector_id': 'float'
 
         }
 
 
-        self.collector_id = None # float
         self.questionnaire_id = None # float
+        self.collector_id = None # float
         

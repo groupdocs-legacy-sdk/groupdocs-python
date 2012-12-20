@@ -23,12 +23,12 @@ class ReviewerContactInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'FullName': 'str',
-            'emailAddress': 'str'
+            'emailAddress': 'str',
+            'FullName': 'str'
 
         }
 
 
-        self.FullName = None # str
         self.emailAddress = None # str
+        self.FullName = None # str
         

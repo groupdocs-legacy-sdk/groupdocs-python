@@ -23,18 +23,18 @@ class SignatureFieldSettings:
 
     def __init__(self):
         self.swaggerTypes = {
-            'regularExpression': 'str',
             'name': 'str',
+            'graphSizeW': 'int',
             'graphSizeH': 'int',
             'getDataFrom': 'str',
-            'graphSizeW': 'int'
+            'regularExpression': 'str'
 
         }
 
 
-        self.regularExpression = None # str
         self.name = None # str
+        self.graphSizeW = None # int
         self.graphSizeH = None # int
         self.getDataFrom = None # str
-        self.graphSizeW = None # int
+        self.regularExpression = None # str
         

@@ -24,19 +24,19 @@ class SignatureRoleInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'str',
-            'canDelegate': 'int',
-            'canSign': 'int',
             'name': 'str',
             'canEdit': 'int',
-            'canAnnotate': 'int'
+            'canSign': 'int',
+            'canAnnotate': 'int',
+            'canDelegate': 'int'
 
         }
 
 
         self.id = None # str
-        self.canDelegate = None # int
-        self.canSign = None # int
         self.name = None # str
         self.canEdit = None # int
+        self.canSign = None # int
         self.canAnnotate = None # int
+        self.canDelegate = None # int
         

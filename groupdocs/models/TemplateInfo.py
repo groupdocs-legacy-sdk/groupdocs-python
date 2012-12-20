@@ -23,16 +23,16 @@ class TemplateInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
-            'id': 'float',
             'name': 'str',
-            'field_count': 'int'
+            'field_count': 'int',
+            'id': 'float',
+            'guid': 'str'
 
         }
 
 
-        self.guid = None # str
-        self.id = None # float
         self.name = None # str
         self.field_count = None # int
+        self.id = None # float
+        self.guid = None # str
         

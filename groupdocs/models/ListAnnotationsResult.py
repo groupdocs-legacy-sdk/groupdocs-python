@@ -23,14 +23,14 @@ class ListAnnotationsResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'sessionGuid': 'str',
             'documentGuid': 'str',
+            'sessionGuid': 'str',
             'annotations': 'list[AnnotationInfo]'
 
         }
 
 
-        self.sessionGuid = None # str
         self.documentGuid = None # str
+        self.sessionGuid = None # str
         self.annotations = None # list[AnnotationInfo]
         

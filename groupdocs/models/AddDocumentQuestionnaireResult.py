@@ -24,15 +24,15 @@ class AddDocumentQuestionnaireResult:
     def __init__(self):
         self.swaggerTypes = {
             'document_id': 'float',
-            'questionnaire_guid': 'str',
             'questionnaire_id': 'float',
+            'questionnaire_guid': 'str',
             'adjusted_name': 'str'
 
         }
 
 
         self.document_id = None # float
-        self.questionnaire_guid = None # str
         self.questionnaire_id = None # float
+        self.questionnaire_guid = None # str
         self.adjusted_name = None # str
         

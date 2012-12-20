@@ -23,14 +23,14 @@ class UserPasswordInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'reset_token': 'str',
             'old_pswd_salt': 'str',
-            'new_pswd_salt': 'str'
+            'new_pswd_salt': 'str',
+            'reset_token': 'str'
 
         }
 
 
-        self.reset_token = None # str
         self.old_pswd_salt = None # str
         self.new_pswd_salt = None # str
+        self.reset_token = None # str
         

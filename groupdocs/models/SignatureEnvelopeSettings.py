@@ -24,23 +24,23 @@ class SignatureEnvelopeSettings:
     def __init__(self):
         self.swaggerTypes = {
             'ownerShouldSign': 'int',
-            'stepExpireTime': 'float',
-            'emailBody': 'str',
-            'envelopeExpireTime': 'float',
             'orderedSignature': 'int',
-            'isDemo': 'bool',
             'reminderTime': 'float',
-            'emailSubject': 'str'
+            'stepExpireTime': 'float',
+            'envelopeExpireTime': 'float',
+            'emailSubject': 'str',
+            'emailBody': 'str',
+            'isDemo': 'bool'
 
         }
 
 
         self.ownerShouldSign = None # int
-        self.stepExpireTime = None # float
-        self.emailBody = None # str
-        self.envelopeExpireTime = None # float
         self.orderedSignature = None # int
-        self.isDemo = None # bool
         self.reminderTime = None # float
+        self.stepExpireTime = None # float
+        self.envelopeExpireTime = None # float
         self.emailSubject = None # str
+        self.emailBody = None # str
+        self.isDemo = None # bool
         

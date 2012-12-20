@@ -23,32 +23,32 @@ class DocumentInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
-            'id': 'float',
-            'document_path': 'str',
             'name': 'str',
+            'version': 'int',
+            'size': 'long',
+            'type': 'str',
             'type_str': 'str',
             'file_type_str': 'str',
+            'document_path': 'str',
             'access': 'str',
-            'type': 'str',
             'url': 'str',
             'file_type': 'str',
-            'size': 'long',
-            'version': 'int'
+            'id': 'float',
+            'guid': 'str'
 
         }
 
 
-        self.guid = None # str
-        self.id = None # float
-        self.document_path = None # str
         self.name = None # str
+        self.version = None # int
+        self.size = None # long
+        self.type = None # str
         self.type_str = None # str
         self.file_type_str = None # str
+        self.document_path = None # str
         self.access = None # str
-        self.type = None # str
         self.url = None # str
         self.file_type = None # str
-        self.size = None # long
-        self.version = None # int
+        self.id = None # float
+        self.guid = None # str
         

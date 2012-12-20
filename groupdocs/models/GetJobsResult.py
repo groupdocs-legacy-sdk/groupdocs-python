@@ -23,12 +23,12 @@ class GetJobsResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'jobs': 'list[JobInfo]',
-            'count': 'int'
+            'count': 'int',
+            'jobs': 'list[JobInfo]'
 
         }
 
 
-        self.jobs = None # list[JobInfo]
         self.count = None # int
+        self.jobs = None # list[JobInfo]
         

@@ -23,28 +23,28 @@ class SignatureDocumentFieldLocationInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'locationHeight': 'float',
             'id': 'str',
-            'fontColor': 'str',
-            'fontName': 'str',
-            'page': 'int',
-            'locationWidth': 'float',
-            'locationX': 'float',
-            'fontSize': 'float',
             'fieldId': 'str',
-            'locationY': 'float'
+            'page': 'int',
+            'locationX': 'float',
+            'locationY': 'float',
+            'locationWidth': 'float',
+            'locationHeight': 'float',
+            'fontName': 'str',
+            'fontColor': 'str',
+            'fontSize': 'float'
 
         }
 
 
-        self.locationHeight = None # float
         self.id = None # str
-        self.fontColor = None # str
-        self.fontName = None # str
-        self.page = None # int
-        self.locationWidth = None # float
-        self.locationX = None # float
-        self.fontSize = None # float
         self.fieldId = None # str
+        self.page = None # int
+        self.locationX = None # float
         self.locationY = None # float
+        self.locationWidth = None # float
+        self.locationHeight = None # float
+        self.fontName = None # str
+        self.fontColor = None # str
+        self.fontSize = None # float
         

@@ -23,26 +23,26 @@ class UploadRequestResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
-            'id': 'float',
-            'thumbnail': 'str',
             'adj_name': 'str',
-            'type': 'str',
             'url': 'str',
-            'version': 'int',
+            'type': 'str',
+            'file_type': 'str',
             'size': 'long',
-            'file_type': 'str'
+            'version': 'int',
+            'thumbnail': 'str',
+            'id': 'float',
+            'guid': 'str'
 
         }
 
 
-        self.guid = None # str
-        self.id = None # float
-        self.thumbnail = None # str
         self.adj_name = None # str
-        self.type = None # str
         self.url = None # str
-        self.version = None # int
-        self.size = None # long
+        self.type = None # str
         self.file_type = None # str
+        self.size = None # long
+        self.version = None # int
+        self.thumbnail = None # str
+        self.id = None # float
+        self.guid = None # str
         

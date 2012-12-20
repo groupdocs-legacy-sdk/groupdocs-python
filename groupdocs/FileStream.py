@@ -61,7 +61,7 @@ class FileStream(object):
     @property
     def fileName(self):
         if self.__fileName == None and self.__filePath != None:
-            self.__fileName = os.path.getsize(self.__filePath)
+            self.__fileName = os.path.basename(self.__filePath)
         elif self.__fileName == None and self.__response != None:
             self.__fileName = self.__getValueFromCD('filename') or self.__getFileNameFromUrl(self.__response.url)
         return self.__fileName

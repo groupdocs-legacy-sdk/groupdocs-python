@@ -23,16 +23,16 @@ class SetCollaboratorsResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'sessionGuid': 'str',
             'documentGuid': 'str',
-            'collaborators': 'list[ReviewerInfo]',
-            'owner': 'ReviewerInfo'
+            'sessionGuid': 'str',
+            'owner': 'ReviewerInfo',
+            'collaborators': 'list[ReviewerInfo]'
 
         }
 
 
-        self.sessionGuid = None # str
         self.documentGuid = None # str
-        self.collaborators = None # list[ReviewerInfo]
+        self.sessionGuid = None # str
         self.owner = None # ReviewerInfo
+        self.collaborators = None # list[ReviewerInfo]
         

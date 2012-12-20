@@ -23,12 +23,12 @@ class SignatureEnvelopeDocumentsResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'documents': 'list[SignatureEnvelopeDocumentInfo]',
-            'envelopeId': 'str'
+            'envelopeId': 'str',
+            'documents': 'list[SignatureEnvelopeDocumentInfo]'
 
         }
 
 
-        self.documents = None # list[SignatureEnvelopeDocumentInfo]
         self.envelopeId = None # str
+        self.documents = None # list[SignatureEnvelopeDocumentInfo]
         

@@ -23,14 +23,14 @@ class AddDocumentDataSourceResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'datasource_id': 'float',
+            'job_id': 'float',
             'document_id': 'float',
-            'job_id': 'float'
+            'datasource_id': 'float'
 
         }
 
 
-        self.datasource_id = None # float
-        self.document_id = None # float
         self.job_id = None # float
+        self.document_id = None # float
+        self.datasource_id = None # float
         

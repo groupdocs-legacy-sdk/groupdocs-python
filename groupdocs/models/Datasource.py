@@ -24,19 +24,19 @@ class Datasource:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'float',
-            'modified_on': 'long',
-            'created_on': 'long',
             'questionnaire_id': 'float',
             'descr': 'str',
-            'fields': 'list[DatasourceField]'
+            'fields': 'list[DatasourceField]',
+            'created_on': 'long',
+            'modified_on': 'long'
 
         }
 
 
         self.id = None # float
-        self.modified_on = None # long
-        self.created_on = None # long
         self.questionnaire_id = None # float
         self.descr = None # str
         self.fields = None # list[DatasourceField]
+        self.created_on = None # long
+        self.modified_on = None # long
         

@@ -25,14 +25,14 @@ class StorageInfoResult:
         self.swaggerTypes = {
             'total_space': 'long',
             'avail_space': 'long',
-            'avail_credits': 'int',
-            'doc_credits': 'int'
+            'doc_credits': 'int',
+            'avail_credits': 'int'
 
         }
 
 
         self.total_space = None # long
         self.avail_space = None # long
-        self.avail_credits = None # int
         self.doc_credits = None # int
+        self.avail_credits = None # int
         

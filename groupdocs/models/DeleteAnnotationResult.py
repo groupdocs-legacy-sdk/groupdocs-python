@@ -23,12 +23,12 @@ class DeleteAnnotationResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
-            'id': 'float'
+            'id': 'float',
+            'guid': 'str'
 
         }
 
 
-        self.guid = None # str
         self.id = None # float
+        self.guid = None # str
         

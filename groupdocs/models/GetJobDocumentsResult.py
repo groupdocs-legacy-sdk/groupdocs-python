@@ -23,14 +23,14 @@ class GetJobDocumentsResult:
 
     def __init__(self):
         self.swaggerTypes = {
+            'job_status': 'str',
             'inputs': 'list[JobInputDocument]',
-            'outputs': 'list[JobOutputDocument]',
-            'job_status': 'str'
+            'outputs': 'list[JobOutputDocument]'
 
         }
 
 
+        self.job_status = None # str
         self.inputs = None # list[JobInputDocument]
         self.outputs = None # list[JobOutputDocument]
-        self.job_status = None # str
         

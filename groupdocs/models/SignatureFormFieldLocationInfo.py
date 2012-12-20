@@ -23,36 +23,36 @@ class SignatureFormFieldLocationInfo:
 
     def __init__(self):
         self.swaggerTypes = {
+            'id': 'str',
+            'documentGuid': 'str',
+            'fieldGuid': 'str',
+            'page': 'int',
+            'locationX': 'float',
+            'locationY': 'float',
+            'locationWidth': 'float',
             'locationHeight': 'float',
             'fontName': 'str',
             'fontColor': 'str',
-            'locationX': 'float',
-            'fontBold': 'bool',
             'fontSize': 'float',
-            'locationY': 'float',
-            'id': 'str',
-            'documentGuid': 'str',
+            'fontBold': 'bool',
             'fontItalic': 'bool',
-            'fontUnderline': 'bool',
-            'page': 'int',
-            'fieldGuid': 'str',
-            'locationWidth': 'float'
+            'fontUnderline': 'bool'
 
         }
 
 
+        self.id = None # str
+        self.documentGuid = None # str
+        self.fieldGuid = None # str
+        self.page = None # int
+        self.locationX = None # float
+        self.locationY = None # float
+        self.locationWidth = None # float
         self.locationHeight = None # float
         self.fontName = None # str
         self.fontColor = None # str
-        self.locationX = None # float
-        self.fontBold = None # bool
         self.fontSize = None # float
-        self.locationY = None # float
-        self.id = None # str
-        self.documentGuid = None # str
+        self.fontBold = None # bool
         self.fontItalic = None # bool
         self.fontUnderline = None # bool
-        self.page = None # int
-        self.fieldGuid = None # str
-        self.locationWidth = None # float
         

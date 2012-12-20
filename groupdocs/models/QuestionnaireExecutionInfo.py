@@ -23,32 +23,32 @@ class QuestionnaireExecutionInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'id': 'float',
-            'datasource_id': 'float',
+            'status': 'str',
             'guid': 'str',
-            'executive': 'UserIdentity',
-            'document': 'DocumentDownloadInfo',
             'collector_id': 'float',
             'collector_guid': 'str',
-            'status': 'str',
-            'approver': 'UserIdentity',
-            'owner': 'UserIdentity',
             'questionnaire_name': 'str',
-            'modified': 'long'
+            'owner': 'UserIdentity',
+            'executive': 'UserIdentity',
+            'approver': 'UserIdentity',
+            'datasource_id': 'float',
+            'id': 'float',
+            'modified': 'long',
+            'document': 'DocumentDownloadInfo'
 
         }
 
 
-        self.id = None # float
-        self.datasource_id = None # float
+        self.status = None # str
         self.guid = None # str
-        self.executive = None # UserIdentity
-        self.document = None # DocumentDownloadInfo
         self.collector_id = None # float
         self.collector_guid = None # str
-        self.status = None # str
-        self.approver = None # UserIdentity
-        self.owner = None # UserIdentity
         self.questionnaire_name = None # str
+        self.owner = None # UserIdentity
+        self.executive = None # UserIdentity
+        self.approver = None # UserIdentity
+        self.datasource_id = None # float
+        self.id = None # float
         self.modified = None # long
+        self.document = None # DocumentDownloadInfo
         

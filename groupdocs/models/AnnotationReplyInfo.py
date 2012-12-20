@@ -24,19 +24,19 @@ class AnnotationReplyInfo:
     def __init__(self):
         self.swaggerTypes = {
             'guid': 'str',
-            'repliedOn': 'long',
-            'text': 'str',
+            'userGuid': 'str',
             'userName': 'str',
-            'parentReplyGuid': 'str',
-            'userGuid': 'str'
+            'text': 'str',
+            'repliedOn': 'long',
+            'parentReplyGuid': 'str'
 
         }
 
 
         self.guid = None # str
-        self.repliedOn = None # long
-        self.text = None # str
-        self.userName = None # str
-        self.parentReplyGuid = None # str
         self.userGuid = None # str
+        self.userName = None # str
+        self.text = None # str
+        self.repliedOn = None # long
+        self.parentReplyGuid = None # str
         

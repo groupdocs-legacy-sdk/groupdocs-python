@@ -24,13 +24,13 @@ class DocumentDetailsResult:
     def __init__(self):
         self.swaggerTypes = {
             'guid': 'str',
-            'supported': 'bool',
-            'name': 'str'
+            'name': 'str',
+            'supported': 'bool'
 
         }
 
 
         self.guid = None # str
-        self.supported = None # bool
         self.name = None # str
+        self.supported = None # bool
         

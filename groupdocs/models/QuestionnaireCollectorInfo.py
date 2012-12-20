@@ -23,24 +23,24 @@ class QuestionnaireCollectorInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
             'id': 'float',
-            'status': 'str',
-            'resolved_exectuions': 'int',
-            'questionnaire_id': 'float',
-            'emails': 'list[str]',
+            'guid': 'str',
             'type': 'str',
+            'status': 'str',
+            'questionnaire_id': 'float',
+            'resolved_exectuions': 'int',
+            'emails': 'list[str]',
             'modified': 'long'
 
         }
 
 
-        self.guid = None # str
         self.id = None # float
-        self.status = None # str
-        self.resolved_exectuions = None # int
-        self.questionnaire_id = None # float
-        self.emails = None # list[str]
+        self.guid = None # str
         self.type = None # str
+        self.status = None # str
+        self.questionnaire_id = None # float
+        self.resolved_exectuions = None # int
+        self.emails = None # list[str]
         self.modified = None # long
         

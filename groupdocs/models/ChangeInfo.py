@@ -24,19 +24,19 @@ class ChangeInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'float',
-            'text': 'str',
-            'page': 'Page',
+            'type': 'str',
             'action': 'str',
+            'page': 'Page',
             'box': 'Rectangle',
-            'type': 'str'
+            'text': 'str'
 
         }
 
 
         self.id = None # float
-        self.text = None # str
-        self.page = None # Page
-        self.action = None # str
-        self.box = None # Rectangle
         self.type = None # str
+        self.action = None # str
+        self.page = None # Page
+        self.box = None # Rectangle
+        self.text = None # str
         

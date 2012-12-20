@@ -23,32 +23,32 @@ class AnnotationInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'createdOn': 'long',
             'guid': 'str',
-            'sessionGuid': 'str',
             'documentGuid': 'str',
+            'sessionGuid': 'str',
+            'creatorGuid': 'str',
+            'box': 'Rectangle',
             'annotationPosition': 'Point',
             'range': 'Range',
-            'creatorGuid': 'str',
             'svgPath': 'str',
-            'replies': 'list[AnnotationReplyInfo]',
-            'box': 'Rectangle',
+            'type': 'str',
             'access': 'str',
-            'type': 'str'
+            'replies': 'list[AnnotationReplyInfo]',
+            'createdOn': 'long'
 
         }
 
 
-        self.createdOn = None # long
         self.guid = None # str
-        self.sessionGuid = None # str
         self.documentGuid = None # str
+        self.sessionGuid = None # str
+        self.creatorGuid = None # str
+        self.box = None # Rectangle
         self.annotationPosition = None # Point
         self.range = None # Range
-        self.creatorGuid = None # str
         self.svgPath = None # str
-        self.replies = None # list[AnnotationReplyInfo]
-        self.box = None # Rectangle
-        self.access = None # str
         self.type = None # str
+        self.access = None # str
+        self.replies = None # list[AnnotationReplyInfo]
+        self.createdOn = None # long
         

@@ -23,12 +23,12 @@ class CreateJobResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'job_guid': 'str',
-            'job_id': 'float'
+            'job_id': 'float',
+            'job_guid': 'str'
 
         }
 
 
-        self.job_guid = None # str
         self.job_id = None # float
+        self.job_guid = None # str
         

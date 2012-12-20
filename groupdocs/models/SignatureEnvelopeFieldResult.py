@@ -23,16 +23,16 @@ class SignatureEnvelopeFieldResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'field': 'SignatureEnvelopeFieldInfo',
-            'recipientId': 'str',
             'envelopeId': 'str',
-            'documentId': 'str'
+            'documentId': 'str',
+            'recipientId': 'str',
+            'field': 'SignatureEnvelopeFieldInfo'
 
         }
 
 
-        self.field = None # SignatureEnvelopeFieldInfo
-        self.recipientId = None # str
         self.envelopeId = None # str
         self.documentId = None # str
+        self.recipientId = None # str
+        self.field = None # SignatureEnvelopeFieldInfo
         

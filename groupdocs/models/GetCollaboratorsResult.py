@@ -23,18 +23,18 @@ class GetCollaboratorsResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'sessionGuid': 'str',
             'documentGuid': 'str',
+            'sessionGuid': 'str',
+            'owner': 'ReviewerInfo',
             'collaborators': 'list[ReviewerInfo]',
-            'shared_link_access_rights': 'int',
-            'owner': 'ReviewerInfo'
+            'shared_link_access_rights': 'int'
 
         }
 
 
-        self.sessionGuid = None # str
         self.documentGuid = None # str
+        self.sessionGuid = None # str
+        self.owner = None # ReviewerInfo
         self.collaborators = None # list[ReviewerInfo]
         self.shared_link_access_rights = None # int
-        self.owner = None # ReviewerInfo
         

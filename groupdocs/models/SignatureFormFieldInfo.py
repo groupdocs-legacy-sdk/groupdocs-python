@@ -24,31 +24,31 @@ class SignatureFormFieldInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'str',
-            'acceptableValues': 'str',
+            'formGuid': 'str',
             'participantGuid': 'str',
+            'name': 'str',
+            'mandatory': 'bool',
             'regularExpression': 'str',
+            'data': 'str',
+            'fillTimeStamp': 'str',
             'locations': 'list[SignatureFormFieldLocationInfo]',
             'fieldType': 'int',
-            'mandatory': 'bool',
-            'name': 'str',
-            'data': 'list[int]',
-            'fillTimeStamp': 'str',
-            'defaultValue': 'str',
-            'formGuid': 'str'
+            'acceptableValues': 'str',
+            'defaultValue': 'str'
 
         }
 
 
         self.id = None # str
-        self.acceptableValues = None # str
+        self.formGuid = None # str
         self.participantGuid = None # str
+        self.name = None # str
+        self.mandatory = None # bool
         self.regularExpression = None # str
+        self.data = None # str
+        self.fillTimeStamp = None # str
         self.locations = None # list[SignatureFormFieldLocationInfo]
         self.fieldType = None # int
-        self.mandatory = None # bool
-        self.name = None # str
-        self.data = None # list[int]
-        self.fillTimeStamp = None # str
+        self.acceptableValues = None # str
         self.defaultValue = None # str
-        self.formGuid = None # str
         

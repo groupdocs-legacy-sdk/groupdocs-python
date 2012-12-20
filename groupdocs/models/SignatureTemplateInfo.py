@@ -23,34 +23,34 @@ class SignatureTemplateInfo:
 
     def __init__(self):
         self.swaggerTypes = {
-            'ownerShouldSign': 'bool',
-            'recipients': 'list[SignatureTemplateRecipientInfo]',
-            'reminderTime': 'float',
-            'emailSubject': 'str',
             'id': 'str',
+            'name': 'str',
+            'ownerGuid': 'str',
+            'reminderTime': 'float',
             'stepExpireTime': 'float',
             'templateExpireTime': 'float',
-            'emailBody': 'str',
+            'ownerShouldSign': 'bool',
             'orderedSignature': 'bool',
+            'emailSubject': 'str',
+            'emailBody': 'str',
             'documentsCount': 'float',
-            'ownerGuid': 'str',
             'documentsPages': 'float',
-            'name': 'str'
+            'recipients': 'list[SignatureTemplateRecipientInfo]'
 
         }
 
 
-        self.ownerShouldSign = None # bool
-        self.recipients = None # list[SignatureTemplateRecipientInfo]
-        self.reminderTime = None # float
-        self.emailSubject = None # str
         self.id = None # str
+        self.name = None # str
+        self.ownerGuid = None # str
+        self.reminderTime = None # float
         self.stepExpireTime = None # float
         self.templateExpireTime = None # float
-        self.emailBody = None # str
+        self.ownerShouldSign = None # bool
         self.orderedSignature = None # bool
+        self.emailSubject = None # str
+        self.emailBody = None # str
         self.documentsCount = None # float
-        self.ownerGuid = None # str
         self.documentsPages = None # float
-        self.name = None # str
+        self.recipients = None # list[SignatureTemplateRecipientInfo]
         

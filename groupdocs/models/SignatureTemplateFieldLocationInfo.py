@@ -23,36 +23,36 @@ class SignatureTemplateFieldLocationInfo:
 
     def __init__(self):
         self.swaggerTypes = {
+            'id': 'str',
+            'documentId': 'str',
+            'fieldId': 'str',
+            'page': 'int',
+            'locationX': 'float',
+            'locationY': 'float',
+            'locationWidth': 'float',
             'locationHeight': 'float',
             'fontName': 'str',
             'fontColor': 'str',
-            'locationX': 'float',
-            'fontBold': 'bool',
-            'fieldId': 'str',
             'fontSize': 'float',
-            'locationY': 'float',
-            'id': 'str',
+            'fontBold': 'bool',
             'fontItalic': 'bool',
-            'fontUnderline': 'bool',
-            'page': 'int',
-            'locationWidth': 'float',
-            'documentId': 'str'
+            'fontUnderline': 'bool'
 
         }
 
 
+        self.id = None # str
+        self.documentId = None # str
+        self.fieldId = None # str
+        self.page = None # int
+        self.locationX = None # float
+        self.locationY = None # float
+        self.locationWidth = None # float
         self.locationHeight = None # float
         self.fontName = None # str
         self.fontColor = None # str
-        self.locationX = None # float
-        self.fontBold = None # bool
-        self.fieldId = None # str
         self.fontSize = None # float
-        self.locationY = None # float
-        self.id = None # str
+        self.fontBold = None # bool
         self.fontItalic = None # bool
         self.fontUnderline = None # bool
-        self.page = None # int
-        self.locationWidth = None # float
-        self.documentId = None # str
         

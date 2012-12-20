@@ -23,22 +23,22 @@ class SignatureTemplateDocumentInfo:
 
     def __init__(self):
         self.swaggerTypes = {
+            'documentId': 'str',
             'templateId': 'str',
-            'fieldsCount': 'int',
             'order': 'int',
             'name': 'str',
-            'originalDocumentPagesCount': 'int',
             'originalDocumentMD5': 'str',
-            'documentId': 'str'
+            'originalDocumentPagesCount': 'int',
+            'fieldsCount': 'int'
 
         }
 
 
+        self.documentId = None # str
         self.templateId = None # str
-        self.fieldsCount = None # int
         self.order = None # int
         self.name = None # str
-        self.originalDocumentPagesCount = None # int
         self.originalDocumentMD5 = None # str
-        self.documentId = None # str
+        self.originalDocumentPagesCount = None # int
+        self.fieldsCount = None # int
         

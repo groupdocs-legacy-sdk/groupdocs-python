@@ -23,14 +23,14 @@ class UpdateAccountUserResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'guid': 'str',
             'id': 'float',
+            'guid': 'str',
             'primary_email': 'str'
 
         }
 
 
-        self.guid = None # str
         self.id = None # float
+        self.guid = None # str
         self.primary_email = None # str
         

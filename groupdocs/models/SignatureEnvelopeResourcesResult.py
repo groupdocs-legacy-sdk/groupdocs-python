@@ -23,14 +23,14 @@ class SignatureEnvelopeResourcesResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'dates': 'list[str]',
+            'documents': 'list[SignatureEnvelopeDocumentInfo]',
             'recipients': 'list[SignatureEnvelopeRecipientInfo]',
-            'documents': 'list[SignatureEnvelopeDocumentInfo]'
+            'dates': 'list[str]'
 
         }
 
 
-        self.dates = None # list[str]
-        self.recipients = None # list[SignatureEnvelopeRecipientInfo]
         self.documents = None # list[SignatureEnvelopeDocumentInfo]
+        self.recipients = None # list[SignatureEnvelopeRecipientInfo]
+        self.dates = None # list[str]
         
