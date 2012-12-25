@@ -1,8 +1,7 @@
-#<i>This sample will show how to use <b>ListEntities</b> method from Storage  API  to list files within GroupDocs Storage</i>
+####<i>This sample will show how to use <b>ListEntities</b> method from Storage  API  to list files within GroupDocs Storage</i>
 
-
-import base64
 #Import of classes from libraries
+import base64
 from pyramid.renderers import render_to_response
 
 from groupdocs.ApiClient import ApiClient
