@@ -95,18 +95,16 @@ class ApiClient(object):
 
         data = None
 
-        if method == 'GET':
+        if queryParams:
+            # Need to remove None values, these should not be sent
+            sentQueryParams = {}
+            for param, value in queryParams.items():
+                if value != None:
+                    sentQueryParams[param] = value
+            if sentQueryParams:
+                url = url + '?' + urllib.urlencode(sentQueryParams)
 
-            if queryParams:
-                # Need to remove None values, these should not be sent
-                sentQueryParams = {}
-                for param, value in queryParams.items():
-                    if value != None:
-                        sentQueryParams[param] = value
-                if sentQueryParams:
-                    url = url + '?' + urllib.urlencode(sentQueryParams)
-
-        elif method in ['POST', 'PUT', 'DELETE']:
+        if method in ['POST', 'PUT', 'DELETE']:
 
             if isFileUpload:
                 data = postData.inputStream
