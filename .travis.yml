@@ -14,4 +14,3 @@ before_script:
   - cd tests/samples-ui-tests
   
 script: mvn -q -s settings.xml clean test
-      
