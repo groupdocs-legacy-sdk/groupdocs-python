@@ -8,5 +8,6 @@ install:
   - pip install --use-mirrors unittest2;
   
 
-script: script/travis.sh
+script: 
+  - script/travis.sh
       
