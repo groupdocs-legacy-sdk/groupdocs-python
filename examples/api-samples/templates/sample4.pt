@@ -31,7 +31,7 @@
        <br />
        <input type='submit' value='Download'/>
    </form>
-   ${structure:massage|''}
+   ${structure:message|''}
    </div>
    <br/>
  </div>
