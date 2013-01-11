@@ -13,4 +13,4 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - cd tests/samples-ui-tests
   
-script: mvn -q -s settings.xml clean test
+script: mvn -q -s settings.xml clean test -Dsite.url="http://groupdocs-python.herokuapp.com/"
