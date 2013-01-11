@@ -11,6 +11,5 @@ install:
 script: nosetests tests/unit/
   - git clone --branch=master --depth=100 --quiet git://github.com/groupdocs/groupdocs-sdk-samples-uitests.git tests/ui
   - cd tests/ui
-  - make test
   - mvn -q -s settings.xml clean test
       
