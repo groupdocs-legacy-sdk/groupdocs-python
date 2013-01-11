@@ -3,45 +3,35 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
-		
-<h3 style="text-align:center;"><a href="/index.php">GroupDocs Pyhton SDK Samples</a> - Sample5</h3>
+
+<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample16</h3>
 
 <div class='samplecontent' style="padding:10px;">
-   <i>This sample will show how to Copy/Move file from GroupDocs using Python SDK</i> <br/>
-   
-   <br/><p>You entered: 
-   <p>UserId = ${userId|''}
-   <p>PrivateKey = ${privateKey|''}
+   <i>This sample will show how to insert Assembly questionary into webpage using Python SDK</i> <br/>
+
+   <br/><p>You entered:
+   <p>FileId = ${fileId|''}
    <p><font color="red">${error|''}</font>
-   <div id="requestForm" style="padding:20px; border:1px solid black;">
-   <p> Enter data for request and press "Copy" button </p>
-   <form action="/sample5" method = "post" enctype = 'multipart/form-data'>
-       <label for='client_id'>GroupDocs Client ID</label>
-       <br />
-       <input type='text', name='client_id' value="${userId|''}" />
-       <br />
-       <label for='private_key'>GroupDocs Private Key</label>
-       <br />
-       <input type='text', name='private_key'  value="${privateKey|''}" />
-       <br />
-       <label for='private_key'>Source Path</label>
-       <br />
-       <input type='text', name='srcPath'  value="${srcPath|''}" placeholder='myFile.doc or myFolder/myFile.doc'/>
-       <br />
-       <label for='private_key'>Destination Path</label>
-       <br />
-       <input type='text', name='destPath'  value="${destPath|''}" placeholder='myNewFile.doc or myFolder/myNewFile.doc'/>
-       <br />
-       <input name='copy' type='submit' value='Copy'/>
-       <input name='move' type='submit' value='Move'/>
-   </form>
-   </div>
-   <h4><font color="green">${massage|''}</font></h4>
    <br/>
- </div>
+   <div id="requestForm" style="padding:20px; border:1px solid black;">
+   <p> Enter data for request and press "Make request" button </p>
+   <form action="/sample16" method = "post" enctype = 'multipart/form-data'>
+        <label for='private_key'>GroupDocs File ID</label>
+        <br />
+        <input type='text', name='file_id' />
+        <br />
+        <input type='submit' value='Makre Request'/>
+     </form>
+    </div>
+    <div  style="padding:20px; border:1px solid black;">
+        <p> Results: </p>
+        ${structure:massage|''}
+        ${structure:iframe|''}
+    </div>
+</div>
 
 <div style="padding:10px;">
-Choose another one sample:
+Choose anothe one sample:
 <ul>
     <li> <a href="/sample1">Sample1 - How to login to GroupDocs using the API</li>
     <li> <a href="/sample2">Sample2 - How to list files within GroupDocs Storage using the Storage API</li>
@@ -63,7 +53,6 @@ Choose another one sample:
     <li> <a href="/sample18">Sample18 - How to convert Doc to Docx, Docx to Doc, Docx to PDF and PPT to PDF</li>
 </ul>
 </div>
-
     </tal:block>
 </metal:main>
 

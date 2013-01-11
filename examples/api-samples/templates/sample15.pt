@@ -4,57 +4,36 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
 
-		<h3 style="text-align:center;">
-			<a href="/">GroupDocs Python SDK Samples</a> - Sample8
-		</h3>
-		
+		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample15</h3>
+
 		<div class='samplecontent' style="padding:10px;">
-		   <i>This sample will show how to return a URL representing a single page of a Document using Python SDK</i> <br/>
-		   
-		   <br/><p>You entered: 
-		   <p>UserId = ${userId|''}</p>
-		   <p>PrivateKey = ${privateKey|''}</p>
-		   <p>File Id = ${fileId|''}</p>
-		   <p>Page number = ${pageNumber|''}</p>
-		   <p><font color="red">${error|''}</font></p>
-		   <div id="requestForm" style="padding:20px; border:1px solid black;">
+		   <i>This sample will show how to check the number of document's views using Python SDK</i> <br/>
+
+		   <br/><p>You entered:
+		   <p>User ID = ${userId|''}
+		   <p>Private key = ${privateKey|''}
+		   <p><font color="red">${error|''}</font>
+		   <div id="requestForm" style="padding: 20px; border: 1px solid black;">
 		   <p> Enter data for request and press "Make request" button </p>
-		        <form action="/sample8" method = "post" enctype = 'multipart/form-data'>
-		            <label for='client_id'>GroupDocs Client ID</label>
+		        <form action="/sample15" method = "post" enctype = 'multipart/form-data'>
+		           <label for='client_id'>GroupDocs Client ID</label>
 		            <br />
 		            <input type='text' name='client_id' value="${userId|''}" />
 		            <br />
 		            <label for='private_key'>GroupDocs Private Key</label>
 		            <br />
-		            <input type='text' name='private_key' value="${privateKey|''}" />
-		            <br />
-		            <label for='fileId'>GroupDocs file ID</label>
-		            <br />
-		            <input type='text' name='fileId' value="${fileId|''}" />
-		            <br />
-		            <label for='pageNumber'>GroupDocs page number</label>
-		            <br />
-		            <input type='text' name='pageNumber' value="${pageNumber|''}" />
+		            <input type='text' name='private_key'  value="${privateKey|''}" />
 		            <br />
 		            <input type='submit' value='Make Request'/>
 		        </form>
 		   </div>
-		   <div  style="padding:20px; border:1px solid black;">
-		        <p> Results: </p>
-		        <table style="border:1px double black;">
-		          <tr>
-		              <th>Field</th><th>Value</th>
-		          </tr>
-		          <tr>
-		               <td>Page URL</td><td>${url|''}</td>
-		          </tr>
-		        </table>
-		        <font color="green">The page you requested:</font> <br />
-		        <img src="${url|''}">
-		   </div>
+            <div  style="padding:20px; border:1px solid black;">
+                <p> Number of document's views: </p>
+                ${views|''}
+            </div>
 		   <br/>
 		</div>
-		
+
 		<div style="padding:10px;">
 		Choose anothe one sample:
         <ul>
