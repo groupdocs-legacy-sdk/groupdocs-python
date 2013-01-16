@@ -1,3 +1,6 @@
+### This sample will show how to upload a file into the storage and compress it into zip archive
+
+# Import of classes from libraries
 from pyramid.renderers import render_to_response
 
 from groupdocs.ApiClient import ApiClient
@@ -5,12 +8,11 @@ from groupdocs.StorageApi import StorageApi
 from groupdocs.FileStream import FileStream
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 
-
 # Checking value on null
 def IsNotNull(value):
     return value is not None and len(value) > 0
 
-# Sample 17
+# Set variables and get POST data
 def sample17(request):
 
     clientId = request.POST.get('client_id')
@@ -21,12 +23,16 @@ def sample17(request):
         return render_to_response('__main__:templates/sample17.pt',
                 { 'error' : 'You do not enter all parameters' })
 
+    #### Create Signer, ApiClient and StorageApi objects
+
+    # Create signer object
     signer = GroupDocsRequestSigner(privateKey)
+    # Create apiClient object
     apiClient = ApiClient(signer)
+    # Create StorageApi object
     api = StorageApi(apiClient)
 
     result = ''
-
     try:
         # a hack to get uploaded file size
         inputFile.file.seek(0, 2)
@@ -39,7 +45,7 @@ def sample17(request):
         # upload file and get response
         response = api.Upload(clientId, inputFile.filename, fs)
 
-        # compress
+        # compress file using upload response
         compress = api.Compress(clientId, response.result.id, "zip")
         if compress.status == "Ok":
             result = "Archive created and saved successfully"
@@ -48,6 +54,7 @@ def sample17(request):
         return render_to_response('__main__:templates/sample17.pt',
             { 'error' : str(e) })
 
+    # Set variables for template
     return render_to_response('__main__:templates/sample17.pt',
             {
             'userId' : clientId,

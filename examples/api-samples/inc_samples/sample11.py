@@ -1,3 +1,6 @@
+### This sample will show how programmatically create and post an annotation into document. How to delete the annotation
+
+# Import of classes from libraries
 from pyramid.renderers import render_to_response
 
 from groupdocs.ApiClient import ApiClient
@@ -8,34 +11,40 @@ from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 def IsNotNull(value):
     return value is not None and len(value) > 0
 
-# Sample 11
+# Set variables and get POST data
 def sample11(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
     fileId = request.POST.get('file_id')
     annotationType = request.POST.get('annotation_type')
 
-
-
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileId) == False or IsNotNull(annotationType) == False:
         return render_to_response('__main__:templates/sample11.pt',
                 { 'error' : 'You do not enter all parameters' })
 
+    #### Create Signer, ApiClient and Annotation Api objects
+
+    # Create signer object
     signer = GroupDocsRequestSigner(privateKey)
+    # Create apiClient object
     apiClient = ApiClient(signer)
+    # Create Annotation object
     ant = AntApi(apiClient)
 
-    # delete annotation
+    # Delete annotation if Delete Button clicked
     if request.POST.get('delete_annotation') == "1":
         ant.DeleteAnnotation(clientId, request.POST.get('annotationId'))
 
-    # required parameters
+    # Required parameters
     allParams = ['box.x', 'box.y', 'text']
+
+    # Added required parameters depends on  annotation type ['type' or 'area']
     if annotationType == "text":
         allParams = allParams + ['box.width', 'box.height', 'annotationPosition.x', 'annotationPosition.y', 'range.position', 'range.length']
     elif annotationType == "area":
         allParams = allParams + ['box.width', 'box.height']
 
+    # Checking required parametems
     for param in allParams:
         needParam = request.POST.get(param)
         if IsNotNull(needParam) == False:
@@ -44,12 +53,13 @@ def sample11(request):
 
     types = {'text' : "0", "area" : "1", "point" : "2"}
 
+    # construct requestBody
     requestBody = {
         "type": types[request.POST.get('annotation_type')],
         "replies": [ { "text": request.POST.get('text') } ],
     }
 
-    # construct requestBody by annotation type
+    # construct requestBody depends on annotation type
     # text annotation
     if annotationType == "text":
         requestBody = dict(requestBody.items() + {
@@ -100,11 +110,13 @@ def sample11(request):
         }.items())
 
     try:
+        # Make a request to Annotation API using clientId, fileId and requestBody
         response = ant.CreateAnnotation(clientId, fileId, requestBody)
     except Exception, e:
         return render_to_response('__main__:templates/sample11.pt',
             { 'error' : str(e) })
 
+    # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample11.pt',
             { 'userId' : clientId,
               'privateKey' : privateKey,
