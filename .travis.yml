@@ -6,6 +6,8 @@ python:
 
 install:
   - pip install --use-mirrors unittest2;
+  - pip install --use-mirrors nose-testconfig;
+  - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install --use-mirrors argparse; fi
   
 before_script:
   - git clone --branch=master --depth=100 --quiet git://github.com/groupdocs/groupdocs-sdk-samples-uitests.git tests/samples-ui-tests
@@ -13,4 +15,6 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - cd tests/samples-ui-tests
   
-script: mvn -q -s settings.xml clean test -Dsite.url="http://groupdocs-python.herokuapp.com/"
+script:
+  - nosetests tests/unit/
+  - mvn -q -s settings.xml clean test -Dsite.url="http://groupdocs-python.herokuapp.com/"
