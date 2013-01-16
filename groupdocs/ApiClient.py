@@ -115,9 +115,6 @@ class ApiClient(object):
             else: 
                 data = self.signer.signContent(postData, headers)
 
-        else:
-            raise Exception('Method ' + method + ' is not recognized.')
-
         if self.__debug:
             handler = urllib2.HTTPSHandler(debuglevel=1) if url.lower().startswith('https') else urllib2.HTTPHandler(debuglevel=1)
             opener = urllib2.build_opener(handler)
