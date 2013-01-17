@@ -520,7 +520,7 @@ class AntApi(object):
         Args:
             userId, str: User GUID (required)
             fileId, str: File ID (required)
-            reviewerId, System.Decimal,System: Reviewer ID (required)
+            reviewerId, str: Reviewer ID (required)
             
         Returns: AddCollaboratorResponse
         """
