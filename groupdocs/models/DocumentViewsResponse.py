@@ -25,7 +25,8 @@ class DocumentViewsResponse:
         self.swaggerTypes = {
             'result': 'DocumentViewsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class DocumentViewsResponse:
         self.result = None # DocumentViewsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

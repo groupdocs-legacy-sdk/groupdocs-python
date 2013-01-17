@@ -30,7 +30,9 @@ class SignatureEnvelopeSettings:
             'envelopeExpireTime': 'float',
             'emailSubject': 'str',
             'emailBody': 'str',
-            'isDemo': 'bool'
+            'isDemo': 'bool',
+            'waterMarkText': 'str',
+            'waterMarkImage': 'str'
 
         }
 
@@ -43,4 +45,6 @@ class SignatureEnvelopeSettings:
         self.emailSubject = None # str
         self.emailBody = None # str
         self.isDemo = None # bool
+        self.waterMarkText = None # str
+        self.waterMarkImage = None # str
         

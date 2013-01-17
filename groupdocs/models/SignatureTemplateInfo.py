@@ -35,7 +35,9 @@ class SignatureTemplateInfo:
             'emailBody': 'str',
             'documentsCount': 'float',
             'documentsPages': 'float',
-            'recipients': 'list[SignatureTemplateRecipientInfo]'
+            'recipients': 'list[SignatureTemplateRecipientInfo]',
+            'waterMarkText': 'str',
+            'waterMarkImage': 'str'
 
         }
 
@@ -53,4 +55,6 @@ class SignatureTemplateInfo:
         self.documentsCount = None # float
         self.documentsPages = None # float
         self.recipients = None # list[SignatureTemplateRecipientInfo]
+        self.waterMarkText = None # str
+        self.waterMarkImage = None # str
         

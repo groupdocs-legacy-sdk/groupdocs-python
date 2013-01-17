@@ -25,7 +25,9 @@ class SignatureFormSettings:
         self.swaggerTypes = {
             'name': 'str',
             'fieldsInFinalFileName': 'str',
-            'canParticipantDownloadForm': 'bool'
+            'canParticipantDownloadForm': 'bool',
+            'waterMarkText': 'str',
+            'waterMarkImage': 'str'
 
         }
 
@@ -33,4 +35,6 @@ class SignatureFormSettings:
         self.name = None # str
         self.fieldsInFinalFileName = None # str
         self.canParticipantDownloadForm = None # bool
+        self.waterMarkText = None # str
+        self.waterMarkImage = None # str
         

@@ -26,7 +26,8 @@ class ReviewerInfo:
             'id': 'float',
             'guid': 'str',
             'primary_email': 'str',
-            'firstname': 'str',
+            'firstName': 'str',
+            'lastName': 'str',
             'access_rights': 'int',
             'color': 'int',
             'customEmailMessage': 'str'
@@ -37,7 +38,8 @@ class ReviewerInfo:
         self.id = None # float
         self.guid = None # str
         self.primary_email = None # str
-        self.firstname = None # str
+        self.firstName = None # str
+        self.lastName = None # str
         self.access_rights = None # int
         self.color = None # int
         self.customEmailMessage = None # str

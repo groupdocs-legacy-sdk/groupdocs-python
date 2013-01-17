@@ -25,7 +25,8 @@ class FolderMoveResponse:
         self.swaggerTypes = {
             'result': 'FolderMoveResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class FolderMoveResponse:
         self.result = None # FolderMoveResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

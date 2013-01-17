@@ -25,7 +25,8 @@ class GetStatesResponse:
         self.swaggerTypes = {
             'result': 'GetStatesResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetStatesResponse:
         self.result = None # GetStatesResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

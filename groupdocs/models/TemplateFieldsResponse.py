@@ -25,7 +25,8 @@ class TemplateFieldsResponse:
         self.swaggerTypes = {
             'result': 'TemplateFieldsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class TemplateFieldsResponse:
         self.result = None # TemplateFieldsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

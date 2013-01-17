@@ -34,7 +34,8 @@ class SignatureFormFieldInfo:
             'locations': 'list[SignatureFormFieldLocationInfo]',
             'fieldType': 'int',
             'acceptableValues': 'str',
-            'defaultValue': 'str'
+            'defaultValue': 'str',
+            'tooltip': 'str'
 
         }
 
@@ -51,4 +52,5 @@ class SignatureFormFieldInfo:
         self.fieldType = None # int
         self.acceptableValues = None # str
         self.defaultValue = None # str
+        self.tooltip = None # str
         

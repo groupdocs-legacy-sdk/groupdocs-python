@@ -25,7 +25,8 @@ class UserInfoResponse:
         self.swaggerTypes = {
             'result': 'UserInfoResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class UserInfoResponse:
         self.result = None # UserInfoResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

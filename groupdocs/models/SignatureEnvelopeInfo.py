@@ -38,7 +38,9 @@ class SignatureEnvelopeInfo:
             'emailBody': 'str',
             'documentsCount': 'float',
             'documentsPages': 'float',
-            'recipients': 'list[SignatureEnvelopeRecipientInfo]'
+            'recipients': 'list[SignatureEnvelopeRecipientInfo]',
+            'waterMarkText': 'str',
+            'waterMarkImage': 'str'
 
         }
 
@@ -59,4 +61,6 @@ class SignatureEnvelopeInfo:
         self.documentsCount = None # float
         self.documentsPages = None # float
         self.recipients = None # list[SignatureEnvelopeRecipientInfo]
+        self.waterMarkText = None # str
+        self.waterMarkImage = None # str
         

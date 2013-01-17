@@ -31,7 +31,8 @@ class SignatureEnvelopeDocumentInfo:
             'finalDocumentMD5': 'str',
             'originalDocumentPagesCount': 'int',
             'fieldsCount': 'int',
-            'originalDocumentImportedFields': 'list[SignatureDocumentFieldInfo]'
+            'originalDocumentImportedFields': 'list[SignatureDocumentFieldInfo]',
+            'originalDocumentId': 'str'
 
         }
 
@@ -45,4 +46,5 @@ class SignatureEnvelopeDocumentInfo:
         self.originalDocumentPagesCount = None # int
         self.fieldsCount = None # int
         self.originalDocumentImportedFields = None # list[SignatureDocumentFieldInfo]
+        self.originalDocumentId = None # str
         

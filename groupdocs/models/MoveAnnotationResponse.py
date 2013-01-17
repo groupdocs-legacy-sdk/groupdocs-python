@@ -25,7 +25,8 @@ class MoveAnnotationResponse:
         self.swaggerTypes = {
             'result': 'MoveAnnotationResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class MoveAnnotationResponse:
         self.result = None # MoveAnnotationResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

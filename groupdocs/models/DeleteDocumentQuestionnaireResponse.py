@@ -25,7 +25,8 @@ class DeleteDocumentQuestionnaireResponse:
         self.swaggerTypes = {
             'result': 'DeleteDocumentQuestionnaireResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class DeleteDocumentQuestionnaireResponse:
         self.result = None # DeleteDocumentQuestionnaireResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

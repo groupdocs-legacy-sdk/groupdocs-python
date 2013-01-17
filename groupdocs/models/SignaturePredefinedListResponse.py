@@ -25,7 +25,8 @@ class SignaturePredefinedListResponse:
         self.swaggerTypes = {
             'result': 'SignaturePredefinedListResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SignaturePredefinedListResponse:
         self.result = None # SignaturePredefinedListResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

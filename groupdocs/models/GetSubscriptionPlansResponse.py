@@ -25,7 +25,8 @@ class GetSubscriptionPlansResponse:
         self.swaggerTypes = {
             'result': 'GetSubscriptionPlanResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetSubscriptionPlansResponse:
         self.result = None # GetSubscriptionPlanResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

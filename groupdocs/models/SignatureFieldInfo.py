@@ -38,7 +38,8 @@ class SignatureFieldInfo:
             'isSystem': 'bool',
             'fieldType': 'int',
             'acceptableValues': 'str',
-            'defaultValue': 'str'
+            'defaultValue': 'str',
+            'align': 'int'
 
         }
 
@@ -59,4 +60,5 @@ class SignatureFieldInfo:
         self.fieldType = None # int
         self.acceptableValues = None # str
         self.defaultValue = None # str
+        self.align = None # int
         

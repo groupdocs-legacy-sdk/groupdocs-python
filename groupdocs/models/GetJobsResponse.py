@@ -25,7 +25,8 @@ class GetJobsResponse:
         self.swaggerTypes = {
             'result': 'GetJobsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetJobsResponse:
         self.result = None # GetJobsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

@@ -25,7 +25,8 @@ class UpdateQuestionnaireCollectorResponse:
         self.swaggerTypes = {
             'result': 'UpdateQuestionnaireCollectorResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class UpdateQuestionnaireCollectorResponse:
         self.result = None # UpdateQuestionnaireCollectorResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

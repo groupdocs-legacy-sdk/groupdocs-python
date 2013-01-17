@@ -25,7 +25,8 @@ class AddReplyResponse:
         self.swaggerTypes = {
             'result': 'AddReplyResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class AddReplyResponse:
         self.result = None # AddReplyResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

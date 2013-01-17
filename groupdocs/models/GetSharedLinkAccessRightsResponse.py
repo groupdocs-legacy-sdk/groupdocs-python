@@ -25,7 +25,8 @@ class GetSharedLinkAccessRightsResponse:
         self.swaggerTypes = {
             'result': 'GetSharedLinkAccessRightsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetSharedLinkAccessRightsResponse:
         self.result = None # GetSharedLinkAccessRightsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

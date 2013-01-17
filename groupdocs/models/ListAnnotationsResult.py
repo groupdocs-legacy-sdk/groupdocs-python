@@ -25,7 +25,8 @@ class ListAnnotationsResult:
         self.swaggerTypes = {
             'documentGuid': 'str',
             'sessionGuid': 'str',
-            'annotations': 'list[AnnotationInfo]'
+            'annotations': 'list[AnnotationInfo]',
+            'serverTime': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class ListAnnotationsResult:
         self.documentGuid = None # str
         self.sessionGuid = None # str
         self.annotations = None # list[AnnotationInfo]
+        self.serverTime = None # long
         

@@ -25,7 +25,8 @@ class CreateAnnotationResponse:
         self.swaggerTypes = {
             'result': 'CreateAnnotationResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class CreateAnnotationResponse:
         self.result = None # CreateAnnotationResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

@@ -38,6 +38,8 @@ class UserInfo:
             'alerts_eanbled': 'bool',
             'support_eanbled': 'bool',
             'support_email': 'str',
+            'annotation_branded': 'bool',
+            'viewer_branded': 'bool',
             'signedupOn': 'long',
             'signedinOn': 'long',
             'signin_count': 'int',
@@ -64,6 +66,8 @@ class UserInfo:
         self.alerts_eanbled = None # bool
         self.support_eanbled = None # bool
         self.support_email = None # str
+        self.annotation_branded = None # bool
+        self.viewer_branded = None # bool
         self.signedupOn = None # long
         self.signedinOn = None # long
         self.signin_count = None # int

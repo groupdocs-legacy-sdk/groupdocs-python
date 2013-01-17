@@ -514,6 +514,57 @@ class AntApi(object):
         return responseObject
         
         
+    def DeleteDocumentReviewer(self, userId, fileId, reviewerId, **kwargs):
+        """Delete document reviewer
+
+        Args:
+            userId, str: User GUID (required)
+            fileId, str: File ID (required)
+            reviewerId, System.Decimal,System: Reviewer ID (required)
+            
+        Returns: AddCollaboratorResponse
+        """
+        if( userId == None or fileId == None or reviewerId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId', 'reviewerId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method DeleteDocumentReviewer" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/ant/{userId}/files/{fileId}/collaborators/{reviewerId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'DELETE'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        if ('reviewerId' in params):
+            replacement = str(self.apiClient.toPathValue(params['reviewerId']))
+            resourcePath = resourcePath.replace('{' + 'reviewerId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'AddCollaboratorResponse')
+        return responseObject
+        
+        
     def GetReviewerContacts(self, userId, **kwargs):
         """Get list of reviewer contacts
 
@@ -875,6 +926,100 @@ class AntApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'SetSharedLinkAccessRightsResponse')
+        return responseObject
+        
+        
+    def SetSessionCallbackUrl(self, userId, fileId, body, **kwargs):
+        """Set Session Web Hook Callback Url
+
+        Args:
+            userId, str: User GUID (required)
+            fileId, str: File GUID (required)
+            body, str: Callback Url (required)
+            
+        Returns: SetSessionCallbackUrlResponse
+        """
+        if( userId == None or fileId == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method SetSessionCallbackUrl" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/ant/{userId}/files/{fileId}/sessionCallbackUrl'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SetSessionCallbackUrlResponse')
+        return responseObject
+        
+        
+    def SaveTextField(self, userId, annotationId, body, **kwargs):
+        """Save Text Of Text Field
+
+        Args:
+            userId, str: User GUID (required)
+            annotationId, str: Annotation ID (required)
+            body, TextFieldInfo: Text (required)
+            
+        Returns: SaveAnnotationTextResponse
+        """
+        if( userId == None or annotationId == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'annotationId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method SaveTextField" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/ant/{userId}/annotations/{annotationId}/textFieldInfo'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('annotationId' in params):
+            replacement = str(self.apiClient.toPathValue(params['annotationId']))
+            resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SaveAnnotationTextResponse')
         return responseObject
         
         

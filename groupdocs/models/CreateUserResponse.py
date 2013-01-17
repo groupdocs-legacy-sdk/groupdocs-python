@@ -25,7 +25,8 @@ class CreateUserResponse:
         self.swaggerTypes = {
             'result': 'CreateUserResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class CreateUserResponse:
         self.result = None # CreateUserResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

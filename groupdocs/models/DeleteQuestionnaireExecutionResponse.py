@@ -25,7 +25,8 @@ class DeleteQuestionnaireExecutionResponse:
         self.swaggerTypes = {
             'result': 'DeleteQuestionnaireExecutionResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class DeleteQuestionnaireExecutionResponse:
         self.result = None # DeleteQuestionnaireExecutionResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

@@ -25,7 +25,8 @@ class SignatureRolesResponse:
         self.swaggerTypes = {
             'result': 'SignatureRolesResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SignatureRolesResponse:
         self.result = None # SignatureRolesResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

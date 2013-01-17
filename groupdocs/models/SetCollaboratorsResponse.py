@@ -25,7 +25,8 @@ class SetCollaboratorsResponse:
         self.swaggerTypes = {
             'result': 'SetCollaboratorsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SetCollaboratorsResponse:
         self.result = None # SetCollaboratorsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

@@ -25,7 +25,8 @@ class DeleteAccountUserResponse:
         self.swaggerTypes = {
             'result': 'DeleteAccountUserResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class DeleteAccountUserResponse:
         self.result = None # DeleteAccountUserResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

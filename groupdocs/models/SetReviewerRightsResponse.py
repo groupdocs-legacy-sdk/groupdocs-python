@@ -25,7 +25,8 @@ class SetReviewerRightsResponse:
         self.swaggerTypes = {
             'result': 'SetReviewerRightsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SetReviewerRightsResponse:
         self.result = None # SetReviewerRightsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

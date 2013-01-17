@@ -25,7 +25,8 @@ class ListEntitiesResponse:
         self.swaggerTypes = {
             'result': 'ListEntitiesResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class ListEntitiesResponse:
         self.result = None # ListEntitiesResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

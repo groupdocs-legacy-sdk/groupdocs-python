@@ -25,7 +25,8 @@ class SignatureEnvelopeRecipientResponse:
         self.swaggerTypes = {
             'result': 'SignatureEnvelopeRecipientResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SignatureEnvelopeRecipientResponse:
         self.result = None # SignatureEnvelopeRecipientResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

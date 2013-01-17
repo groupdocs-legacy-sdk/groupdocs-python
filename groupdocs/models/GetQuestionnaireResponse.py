@@ -25,7 +25,8 @@ class GetQuestionnaireResponse:
         self.swaggerTypes = {
             'result': 'GetQuestionnaireResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetQuestionnaireResponse:
         self.result = None # GetQuestionnaireResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

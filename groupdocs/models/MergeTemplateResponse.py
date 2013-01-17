@@ -25,7 +25,8 @@ class MergeTemplateResponse:
         self.swaggerTypes = {
             'result': 'MergeTemplateResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class MergeTemplateResponse:
         self.result = None # MergeTemplateResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

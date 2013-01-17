@@ -25,7 +25,8 @@ class GetPlanResponse:
         self.swaggerTypes = {
             'result': 'GetPlanResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetPlanResponse:
         self.result = None # GetPlanResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

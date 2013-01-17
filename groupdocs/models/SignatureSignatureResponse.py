@@ -25,7 +25,8 @@ class SignatureSignatureResponse:
         self.swaggerTypes = {
             'result': 'SignatureSignatureResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SignatureSignatureResponse:
         self.result = None # SignatureSignatureResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

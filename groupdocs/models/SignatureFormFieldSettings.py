@@ -41,7 +41,8 @@ class SignatureFormFieldSettings:
             'forceNewField': 'bool',
             'acceptableValues': 'str',
             'defaultValue': 'str',
-            'tooltip': 'str'
+            'tooltip': 'str',
+            'align': 'int'
 
         }
 
@@ -65,4 +66,5 @@ class SignatureFormFieldSettings:
         self.acceptableValues = None # str
         self.defaultValue = None # str
         self.tooltip = None # str
+        self.align = None # int
         

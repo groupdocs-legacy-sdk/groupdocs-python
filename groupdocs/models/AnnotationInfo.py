@@ -34,7 +34,10 @@ class AnnotationInfo:
             'type': 'str',
             'access': 'str',
             'replies': 'list[AnnotationReplyInfo]',
-            'createdOn': 'long'
+            'createdOn': 'long',
+            'fieldText': 'str',
+            'fontFamily': 'str',
+            'fontSize': 'float'
 
         }
 
@@ -51,4 +54,7 @@ class AnnotationInfo:
         self.access = None # str
         self.replies = None # list[AnnotationReplyInfo]
         self.createdOn = None # long
+        self.fieldText = None # str
+        self.fontFamily = None # str
+        self.fontSize = None # float
         

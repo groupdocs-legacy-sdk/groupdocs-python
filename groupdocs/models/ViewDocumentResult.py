@@ -31,6 +31,8 @@ class ViewDocumentResult:
             'doc_type': 'str',
             'image_urls': 'list[str]',
             'token': 'str',
+            'pageHtml': 'str',
+            'pageCss': 'str',
             'id': 'float',
             'guid': 'str'
 
@@ -45,6 +47,8 @@ class ViewDocumentResult:
         self.doc_type = None # str
         self.image_urls = None # list[str]
         self.token = None # str
+        self.pageHtml = None # str
+        self.pageCss = None # str
         self.id = None # float
         self.guid = None # str
         

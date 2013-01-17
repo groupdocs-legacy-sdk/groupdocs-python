@@ -25,7 +25,8 @@ class GetDatasourcesResponse:
         self.swaggerTypes = {
             'result': 'GetDatasourcesResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetDatasourcesResponse:
         self.result = None # GetDatasourcesResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

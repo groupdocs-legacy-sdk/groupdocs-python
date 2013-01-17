@@ -32,7 +32,7 @@ class SignatureEnvelopeRecipientInfo:
             'roleId': 'float',
             'status': 'int',
             'statusMessage': 'str',
-            'statusDateTime': 'datetime',
+            'statusDateTime': 'str',
             'delegatedRecipientId': 'float',
             'signatureFingerprint': 'str',
             'signatureHost': 'str',
@@ -51,7 +51,7 @@ class SignatureEnvelopeRecipientInfo:
         self.roleId = None # float
         self.status = None # int
         self.statusMessage = None # str
-        self.statusDateTime = None # datetime
+        self.statusDateTime = None # str
         self.delegatedRecipientId = None # float
         self.signatureFingerprint = None # str
         self.signatureHost = None # str

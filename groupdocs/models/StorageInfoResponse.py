@@ -25,7 +25,8 @@ class StorageInfoResponse:
         self.swaggerTypes = {
             'result': 'StorageInfoResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class StorageInfoResponse:
         self.result = None # StorageInfoResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

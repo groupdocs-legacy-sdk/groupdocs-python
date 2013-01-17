@@ -25,7 +25,8 @@ class SignatureContactsImportResponse:
         self.swaggerTypes = {
             'result': 'SignatureContactsImportResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SignatureContactsImportResponse:
         self.result = None # SignatureContactsImportResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

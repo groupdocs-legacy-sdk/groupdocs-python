@@ -25,7 +25,8 @@ class UpdateUserResponse:
         self.swaggerTypes = {
             'result': 'UpdateUserResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class UpdateUserResponse:
         self.result = None # UpdateUserResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

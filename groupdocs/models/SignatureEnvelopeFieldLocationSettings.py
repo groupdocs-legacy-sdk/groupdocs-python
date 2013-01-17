@@ -34,7 +34,8 @@ class SignatureEnvelopeFieldLocationSettings:
             'fontBold': 'bool',
             'fontItalic': 'bool',
             'fontUnderline': 'bool',
-            'forceNewField': 'bool'
+            'forceNewField': 'bool',
+            'align': 'int'
 
         }
 
@@ -51,4 +52,5 @@ class SignatureEnvelopeFieldLocationSettings:
         self.fontItalic = None # bool
         self.fontUnderline = None # bool
         self.forceNewField = None # bool
+        self.align = None # int
         

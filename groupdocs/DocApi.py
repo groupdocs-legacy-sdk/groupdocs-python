@@ -102,6 +102,61 @@ class DocApi(object):
         return responseObject
         
         
+    def ViewDocumentAsHtml(self, userId, fileId, **kwargs):
+        """View Document
+
+        Args:
+            userId, str: User GUID (required)
+            fileId, str: File GUID (required)
+            pageNumber, str: Page Number (optional)
+            pageCount, str: Page Count (optional)
+            
+        Returns: ViewDocumentResponse
+        """
+        if( userId == None or fileId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId', 'pageNumber', 'pageCount']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method ViewDocumentAsHtml" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/doc/{userId}/files/{fileId}/htmlRepresentations?page_number={pageNumber}&page_count={pageCount}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('pageNumber' in params):
+            queryParams['page_number'] = self.apiClient.toPathValue(params['pageNumber'])
+        if ('pageCount' in params):
+            queryParams['page_count'] = self.apiClient.toPathValue(params['pageCount'])
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'ViewDocumentResponse')
+        return responseObject
+        
+        
     def GetDocumentViews(self, userId, **kwargs):
         """Get Document Views
 
@@ -846,6 +901,56 @@ class DocApi(object):
         return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams, FileStream)
         
+    def GetDocumentPageHtml(self, userId, fileId, pageNumber, **kwargs):
+        """Returns an HTML representantion of a particular document page.
+
+        Args:
+            userId, str: GroupDocs user global unique identifier. (required)
+            fileId, str: Document global unique identifier. (required)
+            pageNumber, int: Document page number to get image for. (required)
+            expiresOn, bool: The date and time in milliseconds since epoch the URL expires. (optional)
+            
+        Returns: stream
+        """
+        if( userId == None or fileId == None or pageNumber == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId', 'pageNumber', 'expiresOn']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetDocumentPageHtml" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/doc/{userId}/files/{fileId}/pages/{pageNumber}/htmlRepresentations?expires={expiresOn}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('expiresOn' in params):
+            queryParams['expires'] = self.apiClient.toPathValue(params['expiresOn'])
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        if ('pageNumber' in params):
+            replacement = str(self.apiClient.toPathValue(params['pageNumber']))
+            resourcePath = resourcePath.replace('{' + 'pageNumber' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
+        
     def GetDocumentPagesImageUrls(self, userId, fileId, dimension, **kwargs):
         """Returns a list of URLs pointing to document page images.
 
@@ -903,6 +1008,61 @@ class DocApi(object):
         if ('dimension' in params):
             replacement = str(self.apiClient.toPathValue(params['dimension']))
             resourcePath = resourcePath.replace('{' + 'dimension' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetImageUrlsResponse')
+        return responseObject
+        
+        
+    def GetDocumentPagesHtmlUrls(self, userId, fileId, **kwargs):
+        """Returns a list of URLs pointing to document page HTML representations.
+
+        Args:
+            userId, str: GroupDocs user global unique identifier. (required)
+            fileId, str: Document global unique identifier. (required)
+            firstPage, int: Document page number to start from. (optional)
+            pageCount, int: Page count to return URLs for. (optional)
+            
+        Returns: GetImageUrlsResponse
+        """
+        if( userId == None or fileId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId', 'firstPage', 'pageCount']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetDocumentPagesHtmlUrls" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/doc/{userId}/files/{fileId}/pages/htmlRepresentationUrls?first_page={firstPage}&page_count={pageCount}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('firstPage' in params):
+            queryParams['first_page'] = self.apiClient.toPathValue(params['firstPage'])
+        if ('pageCount' in params):
+            queryParams['page_count'] = self.apiClient.toPathValue(params['pageCount'])
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
@@ -1010,6 +1170,144 @@ class DocApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'RemoveEditLockResponse')
+        return responseObject
+        
+        
+    def GetDocumentTags(self, userId, fileId, **kwargs):
+        """Returns tags assigned to the document.
+
+        Args:
+            userId, str: GroupDocs user global unique identifier. (required)
+            fileId, str: Document global unique identifier. (required)
+            
+        Returns: GetTagsResponse
+        """
+        if( userId == None or fileId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetDocumentTags" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/doc/{userId}/files/{fileId}/tags'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetTagsResponse')
+        return responseObject
+        
+        
+    def SetDocumentTags(self, userId, fileId, **kwargs):
+        """Assign tags to the document.
+
+        Args:
+            userId, str: GroupDocs user global unique identifier. (required)
+            fileId, str: Document global unique identifier. (required)
+            
+        Returns: SetTagsResponse
+        """
+        if( userId == None or fileId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method SetDocumentTags" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/doc/{userId}/files/{fileId}/tags'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SetTagsResponse')
+        return responseObject
+        
+        
+    def RemoveDocumentTags(self, userId, fileId, **kwargs):
+        """Removes tags assigned to the document.
+
+        Args:
+            userId, str: GroupDocs user global unique identifier. (required)
+            fileId, str: Document global unique identifier. (required)
+            
+        Returns: RemoveTagsResponse
+        """
+        if( userId == None or fileId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method RemoveDocumentTags" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/doc/{userId}/files/{fileId}/tags'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'DELETE'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'RemoveTagsResponse')
         return responseObject
         
         

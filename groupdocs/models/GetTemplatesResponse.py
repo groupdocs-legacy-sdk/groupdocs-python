@@ -25,7 +25,8 @@ class GetTemplatesResponse:
         self.swaggerTypes = {
             'result': 'GetTemplatesResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetTemplatesResponse:
         self.result = None # GetTemplatesResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

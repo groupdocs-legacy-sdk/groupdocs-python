@@ -25,7 +25,8 @@ class SharedUsersResponse:
         self.swaggerTypes = {
             'result': 'SharedUsersResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SharedUsersResponse:
         self.result = None # SharedUsersResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

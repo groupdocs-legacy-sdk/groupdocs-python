@@ -29,7 +29,9 @@ class SignatureTemplateSettings:
             'stepExpireTime': 'float',
             'envelopeExpireTime': 'float',
             'emailSubject': 'str',
-            'emailBody': 'str'
+            'emailBody': 'str',
+            'waterMarkText': 'str',
+            'waterMarkImage': 'str'
 
         }
 
@@ -41,4 +43,6 @@ class SignatureTemplateSettings:
         self.envelopeExpireTime = None # float
         self.emailSubject = None # str
         self.emailBody = None # str
+        self.waterMarkText = None # str
+        self.waterMarkImage = None # str
         

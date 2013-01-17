@@ -36,7 +36,8 @@ class SignatureFormFieldLocationInfo:
             'fontSize': 'float',
             'fontBold': 'bool',
             'fontItalic': 'bool',
-            'fontUnderline': 'bool'
+            'fontUnderline': 'bool',
+            'align': 'int'
 
         }
 
@@ -55,4 +56,5 @@ class SignatureFormFieldLocationInfo:
         self.fontBold = None # bool
         self.fontItalic = None # bool
         self.fontUnderline = None # bool
+        self.align = None # int
         

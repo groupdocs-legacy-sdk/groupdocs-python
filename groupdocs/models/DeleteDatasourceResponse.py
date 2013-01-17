@@ -25,7 +25,8 @@ class DeleteDatasourceResponse:
         self.swaggerTypes = {
             'result': 'DeleteDatasourceResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class DeleteDatasourceResponse:
         self.result = None # DeleteDatasourceResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

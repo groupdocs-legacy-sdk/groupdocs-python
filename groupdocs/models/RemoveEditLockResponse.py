@@ -25,7 +25,8 @@ class RemoveEditLockResponse:
         self.swaggerTypes = {
             'result': 'RemoveEditLockResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class RemoveEditLockResponse:
         self.result = None # RemoveEditLockResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

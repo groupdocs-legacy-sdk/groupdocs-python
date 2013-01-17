@@ -38,17 +38,17 @@ class SharedApi(object):
         self.__basePath = value
 
     
-    def Download(self, guid, fileName, **kwargs):
+    def Download(self, guid, **kwargs):
         """Download
 
         Args:
             guid, str: GUID (required)
-            fileName, str: File name (required)
+            fileName, str: File name (optional)
             render, bool: Render (optional)
             
         Returns: stream
         """
-        if( guid == None or fileName == None ):
+        if( guid == None ):
             raise ApiException(400, "missing required parameters")
         allParams = ['guid', 'fileName', 'render']
 

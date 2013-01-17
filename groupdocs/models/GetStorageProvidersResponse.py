@@ -25,7 +25,8 @@ class GetStorageProvidersResponse:
         self.swaggerTypes = {
             'result': 'GetStorageProvidersResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetStorageProvidersResponse:
         self.result = None # GetStorageProvidersResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

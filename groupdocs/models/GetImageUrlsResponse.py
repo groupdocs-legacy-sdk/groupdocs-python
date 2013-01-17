@@ -25,7 +25,8 @@ class GetImageUrlsResponse:
         self.swaggerTypes = {
             'result': 'GetImageUrlsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetImageUrlsResponse:
         self.result = None # GetImageUrlsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

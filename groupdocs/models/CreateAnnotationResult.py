@@ -28,7 +28,8 @@ class CreateAnnotationResult:
             'replyGuid': 'str',
             'documentGuid': 'str',
             'sessionGuid': 'str',
-            'access': 'str'
+            'access': 'str',
+            'serverTime': 'long'
 
         }
 
@@ -39,4 +40,5 @@ class CreateAnnotationResult:
         self.documentGuid = None # str
         self.sessionGuid = None # str
         self.access = None # str
+        self.serverTime = None # long
         

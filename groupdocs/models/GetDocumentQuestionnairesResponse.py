@@ -25,7 +25,8 @@ class GetDocumentQuestionnairesResponse:
         self.swaggerTypes = {
             'result': 'GetDocumentQuestionnairesResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class GetDocumentQuestionnairesResponse:
         self.result = None # GetDocumentQuestionnairesResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

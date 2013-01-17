@@ -25,7 +25,8 @@ class SignatureTemplateRecipientsResponse:
         self.swaggerTypes = {
             'result': 'SignatureTemplateRecipientsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class SignatureTemplateRecipientsResponse:
         self.result = None # SignatureTemplateRecipientsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

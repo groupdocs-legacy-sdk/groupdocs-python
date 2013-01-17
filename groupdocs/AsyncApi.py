@@ -58,7 +58,7 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/jobs/{jobId}?format=xml'.replace('*', '')
+        resourcePath = '/async/{userId}/jobs/{jobId}'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 

@@ -28,7 +28,7 @@ class SignatureSignDocumentSignerSettings:
             'left': 'float',
             'width': 'float',
             'height': 'float',
-            'placeSingatureOn': 'str',
+            'placeSignatureOn': 'str',
             'data': 'str'
 
         }
@@ -39,6 +39,6 @@ class SignatureSignDocumentSignerSettings:
         self.left = None # float
         self.width = None # float
         self.height = None # float
-        self.placeSingatureOn = None # str
+        self.placeSignatureOn = None # str
         self.data = None # str
         

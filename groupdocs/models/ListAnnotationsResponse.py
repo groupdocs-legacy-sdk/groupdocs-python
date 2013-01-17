@@ -25,7 +25,8 @@ class ListAnnotationsResponse:
         self.swaggerTypes = {
             'result': 'ListAnnotationsResult',
             'status': 'str',
-            'error_message': 'str'
+            'error_message': 'str',
+            'composedOn': 'long'
 
         }
 
@@ -33,4 +34,5 @@ class ListAnnotationsResponse:
         self.result = None # ListAnnotationsResult
         self.status = None # str
         self.error_message = None # str
+        self.composedOn = None # long
         

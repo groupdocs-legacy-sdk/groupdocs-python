@@ -34,7 +34,9 @@ class SignatureFormInfo:
             'documentsPages': 'float',
             'participantsCount': 'float',
             'fieldsInFinalFileName': 'list[str]',
-            'canParticipantDownloadForm': 'bool'
+            'canParticipantDownloadForm': 'bool',
+            'waterMarkText': 'str',
+            'waterMarkImage': 'str'
 
         }
 
@@ -51,4 +53,6 @@ class SignatureFormInfo:
         self.participantsCount = None # float
         self.fieldsInFinalFileName = None # list[str]
         self.canParticipantDownloadForm = None # bool
+        self.waterMarkText = None # str
+        self.waterMarkImage = None # str
         

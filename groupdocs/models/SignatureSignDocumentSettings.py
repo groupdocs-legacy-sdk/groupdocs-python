@@ -24,11 +24,15 @@ class SignatureSignDocumentSettings:
     def __init__(self):
         self.swaggerTypes = {
             'documents': 'list[SignatureSignDocumentDocumentSettings]',
-            'signers': 'list[SignatureSignDocumentSignerSettings]'
+            'signers': 'list[SignatureSignDocumentSignerSettings]',
+            'waterMarkText': 'str',
+            'waterMarkImage': 'str'
 
         }
 
 
         self.documents = None # list[SignatureSignDocumentDocumentSettings]
         self.signers = None # list[SignatureSignDocumentSignerSettings]
+        self.waterMarkText = None # str
+        self.waterMarkImage = None # str
         
