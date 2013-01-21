@@ -4,6 +4,8 @@
 import base64
 import json
 
+
+
 from pyramid.renderers import render_to_response
 from pyramid.response import Response
 
@@ -32,8 +34,9 @@ def sample6(request):
         return render_to_response('__main__:templates/sample6.pt', 
                                   { 'error' : 'You do not enter you User id or Private key' })
     #Determination of placeSingatureOn parameter
+
     for signer in signers:
-        signer['placeSingatureOn'] = ''
+        signer['placeSignatureOn'] = ''
 
     ####Create Signer, ApiClient and Storage Api objects
 
@@ -51,9 +54,11 @@ def sample6(request):
 
 #Sign document using current user id and sign settings
     response = signatureApi.SignDocument(clientId, body = settings)
+
     #If request was successfull - set variables for template
     if response.status == 'Ok':
-        return_data = json.dumps({ 'responseCode' : 200, 'documentId' : response.result.documentId })
+
+        return_data = json.dumps({ 'responseCode' : 200, 'documentId' : response.result.documents[0].documentId })
         return Response(body = return_data, content_type = 'application/json')
     
     return render_to_response('__main__:templates/sample6.pt', 
