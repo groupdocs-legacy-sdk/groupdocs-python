@@ -33,7 +33,7 @@ def sample6(request):
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(documents) == False or IsNotNull(signers) == False:
         return render_to_response('__main__:templates/sample6.pt', 
                                   { 'error' : 'You do not enter you User id or Private key' })
-    #Determination of placeSingatureOn parameter
+    #Determination of placeSignatureOn parameter
 
     for signer in signers:
         signer['placeSignatureOn'] = ''
