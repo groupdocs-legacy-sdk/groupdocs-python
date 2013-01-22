@@ -95,18 +95,16 @@ class ApiClient(object):
 
         data = None
 
-        if method == 'GET':
+        if queryParams:
+            # Need to remove None values, these should not be sent
+            sentQueryParams = {}
+            for param, value in queryParams.items():
+                if value != None:
+                    sentQueryParams[param] = value
+            if sentQueryParams:
+                url = url + '?' + urllib.urlencode(sentQueryParams)
 
-            if queryParams:
-                # Need to remove None values, these should not be sent
-                sentQueryParams = {}
-                for param, value in queryParams.items():
-                    if value != None:
-                        sentQueryParams[param] = value
-                if sentQueryParams:
-                    url = url + '?' + urllib.urlencode(sentQueryParams)
-
-        elif method in ['POST', 'PUT', 'DELETE']:
+        if method in ['POST', 'PUT', 'DELETE']:
 
             if isFileUpload:
                 data = postData.inputStream
@@ -116,9 +114,6 @@ class ApiClient(object):
                 data = self.signer.signContent(json.dumps(self.sanitizeForSerialization(postData)), headers)
             else: 
                 data = self.signer.signContent(postData, headers)
-
-        else:
-            raise Exception('Method ' + method + ' is not recognized.')
 
         if self.__debug:
             handler = urllib2.HTTPSHandler(debuglevel=1) if url.lower().startswith('https') else urllib2.HTTPHandler(debuglevel=1)
