@@ -42,7 +42,7 @@
                <br />
                <label for='private_key'>File ID</label>
                <br />
-               <input type='text', name='file_id'  value="${file_Id|''}" />
+               <input type='text', name='file_id'  value="${fileId|''}" />
                 <br />
                 <br />
 
@@ -60,43 +60,44 @@
                 <legend>Parameters (all are required)</legend>
                 <div>
                     <span>Box X</span>
-                    <input minlength="0" name="box.x" placeholder="double" type="text" value="${data.box.x|''}">
+                    <input minlength="0" name="box_x" placeholder="double" type="text" value="">
                 </div>
                 <div>
                     <span>Box Y</span>
-                    <input minlength="0" name="box.y" placeholder="double" type="text" value="">
+                    <input minlength="0" name="box_y" placeholder="double" type="text" value="">
                 </div>
 
                 <div id="box-params">
                     <div>
                         <span>Box Width</span>
-                        <input minlength="0" name="box.width" placeholder="double" type="text" value="">
+                        <input minlength="0" name="box_width" placeholder="double" type="text" value="">
                     </div>
                     <div>
                         <span>Box Height</span>
-                        <input minlength="0" name="box.height" placeholder="double" type="text" value="">
+                        <input minlength="0" name="box_height" placeholder="double" type="text" value="">
                     </div>
+
                 </div>
 
                 <div id="annotation-position">
                     <div>
                         <span>Annotation Position X</span>
-                        <input minlength="0" name="annotationPosition.x" placeholder="double" type="text" value="">
+                        <input minlength="0" name="annotationPosition_x" placeholder="double" type="text" value="">
                     </div>
                     <div>
                         <span>Annotation Position Y</span>
-                        <input minlength="0" name="annotationPosition.y" placeholder="double" type="text" value="">
+                        <input minlength="0" name="annotationPosition_y" placeholder="double" type="text" value="">
                     </div>
                 </div>
 
                 <div id="text-params">
                     <div>
                         <span>Range Position</span>
-                        <input minlength="0" name="range.position" placeholder="double" type="text" value="">
+                        <input minlength="0" name="range_position" placeholder="double" type="text" value="">
                     </div>
                     <div>
                         <span>Range Length</span>
-                        <input minlength="0" name="range.length" placeholder="double" type="text" value="">
+                        <input minlength="0" name="range_length" placeholder="double" type="text" value="">
                     </div>
                 </div>
 

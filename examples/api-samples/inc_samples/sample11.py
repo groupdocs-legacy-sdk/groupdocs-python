@@ -40,13 +40,13 @@ def sample11(request):
                 { 'error' : str(e) })
 
     # Required parameters
-    allParams = ['box.x', 'box.y', 'text']
+    allParams = ['box_x', 'box_y', 'text']
 
     # Added required parameters depends on  annotation type ['text' or 'area']
     if annotationType == "text":
-        allParams = allParams + ['box.width', 'box.height', 'annotationPosition.x', 'annotationPosition.y', 'range.position', 'range.length']
+        allParams = allParams + ['box_width', 'box_height', 'annotationPosition_x', 'annotationPosition_y', 'range_position', 'range_length']
     elif annotationType == "area":
-        allParams = allParams + ['box.width', 'box.height']
+        allParams = allParams + ['box_width', 'box_height']
 
     # Checking required parameters
     for param in allParams:
@@ -68,18 +68,18 @@ def sample11(request):
     if annotationType == "text":
         requestBody = dict(requestBody.items() + {
             "box": {
-                "x"         : request.POST.get('box.x'),
-                "y"         : request.POST.get('box.y'),
-                "width"     : request.POST.get('box.width'),
-                "height"    : request.POST.get('box.height')
+                "x"         : request.POST.get('box_x'),
+                "y"         : request.POST.get('box_y'),
+                "width"     : request.POST.get('box_width'),
+                "height"    : request.POST.get('box_height')
             },
             "textRange":{
-                "position"  : request.POST.get('range.position'),
-                "length"    : request.POST.get('range.length')
+                "position"  : request.POST.get('range_position'),
+                "length"    : request.POST.get('range_length')
             },
             "annotationPosition": {
-                "x" : request.POST.get('annotationPosition.x'),
-                "y" : request.POST.get('annotationPosition.y')
+                "x" : request.POST.get('annotationPosition_x'),
+                "y" : request.POST.get('annotationPosition_y')
             },
         }.items())
 
@@ -87,10 +87,10 @@ def sample11(request):
     elif annotationType == "area":
         requestBody = dict(requestBody.items() + {
             "box": {
-                "x"         : request.POST.get('box.x'),
-                "y"         : request.POST.get('box.y'),
-                "width"     : request.POST.get('box.width'),
-                "height"    : request.POST.get('box.height')
+                "x"         : request.POST.get('box_x'),
+                "y"         : request.POST.get('box_y'),
+                "width"     : request.POST.get('box_width'),
+                "height"    : request.POST.get('box_height')
             },
             "annotationPosition": {
                 "x" : "0",
@@ -102,8 +102,8 @@ def sample11(request):
     elif annotationType == "point":
         requestBody = dict(requestBody.items() + {
             "box": {
-                "x"         : request.POST.get('box.x'),
-                "y"         : request.POST.get('box.y'),
+                "x"         : request.POST.get('box_x'),
+                "y"         : request.POST.get('box_y'),
                 "width"     : "0",
                 "height"    : "0"
             },
@@ -112,6 +112,8 @@ def sample11(request):
                 "y" : "0"
             },
         }.items())
+
+    print requestBody
 
     try:
         # Make a request to Annotation API using clientId, fileId and requestBody
@@ -124,7 +126,7 @@ def sample11(request):
     return render_to_response('__main__:templates/sample11.pt',
             { 'userId' : clientId,
               'privateKey' : privateKey,
-              'file_Id' : fileId,
+              'fileId' : fileId,
               'annotationType' : annotationType,
               'annotationText' : request.POST.get('text'),
               'annotationId' : response.result.annotationGuid,
