@@ -33,18 +33,22 @@ def sample11(request):
 
     # Delete annotation if Delete Button clicked
     if request.POST.get('delete_annotation') == "1":
-        ant.DeleteAnnotation(clientId, request.POST.get('annotationId'))
+        try:
+            ant.DeleteAnnotation(clientId, request.POST.get('annotationId'))
+        except Exception, e:
+            return render_to_response('__main__:templates/sample11.pt',
+                { 'error' : str(e) })
 
     # Required parameters
     allParams = ['box.x', 'box.y', 'text']
 
-    # Added required parameters depends on  annotation type ['type' or 'area']
+    # Added required parameters depends on  annotation type ['text' or 'area']
     if annotationType == "text":
         allParams = allParams + ['box.width', 'box.height', 'annotationPosition.x', 'annotationPosition.y', 'range.position', 'range.length']
     elif annotationType == "area":
         allParams = allParams + ['box.width', 'box.height']
 
-    # Checking required parametems
+    # Checking required parameters
     for param in allParams:
         needParam = request.POST.get(param)
         if IsNotNull(needParam) == False:
@@ -120,7 +124,7 @@ def sample11(request):
     return render_to_response('__main__:templates/sample11.pt',
             { 'userId' : clientId,
               'privateKey' : privateKey,
-              'fileId' : fileId,
+              'file_Id' : fileId,
               'annotationType' : annotationType,
               'annotationText' : request.POST.get('text'),
               'annotationId' : response.result.annotationGuid,

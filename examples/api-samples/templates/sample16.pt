@@ -16,15 +16,15 @@
    <div id="requestForm" style="padding:20px; border:1px solid black;">
    <p> Enter data for request and press "Make request" button </p>
    <form action="/sample16" method = "post" enctype = 'multipart/form-data'>
-        <label for='private_key'>GroupDocs File ID</label>
-        <br />
-        <input type='text', name='file_id' />
-        <br />
-        <input type='submit' value='Makre Request'/>
+       <label for='private_key'>File ID</label>
+       <br />
+       <input type='text', name='file_id'  value="${fileId|''}" />
+       <br />
+        <input type='submit' value='Make Request'/>
      </form>
     </div>
     <div  style="padding:20px; border:1px solid black;">
-        <p> Results: </p>
+        <p> Result: </p>
         ${structure:massage|''}
         ${structure:iframe|''}
     </div>

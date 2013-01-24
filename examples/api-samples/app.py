@@ -21,6 +21,7 @@ import inc_samples.sample14 as sample14
 import inc_samples.sample15 as sample15
 import inc_samples.sample16 as sample16
 import inc_samples.sample17 as sample17
+import inc_samples.sample18 as sample18
 
 def index(request):
     return {}
@@ -46,6 +47,7 @@ if __name__ == '__main__':
     config.add_route('sample15', '/sample15')
     config.add_route('sample16', '/sample16')
     config.add_route('sample17', '/sample17')
+    config.add_route('sample18', '/sample18')
 
     config.add_view(index, route_name='index', renderer='__main__:templates/index.pt')
     config.add_view(sample1.sample1, route_name='sample1')
@@ -65,6 +67,7 @@ if __name__ == '__main__':
     config.add_view(sample15.sample15, route_name='sample15')
     config.add_view(sample16.sample16, route_name='sample16')
     config.add_view(sample17.sample17, route_name='sample17')
+    config.add_view(sample18.sample18, route_name='sample18')
 
     config.add_static_view(name='/', path='templates/')
     app = config.make_wsgi_app()

@@ -23,97 +23,95 @@
 			<p>Annotation Id = ${annotationId|''}</p>
 			<p>Annotation type = ${annotationType|''}</p>
 			<p>Annotation text = ${annotationText|''}</p>
+
 			<div tal:condition="annotationId|None">
                 <button name="delete_annotation" value="1">Delete annotation</button>
             </div>
+
 			<p><font color="red">${error|''}</font></p>
 			<div id="requestForm" style="padding: 20px; border: 1px solid black;">
 				<p> Enter data for request and press "Make request" button </p>
 
-                        <label for='client_id'>GroupDocs Client ID</label>
-                        <br />
-                        <input type='text' name='client_id' value="${userId|''}" />
-                        <br />
-                        <label for='private_key'>GroupDocs Private Key</label>
-                        <br />
-                        <input type='text' name='private_key' value="${privateKey|''}" />
-                        <br />
-                        <label for='file_id'>GroupDocs file ID</label>
-                        <br />
-                        <input type='text' name='file_id' value="${fileId|''}" />
-                        <br />
-                        <br />
+               <label for='client_id'>GroupDocs Client ID</label>
+               <br />
+               <input type='text', name='client_id' value="${userId|''}" />
+               <br />
+               <label for='private_key'>GroupDocs Private Key</label>
+               <br />
+               <input type='text', name='private_key'  value="${privateKey|''}" />
+               <br />
+               <label for='private_key'>File ID</label>
+               <br />
+               <input type='text', name='file_id'  value="${file_Id|''}" />
+                <br />
+                <br />
 
-                        <label for='annotation_type'>Annotation Type</label>
-                        <br />
-                        <select name="annotation_type" id="annotation_type">
-                            <option value="text">Text</option>
-                            <option value="area">Area</option>
-                            <option value="point">Point</option>
-                        </select>
-                        <br />
-                        <br />
+                <label for='annotation_type'>Annotation Type</label>
+                <br />
+                <select name="annotation_type" id="annotation_type">
+                    <option value="text">Text</option>
+                    <option value="area">Area</option>
+                    <option value="point">Point</option>
+                </select>
+                <br />
+                <br />
 
+                <fieldset style="border: thin solid #333; padding: 1em; margin-bottom: 5px;">
+                <legend>Parameters (all are required)</legend>
+                <div>
+                    <span>Box X</span>
+                    <input minlength="0" name="box.x" placeholder="double" type="text" value="${data.box.x|''}">
+                </div>
+                <div>
+                    <span>Box Y</span>
+                    <input minlength="0" name="box.y" placeholder="double" type="text" value="">
+                </div>
 
-                        <fieldset style="border: thin solid #333; padding: 1em; margin-bottom: 5px;">
-                        <legend>Parameters (all are required)</legend>
-                        <div>
-                            <span>Box X</span>
-                            <input minlength="0" name="box.x" placeholder="double" type="text" value="${data.box.x|''}">
-                        </div>
-                        <div>
-                            <span>Box Y</span>
-                            <input minlength="0" name="box.y" placeholder="double" type="text" value="">
-                        </div>
+                <div id="box-params">
+                    <div>
+                        <span>Box Width</span>
+                        <input minlength="0" name="box.width" placeholder="double" type="text" value="">
+                    </div>
+                    <div>
+                        <span>Box Height</span>
+                        <input minlength="0" name="box.height" placeholder="double" type="text" value="">
+                    </div>
+                </div>
 
-                        <div id="box-params">
-                            <div>
-                                <span>Box Width</span>
-                                <input minlength="0" name="box.width" placeholder="double" type="text" value="">
-                            </div>
-                            <div>
-                                <span>Box Height</span>
-                                <input minlength="0" name="box.height" placeholder="double" type="text" value="">
-                            </div>
-                        </div>
+                <div id="annotation-position">
+                    <div>
+                        <span>Annotation Position X</span>
+                        <input minlength="0" name="annotationPosition.x" placeholder="double" type="text" value="">
+                    </div>
+                    <div>
+                        <span>Annotation Position Y</span>
+                        <input minlength="0" name="annotationPosition.y" placeholder="double" type="text" value="">
+                    </div>
+                </div>
 
-                        <div id="annotation-position">
-                            <div>
-                                <span>Annotation Position X</span>
-                                <input minlength="0" name="annotationPosition.x" placeholder="double" type="text" value="">
-                            </div>
-                            <div>
-                                <span>Annotation Position Y</span>
-                                <input minlength="0" name="annotationPosition.y" placeholder="double" type="text" value="">
-                            </div>
-                        </div>
+                <div id="text-params">
+                    <div>
+                        <span>Range Position</span>
+                        <input minlength="0" name="range.position" placeholder="double" type="text" value="">
+                    </div>
+                    <div>
+                        <span>Range Length</span>
+                        <input minlength="0" name="range.length" placeholder="double" type="text" value="">
+                    </div>
+                </div>
 
+                <div>
+                    <span>Text</span>
+                    <input minlength="0" name="text" placeholder="string" type="text" value="">
+                </div>
+                </fieldset>
 
-                        <div id="text-params">
-                            <div>
-                                <span>Range Position</span>
-                                <input minlength="0" name="range.position" placeholder="double" type="text" value="">
-                            </div>
-                            <div>
-                                <span>Range Length</span>
-                                <input minlength="0" name="range.length" placeholder="double" type="text" value="">
-                            </div>
-                        </div>
-
-                        <div>
-                            <span>Text</span>
-                            <input minlength="0" name="text" placeholder="string" type="text" value="">
-                        </div>
-                        </fieldset>
-
-                        <input type='submit' value='Make Request'/>
+                <input type='submit' value='Make Request'/>
 
 			</div>
-
 			</form>
 
 			<div  style="padding:20px; border:1px solid black;">
-				<iframe src="${iframe_url|''}" width="${width|400}" height="${height|300}"></iframe>
 			</div>
 			<br/>
 		</div>

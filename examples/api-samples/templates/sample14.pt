@@ -12,27 +12,28 @@
 		   <p>User ID = ${userId|''}
 		   <p>Private key = ${privateKey|''}
 		   <p>Path = ${path|''}
-		   <p>List of shares for a folder = ${users|''}
 		   <p><font color="red">${error|''}</font>
 		   <div id="requestForm" style="padding: 20px; border: 1px solid black;">
 		   <p> Enter data for request and press "Make request" button </p>
 		        <form action="/sample14" method = "post" enctype = 'multipart/form-data'>
 		           <label for='client_id'>GroupDocs Client ID</label>
 		            <br />
-		            <input type='text' name='client_id' value="${userId|''}" />
+		            <input type='text', name='client_id' value="${userId|''}" />
 		            <br />
 		            <label for='private_key'>GroupDocs Private Key</label>
 		            <br />
-		            <input type='text' name='private_key'  value="${privateKey|''}" />
+		            <input type='text', name='private_key'  value="${privateKey|''}" />
                     <br />
-		            <label for='version'>Path</label>
+		            <label for='path'>Path</label>
 		            <br />
-		            <input type='text' name='path' value="${path|''}" />
+		            <input type='text', name='path' value="${path|''}" />
 		            <br />
 		            <input type='submit' value='Make Request'/>
 		        </form>
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
+			    <p> Results: </p>
+			    <p>List of shares for a folder: ${users|''}
 		   </div>
 		   <br/>
 		</div>

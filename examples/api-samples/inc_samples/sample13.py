@@ -15,7 +15,7 @@ def IsNotNull(value):
 def sample13(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
-    fileGuId = request.POST.get('fileId')
+    fileGuId = request.POST.get('file_id')
     collaborations = request.params.getall('collaborations[]')
 
     # Delete empty items
