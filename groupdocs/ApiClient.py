@@ -84,7 +84,7 @@ class ApiClient(object):
         elif isinstance(postData, FileStream):
             isFileUpload = True
             if postData.contentType:
-                headers['Content-type'] = postData.contentType
+                headers['Content-type'] = 'application/octet-stream'
             if postData.size: 
                 headers['Content-Length'] = str(postData.size)
         else:
