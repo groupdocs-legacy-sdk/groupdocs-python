@@ -17,7 +17,7 @@ def sample16(request):
                 { 'error' : 'You do not enter all parameters' })
 
     # Construct iframe using fileId
-    iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + fileId + '" frameborder="0" width="720" height="600""></iframe>'
+    iframe = '<iframe src="https://apps.groupdocs.com/assembly2/questionnaire-assembly/' + fileId + '" frameborder="0" width="100%" height="600""></iframe>'
 
     # Set variables for template
     return render_to_response('__main__:templates/sample16.pt',
