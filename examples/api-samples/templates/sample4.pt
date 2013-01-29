@@ -27,7 +27,7 @@
        <br />
        <label for='private_key'>File ID</label>
        <br />
-       <input type='text', name='file_id'  value="${file_Id|''}" />
+       <input type='text', name='fileId'  value="${file_Id|''}" />
        <br />
        <input type='submit' value='Download'/>
    </form>

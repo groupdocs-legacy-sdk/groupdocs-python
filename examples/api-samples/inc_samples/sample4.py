@@ -20,7 +20,7 @@ def sample4(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
     
-    file_id = request.POST.get('file_id')
+    file_id = request.POST.get('fileId')
     # Checking clientId, privateKey and file_Id
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(file_id) == False:
         return render_to_response('__main__:templates/sample4.pt', 

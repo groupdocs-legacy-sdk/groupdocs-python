@@ -15,13 +15,10 @@ def IsNotNull(value):
 def sample13(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
-    fileGuId = request.POST.get('file_id')
-    collaborations = request.params.getall('collaborations[]')
+    fileGuId = request.POST.get('fileId')
+    email = request.POST.get('email')
 
-    # Delete empty items
-    collaborations = filter(None, collaborations)
-
-    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileGuId) == False or IsNotNull(collaborations) == False:
+    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileGuId) == False or IsNotNull(email) == False:
         return render_to_response('__main__:templates/sample13.pt',
                 { 'error' : 'You do not enter all parameters' })
 
@@ -36,18 +33,11 @@ def sample13(request):
 
     try:
         # Make a request to Annotation API
-        ant.SetAnnotationCollaborators(clientId, fileGuId, "v2.0", body=collaborations)
+        ant.SetAnnotationCollaborators(clientId, fileGuId, "v2.0", body=[email])
 
     except Exception, e:
         return render_to_response('__main__:templates/sample13.pt',
                 { 'error' : str(e) })
-
-    # Construct all collaborations list
-    collaborationsList = ""
-    for x in xrange(len(collaborations)):
-        collaborationsList += collaborations[x]
-        if x != len(collaborations) - 1:
-            collaborationsList += ", "
 
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample13.pt',
@@ -55,6 +45,6 @@ def sample13(request):
                 'userId' : clientId,
                 'privateKey' : privateKey,
                 'fileId' : fileGuId,
-                'collaborationsList' : collaborationsList
+                'email' : email
             },
         request=request)

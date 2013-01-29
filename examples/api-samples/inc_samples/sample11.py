@@ -15,7 +15,7 @@ def IsNotNull(value):
 def sample11(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
-    fileId = request.POST.get('file_id')
+    fileId = request.POST.get('fileId')
     annotationType = request.POST.get('annotation_type')
 
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileId) == False or IsNotNull(annotationType) == False:

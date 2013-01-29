@@ -4,8 +4,6 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
 		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample13</h3>
 
 		<div class='samplecontent' style="padding:10px;">
@@ -15,7 +13,7 @@
 		   <p>User ID = ${userId|''}
 		   <p>Private key = ${privateKey|''}
 		   <p>File Id = ${fileId|''}
-		   <p>Collaborations: ${collaborationsList|''}
+		   <p>Collaborations: ${email|''}
 		   <p><font color="red">${error|''}</font>
 		   <div id="requestForm" style="padding: 20px; border: 1px solid black;">
 		   <p> Enter data for request and press "Make request" button </p>
@@ -30,15 +28,11 @@
                    <br />
                    <label for='private_key'>File ID</label>
                    <br />
-                   <input type='text', name='file_id'  value="${fileId|''}" />
+                   <input type='text', name='fileId'  value="${fileId|''}" />
 		            <br />
 		            <label for='collaborations'>Collaborations</label>
 		            <br />
-		            <div id="collaborators">
-		                <div>
-		                    <input type='text' name='collaborations[]'  value="" /> <span class="moreInput" style="cursor:pointer;">more</span>
-		                </div>
-		            </div>
+                    <input type='text' name='email'  value="" />
 		            <br />
 		            <input type='submit' value='Make Request'/>
 		        </form>
@@ -70,20 +64,6 @@
             <li> <a href="/sample17">Sample17 - How to upload a file into the storage and compress it into zip archive</li>
         </ul>
 		</div>
-
-        <script>
-            $(function() {
-                $('.moreInput').click(function() {
-                    var obj = $(this);
-                    $('#collaborators').append('<div><input type="text" name="collaborations[]"  value="" /> <span class="remove" style="cursor:pointer;">remove</span></div>');
-                });
-
-                $('.remove').live('click', function() {
-                    var obj = $(this);
-                    obj.parent('div').remove();
-                });
-            });
-        </script>
 
     </tal:block>
 </metal:main>

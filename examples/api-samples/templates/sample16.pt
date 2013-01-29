@@ -18,7 +18,7 @@
    <form action="/sample16" method = "post" enctype = 'multipart/form-data'>
        <label for='private_key'>File ID</label>
        <br />
-       <input type='text', name='file_id'  value="${fileId|''}" />
+       <input type='text', name='fileId'  value="${fileId|''}" />
        <br />
         <input type='submit' value='Make Request'/>
      </form>

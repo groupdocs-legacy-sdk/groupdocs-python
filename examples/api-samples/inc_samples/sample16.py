@@ -10,7 +10,7 @@ def IsNotNull(value):
 # Set variables and get POST data
 def sample16(request):
 
-    fileId = request.POST.get('file_id')
+    fileId = request.POST.get('fileId')
 
     if IsNotNull(fileId) == False:
         return render_to_response('__main__:templates/sample16.pt',

@@ -15,7 +15,7 @@ def IsNotNull(value):
 def sample12(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
-    fileGuId = request.POST.get('file_id')
+    fileGuId = request.POST.get('fileId')
 
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileGuId) == False:
         return render_to_response('__main__:templates/sample12.pt',
