@@ -21,6 +21,12 @@ import inc_samples.sample14 as sample14
 import inc_samples.sample15 as sample15
 import inc_samples.sample16 as sample16
 import inc_samples.sample17 as sample17
+import inc_samples.sample18 as sample18
+import inc_samples.sample19 as sample19
+import inc_samples.sample20 as sample20
+import inc_samples.sample21 as sample21
+import inc_samples.sample22 as sample22
+import inc_samples.annotation_callback as annotation_callback
 
 def index(request):
     return {}
@@ -46,6 +52,12 @@ if __name__ == '__main__':
     config.add_route('sample15', '/sample15')
     config.add_route('sample16', '/sample16')
     config.add_route('sample17', '/sample17')
+    config.add_route('sample18', '/sample18')
+    config.add_route('sample19', '/sample19')
+    config.add_route('sample20', '/sample20')
+    config.add_route('sample21', '/sample21')
+    config.add_route('sample22', '/sample22')
+    config.add_route('annotation_callback', 'annotation_callback')
 
     config.add_view(index, route_name='index', renderer='__main__:templates/index.pt')
     config.add_view(sample1.sample1, route_name='sample1')
@@ -65,6 +77,12 @@ if __name__ == '__main__':
     config.add_view(sample15.sample15, route_name='sample15')
     config.add_view(sample16.sample16, route_name='sample16')
     config.add_view(sample17.sample17, route_name='sample17')
+    config.add_view(sample18.sample18, route_name='sample18')
+    config.add_view(sample19.sample19, route_name='sample19')
+    config.add_view(sample20.sample20, route_name='sample20')
+    config.add_view(sample21.sample21, route_name='sample21')
+    config.add_view(sample22.sample22, route_name='sample22')
+    config.add_view(annotation_callback.annotation_callback, route_name='annotation_callback')
 
     config.add_static_view(name='/', path='templates/')
     app = config.make_wsgi_app()
