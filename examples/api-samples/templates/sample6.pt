@@ -148,6 +148,12 @@
             <li> <a href="/sample15">Sample15 - How to check the number of document's views</li>
             <li> <a href="/sample16">Sample16 - How to insert Assembly questionary into webpage</li>
             <li> <a href="/sample17">Sample17 - How to upload a file into the storage and compress it into zip archive</li>
+            <li> <a href="/sample18">Sample18 - How to convert Doc to Docx, Docx to Doc, Docx to PDF, PPT to PDF</li>
+            <li> <a href="/sample19">Sample19 - How to Compare documents using Python SDK</li>
+            <li> <a href="/sample20">Sample20 - How to Get Compare Change list for document using Python SDK</li>
+            <li> <a href="/sample21">Sample21 - How to Create and Upload Envelop to GroupDocs account using Python SDK</li>
+            <li> <a href="/sample22">Sample22 - How create or update user and add him to collaborators using Python SDK</li>
+            <li> <a href="/sample23">Sample23 - How to View Document pages as images using Python SDK</li>
         </ul>
 		</div>
 
