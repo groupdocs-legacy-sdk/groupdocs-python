@@ -26,6 +26,7 @@ import inc_samples.sample19 as sample19
 import inc_samples.sample20 as sample20
 import inc_samples.sample21 as sample21
 import inc_samples.sample22 as sample22
+import inc_samples.sample23 as sample23
 import inc_samples.annotation_callback as annotation_callback
 
 def index(request):
@@ -57,6 +58,7 @@ if __name__ == '__main__':
     config.add_route('sample20', '/sample20')
     config.add_route('sample21', '/sample21')
     config.add_route('sample22', '/sample22')
+    config.add_route('sample23', '/sample23')
     config.add_route('annotation_callback', 'annotation_callback')
 
     config.add_view(index, route_name='index', renderer='__main__:templates/index.pt')
@@ -82,6 +84,7 @@ if __name__ == '__main__':
     config.add_view(sample20.sample20, route_name='sample20')
     config.add_view(sample21.sample21, route_name='sample21')
     config.add_view(sample22.sample22, route_name='sample22')
+    config.add_view(sample23.sample23, route_name='sample23')
     config.add_view(annotation_callback.annotation_callback, route_name='annotation_callback')
 
     config.add_static_view(name='/', path='templates/')
