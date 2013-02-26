@@ -4,15 +4,15 @@ from wsgiref.simple_server import make_server
 from pyramid.renderers import render_to_response
 from pyramid.config import Configurator
 
-import inc_samples.sample1 as sample1
-import inc_samples.sample2 as sample2
-import inc_samples.sample3 as sample3
-import inc_samples.sample4 as sample4
-import inc_samples.sample5 as sample5    
-import inc_samples.sample6 as sample6
-import inc_samples.sample7 as sample7
-import inc_samples.sample8 as sample8
-import inc_samples.sample9 as sample9
+import inc_samples.sample01 as sample01
+import inc_samples.sample02 as sample02
+import inc_samples.sample03 as sample03
+import inc_samples.sample04 as sample04
+import inc_samples.sample05 as sample05
+import inc_samples.sample06 as sample06
+import inc_samples.sample07 as sample07
+import inc_samples.sample08 as sample08
+import inc_samples.sample09 as sample09
 import inc_samples.sample10 as sample10
 import inc_samples.sample11 as sample11
 import inc_samples.sample12 as sample12
@@ -27,7 +27,9 @@ import inc_samples.sample20 as sample20
 import inc_samples.sample21 as sample21
 import inc_samples.sample22 as sample22
 import inc_samples.sample23 as sample23
+import inc_samples.sample24 as sample24
 import inc_samples.annotation_callback as annotation_callback
+import inc_samples.annotation_check_file as annotation_check_file
 
 def index(request):
     return {}
@@ -36,15 +38,15 @@ if __name__ == '__main__':
     config = Configurator()
 
     config.add_route('index', '/')
-    config.add_route('sample1', '/sample1')
-    config.add_route('sample2', '/sample2')
-    config.add_route('sample3', '/sample3')
-    config.add_route('sample4', '/sample4')
-    config.add_route('sample5', '/sample5') 
-    config.add_route('sample6', '/sample6')
-    config.add_route('sample7', '/sample7')
-    config.add_route('sample8', '/sample8')
-    config.add_route('sample9', '/sample9')
+    config.add_route('sample01', '/sample01')
+    config.add_route('sample02', '/sample02')
+    config.add_route('sample03', '/sample03')
+    config.add_route('sample04', '/sample04')
+    config.add_route('sample05', '/sample05')
+    config.add_route('sample06', '/sample06')
+    config.add_route('sample07', '/sample07')
+    config.add_route('sample08', '/sample08')
+    config.add_route('sample09', '/sample09')
     config.add_route('sample10', '/sample10')
     config.add_route('sample11', '/sample11')
     config.add_route('sample12', '/sample12')
@@ -59,18 +61,20 @@ if __name__ == '__main__':
     config.add_route('sample21', '/sample21')
     config.add_route('sample22', '/sample22')
     config.add_route('sample23', '/sample23')
+    config.add_route('sample24', '/sample24')
     config.add_route('annotation_callback', 'annotation_callback')
+    config.add_route('annotation_check_file', 'annotation_check_file')
 
     config.add_view(index, route_name='index', renderer='__main__:templates/index.pt')
-    config.add_view(sample1.sample1, route_name='sample1')
-    config.add_view(sample2.sample2, route_name='sample2')
-    config.add_view(sample3.sample3, route_name='sample3')
-    config.add_view(sample4.sample4, route_name='sample4')
-    config.add_view(sample5.sample5, route_name='sample5')
-    config.add_view(sample6.sample6, route_name='sample6')
-    config.add_view(sample7.sample7, route_name='sample7')
-    config.add_view(sample8.sample8, route_name='sample8')
-    config.add_view(sample9.sample9, route_name='sample9')
+    config.add_view(sample01.sample01, route_name='sample01')
+    config.add_view(sample02.sample02, route_name='sample02')
+    config.add_view(sample03.sample03, route_name='sample03')
+    config.add_view(sample04.sample04, route_name='sample04')
+    config.add_view(sample05.sample05, route_name='sample05')
+    config.add_view(sample06.sample06, route_name='sample06')
+    config.add_view(sample07.sample07, route_name='sample07')
+    config.add_view(sample08.sample08, route_name='sample08')
+    config.add_view(sample09.sample09, route_name='sample09')
     config.add_view(sample10.sample10, route_name='sample10')
     config.add_view(sample11.sample11, route_name='sample11')
     config.add_view(sample12.sample12, route_name='sample12')
@@ -85,7 +89,9 @@ if __name__ == '__main__':
     config.add_view(sample21.sample21, route_name='sample21')
     config.add_view(sample22.sample22, route_name='sample22')
     config.add_view(sample23.sample23, route_name='sample23')
+    config.add_view(sample24.sample24, route_name='sample24')
     config.add_view(annotation_callback.annotation_callback, route_name='annotation_callback')
+    config.add_view(annotation_check_file.annotation_check_file, route_name='annotation_check_file')
 
     config.add_static_view(name='/', path='templates/')
     app = config.make_wsgi_app()

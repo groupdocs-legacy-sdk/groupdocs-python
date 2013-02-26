@@ -20,11 +20,12 @@ def sample18(request):
     fileId = request.POST.get('fileId')
     targetType = request.POST.get('convert_type')
 
+    # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileId) == False or IsNotNull(targetType) == False:
         return render_to_response('__main__:templates/sample18.pt',
             { 'error' : 'You do not enter all parameters' })
 
-    #### Create Signer, ApiClient and AsyncApi objects
+    ### Create Signer, ApiClient and AsyncApi objects
 
     # Create signer object
     signer = GroupDocsRequestSigner(privateKey)

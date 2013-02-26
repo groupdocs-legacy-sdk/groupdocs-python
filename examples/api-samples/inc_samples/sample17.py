@@ -19,11 +19,12 @@ def sample17(request):
     privateKey = request.POST.get('private_key')
     inputFile = request.POST.get('file')
 
+    # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False:
         return render_to_response('__main__:templates/sample17.pt',
                 { 'error' : 'You do not enter all parameters' })
 
-    #### Create Signer, ApiClient and StorageApi objects
+    ### Create Signer, ApiClient and StorageApi objects
 
     # Create signer object
     signer = GroupDocsRequestSigner(privateKey)

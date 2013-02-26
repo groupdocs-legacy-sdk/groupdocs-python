@@ -110,6 +110,9 @@ table {
 		padding:5px 15px 5px 5px;
 		vertical-align:top;
 	}
+.border td {
+    border: 1px solid  black;
+}
 	th {
 		font-size:11px;
 		font-variant:small-caps;

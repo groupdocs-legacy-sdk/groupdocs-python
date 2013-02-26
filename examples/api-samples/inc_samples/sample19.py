@@ -22,12 +22,15 @@ def sample19(request):
     sourceFileId = request.POST.get('sourceFileId')
     targetFileId = request.POST.get('targetFileId')
     callbackUrl = request.POST.get('callbackUrl')
+    basePath = request.POST.get('server_type')
 
+    # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(sourceFileId) == False or IsNotNull(targetFileId) == False:
         return render_to_response('__main__:templates/sample19.pt',
             { 'error' : 'You do not enter all parameters' })
 
-    #### Create Signer, ApiClient and Annotation Api objects
+    ### Create Signer, ApiClient and Annotation Api objects
+
     # Create signer object
     signer = GroupDocsRequestSigner(privateKey)
     # Create apiClient object
@@ -36,6 +39,8 @@ def sample19(request):
     compare = ComparisonApi(apiClient)
     # Create AsyncApi object
     async = AsyncApi(apiClient)
+
+    async.basePath = basePath
 
     # complare files
     info = compare.Compare(clientId, sourceFileId, targetFileId, callbackUrl)
@@ -48,7 +53,13 @@ def sample19(request):
     # construct result
     iframe = ''
     if jobInfo.status == "Ok" and jobInfo.result.outputs[0].guid is not None:
-        iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid +  '" frameborder="0" width="100%" height="600"></iframe>'
+        # Generation of iframe URL using jobInfo.result.outputs[0].guid
+        if basePath == "https://api.groupdocs.com/v2.0":
+            iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + ' frameborder="0" width="720" height="600"><iframe>'
+        elif basePath == "https://dev-api.groupdocs.com/v2.0":
+            iframe = '<iframe src="https://dev-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + ' frameborder="0" width="720" height="600"><iframe>'
+        elif basePath == "https://stage-api.groupdocs.com/v2.0":
+            iframe = '<iframe src="https://stage-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + ' frameborder="0" width="720" height="600"><iframe>'
 
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample19.pt',
