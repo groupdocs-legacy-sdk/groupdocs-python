@@ -4,26 +4,22 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
 
-		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample22</h3>
+		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample23</h3>
 
 		<div class='samplecontent' style="padding:10px;">
-		   <i>This sample will show how create or update user and add him to collaborators using Python SDK<br/>
+		   <i>This sample will show how to upload file from URL to GroupDocs account using Python SDK<br/>
            <br />
            <br />
-           <a href="/docs/sample22.html">Docs for this sample</a>
+           <a href="/docs/sample24.html">Docs for this sample</a>
            <br />
 		   <br/><p>You entered:
 		   <p>User ID = ${userId|''}
 		   <p>Private key = ${privateKey|''}
-		   <p>Email = ${email|''}
-		   <p>Name = ${name|''}
-		   <p>Last Name = ${lastName|''}
-		   <p>FileID = ${fileId|''}
-		   <p>Callback URL = ${callbackUrl|''}
+		   <p>Url = ${url|''}
 		   <p><font color="red">${error|''}</font>
 		   <div id="requestForm" style="padding: 20px; border: 1px solid black;">
 		   <p> Enter data for request and press "Make request" button </p>
-		        <form action="/sample22" method = "post" enctype = 'multipart/form-data'>
+		        <form action="/sample24" method = "post" enctype = 'multipart/form-data'>
                    <label for='client_id'>GroupDocs Client ID</label>
                    <br />
                    <input type='text', name='client_id' value="${userId|''}" />
@@ -32,25 +28,9 @@
                    <br />
                    <input type='text', name='private_key'  value="${privateKey|''}" />
                    <br />
-                   <label for='email'>Email</label>
+                   <label for='url'>File URL</label>
                    <br />
-                   <input type='text', name='email'  value="${email|''}" />
-		            <br />
-                   <label for='name'>First Name</label>
-                   <br />
-                   <input type='text', name='first_name'  value="${name|''}" />
-		            <br />
-                   <label for='lastName'>Last Name</label>
-                   <br />
-                   <input type='text', name='last_name'  value="${lastName|''}" />
-		            <br />
-                   <label for='fileId'>File ID</label>
-                   <br />
-                   <input type='text', name='fileId'  value="${fileId|''}" />
-                   <br />
-                   <label for='callbackUrl'>callbackUrl</label>
-                   <br />
-                   <input type='text', name='callbackUrl'  value="${callbackUrl|''}" />
+                   <input type='text', name='url'  value="${url|''}" />
                    <br />
                    <label for='server_type'>Choose server</label>
                    <br />
@@ -65,7 +45,6 @@
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
 			    <p> Results: </p>
-			    ${structure:message|''}<br />
                 ${structure:iframe|''}
 		   </div>
 		   <br/>

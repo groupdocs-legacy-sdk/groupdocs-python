@@ -18,11 +18,12 @@ def sample11(request):
     fileId = request.POST.get('fileId')
     annotationType = request.POST.get('annotation_type')
 
+    # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileId) == False or IsNotNull(annotationType) == False:
         return render_to_response('__main__:templates/sample11.pt',
                 { 'error' : 'You do not enter all parameters' })
 
-    #### Create Signer, ApiClient and Annotation Api objects
+    ### Create Signer, ApiClient and Annotation Api objects
 
     # Create signer object
     signer = GroupDocsRequestSigner(privateKey)
@@ -113,11 +114,13 @@ def sample11(request):
             },
         }.items())
 
-    print requestBody
-
     try:
         # Make a request to Annotation API using clientId, fileId and requestBody
         response = ant.CreateAnnotation(clientId, fileId, requestBody)
+        if response.status == "Ok":
+            if response.result:
+                iframe = '<iframe src="https://apps.groupdocs.com//document-annotation2/embed/' + response.result.annotationGuid + '" frameborder="0" width="720" height="600"><iframe>'
+
     except Exception, e:
         return render_to_response('__main__:templates/sample11.pt',
             { 'error' : str(e) })
@@ -130,6 +133,7 @@ def sample11(request):
               'annotationType' : annotationType,
               'annotationText' : request.POST.get('text'),
               'annotationId' : response.result.annotationGuid,
+              'iframe' : iframe,
               'status' : response.status
         },
         request=request)

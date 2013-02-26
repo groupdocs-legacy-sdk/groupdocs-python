@@ -17,18 +17,23 @@ def sample20(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
     resultFileId = request.POST.get('resultFileId')
+    basePath = request.POST.get('server_type')
 
+    # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(resultFileId) == False:
         return render_to_response('__main__:templates/sample20.pt',
             { 'error' : 'You do not enter all parameters' })
 
-    #### Create Signer, ApiClient and Annotation Api objects
+    ### Create Signer, ApiClient and Annotation Api objects
+
     # Create signer object
     signer = GroupDocsRequestSigner(privateKey)
     # Create apiClient object
     apiClient = ApiClient(signer)
     # Create ComparisonApi object
     compare = ComparisonApi(apiClient)
+
+    compare.basePath = basePath
 
     # get changes
     info = compare.GetChanges(clientId, resultFileId)

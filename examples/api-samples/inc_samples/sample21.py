@@ -22,12 +22,15 @@ def sample21(request):
     name = request.POST.get('name')
     lastName = request.POST.get('lastName')
     inputFile = request.POST.get('file')
+    basePath = request.POST.get('server_type')
 
+    # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(email) == False or IsNotNull(name) == False or IsNotNull(lastName) == False:
         return render_to_response('__main__:templates/sample21.pt',
             { 'error' : 'You do not enter all parameters' })
 
-    #### Create Signer, ApiClient and Annotation Api objects
+    ### Create Signer, ApiClient and Annotation Api objects
+
     # Create signer object
     signer = GroupDocsRequestSigner(privateKey)
     # Create apiClient object
@@ -35,6 +38,7 @@ def sample21(request):
     # Create StorageApi object
     storage = StorageApi(apiClient)
 
+    storage.basePath = basePath
 
     try:
         # a hack to get uploaded file size
@@ -85,7 +89,14 @@ def sample21(request):
             # make result messages
             if send.status == "Ok":
                 message = '<p>File was uploaded to GroupDocs. Here you can see your <strong>' + inputFile.filename +  '</strong> file in the GroupDocs Embedded Viewer.</p>';
-                iframe = '<iframe src="https://apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
+
+                # Generation of iframe URL using jobInfo.result.outputs[0].guid
+                if basePath == "https://api.groupdocs.com/v2.0":
+                    iframe = '<iframe src="https://apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
+                elif basePath == "https://dev-api.groupdocs.com/v2.0":
+                    iframe = '<iframe src="https://dev-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
+                elif basePath == "https://stage-api.groupdocs.com/v2.0":
+                    iframe = '<iframe src="https://stage-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
 
 
     except Exception, e:

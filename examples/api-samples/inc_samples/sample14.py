@@ -18,11 +18,12 @@ def sample14(request):
     privateKey = request.POST.get('private_key')
     path = request.POST.get('path')
 
+    # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(path) == False:
         return render_to_response('__main__:templates/sample14.pt',
                 { 'error' : 'You do not enter all parameters' })
 
-    #### Create Signer, ApiClient, StorageApi and Document Api objects
+    ### Create Signer, ApiClient, StorageApi and Document Api objects
 
     # Create signer object
     signer = GroupDocsRequestSigner(privateKey)
