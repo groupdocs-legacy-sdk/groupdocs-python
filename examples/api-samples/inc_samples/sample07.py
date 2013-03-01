@@ -47,7 +47,7 @@ def sample07(request):
         #Check is file have thumbnail
         if files.result.files[i].thumbnail != None:
             #Placing thumbnails to local folder
-            fp = open('templates/thumbnail' + str(i) + '.jpg', 'wb')
+            fp = open('tmp/thumbnail' + str(i) + '.jpg', 'wb')
             fp.write(base64.b64decode(files.result.files[i].thumbnail))
             fp.close()
             #Geting file names for thumbnails
