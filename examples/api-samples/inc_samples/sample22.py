@@ -60,7 +60,7 @@ def sample22(request):
     user.lastname = lastName
     # Set email as entered email
     user.primary_email = email
-    user.roles = roles
+#    user.roles = roles
 
     iframe = ''
 
@@ -93,6 +93,7 @@ def sample22(request):
         elif basePath == "https://stage-api.groupdocs.com/v2.0":
             iframe = '<iframe src="https://stage-apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
 
+    errorMessage = newUser.error_message
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample22.pt',
         {
@@ -103,6 +104,7 @@ def sample22(request):
             'name':name,
             'lastName': lastName,
             'callbackUrl': callbackUrl,
-            'iframe': iframe
+            'iframe': iframe,
+            'errorMessage': errorMessage
             },
         request=request)
