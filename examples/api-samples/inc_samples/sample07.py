@@ -28,15 +28,13 @@ def sample07(request):
     signer = GroupDocsRequestSigner(privateKey)
     #Create apiClient object
     apiClient = ApiClient(signer)
-    #Create Management Api object
-    mgmtApi = MgmtApi(apiClient)
     #Create Storage Api object
-    api = StorageApi(apiClient)
+    storageApi = StorageApi(apiClient)
     ####Make a request to Storage API using clientId
 
     try:
         #Obtaining all Entities from current user
-        files = api.ListEntities(clientId, "", extended = True);
+        files = storageApi.ListEntities(clientId, "", extended = True);
     except Exception, e:
         return render_to_response('__main__:templates/sample07.pt',
                                   { 'error' : str(e) })
