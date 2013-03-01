@@ -34,10 +34,8 @@ def sample06(request):
         return render_to_response('__main__:templates/sample06.pt',
                                   { 'error' : 'You do not enter you User id or Private key' })
     #Determination of placeSignatureOn parameter
-    i = 0
-    for signer in signers:
-        signer[i]['placeSignatureOn'] = ''
-        i = i + 1
+    for i, signer in enumerate(signers):
+        signers[i]['placeSignatureOn'] = ''
     ####Create Signer, ApiClient and Storage Api objects
 
     #Create signer object

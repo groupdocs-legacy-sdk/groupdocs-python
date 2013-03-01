@@ -104,7 +104,7 @@
                 $("body").sign({
                     userId: $('#client_id').val(),
                     privateKey: $('#private_key').val(),
-                    signMethod: "/sample6",
+                    signMethod: "/sample06",
                     onError: function (e, data) {
                         alert(data);
                     },
