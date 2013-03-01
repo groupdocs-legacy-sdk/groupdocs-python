@@ -44,9 +44,9 @@ def sample22(request):
     #Create Role info object
     role = RoleInfo
     #Set user role Id. Can be: 1 -  SysAdmin, 2 - Admin, 3 - User, 4 - Guest
-    role.id = "3";
+    role.id = "3"
     #Set user role name. Can be: SysAdmin, Admin, User, Guest
-    role.name = "User";
+    role.name = "User"
     #Create dict of roles.
     roles = [role]
 
@@ -72,7 +72,7 @@ def sample22(request):
 
         # Create AntApi object
         ant = AntApi(apiClient)
-
+        ant.basePath = basePath
         # Make request to Ant api for set new user as annotation collaborator
         addCollaborator = ant.SetAnnotationCollaborators(clientId, fileId, "2.0", body=[email])
 
@@ -87,11 +87,11 @@ def sample22(request):
 
         # Generating iframe for template
         if basePath == "https://api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"><iframe>'
+            iframe = '<iframe src="https://apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
         elif basePath == "https://dev-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://dev-apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"><iframe>'
+            iframe = '<iframe src="https://dev-apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
         elif basePath == "https://stage-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://stage-apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"><iframe>'
+            iframe = '<iframe src="https://stage-apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
 
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample22.pt',

@@ -45,13 +45,13 @@ def sample07(request):
         #Check is file have thumbnail
         if files.result.files[i].thumbnail != None:
             #Placing thumbnails to local folder
-            fp = open('templates/thumbnail' + unicode(i) + '.jpg', 'wb')
+            fp = open('templates/thumbnail' + str(i) + '.jpg', 'wb')
             fp.write(base64.b64decode(files.result.files[i].thumbnail))
             fp.close()
             #Geting file names for thumbnails
             name = files.result.files[i].name
             #Create HTML representation for thumbnails
-            thumbnail += '<img src= "thumbnail' + unicode(i) + '.jpg", width="40px", height="40px">' + files.result.files[i].name + '</img> <br />'
+            thumbnail += '<img src= "thumbnail' + str(i) + '.jpg", width="40px", height="40px">' + files.result.files[i].name + '</img> <br />'
     #If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample07.pt',
                               { 'thumbnailList' : thumbnail, 'userId' : clientId, 'privateKey' : privateKey }, 
