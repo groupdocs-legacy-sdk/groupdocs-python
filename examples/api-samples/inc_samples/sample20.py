@@ -42,7 +42,7 @@ def sample20(request):
     result = ""
     if info.status == "Ok":
         if info.result.changes is not None:
-            result += "<table class='border'>"
+            result = "<table class='border'>"
             result += "<tr><td><font color='green'>Change Name</font></td><td><font color='green'>Change</font></td></tr>"
             for item in info.result.changes:
                 for key in item.__dict__:
@@ -50,9 +50,9 @@ def sample20(request):
                         if type(item.__dict__[key]).__name__ == 'instance':
                             for value in item.__dict__[key].__dict__:
                                 if value != "swaggerTypes":
-                                    result += "<tr><td>" + value + "</td><td>" + str(item.__dict__[key].__dict__[value]) + "</td></tr>"
+                                    result += "<tr><td>" + value + "</td><td>" + unicode(item.__dict__[key].__dict__[value]) + "</td></tr>"
                         else:
-                            result += "<tr><td>" + key + "</td><td>" + str(item.__dict__[key]) + "</td></tr>"
+                            result += "<tr><td>" + key + "</td><td>" + unicode(item.__dict__[key]) + "</td></tr>"
 
                 result += "<tr bgcolor='#808080'><td></td><td></td></tr>"
             result += "</table>"

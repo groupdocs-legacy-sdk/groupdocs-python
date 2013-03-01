@@ -14,10 +14,7 @@
            <br />
            <a href="/docs/sample11.html">Docs for this sample</a>
            <br />
-            <form action="/sample11" method = "post" enctype = 'multipart/form-data'>
-            <input type="hidden" name="annotationId" value="${annotationId|''}">
 
-			<br/>
 			<p>You entered: </p>
 			<p>Client Id = ${userId|''}</p>
 			<p>Private Key = ${privateKey|''}</p>
@@ -33,6 +30,8 @@
 
 			<p><font color="red">${error|''}</font></p>
 			<div id="requestForm" style="padding: 20px; border: 1px solid black;">
+			<form action="/sample11" method = "post" enctype = 'multipart/form-data'>
+                        <input type="hidden" name="annotationId" value="${annotationId|''}">
 				<p> Enter data for request and press "Make request" button </p>
 
                <label for='client_id'>GroupDocs Client ID</label>
@@ -111,9 +110,9 @@
                 </fieldset>
 
                 <input type='submit' value='Make Request'/>
-
+            </form>
 			</div>
-			</form>
+
 
 			<div  style="padding:20px; border:1px solid black;">
 			    ${structure:iframe|''}

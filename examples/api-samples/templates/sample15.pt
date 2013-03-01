@@ -30,12 +30,12 @@
 		            <input type='submit' value='Make Request'/>
 		        </form>
 		   </div>
-            <div  style="padding:20px; border:1px solid black;">
-                <div tal:condition="views|None">
-                    <p> Number of document's views: </p>
-                    ${views|''}
-                </div>
-            </div>
+		   <div  style="padding:20px; border:1px solid black;">
+                   <p> Results: </p>
+                   <p>Total document's views: <font color="green"> ${views|''}</font> </p>
+
+           </div>
+
 		   <br/>
 		</div>
 

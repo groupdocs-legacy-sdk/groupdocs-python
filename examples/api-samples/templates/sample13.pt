@@ -16,7 +16,6 @@
 		   <p>User ID = ${userId|''}
 		   <p>Private key = ${privateKey|''}
 		   <p>File Id = ${fileId|''}
-		   <p>Collaborations: ${email|''}
 		   <p><font color="red">${error|''}</font>
 		   <div id="requestForm" style="padding: 20px; border: 1px solid black;">
 		   <p> Enter data for request and press "Make request" button </p>
@@ -41,8 +40,10 @@
 		        </form>
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
-		   </div>
-		   <br/>
+                    <p> Results: </p>
+                    <p>New collaborations: <font color="green">${email|''}</font>
+
+            </div>
 		</div>
 
 		<div style="padding:10px;">

@@ -37,29 +37,29 @@ def sample19(request):
     apiClient = ApiClient(signer)
     # Create ComparisonApi object
     compare = ComparisonApi(apiClient)
-    # Create AsyncApi object
-    async = AsyncApi(apiClient)
-
-    async.basePath = basePath
+    compare.basePath = basePath
 
     # complare files
     info = compare.Compare(clientId, sourceFileId, targetFileId, callbackUrl)
-    # wait some time when conversation finished
-    time.sleep(5)
 
-    # get job info
-    jobInfo = async.GetJobDocuments(clientId, info.result.job_id)
+    if info.status == "Ok":
+        # Create AsyncApi object
+        async = AsyncApi(apiClient)
+        async.basePath = basePath
+        time.sleep(5)
+        # get job info
+        jobInfo = async.GetJobDocuments(clientId, info.result.job_id)
 
-    # construct result
-    iframe = ''
-    if jobInfo.status == "Ok" and jobInfo.result.outputs[0].guid is not None:
-        # Generation of iframe URL using jobInfo.result.outputs[0].guid
-        if basePath == "https://api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + ' frameborder="0" width="720" height="600"><iframe>'
-        elif basePath == "https://dev-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://dev-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + ' frameborder="0" width="720" height="600"><iframe>'
-        elif basePath == "https://stage-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://stage-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + ' frameborder="0" width="720" height="600"><iframe>'
+        # construct result
+        iframe = ''
+        if jobInfo.status == "Ok":
+            # Generation of iframe URL using jobInfo.result.outputs[0].guid
+            if basePath == "https://api.groupdocs.com/v2.0":
+                iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + '?frameborder="0" width="720" height="600"></iframe>'
+            elif basePath == "https://dev-api.groupdocs.com/v2.0":
+                iframe = '<iframe src="https://dev-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + '?frameborder="0" width="720" height="600"></iframe>'
+            elif basePath == "https://stage-api.groupdocs.com/v2.0":
+                iframe = '<iframe src="https://stage-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + '?frameborder="0" width="720" height="600"></iframe>'
 
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample19.pt',

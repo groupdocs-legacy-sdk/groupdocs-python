@@ -36,7 +36,7 @@
 		   </div>
             <div  style="padding:20px; border:1px solid black;">
                 <p> Result: </p>
-                ${result|''}
+               <p><font color="green">${result|''}</font>
             </div>
 		   <br/>
 		</div>

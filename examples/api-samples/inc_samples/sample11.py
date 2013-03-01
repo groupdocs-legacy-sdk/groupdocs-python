@@ -119,7 +119,7 @@ def sample11(request):
         response = ant.CreateAnnotation(clientId, fileId, requestBody)
         if response.status == "Ok":
             if response.result:
-                iframe = '<iframe src="https://apps.groupdocs.com//document-annotation2/embed/' + response.result.annotationGuid + '" frameborder="0" width="720" height="600"><iframe>'
+                iframe = '<iframe src="https://apps.groupdocs.com//document-annotation2/embed/' + response.result.documentGuid + '" frameborder="0" width="720" height="600"></iframe>'
 
     except Exception, e:
         return render_to_response('__main__:templates/sample11.pt',

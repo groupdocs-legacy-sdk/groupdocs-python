@@ -34,10 +34,10 @@ def sample06(request):
         return render_to_response('__main__:templates/sample06.pt',
                                   { 'error' : 'You do not enter you User id or Private key' })
     #Determination of placeSignatureOn parameter
-
+    i = 0
     for signer in signers:
-        signer['placeSignatureOn'] = ''
-
+        signer[i]['placeSignatureOn'] = ''
+        i = i + 1
     ####Create Signer, ApiClient and Storage Api objects
 
     #Create signer object
@@ -60,6 +60,6 @@ def sample06(request):
 
         return_data = json.dumps({ 'responseCode' : 200, 'documentId' : response.result.documents[0].documentId })
         return Response(body = return_data, content_type = 'application/json')
-    
+
     return render_to_response('__main__:templates/sample06.pt',
                           { 'error' : response.error_message })
