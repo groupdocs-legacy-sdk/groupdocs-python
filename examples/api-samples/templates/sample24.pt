@@ -32,8 +32,6 @@
                    <br />
                    <input type='text', name='url'  value="${url|''}" />
                    <br />
-                   <label for='server_type'>Choose server</label>
-                   <br />
                     <input type='submit' value='Make Request'/>
 		        </form>
 		   </div>
