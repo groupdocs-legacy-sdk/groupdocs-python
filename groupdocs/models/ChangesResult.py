@@ -24,11 +24,19 @@ class ChangesResult:
     def __init__(self):
         self.swaggerTypes = {
             'result_file_Id': 'str',
+            'source_file_Id': 'str',
+            'target_file_Id': 'str',
+            'source_file_name': 'str',
+            'target_file_name': 'str',
             'changes': 'list[ChangeInfo]'
 
         }
 
 
         self.result_file_Id = None # str
+        self.source_file_Id = None # str
+        self.target_file_Id = None # str
+        self.source_file_name = None # str
+        self.target_file_name = None # str
         self.changes = None # list[ChangeInfo]
         

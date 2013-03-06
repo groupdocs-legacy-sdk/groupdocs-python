@@ -27,7 +27,7 @@ class MergeApi(object):
 
     def __init__(self, apiClient):
         self.apiClient = apiClient
-        self.__basePath = "https://api.groupdocs.com/v2.0"
+        self.__basePath = "https://dev-api.groupdocs.com/v2.0"
 
     @property
     def basePath(self):
@@ -38,424 +38,6 @@ class MergeApi(object):
         self.__basePath = value
 
     
-    def GetQuestionnaireCollectors(self, userId, questionnaireId, **kwargs):
-        """Get questionnaire collectors
-
-        Args:
-            userId, str: User global unique identifier (required)
-            questionnaireId, str: Questionnaire identifier (required)
-            
-        Returns: GetQuestionnaireCollectorsResponse
-        """
-        if( userId == None or questionnaireId == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'questionnaireId']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireCollectors" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/collectors'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'GET'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('questionnaireId' in params):
-            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
-            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireCollectorsResponse')
-        return responseObject
-        
-        
-    def GetQuestionnaireCollector(self, userId, collectorId, **kwargs):
-        """Returns questionnaire collector
-
-        Args:
-            userId, str: User global unique identifier (required)
-            collectorId, str: Questionnaire collector global unique identifier (required)
-            
-        Returns: GetQuestionnaireCollectorResponse
-        """
-        if( userId == None or collectorId == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'collectorId']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireCollector" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'GET'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('collectorId' in params):
-            replacement = str(self.apiClient.toPathValue(params['collectorId']))
-            resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireCollectorResponse')
-        return responseObject
-        
-        
-    def AddQuestionnaireCollector(self, userId, questionnaireId, body, **kwargs):
-        """Add questionnaire collector
-
-        Args:
-            userId, str: User global unique identifier (required)
-            questionnaireId, str: Questionnaire identifier (required)
-            body, QuestionnaireCollectorInfo: Questionnaire collector to be added (required)
-            
-        Returns: AddQuestionnaireCollectorResponse
-        """
-        if( userId == None or questionnaireId == None or body == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'questionnaireId', 'body']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method AddQuestionnaireCollector" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/collectors'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'POST'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('questionnaireId' in params):
-            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
-            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'AddQuestionnaireCollectorResponse')
-        return responseObject
-        
-        
-    def UpdateQuestionnaireCollector(self, userId, collectorId, body, **kwargs):
-        """Update questionnaire collector
-
-        Args:
-            userId, str: User global unique identifier (required)
-            collectorId, str: Questionnaire collector global unique identifier (required)
-            body, QuestionnaireCollectorInfo: Questionnaire collector data (required)
-            
-        Returns: UpdateQuestionnaireCollectorResponse
-        """
-        if( userId == None or collectorId == None or body == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'collectorId', 'body']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method UpdateQuestionnaireCollector" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'PUT'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('collectorId' in params):
-            replacement = str(self.apiClient.toPathValue(params['collectorId']))
-            resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'UpdateQuestionnaireCollectorResponse')
-        return responseObject
-        
-        
-    def DeleteQuestionnaireCollector(self, userId, collectorId, **kwargs):
-        """Removes questionnaire collector
-
-        Args:
-            userId, str: User global unique identifier (required)
-            collectorId, str: Questionnaire collector global unique identifier (required)
-            
-        Returns: DeleteQuestionnaireCollectorResponse
-        """
-        if( userId == None or collectorId == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'collectorId']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method DeleteQuestionnaireCollector" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'DELETE'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('collectorId' in params):
-            replacement = str(self.apiClient.toPathValue(params['collectorId']))
-            resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'DeleteQuestionnaireCollectorResponse')
-        return responseObject
-        
-        
-    def GetTemplates(self, userId, **kwargs):
-        """Get template documents information
-
-        Args:
-            userId, str: User global unique identifier (required)
-            
-        Returns: GetTemplatesResponse
-        """
-        if( userId == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method GetTemplates" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/templates'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'GET'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'GetTemplatesResponse')
-        return responseObject
-        
-        
-    def GetQuestionnaireFields(self, userId, questionnaireId, **kwargs):
-        """Get questionnaire fields
-
-        Args:
-            userId, str: User global unique identifier (required)
-            questionnaireId, str: Questionnaire global unique identifier (required)
-            includeGeometry, bool: A flag indicating whether fields coordinates and size should be included into the response. (optional)
-            
-        Returns: TemplateFieldsResponse
-        """
-        if( userId == None or questionnaireId == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'questionnaireId', 'includeGeometry']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireFields" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/fields?include_geometry={includeGeometry}'.replace('*', '')
-        pos = resourcePath.find("?")
-        if pos != -1:
-            resourcePath = resourcePath[0:pos]
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'GET'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('includeGeometry' in params):
-            queryParams['include_geometry'] = self.apiClient.toPathValue(params['includeGeometry'])
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('questionnaireId' in params):
-            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
-            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'TemplateFieldsResponse')
-        return responseObject
-        
-        
-    def GetQuestionnaireMetadata(self, userId, questionnaireId, **kwargs):
-        """Get questionnaire metadata
-
-        Args:
-            userId, str: User global unique identifier (required)
-            questionnaireId, str: Questionnaire global unique identifier (required)
-            
-        Returns: GetQuestionnaireMetadataResponse
-        """
-        if( userId == None or questionnaireId == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'questionnaireId']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireMetadata" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'GET'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('questionnaireId' in params):
-            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
-            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireMetadataResponse')
-        return responseObject
-        
-        
-    def UpdateQuestionnaireMetadata(self, userId, questionnaireId, body, **kwargs):
-        """Update questionnaire metadata
-
-        Args:
-            userId, str: User global unique identifier (required)
-            questionnaireId, str: Questionnaire global unique identifier (required)
-            body, QuestionnaireMetadata: Questionnaire metadata to update (required)
-            
-        Returns: UpdateQuestionnaireResponse
-        """
-        if( userId == None or questionnaireId == None or body == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'questionnaireId', 'body']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method UpdateQuestionnaireMetadata" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'PUT'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('questionnaireId' in params):
-            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
-            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'UpdateQuestionnaireResponse')
-        return responseObject
-        
-        
     def AddJobDocumentDataSource(self, userId, jobId, fileId, datasourceId, **kwargs):
         """Add job document datasource
 
@@ -1840,6 +1422,424 @@ class MergeApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'UpdateQuestionnaireExecutionResponse')
+        return responseObject
+        
+        
+    def GetQuestionnaireCollectors(self, userId, questionnaireId, **kwargs):
+        """Get questionnaire collectors
+
+        Args:
+            userId, str: User global unique identifier (required)
+            questionnaireId, str: Questionnaire identifier (required)
+            
+        Returns: GetQuestionnaireCollectorsResponse
+        """
+        if( userId == None or questionnaireId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'questionnaireId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireCollectors" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/collectors'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('questionnaireId' in params):
+            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
+            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireCollectorsResponse')
+        return responseObject
+        
+        
+    def GetQuestionnaireCollector(self, userId, collectorId, **kwargs):
+        """Returns questionnaire collector
+
+        Args:
+            userId, str: User global unique identifier (required)
+            collectorId, str: Questionnaire collector global unique identifier (required)
+            
+        Returns: GetQuestionnaireCollectorResponse
+        """
+        if( userId == None or collectorId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'collectorId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireCollector" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('collectorId' in params):
+            replacement = str(self.apiClient.toPathValue(params['collectorId']))
+            resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireCollectorResponse')
+        return responseObject
+        
+        
+    def AddQuestionnaireCollector(self, userId, questionnaireId, body, **kwargs):
+        """Add questionnaire collector
+
+        Args:
+            userId, str: User global unique identifier (required)
+            questionnaireId, str: Questionnaire identifier (required)
+            body, QuestionnaireCollectorInfo: Questionnaire collector to be added (required)
+            
+        Returns: AddQuestionnaireCollectorResponse
+        """
+        if( userId == None or questionnaireId == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'questionnaireId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method AddQuestionnaireCollector" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/collectors'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('questionnaireId' in params):
+            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
+            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'AddQuestionnaireCollectorResponse')
+        return responseObject
+        
+        
+    def UpdateQuestionnaireCollector(self, userId, collectorId, body, **kwargs):
+        """Update questionnaire collector
+
+        Args:
+            userId, str: User global unique identifier (required)
+            collectorId, str: Questionnaire collector global unique identifier (required)
+            body, QuestionnaireCollectorInfo: Questionnaire collector data (required)
+            
+        Returns: UpdateQuestionnaireCollectorResponse
+        """
+        if( userId == None or collectorId == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'collectorId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method UpdateQuestionnaireCollector" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('collectorId' in params):
+            replacement = str(self.apiClient.toPathValue(params['collectorId']))
+            resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'UpdateQuestionnaireCollectorResponse')
+        return responseObject
+        
+        
+    def DeleteQuestionnaireCollector(self, userId, collectorId, **kwargs):
+        """Removes questionnaire collector
+
+        Args:
+            userId, str: User global unique identifier (required)
+            collectorId, str: Questionnaire collector global unique identifier (required)
+            
+        Returns: DeleteQuestionnaireCollectorResponse
+        """
+        if( userId == None or collectorId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'collectorId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method DeleteQuestionnaireCollector" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'DELETE'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('collectorId' in params):
+            replacement = str(self.apiClient.toPathValue(params['collectorId']))
+            resourcePath = resourcePath.replace('{' + 'collectorId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'DeleteQuestionnaireCollectorResponse')
+        return responseObject
+        
+        
+    def GetTemplates(self, userId, **kwargs):
+        """Get template documents information
+
+        Args:
+            userId, str: User global unique identifier (required)
+            
+        Returns: GetTemplatesResponse
+        """
+        if( userId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetTemplates" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/templates'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetTemplatesResponse')
+        return responseObject
+        
+        
+    def GetQuestionnaireFields(self, userId, questionnaireId, **kwargs):
+        """Get questionnaire fields
+
+        Args:
+            userId, str: User global unique identifier (required)
+            questionnaireId, str: Questionnaire global unique identifier (required)
+            includeGeometry, bool: A flag indicating whether fields coordinates and size should be included into the response. (optional)
+            
+        Returns: TemplateFieldsResponse
+        """
+        if( userId == None or questionnaireId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'questionnaireId', 'includeGeometry']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireFields" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/fields?include_geometry={includeGeometry}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('includeGeometry' in params):
+            queryParams['include_geometry'] = self.apiClient.toPathValue(params['includeGeometry'])
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('questionnaireId' in params):
+            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
+            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'TemplateFieldsResponse')
+        return responseObject
+        
+        
+    def GetQuestionnaireMetadata(self, userId, questionnaireId, **kwargs):
+        """Get questionnaire metadata
+
+        Args:
+            userId, str: User global unique identifier (required)
+            questionnaireId, str: Questionnaire global unique identifier (required)
+            
+        Returns: GetQuestionnaireMetadataResponse
+        """
+        if( userId == None or questionnaireId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'questionnaireId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetQuestionnaireMetadata" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('questionnaireId' in params):
+            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
+            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetQuestionnaireMetadataResponse')
+        return responseObject
+        
+        
+    def UpdateQuestionnaireMetadata(self, userId, questionnaireId, body, **kwargs):
+        """Update questionnaire metadata
+
+        Args:
+            userId, str: User global unique identifier (required)
+            questionnaireId, str: Questionnaire global unique identifier (required)
+            body, QuestionnaireMetadata: Questionnaire metadata to update (required)
+            
+        Returns: UpdateQuestionnaireResponse
+        """
+        if( userId == None or questionnaireId == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'questionnaireId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method UpdateQuestionnaireMetadata" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/merge/{userId}/questionnaires/{questionnaireId}/metadata'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('questionnaireId' in params):
+            replacement = str(self.apiClient.toPathValue(params['questionnaireId']))
+            resourcePath = resourcePath.replace('{' + 'questionnaireId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'UpdateQuestionnaireResponse')
         return responseObject
         
         

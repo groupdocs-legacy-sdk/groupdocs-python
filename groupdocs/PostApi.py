@@ -27,7 +27,7 @@ class PostApi(object):
 
     def __init__(self, apiClient):
         self.apiClient = apiClient
-        self.__basePath = "https://api.groupdocs.com/v2.0"
+        self.__basePath = "https://dev-api.groupdocs.com/v2.0"
 
     @property
     def basePath(self):

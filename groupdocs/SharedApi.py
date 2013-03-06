@@ -27,7 +27,7 @@ class SharedApi(object):
 
     def __init__(self, apiClient):
         self.apiClient = apiClient
-        self.__basePath = "https://api.groupdocs.com/v2.0"
+        self.__basePath = "https://dev-api.groupdocs.com/v2.0"
 
     @property
     def basePath(self):
@@ -38,17 +38,17 @@ class SharedApi(object):
         self.__basePath = value
 
     
-    def Download(self, guid, **kwargs):
+    def Download(self, guid, fileName, **kwargs):
         """Download
 
         Args:
             guid, str: GUID (required)
-            fileName, str: File name (optional)
+            fileName, str: File name (required)
             render, bool: Render (optional)
             
         Returns: stream
         """
-        if( guid == None ):
+        if( guid == None or fileName == None ):
             raise ApiException(400, "missing required parameters")
         allParams = ['guid', 'fileName', 'render']
 

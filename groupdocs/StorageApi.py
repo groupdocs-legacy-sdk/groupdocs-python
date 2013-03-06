@@ -27,7 +27,7 @@ class StorageApi(object):
 
     def __init__(self, apiClient):
         self.apiClient = apiClient
-        self.__basePath = "https://api.groupdocs.com/v2.0"
+        self.__basePath = "https://dev-api.groupdocs.com/v2.0"
 
     @property
     def basePath(self):
@@ -534,14 +534,14 @@ class StorageApi(object):
             userId, str: User GUID (required)
             path, str: Path (required)
             mode, str: Mode (optional)
-            Groupdocs_Copy, str: File ID (copy) (optional)
             Groupdocs_Move, str: File ID (move) (optional)
+            Groupdocs_Copy, str: File ID (copy) (optional)
             
         Returns: FileMoveResponse
         """
         if( userId == None or path == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'path', 'mode', 'Groupdocs_Copy', 'Groupdocs_Move']
+        allParams = ['userId', 'path', 'mode', 'Groupdocs_Move', 'Groupdocs_Copy']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -562,10 +562,10 @@ class StorageApi(object):
 
         if ('mode' in params):
             queryParams['mode'] = self.apiClient.toPathValue(params['mode'])
-        if ('Groupdocs_Copy' in params):
-            headerParams['Groupdocs-Copy'] = params['Groupdocs_Copy']
         if ('Groupdocs_Move' in params):
             headerParams['Groupdocs-Move'] = params['Groupdocs_Move']
+        if ('Groupdocs_Copy' in params):
+            headerParams['Groupdocs-Copy'] = params['Groupdocs_Copy']
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',

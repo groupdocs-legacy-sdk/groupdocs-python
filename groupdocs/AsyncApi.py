@@ -27,7 +27,7 @@ class AsyncApi(object):
 
     def __init__(self, apiClient):
         self.apiClient = apiClient
-        self.__basePath = "https://api.groupdocs.com/v2.0"
+        self.__basePath = "https://dev-api.groupdocs.com/v2.0"
 
     @property
     def basePath(self):
@@ -58,7 +58,7 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/jobs/{jobId}'.replace('*', '')
+        resourcePath = '/async/{userId}/jobs/{jobId}?format=xml'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -666,18 +666,17 @@ class AsyncApi(object):
         Args:
             userId, str: User GUID (required)
             fileId, str: File GUID (required)
-            targetType, str: Target type (optional)
             emailResults, str: Email results (optional)
             description, str: Description (optional)
             printScript, bool: Print (optional)
             callbackUrl, str: Callback url (optional)
-            checkDocumentOwnership, bool: Check Document Ownership (optional)
+            new_type, str: Target type (optional)
             
         Returns: ConvertResponse
         """
         if( userId == None or fileId == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'fileId', 'targetType', 'emailResults', 'description', 'printScript', 'callbackUrl', 'checkDocumentOwnership']
+        allParams = ['userId', 'fileId', 'emailResults', 'description', 'printScript', 'callbackUrl', 'new_type']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -686,7 +685,7 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/files/{fileId}?new_type={targetType}&email_results={emailResults}&new_description={description}&print_script={printScript}&callback={callbackUrl}&checkDocumentOwnership={checkDocumentOwnership}'.replace('*', '')
+        resourcePath = '/async/{userId}/files/{fileId}?new_type={targetType}&email_results={emailResults}&new_description={description}&print_script={printScript}&callback={callbackUrl}'.replace('*', '')
         pos = resourcePath.find("?")
         if pos != -1:
             resourcePath = resourcePath[0:pos]
@@ -696,8 +695,6 @@ class AsyncApi(object):
         queryParams = {}
         headerParams = {}
 
-        if ('targetType' in params):
-            queryParams['new_type'] = self.apiClient.toPathValue(params['targetType'])
         if ('emailResults' in params):
             queryParams['email_results'] = self.apiClient.toPathValue(params['emailResults'])
         if ('description' in params):
@@ -706,8 +703,8 @@ class AsyncApi(object):
             queryParams['print_script'] = self.apiClient.toPathValue(params['printScript'])
         if ('callbackUrl' in params):
             queryParams['callback'] = self.apiClient.toPathValue(params['callbackUrl'])
-        if ('checkDocumentOwnership' in params):
-            queryParams['checkDocumentOwnership'] = self.apiClient.toPathValue(params['checkDocumentOwnership'])
+        if ('new_type' in params):
+            queryParams['new_type'] = self.apiClient.toPathValue(params['new_type'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',

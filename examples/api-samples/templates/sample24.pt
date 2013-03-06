@@ -22,15 +22,15 @@
 		        <form action="/sample24" method = "post" enctype = 'multipart/form-data'>
                    <label for='client_id'>GroupDocs Client ID</label>
                    <br />
-                   <input type='text', name='client_id' value="${userId|''}" />
+                   <input type='text' name='client_id' value="${userId|''}" />
                    <br />
                    <label for='private_key'>GroupDocs Private Key</label>
                    <br />
-                   <input type='text', name='private_key'  value="${privateKey|''}" />
+                   <input type='text' name='private_key'  value="${privateKey|''}" />
                    <br />
                    <label for='url'>File URL</label>
                    <br />
-                   <input type='text', name='url'  value="${url|''}" />
+                   <input type='text' name='url'  value="${url|''}" />
                    <br />
                     <input type='submit' value='Make Request'/>
 		        </form>

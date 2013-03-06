@@ -37,7 +37,8 @@ class SignatureEnvelopeRecipientInfo:
             'signatureFingerprint': 'str',
             'signatureHost': 'str',
             'signatureLocation': 'str',
-            'signatureBrowser': 'str'
+            'signatureBrowser': 'str',
+            'embedUrl': 'str'
 
         }
 
@@ -57,4 +58,5 @@ class SignatureEnvelopeRecipientInfo:
         self.signatureHost = None # str
         self.signatureLocation = None # str
         self.signatureBrowser = None # str
+        self.embedUrl = None # str
         

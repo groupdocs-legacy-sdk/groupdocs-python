@@ -36,7 +36,7 @@ def sample05(request):
     apiClient = ApiClient(signer)
     #Create Storage Api object
     api = StorageApi(apiClient)
-
+    # import pdb;pdb.set_trace() # debug
 ####Make a request to Storage API using clientId
     try:
         #Create DocApi object
@@ -44,8 +44,7 @@ def sample05(request):
         #Make a request to Doc API using clientId
         srcFile = docApi.GetDocumentMetadataByPath(clientId, srcPath)
         #Obtaining file name
-        fileName = srcFile.result.last_view.document.name
-        fileID = int(srcFile.result.last_view.document.id)
+        fileID = int(srcFile.result.id)
         ####Make request for file copying/movement
 
         #If user choose copy
