@@ -31,7 +31,9 @@ class QuestionnaireMetadata:
             'assigned_questions': 'int',
             'total_questions': 'int',
             'modified': 'long',
-            'expires': 'long'
+            'expires': 'long',
+            'folder': 'str',
+            'emails': 'str'
 
         }
 
@@ -45,4 +47,6 @@ class QuestionnaireMetadata:
         self.total_questions = None # int
         self.modified = None # long
         self.expires = None # long
+        self.folder = None # str
+        self.emails = None # str
         

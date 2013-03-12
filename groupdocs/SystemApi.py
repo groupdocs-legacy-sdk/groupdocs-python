@@ -140,7 +140,7 @@ class SystemApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/system/{callerId}/plans/{family}'.replace('*', '')
+        resourcePath = '/system/{callerId}/plans/{family}?invalidate={invalidate}'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -297,6 +297,48 @@ class SystemApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'GetStatesResponse')
+        return responseObject
+        
+        
+    def SetBillingAddress(self, userId, body, **kwargs):
+        """Set user billing address
+
+        Args:
+            userId, str: User GUID (required)
+            body, BillingAddressInfo: Billing Address (required)
+            
+        Returns: GetBillingAddressResponse
+        """
+        if( userId == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method SetBillingAddress" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/system/{userId}/billingaddress'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetBillingAddressResponse')
         return responseObject
         
         

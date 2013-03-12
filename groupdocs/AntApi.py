@@ -695,6 +695,53 @@ class AntApi(object):
         return responseObject
         
         
+    def ResizeAnnotation(self, userId, annotationId, body, **kwargs):
+        """Resize annotation
+
+        Args:
+            userId, str: User GUID (required)
+            annotationId, str: Annotation ID (required)
+            body, AnnotationSizeInfo: position (required)
+            
+        Returns: ResizeAnnotationResponse
+        """
+        if( userId == None or annotationId == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'annotationId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method ResizeAnnotation" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/ant/{userId}/annotations/{annotationId}/size'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('annotationId' in params):
+            replacement = str(self.apiClient.toPathValue(params['annotationId']))
+            resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'ResizeAnnotationResponse')
+        return responseObject
+        
+        
     def SetAnnotationAccess(self, userId, annotationId, body, **kwargs):
         """Set Annotation Access
 
@@ -998,6 +1045,53 @@ class AntApi(object):
         del params['kwargs']
 
         resourcePath = '/ant/{userId}/annotations/{annotationId}/textFieldInfo'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('annotationId' in params):
+            replacement = str(self.apiClient.toPathValue(params['annotationId']))
+            resourcePath = resourcePath.replace('{' + 'annotationId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SaveAnnotationTextResponse')
+        return responseObject
+        
+        
+    def SetTextFieldColor(self, userId, annotationId, body, **kwargs):
+        """Save Text Of Text Field
+
+        Args:
+            userId, str: User GUID (required)
+            annotationId, str: Annotation ID (required)
+            body, int: Font Color (required)
+            
+        Returns: SaveAnnotationTextResponse
+        """
+        if( userId == None or annotationId == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'annotationId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method SetTextFieldColor" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/ant/{userId}/annotations/{annotationId}/textFieldColor'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'PUT'
 

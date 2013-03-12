@@ -31,7 +31,7 @@ class UserInfo:
             'claimed_id': 'str',
             'token': 'str',
             'storage': 'int',
-            'photo': 'str',
+            'photo': 'list[int]',
             'active': 'bool',
             'trial': 'bool',
             'news_eanbled': 'bool',
@@ -40,6 +40,35 @@ class UserInfo:
             'support_email': 'str',
             'annotation_branded': 'bool',
             'viewer_branded': 'bool',
+            'is_real_time_broadcast_enabled': 'bool',
+            'is_scroll_broadcast_enabled': 'bool',
+            'is_zoom_broadcast_enabled': 'bool',
+            'annotation_logo': 'list[int]',
+            'pointer_tool_cursor': 'list[int]',
+            'annotation_header_options': 'int',
+            'is_annotation_navigation_widget_enabled': 'bool',
+            'is_annotation_zoom_widget_enabled': 'bool',
+            'is_annotation_download_widget_enabled': 'bool',
+            'is_annotation_print_widget_enabled': 'bool',
+            'is_annotation_help_widget_enabled': 'bool',
+            'is_right_panel_enabled': 'bool',
+            'is_thumbnails_panel_enabled': 'bool',
+            'is_standard_header_always_shown': 'bool',
+            'is_toolbar_enabled': 'bool',
+            'is_text_annotation_button_enabled': 'bool',
+            'is_rectangle_annotation_button_enabled': 'bool',
+            'is_point_annotation_button_enabled': 'bool',
+            'is_strikeout_annotation_button_enabled': 'bool',
+            'is_polyline_annotation_button_enabled': 'bool',
+            'is_typewriter_annotation_button_enabled': 'bool',
+            'is_watermark_annotation_button_enabled': 'bool',
+            'viewer_logo': 'list[int]',
+            'viewer_options': 'int',
+            'is_viewer_navigation_widget_enabled': 'bool',
+            'is_viewer_zoom_widget_enabled': 'bool',
+            'is_viewer_download_widget_enabled': 'bool',
+            'is_viewer_print_widget_enabled': 'bool',
+            'is_viewer_help_widget_enabled': 'bool',
             'signedupOn': 'long',
             'signedinOn': 'long',
             'signin_count': 'int',
@@ -59,7 +88,7 @@ class UserInfo:
         self.claimed_id = None # str
         self.token = None # str
         self.storage = None # int
-        self.photo = None # str
+        self.photo = None # list[int]
         self.active = None # bool
         self.trial = None # bool
         self.news_eanbled = None # bool
@@ -68,6 +97,35 @@ class UserInfo:
         self.support_email = None # str
         self.annotation_branded = None # bool
         self.viewer_branded = None # bool
+        self.is_real_time_broadcast_enabled = None # bool
+        self.is_scroll_broadcast_enabled = None # bool
+        self.is_zoom_broadcast_enabled = None # bool
+        self.annotation_logo = None # list[int]
+        self.pointer_tool_cursor = None # list[int]
+        self.annotation_header_options = None # int
+        self.is_annotation_navigation_widget_enabled = None # bool
+        self.is_annotation_zoom_widget_enabled = None # bool
+        self.is_annotation_download_widget_enabled = None # bool
+        self.is_annotation_print_widget_enabled = None # bool
+        self.is_annotation_help_widget_enabled = None # bool
+        self.is_right_panel_enabled = None # bool
+        self.is_thumbnails_panel_enabled = None # bool
+        self.is_standard_header_always_shown = None # bool
+        self.is_toolbar_enabled = None # bool
+        self.is_text_annotation_button_enabled = None # bool
+        self.is_rectangle_annotation_button_enabled = None # bool
+        self.is_point_annotation_button_enabled = None # bool
+        self.is_strikeout_annotation_button_enabled = None # bool
+        self.is_polyline_annotation_button_enabled = None # bool
+        self.is_typewriter_annotation_button_enabled = None # bool
+        self.is_watermark_annotation_button_enabled = None # bool
+        self.viewer_logo = None # list[int]
+        self.viewer_options = None # int
+        self.is_viewer_navigation_widget_enabled = None # bool
+        self.is_viewer_zoom_widget_enabled = None # bool
+        self.is_viewer_download_widget_enabled = None # bool
+        self.is_viewer_print_widget_enabled = None # bool
+        self.is_viewer_help_widget_enabled = None # bool
         self.signedupOn = None # long
         self.signedinOn = None # long
         self.signin_count = None # int

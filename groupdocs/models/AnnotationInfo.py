@@ -35,6 +35,7 @@ class AnnotationInfo:
             'access': 'str',
             'replies': 'list[AnnotationReplyInfo]',
             'createdOn': 'long',
+            'fontColor': 'int',
             'fieldText': 'str',
             'fontFamily': 'str',
             'fontSize': 'float'
@@ -54,6 +55,7 @@ class AnnotationInfo:
         self.access = None # str
         self.replies = None # list[AnnotationReplyInfo]
         self.createdOn = None # long
+        self.fontColor = None # int
         self.fieldText = None # str
         self.fontFamily = None # str
         self.fontSize = None # float

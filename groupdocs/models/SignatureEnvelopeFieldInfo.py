@@ -31,7 +31,7 @@ class SignatureEnvelopeFieldInfo:
             'order': 'float',
             'regularExpression': 'str',
             'getDataFrom': 'str',
-            'data': 'str',
+            'data': 'list[int]',
             'fillTimeStamp': 'str',
             'signatureFieldId': 'float',
             'locations': 'list[SignatureEnvelopeFieldLocationInfo]',
@@ -51,7 +51,7 @@ class SignatureEnvelopeFieldInfo:
         self.order = None # float
         self.regularExpression = None # str
         self.getDataFrom = None # str
-        self.data = None # str
+        self.data = None # list[int]
         self.fillTimeStamp = None # str
         self.signatureFieldId = None # float
         self.locations = None # list[SignatureEnvelopeFieldLocationInfo]

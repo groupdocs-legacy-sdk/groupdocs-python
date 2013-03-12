@@ -29,6 +29,7 @@ class UploadRequestResult:
             'file_type': 'str',
             'size': 'long',
             'version': 'int',
+            'view_job_id': 'float',
             'thumbnail': 'str',
             'id': 'float',
             'guid': 'str'
@@ -42,6 +43,7 @@ class UploadRequestResult:
         self.file_type = None # str
         self.size = None # long
         self.version = None # int
+        self.view_job_id = None # float
         self.thumbnail = None # str
         self.id = None # float
         self.guid = None # str

@@ -29,7 +29,8 @@ class SignatureTemplateDocumentInfo:
             'name': 'str',
             'originalDocumentMD5': 'str',
             'originalDocumentPagesCount': 'int',
-            'fieldsCount': 'int'
+            'fieldsCount': 'int',
+            'originalDocumentId': 'str'
 
         }
 
@@ -41,4 +42,5 @@ class SignatureTemplateDocumentInfo:
         self.originalDocumentMD5 = None # str
         self.originalDocumentPagesCount = None # int
         self.fieldsCount = None # int
+        self.originalDocumentId = None # str
         

@@ -26,7 +26,9 @@ class StorageInfoResult:
             'total_space': 'long',
             'avail_space': 'long',
             'doc_credits': 'int',
-            'avail_credits': 'int'
+            'avail_credits': 'int',
+            'total_documents': 'int',
+            'avail_documents': 'long'
 
         }
 
@@ -35,4 +37,6 @@ class StorageInfoResult:
         self.avail_space = None # long
         self.doc_credits = None # int
         self.avail_credits = None # int
+        self.total_documents = None # int
+        self.avail_documents = None # long
         
