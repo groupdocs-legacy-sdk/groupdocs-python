@@ -8,7 +8,7 @@ from groupdocs.StorageApi import StorageApi
 from groupdocs.SignatureApi import SignatureApi
 from groupdocs.FileStream import FileStream
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
-
+import pdb
 # Checking value on null
 def IsNotNull(value):
     return value is not None and len(value) > 0
@@ -82,9 +82,14 @@ def sample21(request):
             # Get recipient id
             getRecipient = signature.GetSignatureEnvelopeRecipients(clientId, envelop.result.envelope.id)
             recipientId = getRecipient.result.recipients[0].id
-
-            # save and send
-            send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id, "")
+            if (IsNotNull(callbackUrl)):
+                import StringIO as sio
+                stream = sio.StringIO()
+                stream.write(str(callbackUrl))
+                callback = FileStream(None,  None, stream.getvalue())
+            else:
+               callback = ''
+            send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id,  callback)
 
             # make result messages
             if send.status == "Ok":
