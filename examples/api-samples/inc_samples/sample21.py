@@ -23,7 +23,7 @@ def sample21(request):
     lastName = request.POST.get('lastName')
     inputFile = request.POST.get('file')
     basePath = request.POST.get('server_type')
-
+    callbackUrl = request.POST.get('callbackUrl')
     # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(email) == False or IsNotNull(name) == False or IsNotNull(lastName) == False:
         return render_to_response('__main__:templates/sample21.pt',
@@ -84,7 +84,7 @@ def sample21(request):
             recipientId = getRecipient.result.recipients[0].id
 
             # save and send
-            send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id)
+            send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id, "")
 
             # make result messages
             if send.status == "Ok":
@@ -106,5 +106,5 @@ def sample21(request):
 
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample21.pt',
-        {'userId' : clientId, 'privateKey' : privateKey, 'email':email, 'name':name, 'lastName': lastName, 'envId' : envelop.result.envelope.id, 'iframe': iframe, 'message': message, 'roleId' : roleId},
+        {'userId' : clientId, 'privateKey' : privateKey, 'email':email, 'name':name, 'lastName': lastName, 'envId' : envelop.result.envelope.id, 'iframe': iframe, 'message': message, 'roleId' : roleId, "callbackUrl" : callbackUrl},
         request=request)

@@ -35,7 +35,7 @@ def sample18(request):
     async = AsyncApi(apiClient)
 
     try:
-        convert = async.Convert(clientId, fileId, targetType=targetType)
+        convert = async.Convert(clientId, fileId, new_type=targetType)
         # check request status
         if convert.status == "Ok":
             # Delay necessary that the inquiry would manage to be processed

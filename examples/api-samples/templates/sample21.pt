@@ -46,6 +46,10 @@
                    <br />
                    <input type='text' name='lastName' value="${lastName|''}" />
 		            <br />
+		            <label for='callbackUrl'>callbackUrl</label>
+                   <br />
+                   <input type='text' name='callbackUrl'  value="${callbackUrl|''}" />
+                   <br />
                    <label for='File'>File</label>
                    <br />
                    <input type='file' name='file' />
