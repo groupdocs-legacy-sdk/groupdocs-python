@@ -865,7 +865,7 @@ class DocApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/doc/{userId}/files/{fileId}/pages/{pageNumber}/images/{dimension}?quality={quality}&use_pdf={usePdf}&expires={expiresOn}'.replace('*', '')
+        resourcePath = '/doc/{userId}/files/{fileId}/pages/{pageNumber}/images/{dimension}?quality={quality}&use_pdf={usePdf}&expires={expiresOn}&v={version}'.replace('*', '')
         pos = resourcePath.find("?")
         if pos != -1:
             resourcePath = resourcePath[0:pos]

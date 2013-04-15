@@ -40,7 +40,9 @@ class SignatureEnvelopeInfo:
             'documentsPages': 'float',
             'recipients': 'list[SignatureEnvelopeRecipientInfo]',
             'waterMarkText': 'str',
-            'waterMarkImage': 'str'
+            'waterMarkImage': 'str',
+            'attachSignedDocument': 'bool',
+            'includeViewLink': 'bool'
 
         }
 
@@ -63,4 +65,6 @@ class SignatureEnvelopeInfo:
         self.recipients = None # list[SignatureEnvelopeRecipientInfo]
         self.waterMarkText = None # str
         self.waterMarkImage = None # str
+        self.attachSignedDocument = None # bool
+        self.includeViewLink = None # bool
         

@@ -414,7 +414,7 @@ class SignatureApi(object):
 
         Args:
             userId, str: User GUID (required)
-            body, str: Authorization settings (optional)
+            body, SignatureContactIntegrationSettings: Authorization settings (optional)
             
         Returns: SignatureStatusResponse
         """
@@ -592,15 +592,15 @@ class SignatureApi(object):
             userId, str: User GUID (required)
             name, str: Envelope name (optional)
             body, SignatureEnvelopeSettings: Settings of the new envelope (optional)
-            templateGuid, str: A templateGuid of the template which will be used to created the new envelope (optional)
             envelopeGuid, int: A envelopeGuid of the envelope which will be used to created the new envelope (optional)
             documentGuid, int: A documentGuid of the document which will be added to the new created envelope (optional)
+            templateGuid, str: A templateGuid of the template which will be used to created the new envelope (optional)
             
         Returns: SignatureEnvelopeResponse
         """
         if( userId == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'name', 'body', 'templateGuid', 'envelopeGuid', 'documentGuid']
+        allParams = ['userId', 'name', 'body', 'envelopeGuid', 'documentGuid', 'templateGuid']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -621,12 +621,12 @@ class SignatureApi(object):
 
         if ('name' in params):
             queryParams['name'] = self.apiClient.toPathValue(params['name'])
-        if ('templateGuid' in params):
-            queryParams['templateGuid'] = self.apiClient.toPathValue(params['templateGuid'])
         if ('envelopeGuid' in params):
             queryParams['envelopeGuid'] = self.apiClient.toPathValue(params['envelopeGuid'])
         if ('documentGuid' in params):
             queryParams['documentGuid'] = self.apiClient.toPathValue(params['documentGuid'])
+        if ('templateGuid' in params):
+            queryParams['templateGuid'] = self.apiClient.toPathValue(params['templateGuid'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -2041,14 +2041,14 @@ class SignatureApi(object):
             datetime, str: Filter envelopes by date (optional)
             name, str: Filter envelopes by name (optional)
             recipient, str: Filter envelopes by recipient email (optional)
-            document, str: Filter envelopes by original document md5 checksum (optional)
             records, int: Show records count (optional)
+            document, str: Filter envelopes by original document md5 checksum (optional)
             
         Returns: SignatureEnvelopesResponse
         """
         if( userId == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'statusId', 'page', 'datetime', 'name', 'recipient', 'document', 'records']
+        allParams = ['userId', 'statusId', 'page', 'datetime', 'name', 'recipient', 'records', 'document']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -2077,10 +2077,10 @@ class SignatureApi(object):
             queryParams['name'] = self.apiClient.toPathValue(params['name'])
         if ('recipient' in params):
             queryParams['recipient'] = self.apiClient.toPathValue(params['recipient'])
-        if ('document' in params):
-            queryParams['document'] = self.apiClient.toPathValue(params['document'])
         if ('records' in params):
             queryParams['records'] = self.apiClient.toPathValue(params['records'])
+        if ('document' in params):
+            queryParams['document'] = self.apiClient.toPathValue(params['document'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -2097,7 +2097,7 @@ class SignatureApi(object):
         
         
     def GetSignatureEnvelopeResources(self, userId, **kwargs):
-        """Get envelope recources
+        """Get envelope resources
 
         Args:
             userId, str: User GUID (required)
@@ -3181,7 +3181,7 @@ class SignatureApi(object):
         
         
     def GetSignatureFormResources(self, userId, statusIds, **kwargs):
-        """Get form recources
+        """Get form resources
 
         Args:
             userId, str: User GUID (required)
@@ -3694,7 +3694,7 @@ class SignatureApi(object):
         return responseObject
         
         
-    def CreateSignatureTemplate(self, userId, envelopetId, **kwargs):
+    def CreateSignatureTemplate(self, userId, **kwargs):
         """Create template
 
         Args:
@@ -3702,11 +3702,11 @@ class SignatureApi(object):
             name, str: Template name (optional)
             templateId, str: Template GUID of the template that will be used to create the new template (optional)
             body, SignatureTemplateSettings: Settings of the template (optional)
-            envelopetId, str: Envelope GUID of the envelope that will be used to create the new template (required)
+            envelopetId, str: Envelope GUID of the envelope that will be used to create the new template (optional)
             
         Returns: SignatureTemplateResponse
         """
-        if( userId == None or envelopetId == None ):
+        if( userId == None ):
             raise ApiException(400, "missing required parameters")
         allParams = ['userId', 'name', 'templateId', 'body', 'envelopetId']
 
@@ -3903,7 +3903,7 @@ class SignatureApi(object):
             roleId, str: Role GUID (required)
             order, str: Display order of the recipient (optional)
             
-        Returns: SignatureTemplateResponse
+        Returns: SignatureTemplateRecipientResponse
         """
         if( userId == None or templateId == None or nickname == None or roleId == None ):
             raise ApiException(400, "missing required parameters")
@@ -3947,7 +3947,7 @@ class SignatureApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'SignatureTemplateResponse')
+        responseObject = self.apiClient.deserialize(response, 'SignatureTemplateRecipientResponse')
         return responseObject
         
         
@@ -4059,7 +4059,7 @@ class SignatureApi(object):
             roleId, str: Role GUID (required)
             order, str: Display order of the recipient (optional)
             
-        Returns: SignatureTemplateResponse
+        Returns: SignatureTemplateRecipientResponse
         """
         if( userId == None or templateId == None or recipientId == None or nickname == None or roleId == None ):
             raise ApiException(400, "missing required parameters")
@@ -4107,7 +4107,7 @@ class SignatureApi(object):
         if not response:
             return None
 
-        responseObject = self.apiClient.deserialize(response, 'SignatureTemplateResponse')
+        responseObject = self.apiClient.deserialize(response, 'SignatureTemplateRecipientResponse')
         return responseObject
         
         
@@ -4671,7 +4671,7 @@ class SignatureApi(object):
         
         
     def GetSignatureTemplateResources(self, userId, **kwargs):
-        """Get template recources
+        """Get template resources
 
         Args:
             userId, str: User GUID (required)
@@ -4755,6 +4755,1221 @@ class SignatureApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'SignatureFieldsResponse')
+        return responseObject
+        
+        
+    def PublicFillEnvelopeField(self, envelopeId, documentId, recipientId, fieldId, **kwargs):
+        """Fill envelope field
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            documentId, str: Document GUID (required)
+            recipientId, str: Recipient GUID (required)
+            fieldId, str: Field GUID (required)
+            body, str: Data to be placed in field (optional)
+            
+        Returns: SignatureEnvelopeFieldResponse
+        """
+        if( envelopeId == None or documentId == None or recipientId == None or fieldId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'documentId', 'recipientId', 'fieldId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicFillEnvelopeField" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/documents/{documentId}/recipient/{recipientId}/field/{fieldId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('documentId' in params):
+            replacement = str(self.apiClient.toPathValue(params['documentId']))
+            resourcePath = resourcePath.replace('{' + 'documentId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        if ('fieldId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fieldId']))
+            resourcePath = resourcePath.replace('{' + 'fieldId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureEnvelopeFieldResponse')
+        return responseObject
+        
+        
+    def PublicGetRecipientSignatureEnvelopes(self, recipientEmail, **kwargs):
+        """Get signature envelopes where the user is recipient
+
+        Args:
+            recipientEmail, str: Recipient's email (required)
+            statusId, str: Filter envelopes by statusId (optional)
+            
+        Returns: SignatureEnvelopesResponse
+        """
+        if( recipientEmail == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['recipientEmail', 'statusId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetRecipientSignatureEnvelopes" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/recipient/{recipientEmail}?statusId={statusId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('statusId' in params):
+            queryParams['statusId'] = self.apiClient.toPathValue(params['statusId'])
+        if ('recipientEmail' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientEmail']))
+            resourcePath = resourcePath.replace('{' + 'recipientEmail' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureEnvelopesResponse')
+        return responseObject
+        
+        
+    def PublicSignEnvelope(self, envelopeId, recipientId, **kwargs):
+        """Sign envelope
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            recipientId, str: Recipient GUID (required)
+            
+        Returns: SignatureStatusResponse
+        """
+        if( envelopeId == None or recipientId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'recipientId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicSignEnvelope" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/recipient/{recipientId}/sign'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureStatusResponse')
+        return responseObject
+        
+        
+    def PublicDeclineEnvelope(self, envelopeId, recipientId, **kwargs):
+        """Decline envelope
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            recipientId, str: Recipient GUID (required)
+            
+        Returns: SignatureStatusResponse
+        """
+        if( envelopeId == None or recipientId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'recipientId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicDeclineEnvelope" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/recipient/{recipientId}/decline'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureStatusResponse')
+        return responseObject
+        
+        
+    def GetSignaturesByRec(self, recipientId, **kwargs):
+        """Get signatures for recipient
+
+        Args:
+            recipientId, str: Recipient GUID (required)
+            
+        Returns: SignatureSignaturesResponse
+        """
+        if( recipientId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['recipientId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetSignaturesByRec" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/signatures?recipientId={recipientId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('recipientId' in params):
+            queryParams['recipientId'] = self.apiClient.toPathValue(params['recipientId'])
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureSignaturesResponse')
+        return responseObject
+        
+        
+    def PublicCreateSignature(self, recipientId, name, **kwargs):
+        """Create recipient signature
+
+        Args:
+            recipientId, str: User GUID (required)
+            name, str: Signature name (required)
+            body, SignatureSignatureSettings: Settings of the field (optional)
+            
+        Returns: SignatureSignatureResponse
+        """
+        if( recipientId == None or name == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['recipientId', 'name', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicCreateSignature" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/signature?name={name}&recipientId={recipientId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('recipientId' in params):
+            queryParams['recipientId'] = self.apiClient.toPathValue(params['recipientId'])
+        if ('name' in params):
+            queryParams['name'] = self.apiClient.toPathValue(params['name'])
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureSignatureResponse')
+        return responseObject
+        
+        
+    def PublicDelegateEnvelopeRecipient(self, envelopeId, recipientId, recipientEmail, recipientFirstName, recipientLastName, **kwargs):
+        """Delegate envelope recipient
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            recipientId, str: Recipient GUID (required)
+            recipientEmail, str: Delegated recipient email (required)
+            recipientFirstName, str: Delegated recipient first name (required)
+            recipientLastName, str: Delegated recipient last name (required)
+            
+        Returns: SignatureEnvelopeResponse
+        """
+        if( envelopeId == None or recipientId == None or recipientEmail == None or recipientFirstName == None or recipientLastName == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'recipientId', 'recipientEmail', 'recipientFirstName', 'recipientLastName']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicDelegateEnvelopeRecipient" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/recipient/{recipientId}/delegate?email={recipientEmail}&firstname={recipientFirstName}&lastname={recipientLastName}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('recipientEmail' in params):
+            queryParams['email'] = self.apiClient.toPathValue(params['recipientEmail'])
+        if ('recipientFirstName' in params):
+            queryParams['firstname'] = self.apiClient.toPathValue(params['recipientFirstName'])
+        if ('recipientLastName' in params):
+            queryParams['lastname'] = self.apiClient.toPathValue(params['recipientLastName'])
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureEnvelopeResponse')
+        return responseObject
+        
+        
+    def PublicDeleteSignature(self, recipientId, signatureId, **kwargs):
+        """Delete user signature
+
+        Args:
+            recipientId, str: Recipient GUID (required)
+            signatureId, str: Signature GUID (required)
+            
+        Returns: SignatureStatusResponse
+        """
+        if( recipientId == None or signatureId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['recipientId', 'signatureId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicDeleteSignature" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/signatures/{signatureId}?recipientId={recipientId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'DELETE'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('recipientId' in params):
+            queryParams['recipientId'] = self.apiClient.toPathValue(params['recipientId'])
+        if ('signatureId' in params):
+            replacement = str(self.apiClient.toPathValue(params['signatureId']))
+            resourcePath = resourcePath.replace('{' + 'signatureId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureStatusResponse')
+        return responseObject
+        
+        
+    def GetSignatureEnvelopeFieldData(self, envelopeId, recipientId, fieldId, **kwargs):
+        """Get signed envelope field data
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            recipientId, str: Recipient GUID (required)
+            fieldId, str: Field GUID (required)
+            
+        Returns: str
+        """
+        if( envelopeId == None or recipientId == None or fieldId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'recipientId', 'fieldId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetSignatureEnvelopeFieldData" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public//envelopes/{envelopeId}/fields/recipient/{recipientId}/field/{fieldId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        if ('fieldId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fieldId']))
+            resourcePath = resourcePath.replace('{' + 'fieldId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'str')
+        return responseObject
+        
+        
+    def GetSignatureSignatureData(self, signatureId, **kwargs):
+        """Get signature data
+
+        Args:
+            signatureId, str: Signature GUID (required)
+            
+        Returns: str
+        """
+        if( signatureId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['signatureId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetSignatureSignatureData" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public//signatures/signature/{signatureId}/signatureData'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('signatureId' in params):
+            replacement = str(self.apiClient.toPathValue(params['signatureId']))
+            resourcePath = resourcePath.replace('{' + 'signatureId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'str')
+        return responseObject
+        
+        
+    def GetSignatureInitialsData(self, signatureId, **kwargs):
+        """Get signature initials
+
+        Args:
+            signatureId, str: Signature GUID (required)
+            
+        Returns: str
+        """
+        if( signatureId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['signatureId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetSignatureInitialsData" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public//signatures/signature/{signatureId}/initialsData'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('signatureId' in params):
+            replacement = str(self.apiClient.toPathValue(params['signatureId']))
+            resourcePath = resourcePath.replace('{' + 'signatureId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'str')
+        return responseObject
+        
+        
+    def PublicGetEnvelopeDocuments(self, envelopeId, recipientId, **kwargs):
+        """Get documents in envelope
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            recipientId, str: Recipient GUID (required)
+            
+        Returns: SignatureEnvelopeDocumentsResponse
+        """
+        if( envelopeId == None or recipientId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'recipientId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetEnvelopeDocuments" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/recipient/{recipientId}/documents'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureEnvelopeDocumentsResponse')
+        return responseObject
+        
+        
+    def PublicGetEnvelopeRecipients(self, envelopeId, recipientId, **kwargs):
+        """Get signature envelope recipients
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            recipientId, str: Recipient GUID (required)
+            
+        Returns: SignatureEnvelopeRecipientsResponse
+        """
+        if( envelopeId == None or recipientId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'recipientId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetEnvelopeRecipients" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/recipient/{recipientId}/recipients'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureEnvelopeRecipientsResponse')
+        return responseObject
+        
+        
+    def PublicGetSignatureEnvelopeFields(self, envelopeId, documentId, recipientId, **kwargs):
+        """Get signature field for document in envelope per recipient
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            documentId, str: Document GUID (required)
+            recipientId, str: Recipient GUID (required)
+            
+        Returns: SignatureEnvelopeFieldsResponse
+        """
+        if( envelopeId == None or documentId == None or recipientId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'documentId', 'recipientId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetSignatureEnvelopeFields" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/fields?document={documentId}&recipient={recipientId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('documentId' in params):
+            queryParams['document'] = self.apiClient.toPathValue(params['documentId'])
+        if ('recipientId' in params):
+            queryParams['recipient'] = self.apiClient.toPathValue(params['recipientId'])
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureEnvelopeFieldsResponse')
+        return responseObject
+        
+        
+    def PublicGetSignatureEnvelope(self, envelopeId, recipientId, **kwargs):
+        """Get signature envelope
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            recipientId, str: Recipient GUID (required)
+            
+        Returns: SignatureEnvelopeResponse
+        """
+        if( envelopeId == None or recipientId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'recipientId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetSignatureEnvelope" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/recipient/{recipientId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureEnvelopeResponse')
+        return responseObject
+        
+        
+    def PublicGetSignedEnvelopeDocuments(self, envelopeId, recipientId, **kwargs):
+        """Get signed envelope documents
+
+        Args:
+            envelopeId, str: Envelope GUID (required)
+            recipientId, str: Recipient GUID (required)
+            
+        Returns: str
+        """
+        if( envelopeId == None or recipientId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['envelopeId', 'recipientId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetSignedEnvelopeDocuments" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/envelopes/{envelopeId}/recipient/{recipientId}/documents/get'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('envelopeId' in params):
+            replacement = str(self.apiClient.toPathValue(params['envelopeId']))
+            resourcePath = resourcePath.replace('{' + 'envelopeId' + '}',
+                                                replacement)
+        if ('recipientId' in params):
+            replacement = str(self.apiClient.toPathValue(params['recipientId']))
+            resourcePath = resourcePath.replace('{' + 'recipientId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'str')
+        return responseObject
+        
+        
+    def PublicGetFileMd5(self, body, **kwargs):
+        """Get MD5
+
+        Args:
+            body, str: Data to get MD5 from (required)
+            
+        Returns: str
+        """
+        if( body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetFileMd5" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/file/md5'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'str')
+        return responseObject
+        
+        
+    def PublicFillSignatureForm(self, formId, **kwargs):
+        """Fill signature form
+
+        Args:
+            formId, str: Form GUID (required)
+            
+        Returns: SignatureFormParticipantResponse
+        """
+        if( formId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['formId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicFillSignatureForm" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/forms/{formId}/fill'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('formId' in params):
+            replacement = str(self.apiClient.toPathValue(params['formId']))
+            resourcePath = resourcePath.replace('{' + 'formId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureFormParticipantResponse')
+        return responseObject
+        
+        
+    def PublicFillFormField(self, formId, documentId, fieldId, authSignature, participantIdId, **kwargs):
+        """Fill form field
+
+        Args:
+            formId, str: Form GUID (required)
+            documentId, str: Document GUID (required)
+            fieldId, str: Field GUID (required)
+            authSignature, str: Authentication signature (required)
+            body, str: Data to be placed in field (optional)
+            participantIdId, str: Participant GUID (required)
+            
+        Returns: SignatureFormFieldResponse
+        """
+        if( formId == None or documentId == None or fieldId == None or authSignature == None or participantIdId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['formId', 'documentId', 'fieldId', 'authSignature', 'body', 'participantIdId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicFillFormField" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/forms/{formId}/documents/{documentId}/participant/{participantId}/field/{fieldId}?participantAuthSignature={authSignature}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('authSignature' in params):
+            queryParams['participantAuthSignature'] = self.apiClient.toPathValue(params['authSignature'])
+        if ('formId' in params):
+            replacement = str(self.apiClient.toPathValue(params['formId']))
+            resourcePath = resourcePath.replace('{' + 'formId' + '}',
+                                                replacement)
+        if ('documentId' in params):
+            replacement = str(self.apiClient.toPathValue(params['documentId']))
+            resourcePath = resourcePath.replace('{' + 'documentId' + '}',
+                                                replacement)
+        if ('fieldId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fieldId']))
+            resourcePath = resourcePath.replace('{' + 'fieldId' + '}',
+                                                replacement)
+        if ('participantIdId' in params):
+            replacement = str(self.apiClient.toPathValue(params['participantIdId']))
+            resourcePath = resourcePath.replace('{' + 'participantIdId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureFormFieldResponse')
+        return responseObject
+        
+        
+    def PublicSignForm(self, formId, participantId, authSignature, **kwargs):
+        """Sign Form
+
+        Args:
+            formId, str: Form GUID (required)
+            participantId, str: Participant GUID (required)
+            authSignature, str: Authentication signature (required)
+            
+        Returns: SignatureStatusResponse
+        """
+        if( formId == None or participantId == None or authSignature == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['formId', 'participantId', 'authSignature']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicSignForm" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/forms/{formId}/participant/{participantId}/sign?participantAuthSignature={authSignature}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('authSignature' in params):
+            queryParams['participantAuthSignature'] = self.apiClient.toPathValue(params['authSignature'])
+        if ('formId' in params):
+            replacement = str(self.apiClient.toPathValue(params['formId']))
+            resourcePath = resourcePath.replace('{' + 'formId' + '}',
+                                                replacement)
+        if ('participantId' in params):
+            replacement = str(self.apiClient.toPathValue(params['participantId']))
+            resourcePath = resourcePath.replace('{' + 'participantId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureStatusResponse')
+        return responseObject
+        
+        
+    def PublicGetSignatureForm(self, formId, **kwargs):
+        """Get signature form
+
+        Args:
+            formId, str: Form GUID (required)
+            
+        Returns: SignatureFormResponse
+        """
+        if( formId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['formId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetSignatureForm" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/forms/{formId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('formId' in params):
+            replacement = str(self.apiClient.toPathValue(params['formId']))
+            resourcePath = resourcePath.replace('{' + 'formId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureFormResponse')
+        return responseObject
+        
+        
+    def PublicGetSignatureFormDocuments(self, formId, **kwargs):
+        """Get documents in form
+
+        Args:
+            formId, str: Form GUID (required)
+            
+        Returns: SignatureFormDocumentsResponse
+        """
+        if( formId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['formId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetSignatureFormDocuments" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/forms/{formId}/documents'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('formId' in params):
+            replacement = str(self.apiClient.toPathValue(params['formId']))
+            resourcePath = resourcePath.replace('{' + 'formId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureFormDocumentsResponse')
+        return responseObject
+        
+        
+    def PublicGetSignatureFormFields(self, formId, documentId, participantId, **kwargs):
+        """Get form fields for document in form per participant
+
+        Args:
+            formId, str: Form GUID (required)
+            documentId, str: Document GUID (required)
+            participantId, str: Participant GUID (required)
+            
+        Returns: SignatureFormFieldsResponse
+        """
+        if( formId == None or documentId == None or participantId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['formId', 'documentId', 'participantId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetSignatureFormFields" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/forms/{formId}/fields?document={documentId}&participant={participantId}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('documentId' in params):
+            queryParams['document'] = self.apiClient.toPathValue(params['documentId'])
+        if ('participantId' in params):
+            queryParams['participant'] = self.apiClient.toPathValue(params['participantId'])
+        if ('formId' in params):
+            replacement = str(self.apiClient.toPathValue(params['formId']))
+            resourcePath = resourcePath.replace('{' + 'formId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureFormFieldsResponse')
+        return responseObject
+        
+        
+    def PublicGetSignedFormDocuments(self, formId, participantId, **kwargs):
+        """Get signed form documents
+
+        Args:
+            formId, str: Form GUID (required)
+            participantId, str: Participant GUID (required)
+            
+        Returns: str
+        """
+        if( formId == None or participantId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['formId', 'participantId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicGetSignedFormDocuments" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/forms/{formId}/participant/{participantId}/documents/get'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('formId' in params):
+            replacement = str(self.apiClient.toPathValue(params['formId']))
+            resourcePath = resourcePath.replace('{' + 'formId' + '}',
+                                                replacement)
+        if ('participantId' in params):
+            replacement = str(self.apiClient.toPathValue(params['participantId']))
+            resourcePath = resourcePath.replace('{' + 'participantId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'str')
+        return responseObject
+        
+        
+    def GetSignatureFormParticipant(self, formId, participantId, **kwargs):
+        """Get signature form participant
+
+        Args:
+            formId, str: Form GUID (required)
+            participantId, str: Participant GUID (required)
+            
+        Returns: SignatureFormParticipantResponse
+        """
+        if( formId == None or participantId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['formId', 'participantId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetSignatureFormParticipant" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/forms/{formId}/participants/{participantId}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('formId' in params):
+            replacement = str(self.apiClient.toPathValue(params['formId']))
+            resourcePath = resourcePath.replace('{' + 'formId' + '}',
+                                                replacement)
+        if ('participantId' in params):
+            replacement = str(self.apiClient.toPathValue(params['participantId']))
+            resourcePath = resourcePath.replace('{' + 'participantId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureFormParticipantResponse')
+        return responseObject
+        
+        
+    def PublicSignDocument(self, documentId, **kwargs):
+        """Sign document
+
+        Args:
+            documentId, str: Document GUID (required)
+            body, PublicSignatureSignDocumentSignerSettings: Settings of the signing document (optional)
+            
+        Returns: SignatureSignDocumentResponse
+        """
+        if( documentId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['documentId', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method PublicSignDocument" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/signature/public/documents/{documentId}/sign'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('documentId' in params):
+            replacement = str(self.apiClient.toPathValue(params['documentId']))
+            resourcePath = resourcePath.replace('{' + 'documentId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SignatureSignDocumentResponse')
         return responseObject
         
         

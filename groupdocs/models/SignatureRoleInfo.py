@@ -25,18 +25,18 @@ class SignatureRoleInfo:
         self.swaggerTypes = {
             'id': 'str',
             'name': 'str',
-            'canEdit': 'int',
-            'canSign': 'int',
-            'canAnnotate': 'int',
-            'canDelegate': 'int'
+            'canEdit': 'bool',
+            'canSign': 'bool',
+            'canAnnotate': 'bool',
+            'canDelegate': 'bool'
 
         }
 
 
         self.id = None # str
         self.name = None # str
-        self.canEdit = None # int
-        self.canSign = None # int
-        self.canAnnotate = None # int
-        self.canDelegate = None # int
+        self.canEdit = None # bool
+        self.canSign = None # bool
+        self.canAnnotate = None # bool
+        self.canDelegate = None # bool
         

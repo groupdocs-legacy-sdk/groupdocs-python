@@ -23,8 +23,8 @@ class SignatureEnvelopeSettings:
 
     def __init__(self):
         self.swaggerTypes = {
-            'ownerShouldSign': 'int',
-            'orderedSignature': 'int',
+            'ownerShouldSign': 'bool',
+            'orderedSignature': 'bool',
             'reminderTime': 'float',
             'stepExpireTime': 'float',
             'envelopeExpireTime': 'float',
@@ -32,13 +32,15 @@ class SignatureEnvelopeSettings:
             'emailBody': 'str',
             'isDemo': 'bool',
             'waterMarkText': 'str',
-            'waterMarkImage': 'str'
+            'waterMarkImage': 'str',
+            'attachSignedDocument': 'bool',
+            'includeViewLink': 'bool'
 
         }
 
 
-        self.ownerShouldSign = None # int
-        self.orderedSignature = None # int
+        self.ownerShouldSign = None # bool
+        self.orderedSignature = None # bool
         self.reminderTime = None # float
         self.stepExpireTime = None # float
         self.envelopeExpireTime = None # float
@@ -47,4 +49,6 @@ class SignatureEnvelopeSettings:
         self.isDemo = None # bool
         self.waterMarkText = None # str
         self.waterMarkImage = None # str
+        self.attachSignedDocument = None # bool
+        self.includeViewLink = None # bool
         

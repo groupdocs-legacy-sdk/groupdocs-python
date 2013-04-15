@@ -21,5 +21,16 @@ from .AbstractIntegrationTest import AbstractIntegrationTest
 
 class TestSignatureApi(AbstractIntegrationTest):
 
+	def test_GetContacts(self):
+		userId = self.userId
+		page = None
+		firstName = None
+		lastName = None
+		email = None
+		records = None
+		response = SignatureApi(self.apiClient).GetContacts(userId=userId, page=page, firstName=firstName, lastName=lastName, email=email, records=records)
+		assert_that(response, not_none())
+		
+	
 	
 

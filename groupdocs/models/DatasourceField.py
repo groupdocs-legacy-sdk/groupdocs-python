@@ -24,7 +24,7 @@ class DatasourceField:
     def __init__(self):
         self.swaggerTypes = {
             'name': 'str',
-            'values': 'str',
+            'values': 'list[str]',
             'contentType': 'str',
             'type': 'str'
 
@@ -32,7 +32,7 @@ class DatasourceField:
 
 
         self.name = None # str
-        self.values = None # str
+        self.values = None # list[str]
         self.contentType = None # str
         self.type = None # str
         

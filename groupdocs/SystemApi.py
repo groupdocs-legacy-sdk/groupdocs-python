@@ -140,7 +140,7 @@ class SystemApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/system/{callerId}/plans/{family}?invalidate={invalidate}'.replace('*', '')
+        resourcePath = '/system/{callerId}/plans/{family}'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -201,6 +201,57 @@ class SystemApi(object):
         if ('productId' in params):
             replacement = str(self.apiClient.toPathValue(params['productId']))
             resourcePath = resourcePath.replace('{' + 'productId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'SetUserSubscriptionPlanResponse')
+        return responseObject
+        
+        
+    def UpdateSubscriptionPlan(self, userId, productId, userCount, **kwargs):
+        """Update subscription plan user plan
+
+        Args:
+            userId, str: User GUID (required)
+            productId, str: Product ID (required)
+            userCount, str: Subscripition Users Count (optional)
+            
+        Returns: SetUserSubscriptionPlanResponse
+        """
+        if( userId == None or productId == None or userCount == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'productId', 'userCount']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method UpdateSubscriptionPlan" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/system/{userId}/subscriptions/{productId}/{userCount}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('productId' in params):
+            replacement = str(self.apiClient.toPathValue(params['productId']))
+            resourcePath = resourcePath.replace('{' + 'productId' + '}',
+                                                replacement)
+        if ('userCount' in params):
+            replacement = str(self.apiClient.toPathValue(params['userCount']))
+            resourcePath = resourcePath.replace('{' + 'userCount' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,

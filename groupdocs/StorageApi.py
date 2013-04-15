@@ -234,13 +234,14 @@ class StorageApi(object):
             userId, str: User GUID (required)
             path, str: Path (required)
             description, str: Description (optional)
+            callbackUrl, str: Callback url (optional)
             body, stream: Stream (required)
             
         Returns: UploadResponse
         """
         if( userId == None or path == None or body == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'path', 'description', 'body']
+        allParams = ['userId', 'path', 'description', 'callbackUrl', 'body']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -249,7 +250,7 @@ class StorageApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/storage/{userId}/folders/{*path}?description={description}'.replace('*', '')
+        resourcePath = '/storage/{userId}/folders/{*path}?description={description}&callbackUrl={callbackUrl}'.replace('*', '')
         pos = resourcePath.find("?")
         if pos != -1:
             resourcePath = resourcePath[0:pos]
@@ -261,6 +262,8 @@ class StorageApi(object):
 
         if ('description' in params):
             queryParams['description'] = self.apiClient.toPathValue(params['description'])
+        if ('callbackUrl' in params):
+            queryParams['callbackUrl'] = self.apiClient.toPathValue(params['callbackUrl'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -534,14 +537,14 @@ class StorageApi(object):
             userId, str: User GUID (required)
             path, str: Path (required)
             mode, str: Mode (optional)
-            Groupdocs_Move, str: File ID (move) (optional)
             Groupdocs_Copy, str: File ID (copy) (optional)
+            Groupdocs_Move, str: File ID (move) (optional)
             
         Returns: FileMoveResponse
         """
         if( userId == None or path == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'path', 'mode', 'Groupdocs_Move', 'Groupdocs_Copy']
+        allParams = ['userId', 'path', 'mode', 'Groupdocs_Copy', 'Groupdocs_Move']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -562,10 +565,10 @@ class StorageApi(object):
 
         if ('mode' in params):
             queryParams['mode'] = self.apiClient.toPathValue(params['mode'])
-        if ('Groupdocs_Move' in params):
-            headerParams['Groupdocs-Move'] = params['Groupdocs_Move']
         if ('Groupdocs_Copy' in params):
             headerParams['Groupdocs-Copy'] = params['Groupdocs_Copy']
+        if ('Groupdocs_Move' in params):
+            headerParams['Groupdocs-Move'] = params['Groupdocs_Move']
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -592,14 +595,14 @@ class StorageApi(object):
             userId, str: User GUID (required)
             path, str: Destination Path (required)
             mode, str: Mode (optional)
-            Groupdocs_Move, str: Source path (move) (optional)
             Groupdocs_Copy, str: Source path (copy) (optional)
+            Groupdocs_Move, str: Source path (move) (optional)
             
         Returns: FolderMoveResponse
         """
         if( userId == None or path == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'path', 'mode', 'Groupdocs_Move', 'Groupdocs_Copy']
+        allParams = ['userId', 'path', 'mode', 'Groupdocs_Copy', 'Groupdocs_Move']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -620,10 +623,10 @@ class StorageApi(object):
 
         if ('mode' in params):
             queryParams['override_mode'] = self.apiClient.toPathValue(params['mode'])
-        if ('Groupdocs_Move' in params):
-            headerParams['Groupdocs-Move'] = params['Groupdocs_Move']
         if ('Groupdocs_Copy' in params):
             headerParams['Groupdocs-Copy'] = params['Groupdocs_Copy']
+        if ('Groupdocs_Move' in params):
+            headerParams['Groupdocs-Move'] = params['Groupdocs_Move']
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',

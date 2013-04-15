@@ -23,11 +23,11 @@ class SignatureTemplateSettings:
 
     def __init__(self):
         self.swaggerTypes = {
-            'ownerShouldSign': 'int',
-            'orderedSignature': 'int',
+            'ownerShouldSign': 'bool',
+            'orderedSignature': 'bool',
             'reminderTime': 'float',
             'stepExpireTime': 'float',
-            'envelopeExpireTime': 'float',
+            'templateExpireTime': 'float',
             'emailSubject': 'str',
             'emailBody': 'str',
             'waterMarkText': 'str',
@@ -36,11 +36,11 @@ class SignatureTemplateSettings:
         }
 
 
-        self.ownerShouldSign = None # int
-        self.orderedSignature = None # int
+        self.ownerShouldSign = None # bool
+        self.orderedSignature = None # bool
         self.reminderTime = None # float
         self.stepExpireTime = None # float
-        self.envelopeExpireTime = None # float
+        self.templateExpireTime = None # float
         self.emailSubject = None # str
         self.emailBody = None # str
         self.waterMarkText = None # str

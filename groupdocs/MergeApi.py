@@ -155,12 +155,13 @@ class MergeApi(object):
             datasourceId, str: Datasource identifier (required)
             targetType, str: Filled document type (optional)
             emailResults, str: Email results (optional)
+            callbackUrl, str: Callback url (optional)
             
         Returns: MergeTemplateResponse
         """
         if( userId == None or collectorId == None or datasourceId == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'collectorId', 'datasourceId', 'targetType', 'emailResults']
+        allParams = ['userId', 'collectorId', 'datasourceId', 'targetType', 'emailResults', 'callbackUrl']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -169,7 +170,7 @@ class MergeApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}/datasources/{datasourceId}?new_type={targetType}&email_results={emailResults}'.replace('*', '')
+        resourcePath = '/merge/{userId}/questionnaires/collectors/{collectorId}/datasources/{datasourceId}?new_type={targetType}&email_results={emailResults}&callback={callbackUrl}'.replace('*', '')
         pos = resourcePath.find("?")
         if pos != -1:
             resourcePath = resourcePath[0:pos]
@@ -183,6 +184,8 @@ class MergeApi(object):
             queryParams['new_type'] = self.apiClient.toPathValue(params['targetType'])
         if ('emailResults' in params):
             queryParams['email_results'] = self.apiClient.toPathValue(params['emailResults'])
+        if ('callbackUrl' in params):
+            queryParams['callback'] = self.apiClient.toPathValue(params['callbackUrl'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',
@@ -215,12 +218,13 @@ class MergeApi(object):
             datasourceId, str: Datasource identifier (required)
             targetType, str: Filled document type (optional)
             emailResults, str: Email results (optional)
+            callbackUrl, str: Callback url (optional)
             
         Returns: MergeTemplateResponse
         """
         if( userId == None or executionId == None or datasourceId == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'executionId', 'datasourceId', 'targetType', 'emailResults']
+        allParams = ['userId', 'executionId', 'datasourceId', 'targetType', 'emailResults', 'callbackUrl']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -229,7 +233,7 @@ class MergeApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/merge/{userId}/questionnaires/executions/{executionId}/datasources/{datasourceId}?new_type={targetType}&email_results={emailResults}'.replace('*', '')
+        resourcePath = '/merge/{userId}/questionnaires/executions/{executionId}/datasources/{datasourceId}?new_type={targetType}&email_results={emailResults}&callback={callbackUrl}'.replace('*', '')
         pos = resourcePath.find("?")
         if pos != -1:
             resourcePath = resourcePath[0:pos]
@@ -243,6 +247,8 @@ class MergeApi(object):
             queryParams['new_type'] = self.apiClient.toPathValue(params['targetType'])
         if ('emailResults' in params):
             queryParams['email_results'] = self.apiClient.toPathValue(params['emailResults'])
+        if ('callbackUrl' in params):
+            queryParams['callback'] = self.apiClient.toPathValue(params['callbackUrl'])
         if ('userId' in params):
             replacement = str(self.apiClient.toPathValue(params['userId']))
             resourcePath = resourcePath.replace('{' + 'userId' + '}',

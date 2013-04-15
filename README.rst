@@ -1,6 +1,8 @@
 GroupDocs Python SDK |Build Status|_
 ####################################
 
+Latest SDK version 1.4.0.
+
 Requirements
 ************
 

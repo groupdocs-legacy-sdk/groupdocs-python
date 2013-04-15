@@ -33,7 +33,9 @@ class QuestionnaireMetadata:
             'modified': 'long',
             'expires': 'long',
             'folder': 'str',
-            'emails': 'str'
+            'emails': 'str',
+            'output_format': 'str',
+            'open_on_completion': 'bool'
 
         }
 
@@ -49,4 +51,6 @@ class QuestionnaireMetadata:
         self.expires = None # long
         self.folder = None # str
         self.emails = None # str
+        self.output_format = None # str
+        self.open_on_completion = None # bool
         
