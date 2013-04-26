@@ -4,7 +4,7 @@
 	
 	2) cd examples/api-samples
 	
-	3* ) Create a Virtualenv http://pypi.python.org/pypi/virtualenv:
+	3) Create a Virtualenv http://pypi.python.org/pypi/virtualenv:
 	virtualenv venv --distribute
 
 	3.1* ) To activate local environment:
