@@ -99,6 +99,7 @@
             <li> <a href="/sample22">Sample22 - How create or update user and add him to collaborators using Python SDK</a></li>
             <li> <a href="/sample23">Sample23 - How View Document pages as images using Python SDK </a></li>
             <li> <a href="/sample24">Sample24 - How to upload file from URL to GroupDocs account using Python SDK</a></li>
+            <li> <a href="/sample25">Sample25 - How to convert DOCX with template fields file into PDF file</a></li>
         </ul>
 		</div>
 
