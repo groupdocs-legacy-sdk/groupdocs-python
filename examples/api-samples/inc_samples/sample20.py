@@ -32,7 +32,8 @@ def sample20(request):
     apiClient = ApiClient(signer)
     # Create ComparisonApi object
     compare = ComparisonApi(apiClient)
-
+    if basePath == "":
+        basePath = 'https://api.groupdocs.com/v2.0'
     compare.basePath = basePath
 
     # get changes

@@ -63,11 +63,14 @@
 		                <option value="docx">Docx</option>
 		                <option value="ppt">PPT</option>
 		            </select>
+		            <span id="results_status" style="color:red;display:none;"> (Please wait for ajax response) </span>
+                    <div id="link"></div>
 		        </form>
 		        <br />
 		        <a href="http://groupdocs-php-samples.herokuapp.com/templates/testdocument.html">Download sample HTML file 1</a> <br />
                 <a href="http://groupdocs-php-samples.herokuapp.com/templates/base-simple_source.html">Download sample HTML file 2</a><br />
                 <a href="http://groupdocs-php-samples.herokuapp.com/templates/sampledoc3.html">Download sample HTML file 3</a><br />
+                <iframe id="downloadframe" style="display:none"></iframe>
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
 			<p> Results: </p>

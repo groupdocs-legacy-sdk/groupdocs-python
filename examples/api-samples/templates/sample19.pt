@@ -94,7 +94,11 @@
                    <input type ="text" name="server_type" id="server_type" />
                    <br />
 		            <input type='submit' value='Make Request'/>
+		            <span id="results_status" style="color:red;display:none;"> (Please wait for ajax response) </span>
+                    <div id="link"></div>
 		        </form>
+		        <br />
+		        <iframe id="downloadframe" style="display:none"></iframe>
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
 			    <p> Results: </p>
