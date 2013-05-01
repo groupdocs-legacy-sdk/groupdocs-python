@@ -9,6 +9,8 @@ from groupdocs.models.UserInfo import UserInfo
 from groupdocs.models.RoleInfo import RoleInfo
 from groupdocs.AntApi import AntApi
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
+from groupdocs.StorageApi import StorageApi
+from groupdocs.FileStream import FileStream
 
 # Checking value on null
 def IsNotNull(value):
@@ -18,15 +20,17 @@ def IsNotNull(value):
 def sample22(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
+    inputFile = request.POST.get('file')
+    url = request.POST.get('url')
+    basePath = request.POST.get('server_type')
     fileId = request.POST.get('fileId')
+    guid = ""
     email = request.POST.get('email')
     name = request.POST.get('first_name')
     lastName = request.POST.get('last_name')
-    callbackUrl = request.POST.get('callbackUrl')
-    basePath = request.POST.get('server_type')
 
     # Checking required parameters
-    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileId) == False or IsNotNull(email) == False or IsNotNull(name) == False or IsNotNull(lastName) == False:
+    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(email) == False or IsNotNull(name) == False or IsNotNull(lastName) == False:
         return render_to_response('__main__:templates/sample22.pt',
             { 'error' : 'You do not enter all parameters' })
 
@@ -38,8 +42,44 @@ def sample22(request):
     apiClient = ApiClient(signer)
     # Create mgmtApi object
     mgmt = MgmtApi(apiClient)
+    # Create StorageApi object
+    storage = StorageApi(apiClient)
+    if basePath == "":
+        basePath = 'https://api.groupdocs.com/v2.0'
+        #Set base path
+    storage.basePath = basePath
     # Declare which server to use
     mgmt.basePath = basePath
+    if url != "":
+        try:
+            # Upload file to current user storage using entere URl to the file
+            upload = storage.UploadWeb(clientId, url)
+            guid = upload.result.guid
+            fileId = ""
+        except Exception, e:
+            return render_to_response('__main__:templates/sample16.pt',
+                { 'error' : str(e) })
+
+    if inputFile != "":
+        try:
+            #A hack to get uploaded file size
+            inputFile.file.seek(0, 2)
+            fileSize = inputFile.file.tell()
+            inputFile.file.seek(0)
+
+            fs = FileStream.fromStream(inputFile.file, fileSize)
+            ####Make a request to Storage API using clientId
+
+            #Upload file to current user storage
+            response = storage.Upload(clientId, inputFile.filename, fs)
+            guid = response.result.guid
+
+            fileId = ""
+        except Exception, e:
+            return render_to_response('__main__:templates/sample16.pt',
+                { 'error' : str(e) })
+    if fileId != '':
+        guid = fileId
 
     #Create Role info object
     role = RoleInfo
@@ -74,24 +114,21 @@ def sample22(request):
         ant = AntApi(apiClient)
         ant.basePath = basePath
         # Make request to Ant api for set new user as annotation collaborator
-        addCollaborator = ant.SetAnnotationCollaborators(clientId, fileId, "2.0", body=[email])
+        addCollaborator = ant.SetAnnotationCollaborators(clientId, guid, "2.0", body=[email])
 
         # Make request to Annotation api to receive all collaborators for entered file id
-        getCollaborators = ant.GetAnnotationCollaborators(clientId, fileId)
+        getCollaborators = ant.GetAnnotationCollaborators(clientId, guid)
 
         #Set reviewers rights for new user
-        setReviewer = ant.SetReviewerRights(clientId, fileId, getCollaborators.result.collaborators)
-
-        # Make request to Annotation api to set CallBack session
-        setCallBack = ant.SetSessionCallbackUrl(newUser.result.guid, fileId, callbackUrl)
+        setReviewer = ant.SetReviewerRights(clientId, guid, getCollaborators.result.collaborators)
 
         # Generating iframe for template
         if basePath == "https://api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
+            iframe = '<iframe src="https://apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
         elif basePath == "https://dev-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://dev-apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
+            iframe = '<iframe src="https://dev-apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
         elif basePath == "https://stage-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://stage-apps.groupdocs.com/document-annotation2/embed/' + fileId + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
+            iframe = '<iframe src="https://stage-apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
 
     errorMessage = newUser.error_message
     # If request was successfull - set variables for template
@@ -103,7 +140,6 @@ def sample22(request):
             'email':email,
             'name':name,
             'lastName': lastName,
-            'callbackUrl': callbackUrl,
             'iframe': iframe,
             'errorMessage': errorMessage
             },

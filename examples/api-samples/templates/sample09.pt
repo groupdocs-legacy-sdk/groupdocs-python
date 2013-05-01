@@ -6,13 +6,15 @@
 		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample09</h3>
 
 		<div class='samplecontent' style="padding:10px;">
-			<i>This sample will show how to generate a embedded Viewer URL for a Document using Python SDK</i> <br/>
+			 <span class="description"><i>This sample will show how to generate a embedded Viewer URL for a Document using Python SDK</i></span> <br/>
            <br />
            <br />
-           <a href="/docs/sample09.html">Docs for this sample</a>
+           <span class="documentation"><a href="/docs/sample09.html">Docs for this sample</a></span>
            <br />
 			<br/>
 			<p>You entered: </p>
+			<p>UserId = ${userId|''}</p>
+            <p>PrivateKey = ${privateKey|''}</p>
 			<p>File Id = ${fileId|''}</p>
 			<p>Viewer URL = ${iframe_url|''}</p>
 			<p>Height = ${height|''}</p>
@@ -21,18 +23,45 @@
 			<div id="requestForm" style="padding: 20px; border: 1px solid black;">
 				<p> Enter data for request and press "Make request" button </p>
 				<form action="/sample09" method = "post" enctype = 'multipart/form-data'>
-		            <label for='fileId'>GroupDocs file ID</label>
-		            <br />
-		            <input type='text' name='fileId' value="${fileId|''}" />
-					<br />
-					<label for='width'>Width</label>
-					<br />
-					<input type='text' name='width' value="${width|''}" />
-					<br />
-					<label for='height'>Height</label>
-					<br />
-					<input type='text' name='height' value="${height|''}" />
-					<br />
+		            <label for='client_id'>GroupDocs ClientID</label>
+                    <br />
+                    <input type='text' id='client_id' name='client_id' value="" />
+                    <br />
+                    <label for='private_key'>GroupDocs PrivateKey</label>
+                    <br />
+                    <input type='text' name='private_key' id='private_key' value="" />
+                    <br />
+                    <input type="radio" name="sourse" value="guid" id="id" onClick="display('guid');" checked>File ID (GUID) </input>
+                    <br />
+                    <input type="radio" name="sourse" value="local" id="localField" onClick="display('local');" >Upload local file </input>
+                    <br />
+                    <input type="radio" name="sourse" value="url" id="urlField" onClick="display('url');" >Upload file from URL </input>
+                    <br />
+                    <br />
+                    <label for='private_key' id="guid">GroupDocs fileID</label>
+                    <br />
+                    <input type='text' name='fileId' id="guidfield" value="" />
+
+                    <label for='file' id="file" style="display:none;">Local file</label>
+                    <br />
+                    <input type='file' name='file' id="filefield" style="display:none;" />
+
+                    <label for='private_key' style="display:none;" id="url">File URL</label>
+                    <br />
+                    <input type='text' name='url'  value="" id="urlfield" style="display:none;" />
+                    <br />
+                    <label for='private_key'>Width<span class="optional">(Optional)</span></label>
+                    <br />
+                    <input type='text' name='width'  value="" />
+                    <br />
+                    <label for='private_key'>Height<span class="optional">(Optional)</span></label>
+                    <br />
+                    <input type='text' name='height'  value="" />
+                    <br />
+                    <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
+                    <br />
+                    <input type ="text" name="server_type" id="server_type" />
+                    <br />
 					<input type='submit' value='Make Request'/>
 				</form>
 			</div>
@@ -72,7 +101,58 @@
                 <li> <a href="/sample25">Sample25 - How to convert DOCX with template fields file into PDF file</a></li>
             </ul>
 		</div>
+     <script type="text/javascript">
+                function display(_element_id) {
 
+                         if (_element_id == "guid") {
+                             var element1 = document.getElementById("file");
+                             var element2 = document.getElementById("filefield");
+                             var element3 = document.getElementById("url");
+                             var element4 = document.getElementById("urlfield");
+                             var element5 = document.getElementById("guid");
+                             var element6 = document.getElementById("guidfield");
+                             element1.style.display = "none";
+                             element2.style.display = "none";
+                             element3.style.display = "none";
+                             element4.style.display = "none";
+                             element5.style.display = "inline";
+                             element6.style.display = "inline";
+
+                         }
+
+                         if (_element_id == "local") {
+                             var element1 = document.getElementById("file");
+                             var element2 = document.getElementById("filefield");
+                             var element3 = document.getElementById("url");
+                             var element4 = document.getElementById("urlfield");
+                             var element5 = document.getElementById("guid");
+                             var element6 = document.getElementById("guidfield");
+                             element1.style.display = "inline";
+                             element2.style.display = "inline";
+                             element3.style.display = "none";
+                             element4.style.display = "none";
+                             element5.style.display = "none";
+                             element6.style.display = "none";
+
+                         }
+
+                         if (_element_id == "url") {
+                             var element1 = document.getElementById("url");
+                             var element2 = document.getElementById("urlfield");
+                             var element3 = document.getElementById("file");
+                             var element4 = document.getElementById("filefield");
+                             var element5 = document.getElementById("guid");
+                             var element6 = document.getElementById("guidfield");
+                             element1.style.display = "inline";
+                             element2.style.display = "inline";
+                             element3.style.display = "none";
+                             element4.style.display = "none";
+                             element5.style.display = "none";
+                             element6.style.display = "none";
+                         }
+
+                     }
+            </script>
     </tal:block>
 </metal:main>
 

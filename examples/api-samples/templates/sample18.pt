@@ -7,10 +7,10 @@
 		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample18</h3>
 
 		<div class='samplecontent' style="padding:10px;">
-		   <i>This sample will show how to convert Doc to Docx, Docx to Doc, Docx to PDF and PPT to PDF using Python SDK</i> <br/>
+		  <span class="description">  <i>This sample will show how to use <b>ConvertFile</b> method to convert Doc to Docx, Docx to Doc, Docx and DOC to PDF and PPT to PDF, HTML to DOC and DOCX. When you use optional parameter "Callback URL" - additional logic will be involved: POST request from GroupDocs API server will be handled by convert_callback action. Also from result page an AJAX request will be sent to backend to check if callback was handled and result file was downloaded. If yes, then AJAX request will return a link to the file using Python SDK</i></span> <br/>
            <br />
            <br />
-           <a href="/docs/sample18.html">Docs for this sample</a>
+           <span class="documentation"><a href="/docs/sample18.html">Docs for this sample</a></span>
            <br />
 		   <br/><p>You entered:
 		   <p>User ID = ${userId|''}
@@ -29,10 +29,33 @@
                    <br />
                    <input type='text' name='private_key'  value="${privateKey|''}" />
                    <br />
-                   <label for='private_key'>File ID</label>
-                   <br />
-                   <input type='text' name='fileId' value="${fileId|''}" />
+                   <input type="radio" name="sourse" value="guid" id="id" onClick="display('guid');" checked>File ID (GUID) </input>
+                    <br />
+                    <input type="radio" name="sourse" value="local" id="localField" onClick="display('local');" >Upload local file </input>
+                    <br />
+                    <input type="radio" name="sourse" value="url" id="urlField" onClick="display('url');" >Upload file from URL </input>
+                    <br />
+                    <br />
+                    <label for='private_key' id="guid">File ID (GUID)</label>
+                    <br />
+                    <input type='text' name='fileId'  id="guidfield" value="" />
+                    <br />
+                    <label for='private_key' style="display:none;" id="url">Upload file from URL</label>
+                     <br />
+                     <input type='text' name='url'  value="" id="urlfield" style="display:none;" />
+
+                     <label for='file' id="file" style="display:none;">Upload local file</label>
+                     <br />
+                     <input type='file' name='file' id="filefield" style="display:none;" />
 		            <br />
+		            <label for='callbackUrl'>callbackUrl<span class="optional">(Optional)</span></label>
+                    <br />
+		            <input type='text' name='callbackUrl'  value="" />
+                    <br />
+		            <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
+                    <br />
+                    <input type ="text" name="server_type" id="server_type" />
+                    <br />
 		            <input type='submit' value='Make Request'/>
 		            <select name="convert_type" id="convert_type">
 		                <option value="doc">Doc</option>
@@ -41,6 +64,10 @@
 		                <option value="ppt">PPT</option>
 		            </select>
 		        </form>
+		        <br />
+		        <a href="http://groupdocs-php-samples.herokuapp.com/templates/testdocument.html">Download sample HTML file 1</a> <br />
+                <a href="http://groupdocs-php-samples.herokuapp.com/templates/base-simple_source.html">Download sample HTML file 2</a><br />
+                <a href="http://groupdocs-php-samples.herokuapp.com/templates/sampledoc3.html">Download sample HTML file 3</a><br />
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
 			<p> Results: </p>
@@ -79,6 +106,58 @@
                 <li> <a href="/sample25">Sample25 - How to convert DOCX with template fields file into PDF file</a></li>
         </ul>
 		</div>
+		 <script type="text/javascript">
+            function display(_element_id) {
+
+                 if (_element_id == "guid") {
+                     var element1 = document.getElementById("file");
+                     var element2 = document.getElementById("filefield");
+                     var element3 = document.getElementById("url");
+                     var element4 = document.getElementById("urlfield");
+                     var element5 = document.getElementById("guid");
+                     var element6 = document.getElementById("guidfield");
+                     element1.style.display = "none";
+                     element2.style.display = "none";
+                     element3.style.display = "none";
+                     element4.style.display = "none";
+                     element5.style.display = "inline";
+                     element6.style.display = "inline";
+
+                 }
+
+                 if (_element_id == "local") {
+                     var element1 = document.getElementById("file");
+                     var element2 = document.getElementById("filefield");
+                     var element3 = document.getElementById("url");
+                     var element4 = document.getElementById("urlfield");
+                     var element5 = document.getElementById("guid");
+                     var element6 = document.getElementById("guidfield");
+                     element1.style.display = "inline";
+                     element2.style.display = "inline";
+                     element3.style.display = "none";
+                     element4.style.display = "none";
+                     element5.style.display = "none";
+                     element6.style.display = "none";
+
+                 }
+
+                 if (_element_id == "url") {
+                     var element1 = document.getElementById("url");
+                     var element2 = document.getElementById("urlfield");
+                     var element3 = document.getElementById("file");
+                     var element4 = document.getElementById("filefield");
+                     var element5 = document.getElementById("guid");
+                     var element6 = document.getElementById("guidfield");
+                     element1.style.display = "inline";
+                     element2.style.display = "inline";
+                     element3.style.display = "none";
+                     element4.style.display = "none";
+                     element5.style.display = "none";
+                     element6.style.display = "none";
+                 }
+
+             }
+        </script>
     </tal:block>
 </metal:main>
 

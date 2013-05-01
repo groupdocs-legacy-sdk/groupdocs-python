@@ -5,7 +5,9 @@ from pyramid.renderers import render_to_response
 
 from groupdocs.ApiClient import ApiClient
 from groupdocs.AsyncApi import AsyncApi
+from groupdocs.StorageApi import StorageApi
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
+from groupdocs.FileStream import FileStream
 
 import time
 
@@ -17,11 +19,17 @@ def IsNotNull(value):
 def sample18(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
+    inputFile = request.POST.get('file')
+    url = request.POST.get('url')
+    basePath = request.POST.get('server_type')
     fileId = request.POST.get('fileId')
+    callbackUrl = request.POST.get('callbackUrl')
+    guid = ""
+    iframe = ""
     targetType = request.POST.get('convert_type')
 
     # Checking required parameters
-    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(fileId) == False or IsNotNull(targetType) == False:
+    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(targetType) == False:
         return render_to_response('__main__:templates/sample18.pt',
             { 'error' : 'You do not enter all parameters' })
 
@@ -33,9 +41,45 @@ def sample18(request):
     apiClient = ApiClient(signer)
     # Create AsyncApi object
     async = AsyncApi(apiClient)
+    # Create Storage object
+    api = StorageApi(apiClient)
+    if basePath == "":
+        basePath = 'https://api.groupdocs.com/v2.0'
+        #Set base path
+    api.basePath = basePath
+    async.basePath = basePath
+    if url != "":
+        try:
+            # Upload file to current user storage using entere URl to the file
+            upload = api.UploadWeb(clientId, url)
+            guid = upload.result.guid
+            fileId = ""
+        except Exception, e:
+            return render_to_response('__main__:templates/sample16.pt',
+                { 'error' : str(e) })
+
+    if inputFile != "":
+        try:
+            #A hack to get uploaded file size
+            inputFile.file.seek(0, 2)
+            fileSize = inputFile.file.tell()
+            inputFile.file.seek(0)
+
+            fs = FileStream.fromStream(inputFile.file, fileSize)
+            ####Make a request to Storage API using clientId
+
+            #Upload file to current user storage
+            response = api.Upload(clientId, inputFile.filename, fs)
+            guid = response.result.guid
+            fileId = ""
+        except Exception, e:
+            return render_to_response('__main__:templates/sample16.pt',
+                { 'error' : str(e) })
+    if fileId != '':
+        guid = fileId
 
     try:
-        convert = async.Convert(clientId, fileId, new_type=targetType)
+        convert = async.Convert(clientId, guid, new_type=targetType, callbackUrl = callbackUrl)
         # check request status
         if convert.status == "Ok":
             # Delay necessary that the inquiry would manage to be processed
@@ -43,9 +87,19 @@ def sample18(request):
             # Make request to api for get document info by job id
             jobs = async.GetJobDocuments(clientId, convert.result.job_id)
             # Get file guid
-            guid = jobs.result.inputs[0].outputs[0].guid
-            # Generating iframe
-            iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + guid + '" frameborder="0" width="100%" height="600"></iframe>'
+            resultGuid = jobs.result.inputs[0].outputs[0].guid
+            #Generation of iframe URL using fileGuId
+            if basePath == "https://api.groupdocs.com/v2.0":
+                iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + resultGuid + '" frameborder="0" width="100%" height="600"></iframe>'
+            #iframe to dev server
+            elif basePath == "https://dev-api.groupdocs.com/v2.0":
+                iframe = '<iframe src="https://dev-apps.groupdocs.com/document-viewer/embed/' + resultGuid + '" frameborder="0" width="100%" height="600"></iframe>'
+            #iframe to test server
+            elif basePath == "https://stage-api.groupdocs.com/v2.0":
+                iframe = '<iframe src="https://stage-apps.groupdocs.com/document-viewer/embed/' + resultGuid + '" frameborder="0" width="100%" height="600"></iframe>'
+            #Iframe to realtime server
+            elif basePath == "http://realtime-api.groupdocs.com":
+                iframe = '<iframe src="https://realtime-apps.groupdocs.com/document-viewer/embed/' + resultGuid + '" frameborder="0" width="100%" height="600"></iframe>'
 
     except Exception, e:
         return render_to_response('__main__:templates/sample18.pt',
@@ -57,7 +111,7 @@ def sample18(request):
         {
             'userId' : clientId,
             'privateKey' : privateKey,
-            'fileId' : fileId,
+            'fileId' : guid,
             'targetType' : targetType,
             'iframe' : iframe
             },

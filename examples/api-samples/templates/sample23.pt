@@ -7,10 +7,10 @@
 		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample23</h3>
 
 		<div class='samplecontent' style="padding:10px;">
-		   <i>This sample will show how View Document pages as images using Python SDK<br/>
+		   <span class="description"> <i>This sample will show how View Document pages as images using Python SDK</i></span><br/>
            <br />
            <br />
-           <a href="/docs/sample23.html">Docs for this sample</a>
+           <span class="documentation"><a href="/docs/sample23.html">Docs for this sample</a></span>
            <br />
 		   <br/><p>You entered:
 		   <p>User ID = ${userId|''}
@@ -32,14 +32,10 @@
                    <br />
                    <input type='text' name='fileId'  value="${fileId|''}" />
                    <br />
-                   <label for='server_type'>Choose server</label>
+                    <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
                    <br />
-                    <select name="server_type" id="server_type">
-                        <option value="https://api.groupdocs.com/v2.0" selected="selected">Prod</option>
-                        <option value="https://dev-api.groupdocs.com/v2.0">Dev</option>
-                        <option value="https://stage-api.groupdocs.com/v2.0">Stage</option>
-                    </select>
-                    <br />
+                   <input type ="text" name="server_type" id="server_type" />
+                   <br />
                     <input type='submit' value='Make Request'/>
 		        </form>
 		   </div>

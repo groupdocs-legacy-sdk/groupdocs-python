@@ -29,7 +29,6 @@
                    <br />
                    <input type='text' name='private_key'  value="" />
                    <br />
-                   <br />
                    <input type="radio" name="sourse" value="guid" id="id" onClick="display('guid');" checked>File ID (GUID) </input>
                    <br />
                    <input type="radio" name="sourse" value="local" id="localField" onClick="display('local');" >Upload local file </input>

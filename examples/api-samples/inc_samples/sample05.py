@@ -7,8 +7,8 @@ from pyramid.renderers import render_to_response
 
 from groupdocs.ApiClient import ApiClient
 from groupdocs.StorageApi import StorageApi
-from groupdocs.DocApi import DocApi
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
+from groupdocs.FileStream import FileStream
 
 # Checking value on null
 def IsNotNull(value):
@@ -18,13 +18,18 @@ def IsNotNull(value):
 def sample05(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
-    srcPath = request.POST.get('srcPath')
+    inputFile = request.POST.get('file')
+    url = request.POST.get('url')
+    basePath = request.POST.get('server_type')
+    fileId = request.POST.get('srcPath')
+    ID = ""
+    name = ''
     destPath = request.POST.get('destPath')
     copy = request.POST.get('copy')
     move = request.POST.get('move')
 
     ####Check clientId, privateKey and file Id
-    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(srcPath) == False or IsNotNull(destPath) == False:
+    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(destPath) == False:
         return render_to_response('__main__:templates/sample05.pt',
                                   { 'error' : 'You do not enter all parameters' })
 
@@ -36,24 +41,80 @@ def sample05(request):
     apiClient = ApiClient(signer)
     #Create Storage Api object
     api = StorageApi(apiClient)
-    # import pdb;pdb.set_trace() # debug
-####Make a request to Storage API using clientId
-    try:
-        #Create DocApi object
-        docApi = DocApi(apiClient)
-        #Make a request to Doc API using clientId
-        srcFile = docApi.GetDocumentMetadataByPath(clientId, srcPath)
-        #Obtaining file name
-        fileID = int(srcFile.result.id)
-        ####Make request for file copying/movement
+    #Check base path
+    if basePath == "":
+        basePath = 'https://api.groupdocs.com/v2.0'
+        #Set base path
+    api.basePath = basePath
+    if url != "":
+        try:
+            # Upload file to current user storage using entere URl to the file
+            upload = api.UploadWeb(clientId, url)
+            ID = upload.result.id
 
+            try:
+                ####Make a request to Storage API using clientId
+
+                #Obtaining all Entities from current user
+                files = api.ListEntities(userId = clientId, path = 'My Web Documents', pageIndex = 0)
+                #Obtaining file name
+                for item in files.result.files:
+                    #selecting file names
+                    if item.guid == upload.result.guid:
+                        name = item.name
+
+            except Exception, e:
+                return render_to_response('__main__:templates/sample05.pt',
+                    { 'error' : str(e) })
+        except Exception, e:
+            return render_to_response('__main__:templates/sample05.pt',
+                { 'error' : str(e) })
+
+    if inputFile != "":
+        try:
+            #A hack to get uploaded file size
+            inputFile.file.seek(0, 2)
+            fileSize = inputFile.file.tell()
+            inputFile.file.seek(0)
+
+            fs = FileStream.fromStream(inputFile.file, fileSize)
+            ####Make a request to Storage API using clientId
+
+            #Upload file to current user storage
+            response = api.Upload(clientId, inputFile.filename, fs)
+            ID = response.result.id
+            name = inputFile.filename
+        except Exception, e:
+            return render_to_response('__main__:templates/sample05.pt',
+                { 'error' : str(e) })
+    if fileId != '':
+        try:
+            ####Make a request to Storage API using clientId
+
+            #Obtaining all Entities from current user
+            files = api.ListEntities(userId = clientId, path = '', pageIndex = 0)
+            #Obtaining file names
+            names = ''
+            for item in files.result.files:
+                if item.guid == fileId:
+                    #selecting file names
+                    ID = item.id
+                    name = item.name
+
+        except Exception, e:
+            return render_to_response('__main__:templates/sample05.pt',
+                { 'error' : str(e) })
+####Make a request to Storage API using clientId
+
+    try:
         #If user choose copy
         if copy:
-           file = api.MoveFile(clientId, destPath, Groupdocs_Copy = fileID)
+           file = api.MoveFile(clientId, destPath + '/' + name, Groupdocs_Copy = ID)
+           message = 'File was copied to the <font color="blue">' + destPath + '/' + name + '</font> folder'
         #If user choose move
         if move:
-           file = api.MoveFile(clientId, destPath, Groupdocs_Move = fileID)
-
+           file = api.MoveFile(clientId, destPath + '/' + name, Groupdocs_Move = ID)
+           message = 'File was moved to the <font color="blue">' + destPath + '/' + name + '</font> folder'
     except Exception, e:
         return render_to_response('__main__:templates/sample05.pt',
                                   { 'error' : str(e) })
@@ -62,5 +123,6 @@ def sample05(request):
                               { 'userId' : clientId, 
                                'privateKey' : privateKey, 
                                'destPath' : destPath, 
-                               'srcPath' : srcPath }, 
+                               'srcPath' : ID,
+                               'message' : message},
                               request=request)

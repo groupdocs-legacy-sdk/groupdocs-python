@@ -18,7 +18,10 @@ def sample17(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
     inputFile = request.POST.get('file')
-
+    url = request.POST.get('url')
+    basePath = request.POST.get('server_type')
+    id = ""
+    name = ""
     # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False:
         return render_to_response('__main__:templates/sample17.pt',
@@ -32,22 +35,41 @@ def sample17(request):
     apiClient = ApiClient(signer)
     # Create StorageApi object
     api = StorageApi(apiClient)
+    if basePath == "":
+        basePath = 'https://api.groupdocs.com/v2.0'
+    #Set base path
+    api.basePath = basePath
+    if url != "":
+        try:
+            # Upload file to current user storage using entere URl to the file
+            upload = api.UploadWeb(clientId, url)
+            id = upload.result.id
+            inputFile = ""
+        except Exception, e:
+            return render_to_response('__main__:templates/sample17.pt',
+                { 'error' : str(e) })
 
+    if inputFile != "":
+        try:
+            #A hack to get uploaded file size
+            inputFile.file.seek(0, 2)
+            fileSize = inputFile.file.tell()
+            inputFile.file.seek(0)
+
+            fs = FileStream.fromStream(inputFile.file, fileSize)
+            ####Make a request to Storage API using clientId
+
+            #Upload file to current user storage
+            response = api.Upload(clientId, inputFile.filename, fs)
+            id = response.result.id
+
+        except Exception, e:
+            return render_to_response('__main__:templates/sample17.pt',
+                { 'error' : str(e) })
     result = ''
     try:
-        # a hack to get uploaded file size
-        inputFile.file.seek(0, 2)
-        fileSize = inputFile.file.tell()
-        inputFile.file.seek(0)
-
-        fs = FileStream.fromStream(inputFile.file, fileSize)
-        #~ import pdb;  pdb.set_trace()
-
-        # upload file and get response
-        response = api.Upload(clientId, inputFile.filename, fs)
-
         # compress file using upload response
-        compress = api.Compress(clientId, response.result.id, "zip")
+        compress = api.Compress(clientId, id, "zip")
         if compress.status == "Ok":
             result = "Archive created and saved successfully"
 
