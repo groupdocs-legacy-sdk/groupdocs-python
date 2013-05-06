@@ -30,7 +30,8 @@
     <span class="n">apiClient</span> <span class="o">=</span> <span class="n">ApiClient</span><span class="p">(</span><span class="n">signer</span><span class="p">)</span>
 </pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>Create ComparisonApi object</p>             </td>             <td class="code">               <div class="highlight"><pre>
     <span class="n">compare</span> <span class="o">=</span> <span class="n">ComparisonApi</span><span class="p">(</span><span class="n">apiClient</span><span class="p">)</span>
-
+    <span class="k">if</span> <span class="n">basePath</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="p">:</span>
+        <span class="n">basePath</span> <span class="o">=</span> <span class="s">&#39;https://api.groupdocs.com/v2.0&#39;</span>
     <span class="n">compare</span><span class="o">.</span><span class="n">basePath</span> <span class="o">=</span> <span class="n">basePath</span>
 
 </pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <p>get changes</p>             </td>             <td class="code">               <div class="highlight"><pre>

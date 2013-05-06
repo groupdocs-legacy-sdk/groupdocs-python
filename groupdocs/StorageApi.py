@@ -578,6 +578,7 @@ class StorageApi(object):
             resourcePath = resourcePath.replace('{' + 'path' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
+
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams)
 
