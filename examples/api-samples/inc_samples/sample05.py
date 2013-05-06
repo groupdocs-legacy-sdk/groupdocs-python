@@ -24,6 +24,7 @@ def sample05(request):
     fileId = request.POST.get('srcPath')
     ID = ""
     name = ''
+    message = ''
     destPath = request.POST.get('destPath')
     copy = request.POST.get('copy')
     move = request.POST.get('move')
@@ -88,11 +89,16 @@ def sample05(request):
             return render_to_response('__main__:templates/sample05.pt',
                 { 'error' : str(e) })
     if fileId != '':
+
         try:
             ####Make a request to Storage API using clientId
 
             #Obtaining all Entities from current user
-            files = api.ListEntities(userId = clientId, path = '', pageIndex = 0)
+            try:
+                files = api.ListEntities(userId = clientId, path = '', pageIndex = 0)
+            except Exception, e:
+                return render_to_response('__main__:templates/sample05.pt',
+                    { 'error' : str(e) })
             #Obtaining file names
             names = ''
             for item in files.result.files:
@@ -106,23 +112,28 @@ def sample05(request):
                 { 'error' : str(e) })
 ####Make a request to Storage API using clientId
 
-    try:
-        #If user choose copy
-        if copy:
-           file = api.MoveFile(clientId, destPath + '/' + name, Groupdocs_Copy = ID)
-           message = 'File was copied to the <font color="blue">' + destPath + '/' + name + '</font> folder'
-        #If user choose move
-        if move:
-           file = api.MoveFile(clientId, destPath + '/' + name, Groupdocs_Move = ID)
-           message = 'File was moved to the <font color="blue">' + destPath + '/' + name + '</font> folder'
-    except Exception, e:
-        return render_to_response('__main__:templates/sample05.pt',
-                                  { 'error' : str(e) })
+    #If user choose copy
+    if copy:
+        try:
+            file = api.MoveFile(clientId, destPath + '/' + name, Groupdocs_Copy = ID)
+            message = 'File was copied to the <font color="blue">' + destPath + '/' + name + '</font> folder'
+        except Exception, e:
+            return render_to_response('__main__:templates/sample05.pt',
+                { 'error' : str(e) })
+
+
+    #If user choose move
+    if move:
+        try:
+            file = api.MoveFile(clientId, destPath + '/' + name, Groupdocs_Move = ID)
+            message = 'File was moved to the <font color="blue">' + destPath + '/' + name + '</font> folder'
+        except Exception, e:
+            return render_to_response('__main__:templates/sample05.pt',
+                { 'error' : str(e) })
+
     #If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample05.pt',
                               { 'userId' : clientId, 
                                'privateKey' : privateKey, 
-                               'destPath' : destPath, 
-                               'srcPath' : ID,
                                'message' : message},
                               request=request)

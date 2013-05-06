@@ -46,24 +46,24 @@
                    <br />
                    <input type='text' name='lastName' value="${lastName|''}" />
                    <br />
-                   <input type="radio" name="sourse" value="guid" id="id" onClick="display('guid');" checked>File ID (GUID) </input>
+                   <input type="radio" name="sourse" value="guid" id="id" onClick="display('guid');" >File ID (GUID) </input>
                    <br />
-                   <input type="radio" name="sourse" value="local" id="localField" onClick="display('local');" >Upload local file </input>
+                   <input type="radio" name="sourse" value="local" id="localField" onClick="display('local');" checked>Upload local file </input>
                    <br />
                    <input type="radio" name="sourse" value="url" id="urlField" onClick="display('url');" >Upload file from URL </input>
                    <br />
                    <br />
-                   <label for='private_key' id="guid">File ID (GUID)</label>
+                   <label for='private_key' id="guid" style="display:none;">File ID (GUID)</label>
                    <br />
-                   <input type='text' name='fileId'  id="guidfield" value="" />
+                   <input type='text' name='fileId'  id="guidfield" value="" style="display:none;" />
                    <br />
                    <label for='private_key' style="display:none;" id="url">Upload file from URL</label>
                     <br />
                     <input type='text' name='url'  value="" id="urlfield" style="display:none;" />
 
-                    <label for='file' id="file" style="display:none;">Upload local file</label>
+                    <label for='file' id="file" >Upload local file</label>
                     <br />
-                    <input type='file' name='file' id="filefield" style="display:none;" />
+                    <input type='file' name='file' id="filefield" />
                    <br />
                   <label for='private_key'>Callback Url<span class="optional">(Optional)</span></label>
                   <br />
@@ -74,7 +74,10 @@
                 <input type ="text" name="server_type" id="server_type" />
                 <br />
 		            <input type='submit' value='Make Request'/>
-		        </form>
+		        <span id="results_status" style="color:red;display:none;"> (Please wait for ajax response) </span>
+                    <div id="link"></div>
+                 </form>
+                  <iframe id="downloadframe" style="display:none"></iframe>
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
 			    <p> Results: </p>

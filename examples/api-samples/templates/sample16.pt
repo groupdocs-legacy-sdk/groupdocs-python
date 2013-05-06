@@ -28,7 +28,7 @@
           <br />
           <label for='private_key'>GroupDocs Private Key</label>
           <br />
-          <input type='text', name='private_key'  value="${privateKey|''}" />
+          <input type='text', name='private_key' id='private_key' value="${privateKey|''}" />
           <br />
          <input type="radio" name="sourse" value="guid" id="id" onClick="display('guid');" checked>File ID (GUID) </input>
          <br />
