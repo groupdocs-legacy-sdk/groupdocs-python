@@ -20,7 +20,7 @@
 		   <p><font color="red">${error|''}</font>
 		   <div id="requestForm" style="padding: 20px; border: 1px solid black;">
 		   <p> Enter data for request and press "Make request" button </p>
-		        <form action="/convert_callback" method="post" enctype='multipart/form-data'>
+		        <form action="/sample18" method="post" enctype='multipart/form-data'>
                    <label for='client_id'>GroupDocs Client ID</label>
                    <br />
                    <input type='text' name='client_id' value="${userId|''}" />
