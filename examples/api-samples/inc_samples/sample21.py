@@ -1,6 +1,8 @@
 ### This sample will show how to Create and Upload Envelop to GroupDocs account using Python SDK
 
 # Import of classes from libraries
+import os
+
 from pyramid.renderers import render_to_response
 
 from groupdocs.ApiClient import ApiClient
@@ -34,7 +36,24 @@ def sample21(request):
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(email) == False or IsNotNull(name) == False or IsNotNull(lastName) == False:
         return render_to_response('__main__:templates/sample21.pt',
             { 'error' : 'You do not enter all parameters' })
+    #Get curent work directory
+    currentDir = os.path.dirname(os.path.realpath(__file__))
+    #Create text file
+    fp = open(currentDir + '/../user_info.txt', 'w')
+    #Write user info to text file
+    fp.write(clientId + "\r\n" + privateKey)
+    fp.close()
+    #Clear downloads folder
+    if os.path.isdir(currentDir + '/../downloads'):
+        #Get list of files
+        for the_file in os.listdir(currentDir + '/../downloads'):
+            file_path = os.path.join(currentDir + '/../downloads', the_file)
+            try:
+                #Delete file from folder
+                os.unlink(file_path)
 
+            except Exception, e:
+                print e
     ### Create Signer, ApiClient and Annotation Api objects
 
     # Create signer object
@@ -158,5 +177,5 @@ def sample21(request):
 
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample21.pt',
-        {'userId' : clientId, 'privateKey' : privateKey, 'email':email, 'name':name, 'lastName': lastName, 'envId' : envelop.result.envelope.id, 'iframe': iframe, 'message': message, 'roleId' : roleId},
+        {'userId' : clientId, 'privateKey' : privateKey, 'email':email, 'name':name, 'lastName': lastName, 'envId' : envelop.result.envelope.id, 'iframe': iframe, 'message': message, 'roleId' : roleId, 'callbackUrl' : callbackUrl},
         request=request)

@@ -34,15 +34,20 @@ def sample18(request):
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(targetType) == False:
         return render_to_response('__main__:templates/sample18.pt',
             { 'error' : 'You do not enter all parameters' })
+    #Get curent work directory
     currentDir = os.path.dirname(os.path.realpath(__file__))
+    #Create text file
     fp = open(currentDir + '/../user_info.txt', 'w')
+    #Write user info to text file
     fp.write(clientId + "\r\n" + privateKey)
     fp.close()
+    #Clear downloads folder
     if os.path.isdir(currentDir + '/../downloads'):
-
+        #Get list of files
         for the_file in os.listdir(currentDir + '/../downloads'):
             file_path = os.path.join(currentDir + '/../downloads', the_file)
             try:
+                #Delete file from folder
                 os.unlink(file_path)
 
             except Exception, e:
