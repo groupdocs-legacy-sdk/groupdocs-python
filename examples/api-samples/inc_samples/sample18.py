@@ -1,6 +1,8 @@
 ### This sample will show how to convert Doc to Docx, Docx to Doc, Docx to PDF and PPT to PDF
 
 # Import of classes from libraries
+import os
+
 from pyramid.renderers import render_to_response
 
 from groupdocs.ApiClient import ApiClient
@@ -32,7 +34,19 @@ def sample18(request):
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(targetType) == False:
         return render_to_response('__main__:templates/sample18.pt',
             { 'error' : 'You do not enter all parameters' })
+    currentDir = os.path.dirname(os.path.realpath(__file__))
+    fp = open(currentDir + '/../user_info.txt', 'w')
+    fp.write(clientId + "\r\n" + privateKey)
+    fp.close()
+    if os.path.isdir(currentDir + '/../downloads'):
 
+        for the_file in os.listdir(currentDir + '/../downloads'):
+            file_path = os.path.join(currentDir + '/../downloads', the_file)
+            try:
+                os.unlink(file_path)
+
+            except Exception, e:
+                print e
     ### Create Signer, ApiClient and AsyncApi objects
 
     # Create signer object
@@ -113,6 +127,7 @@ def sample18(request):
             'privateKey' : privateKey,
             'fileId' : guid,
             'targetType' : targetType,
-            'iframe' : iframe
+            'iframe' : iframe,
+            'callback' : callbackUrl
             },
         request=request)

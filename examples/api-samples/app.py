@@ -31,6 +31,9 @@ import inc_samples.sample24 as sample24
 import inc_samples.sample25 as sample25
 import inc_samples.annotation_callback as annotation_callback
 import inc_samples.annotation_check_file as annotation_check_file
+import inc_samples.convert_callback as convert_callback
+import inc_samples.check_file as check_file
+import inc_samples.download_file as download_file
 
 def index(request):
     return {}
@@ -66,6 +69,9 @@ if __name__ == '__main__':
     config.add_route('sample25', '/sample25')
     config.add_route('annotation_callback', 'annotation_callback')
     config.add_route('annotation_check_file', 'annotation_check_file')
+    config.add_route('convert_callback', 'convert_callback')
+    config.add_route('check_file', 'check_file')
+    config.add_route('download_file', 'download_file')
 
     config.add_view(index, route_name='index', renderer='__main__:templates/index.pt')
     config.add_view(sample01.sample01, route_name='sample01')
@@ -95,6 +101,9 @@ if __name__ == '__main__':
     config.add_view(sample25.sample25, route_name='sample25')
     config.add_view(annotation_callback.annotation_callback, route_name='annotation_callback')
     config.add_view(annotation_check_file.annotation_check_file, route_name='annotation_check_file')
+    config.add_view(convert_callback.convert_callback, route_name='convert_callback')
+    config.add_view(check_file.check_file, route_name='check_file', renderer = 'string')
+    config.add_view(download_file.download_file, route_name = 'download_file')
 
     config.add_static_view(name='/', path='templates/')
     app = config.make_wsgi_app()
