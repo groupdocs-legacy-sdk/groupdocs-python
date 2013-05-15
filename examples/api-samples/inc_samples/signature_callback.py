@@ -38,8 +38,7 @@ def signature_callback(request):
         if envelopId != '':
             time.sleep(5)
             print envelopId
-            document = signature.GetEnvelopeDocuments(envelopId, clientId)
-
+            document = signature.GetSignatureEnvelopeDocuments(clientId, envelopId)
             if document.status == "Ok":
                 guid = document.result.documents[0].documentId
                 name = document.result.documents[0].name

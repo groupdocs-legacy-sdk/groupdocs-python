@@ -86,11 +86,11 @@ def sample21(request):
                         fileName = item.name
 
             except Exception, e:
-                return render_to_response('__main__:templates/sample05.pt',
+                return render_to_response('__main__:templates/sample21.pt',
                     { 'error' : str(e) })
             fileId = ""
         except Exception, e:
-            return render_to_response('__main__:templates/sample16.pt',
+            return render_to_response('__main__:templates/sample21.pt',
                 { 'error' : str(e) })
 
     if inputFile != "":
@@ -109,7 +109,7 @@ def sample21(request):
             fileName = inputFile.filename
             fileId = ""
         except Exception, e:
-            return render_to_response('__main__:templates/sample16.pt',
+            return render_to_response('__main__:templates/sample21.pt',
                 { 'error' : str(e) })
     if fileId != '':
         guid = fileId
@@ -125,7 +125,7 @@ def sample21(request):
                     fileName = item.name
 
         except Exception, e:
-            return render_to_response('__main__:templates/sample05.pt',
+            return render_to_response('__main__:templates/sample21.pt',
                 { 'error' : str(e) })
     try:
         # Create envelope using user id and entered by user name
@@ -154,8 +154,10 @@ def sample21(request):
             stream = sio.StringIO()
             stream.write(str(callbackUrl))
             callback = FileStream(None, None, stream.getvalue())
+
         else:
             callback = ''
+
         send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id, callback)
 
         # make result messages
