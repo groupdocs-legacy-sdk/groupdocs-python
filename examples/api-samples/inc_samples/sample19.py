@@ -26,6 +26,7 @@ def sample19(request):
     callbackUrl = request.POST.get('callbackUrl')
     sourceFileId = ""
     targetFileId = ""
+    iframe = ''
     sourceFile = request.POST.get('file')
     targetFile = request.POST.get('target_file')
     url = request.POST.get('url')
@@ -129,7 +130,6 @@ def sample19(request):
             targetFileId = target
     # complare files
     info = compare.Compare(clientId, sourceFileId, targetFileId, callbackUrl)
-
     if info.status == "Ok":
         # Create AsyncApi object
         async = AsyncApi(apiClient)
@@ -139,7 +139,7 @@ def sample19(request):
         jobInfo = async.GetJobDocuments(clientId, info.result.job_id)
 
         # construct result
-        iframe = ''
+
         if jobInfo.status == "Ok":
             # Generation of iframe URL using jobInfo.result.outputs[0].guid
             if basePath == "https://api.groupdocs.com/v2.0":
@@ -148,7 +148,12 @@ def sample19(request):
                 iframe = '<iframe src="https://dev-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + '?frameborder="0" width="720" height="600"></iframe>'
             elif basePath == "https://stage-api.groupdocs.com/v2.0":
                 iframe = '<iframe src="https://stage-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid + '?frameborder="0" width="720" height="600"></iframe>'
-
+        else:
+            return render_to_response('__main__:templates/sample19.pt',
+                { 'error' : info.error_message })
+    else:
+        return render_to_response('__main__:templates/sample19.pt',
+            { 'error' : info.error_message })
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample19.pt',
         {'userId' : clientId,
