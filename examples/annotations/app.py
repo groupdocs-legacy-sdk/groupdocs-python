@@ -52,9 +52,6 @@ def upload(request):
 
 def annotation(request):
 	session = request.session
-	session['private_key'] = 'cebff9b66782df9e519c1fc11c0a7ac3'
-	session['client_id'] = '60bef2f950c9cd0e'
-	session['guid'] = '35fba5ae4b3032be2046e93e516cf4ef74a2c5d1d7c4cad497912990dc3975a5'
 	signer = GroupDocsRequestSigner(session['private_key'])
 	apiClient = ApiClient(signer)
 	api = AntApi(apiClient)
