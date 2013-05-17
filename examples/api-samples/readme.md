@@ -38,3 +38,11 @@
 * How to check the number of document's views
 * How to insert Assembly questionary into webpage
 * How to upload a file into the storage and compress it into zip archive
+* How to convert Doc to Docx, Docx to Doc, Docx to PDF and PPT to PDF
+* How to Compare documents 
+* How to Get Compare Change list for document
+* How to Create and Upload Envelop to GroupDocs account
+* This sample will show how create or update user and add him to collaborators 
+* How to View Document pages as images
+* How to use StorageApi to upload file from URL to GroupDocs account
+* How to merge data fields in docx file with data source and get result file as PDF file
