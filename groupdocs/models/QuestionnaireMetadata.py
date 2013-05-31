@@ -35,7 +35,8 @@ class QuestionnaireMetadata:
             'folder': 'str',
             'emails': 'str',
             'output_format': 'str',
-            'open_on_completion': 'bool'
+            'open_on_completion': 'bool',
+            'allowed_operations': 'int'
 
         }
 
@@ -53,4 +54,5 @@ class QuestionnaireMetadata:
         self.emails = None # str
         self.output_format = None # str
         self.open_on_completion = None # bool
+        self.allowed_operations = None # int
         

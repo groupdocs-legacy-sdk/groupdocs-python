@@ -149,6 +149,48 @@ class SharedApi(object):
         return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams, FileStream)
         
+    def LoginUser(self, userName, body, **kwargs):
+        """Logins user using user name and password
+
+        Args:
+            userName, str: User name (required)
+            body, str: Password (required)
+            
+        Returns: UserInfoResponse
+        """
+        if( userName == None or body == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userName', 'body']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method LoginUser" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/shared/users/{userName}/logins'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'POST'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userName' in params):
+            replacement = str(self.apiClient.toPathValue(params['userName']))
+            resourcePath = resourcePath.replace('{' + 'userName' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'UserInfoResponse')
+        return responseObject
+        
+        
     
 
 

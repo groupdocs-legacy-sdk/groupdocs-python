@@ -23,10 +23,10 @@ class SignatureSignDocumentResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'documentId': 'str'
+            'documents': 'list[SignatureSignDocumentInfo]'
 
         }
 
 
-        self.documentId = None # str
+        self.documents = None # list[SignatureSignDocumentInfo]
         

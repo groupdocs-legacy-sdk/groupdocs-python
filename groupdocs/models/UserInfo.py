@@ -62,6 +62,7 @@ class UserInfo:
             'is_polyline_annotation_button_enabled': 'bool',
             'is_typewriter_annotation_button_enabled': 'bool',
             'is_watermark_annotation_button_enabled': 'bool',
+            'is_annotation_document_name_shown': 'bool',
             'viewer_logo': 'list[int]',
             'viewer_options': 'int',
             'is_viewer_navigation_widget_enabled': 'bool',
@@ -69,10 +70,15 @@ class UserInfo:
             'is_viewer_download_widget_enabled': 'bool',
             'is_viewer_print_widget_enabled': 'bool',
             'is_viewer_help_widget_enabled': 'bool',
+            'is_viewer_document_name_shown': 'bool',
             'signedupOn': 'long',
             'signedinOn': 'long',
             'signin_count': 'int',
             'roles': 'list[RoleInfo]',
+            'signature_watermark_enabled': 'bool',
+            'signature_desktop_notifications': 'bool',
+            'webhook_notification_retries': 'int',
+            'webhook_notification_failed_recipients': 'str',
             'id': 'float',
             'guid': 'str',
             'primary_email': 'str'
@@ -119,6 +125,7 @@ class UserInfo:
         self.is_polyline_annotation_button_enabled = None # bool
         self.is_typewriter_annotation_button_enabled = None # bool
         self.is_watermark_annotation_button_enabled = None # bool
+        self.is_annotation_document_name_shown = None # bool
         self.viewer_logo = None # list[int]
         self.viewer_options = None # int
         self.is_viewer_navigation_widget_enabled = None # bool
@@ -126,10 +133,15 @@ class UserInfo:
         self.is_viewer_download_widget_enabled = None # bool
         self.is_viewer_print_widget_enabled = None # bool
         self.is_viewer_help_widget_enabled = None # bool
+        self.is_viewer_document_name_shown = None # bool
         self.signedupOn = None # long
         self.signedinOn = None # long
         self.signin_count = None # int
         self.roles = None # list[RoleInfo]
+        self.signature_watermark_enabled = None # bool
+        self.signature_desktop_notifications = None # bool
+        self.webhook_notification_retries = None # int
+        self.webhook_notification_failed_recipients = None # str
         self.id = None # float
         self.guid = None # str
         self.primary_email = None # str

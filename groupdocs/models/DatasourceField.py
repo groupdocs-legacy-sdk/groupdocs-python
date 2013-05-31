@@ -24,15 +24,17 @@ class DatasourceField:
     def __init__(self):
         self.swaggerTypes = {
             'name': 'str',
-            'values': 'list[str]',
+            'values': 'str',
             'contentType': 'str',
-            'type': 'str'
+            'type': 'str',
+            'nested_fields': 'list[DatasourceField]'
 
         }
 
 
         self.name = None # str
-        self.values = None # list[str]
+        self.values = None # str
         self.contentType = None # str
         self.type = None # str
+        self.nested_fields = None # list[DatasourceField]
         

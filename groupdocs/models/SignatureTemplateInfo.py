@@ -37,7 +37,8 @@ class SignatureTemplateInfo:
             'documentsPages': 'float',
             'recipients': 'list[SignatureTemplateRecipientInfo]',
             'waterMarkText': 'str',
-            'waterMarkImage': 'str'
+            'waterMarkImage': 'str',
+            'fieldsCount': 'float'
 
         }
 
@@ -57,4 +58,5 @@ class SignatureTemplateInfo:
         self.recipients = None # list[SignatureTemplateRecipientInfo]
         self.waterMarkText = None # str
         self.waterMarkImage = None # str
+        self.fieldsCount = None # float
         

@@ -1311,6 +1311,57 @@ class DocApi(object):
         return responseObject
         
         
+    def GetDocumentContent(self, userId, fileId, contentType, **kwargs):
+        """Returns document content
+
+        Args:
+            userId, str: GroupDocs user global unique identifier. (required)
+            fileId, str: Document global unique identifier. (required)
+            contentType, str: Content type. (required)
+            
+        Returns: GetDocumentContentResponse
+        """
+        if( userId == None or fileId == None or contentType == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'fileId', 'contentType']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetDocumentContent" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/doc/{userId}/files/{fileId}/content/{contentType}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('fileId' in params):
+            replacement = str(self.apiClient.toPathValue(params['fileId']))
+            resourcePath = resourcePath.replace('{' + 'fileId' + '}',
+                                                replacement)
+        if ('contentType' in params):
+            replacement = str(self.apiClient.toPathValue(params['contentType']))
+            resourcePath = resourcePath.replace('{' + 'contentType' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetDocumentContentResponse')
+        return responseObject
+        
+        
     
 
 

@@ -444,7 +444,7 @@ class MgmtApi(object):
 
         Args:
             callerId, str: Caller GUID (required)
-            userId, str: User GUID (required)
+            userId, str: User name (required)
             password, str: Password (required)
             
         Returns: UserInfoResponse

@@ -26,6 +26,7 @@ class SignatureEnvelopeInfo:
             'id': 'str',
             'name': 'str',
             'creationDateTime': 'str',
+            'updatedDateTime': 'str',
             'ownerGuid': 'str',
             'status': 'int',
             'statusDateTime': 'str',
@@ -50,6 +51,7 @@ class SignatureEnvelopeInfo:
         self.id = None # str
         self.name = None # str
         self.creationDateTime = None # str
+        self.updatedDateTime = None # str
         self.ownerGuid = None # str
         self.status = None # int
         self.statusDateTime = None # str

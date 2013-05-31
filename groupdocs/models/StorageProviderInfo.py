@@ -31,7 +31,8 @@ class StorageProviderInfo:
             'privateKey': 'str',
             'rootFolder': 'str',
             'isPrimary': 'bool',
-            'serviceHost': 'str'
+            'serviceHost': 'str',
+            'syncOptions': 'str'
 
         }
 
@@ -45,4 +46,5 @@ class StorageProviderInfo:
         self.rootFolder = None # str
         self.isPrimary = None # bool
         self.serviceHost = None # str
+        self.syncOptions = None # str
         

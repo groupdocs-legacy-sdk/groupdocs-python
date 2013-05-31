@@ -140,7 +140,7 @@ class SystemApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/system/{callerId}/plans/{family}'.replace('*', '')
+        resourcePath = '/system/{callerId}/plans/{family}?invalidate={invalidate}'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -390,6 +390,97 @@ class SystemApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'GetBillingAddressResponse')
+        return responseObject
+        
+        
+    def GetInvoices(self, callerId, **kwargs):
+        """Get invoices
+
+        Args:
+            callerId, str: User GUID (required)
+            pageNumber, str: Show records for page number (optional)
+            pageSize, int: Show records count (optional)
+            
+        Returns: GetInvoicesResponse
+        """
+        if( callerId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['callerId', 'pageNumber', 'pageSize']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetInvoices" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/system/{callerId}/invoices?pageNumber={pageNumber}&pageSize={pageSize}'.replace('*', '')
+        pos = resourcePath.find("?")
+        if pos != -1:
+            resourcePath = resourcePath[0:pos]
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('pageNumber' in params):
+            queryParams['pageNumber'] = self.apiClient.toPathValue(params['pageNumber'])
+        if ('pageSize' in params):
+            queryParams['pageSize'] = self.apiClient.toPathValue(params['pageSize'])
+        if ('callerId' in params):
+            replacement = str(self.apiClient.toPathValue(params['callerId']))
+            resourcePath = resourcePath.replace('{' + 'callerId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetInvoicesResponse')
+        return responseObject
+        
+        
+    def GetSubscriptionPlanUsage(self, userId, **kwargs):
+        """Get subscription plans
+
+        Args:
+            userId, str: User GUID (required)
+            
+        Returns: GetSubscriptionPlanUsageResponse
+        """
+        if( userId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetSubscriptionPlanUsage" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/system/{userId}/usage'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetSubscriptionPlanUsageResponse')
         return responseObject
         
         
