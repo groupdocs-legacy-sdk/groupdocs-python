@@ -1,2 +1,2 @@
 __pkgname__ = "groupdocs-python"
-__version__ = "1.6.0-dev"
+__version__ = "1.5.1"
