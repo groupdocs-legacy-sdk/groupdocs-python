@@ -110,7 +110,7 @@ class ApiClient(object):
                 data = postData.inputStream
             elif not postData:
                 data = ""
-            elif type(postData) not in [unicode, str, int, float, bool]:
+            elif type(postData) not in [unicode, int, float, bool]:
                 data = self.signer.signContent(json.dumps(self.sanitizeForSerialization(postData)), headers)
             else: 
                 data = self.signer.signContent(postData, headers)
