@@ -29,6 +29,7 @@ import inc_samples.sample22 as sample22
 import inc_samples.sample23 as sample23
 import inc_samples.sample24 as sample24
 import inc_samples.sample25 as sample25
+import inc_samples.sample26 as sample26
 import inc_samples.annotation_callback as annotation_callback
 import inc_samples.annotation_check_file as annotation_check_file
 import inc_samples.convert_callback as convert_callback
@@ -69,6 +70,7 @@ if __name__ == '__main__':
     config.add_route('sample23', '/sample23')
     config.add_route('sample24', '/sample24')
     config.add_route('sample25', '/sample25')
+    config.add_route('sample26', '/sample26')
     config.add_route('annotation_callback', 'annotation_callback')
     config.add_route('annotation_check_file', 'annotation_check_file')
     config.add_route('convert_callback', 'convert_callback')
@@ -103,6 +105,7 @@ if __name__ == '__main__':
     config.add_view(sample23.sample23, route_name='sample23')
     config.add_view(sample24.sample24, route_name='sample24')
     config.add_view(sample25.sample25, route_name='sample25')
+    config.add_view(sample26.sample26, route_name='sample26')
     config.add_view(annotation_callback.annotation_callback, route_name='annotation_callback')
     config.add_view(annotation_check_file.annotation_check_file, route_name='annotation_check_file')
     config.add_view(convert_callback.convert_callback, route_name='convert_callback')
