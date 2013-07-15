@@ -4,7 +4,7 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
 
-		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample23</h3>
+		<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample24</h3>
 
 		<div class='samplecontent' style="padding:10px;">
 		   <span class="description"> <i>This sample will show how to upload file from URL to GroupDocs account using Python SDK </i> </span> <br/>
