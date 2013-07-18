@@ -60,7 +60,7 @@
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
                     <p> Results: </p>
-                    <p>New collaborations: <font color="green">${email|''}</font>
+                    <p>New collaborations: <span color="green">${email|''}</span>
 
             </div>
 		</div>

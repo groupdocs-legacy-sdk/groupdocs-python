@@ -58,7 +58,7 @@
        <input name='move' type='submit' value='Move'/>
    </form>
    </div>
-   <h4><font color="green">${structure:message|''}</font></h4>
+   <h4><span color="green">${structure:message|''}</span></h4>
    <br/>
  </div>
 
