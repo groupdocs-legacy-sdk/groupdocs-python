@@ -20,6 +20,7 @@ def sample09(request):
     url = request.POST.get('url')
     basePath = request.POST.get('server_type')
     fileId = request.POST.get('fileId')
+    iframeType = request.POST.get('iframeType')
     guid = ""
     width = request.POST.get('width') or '300'
     height = request.POST.get('height') or '200'
@@ -71,18 +72,31 @@ def sample09(request):
     if fileId != '':
         guid = fileId
     #Generation of iframe URL using fileGuId
-    if basePath == "https://api.groupdocs.com/v2.0":
-        iframe_url = 'https://apps.groupdocs.com/document-viewer/embed/' + guid + '?frameborder=0&width=' + width + '&height=' + height
-    #iframe to dev server
-    elif basePath == "https://dev-api.groupdocs.com/v2.0":
-        iframe_url = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + guid + '?frameborder=0&width=' + width + '&height=' + height
-    #iframe to test server
-    elif basePath == "https://stage-api.groupdocs.com/v2.0":
-        iframe_url = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + guid + '?frameborder=0&width=' + width + '&height=' + height
-    #Iframe to realtime server
-    elif basePath == "http://realtime-api.groupdocs.com":
-        iframe_url = 'https://realtime-apps.groupdocs.com/document-viewer/embed/' + guid + '?frameborder=0&width=' + width + '&height=' + height
+    if iframeType == "viewer":
+        if basePath == "https://api.groupdocs.com/v2.0":
+            iframe_url = 'https://apps.groupdocs.com/document-viewer/embed/' + guid
+        #iframe to dev server
+        elif basePath == "https://dev-api.groupdocs.com/v2.0":
+            iframe_url = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + guid
+        #iframe to test server
+        elif basePath == "https://stage-api.groupdocs.com/v2.0":
+            iframe_url = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + guid
+        #Iframe to realtime server
+        elif basePath == "http://realtime-api.groupdocs.com":
+            iframe_url = 'https://realtime-apps.groupdocs.com/document-viewer/embed/' + guid
 
+    if iframeType == "annotation":
+        if basePath == "https://api.groupdocs.com/v2.0":
+            iframe_url = 'https://apps.groupdocs.com/document-annotation2/embed/' + guid
+        #iframe to dev server
+        elif basePath == "https://dev-api.groupdocs.com/v2.0":
+            iframe_url = 'https://dev-apps.groupdocs.com/document-annotation2/embed/' + guid
+        #iframe to test server
+        elif basePath == "https://stage-api.groupdocs.com/v2.0":
+            iframe_url = 'https://stage-apps.groupdocs.com/document-annotation2/embed/' + guid
+        #Iframe to realtime server
+        elif basePath == "http://realtime-api.groupdocs.com":
+            iframe_url = 'https://realtime-apps.groupdocs.com/document-annotation2/embed/' + guid
     #If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample09.pt',
                               { 'userId' : clientId,
@@ -90,5 +104,6 @@ def sample09(request):
                                'iframe_url' : iframe_url,
                                'fileId' : guid,
                                'width' : width,
+                               'iframeType' : iframeType,
                                'height' : height },
                               request=request)
