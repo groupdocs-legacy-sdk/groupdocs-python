@@ -1,4 +1,4 @@
-### This sample will show how to list all annotations from document
+### This sample will show how to delete all annotations from document
 
 # Import of classes from libraries
 from pyramid.renderers import render_to_response
@@ -45,6 +45,7 @@ def sample28(request):
                     i = 0
                     for annotation in response.result.annotations:
                         try:
+                            #Delete annotation by it's guid
                             deleteAnnot = ant.DeleteAnnotation(clientId, response.result.annotations[i].guid)
                             if deleteAnnot.status == "Ok":
                                 message = '<span style="color: red">There are no annotations</span>'

@@ -93,6 +93,7 @@ Choose anothe one sample:
             <li> <a href="/sample25">Sample25 - How to convert DOCX with template fields file into PDF file</a></li>
             <li> <a href="/sample26">Sample26 - How to use login method in the API</a></li>
             <li> <a href="/sample27">Sample27 - How to create your own questionary using forms and show the result document using Python SDK</a></li>
+            <li> <a href="/sample28">Sample28 - How to delete all annotations from document</li>
 </ul>
 </div>
      <script type="text/javascript">
