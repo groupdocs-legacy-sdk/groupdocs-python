@@ -24,6 +24,7 @@ class SignatureEnvelopeAuditLogInfo:
     def __init__(self):
         self.swaggerTypes = {
             'id': 'str',
+            'type': 'int',
             'datetime': 'str',
             'userName': 'str',
             'action': 'str',
@@ -34,6 +35,7 @@ class SignatureEnvelopeAuditLogInfo:
 
 
         self.id = None # str
+        self.type = None # int
         self.datetime = None # str
         self.userName = None # str
         self.action = None # str

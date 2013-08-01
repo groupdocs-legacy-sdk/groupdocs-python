@@ -35,7 +35,8 @@ class SignatureTemplateFieldInfo:
             'fieldType': 'int',
             'acceptableValues': 'str',
             'defaultValue': 'str',
-            'tooltip': 'str'
+            'tooltip': 'str',
+            'guidanceText': 'str'
 
         }
 
@@ -53,4 +54,5 @@ class SignatureTemplateFieldInfo:
         self.acceptableValues = None # str
         self.defaultValue = None # str
         self.tooltip = None # str
+        self.guidanceText = None # str
         

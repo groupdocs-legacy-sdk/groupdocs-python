@@ -39,7 +39,9 @@ class SignatureFieldInfo:
             'fieldType': 'int',
             'acceptableValues': 'str',
             'defaultValue': 'str',
-            'align': 'int'
+            'align': 'int',
+            'minGraphSizeW': 'int',
+            'minGraphSizeH': 'int'
 
         }
 
@@ -61,4 +63,6 @@ class SignatureFieldInfo:
         self.acceptableValues = None # str
         self.defaultValue = None # str
         self.align = None # int
+        self.minGraphSizeW = None # int
+        self.minGraphSizeH = None # int
         

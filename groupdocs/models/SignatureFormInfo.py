@@ -37,7 +37,9 @@ class SignatureFormInfo:
             'canParticipantDownloadForm': 'bool',
             'waterMarkText': 'str',
             'waterMarkImage': 'str',
-            'fieldsCount': 'float'
+            'fieldsCount': 'float',
+            'notifyOwnerOnSign': 'bool',
+            'attachSignedDocument': 'bool'
 
         }
 
@@ -57,4 +59,6 @@ class SignatureFormInfo:
         self.waterMarkText = None # str
         self.waterMarkImage = None # str
         self.fieldsCount = None # float
+        self.notifyOwnerOnSign = None # bool
+        self.attachSignedDocument = None # bool
         

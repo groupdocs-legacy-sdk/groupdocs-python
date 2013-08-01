@@ -29,7 +29,8 @@ class QuestionInfo:
             'required': 'bool',
             'disabled': 'bool',
             'type': 'str',
-            'answers': 'list[AnswerInfo]'
+            'answers': 'list[AnswerInfo]',
+            'conditions': 'list[ConditionInfo]'
 
         }
 
@@ -41,4 +42,5 @@ class QuestionInfo:
         self.disabled = None # bool
         self.type = None # str
         self.answers = None # list[AnswerInfo]
+        self.conditions = None # list[ConditionInfo]
         
