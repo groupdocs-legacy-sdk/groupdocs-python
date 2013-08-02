@@ -11,7 +11,7 @@
 	    </style>
 	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-	    <script type="text/javascript" src="http://apps.groupdocs.com/content/signaturewidgets/groupdocs.sign.js"></script>
+	    <script type="text/javascript" src="http://dev-apps-groupdocs.dynabic.com/content/signaturewidgets/groupdocs.sign.js"></script>
 
     <h1>GroupDocs Signature Example</h1>
    <span class="description"> <h5 style="margin: 15px 10px">
@@ -42,7 +42,7 @@
         <br />
         <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
           <br />
-          <input type ="text" name="server_type" id="server_type" />
+          <input type ="text" name="server_type" id="server_type" value="https://api.groupdocs.com/v2.0" />
           <br />
         <input type='button' id='btnLoad' value='Upload and sign the document' onclick='loadFile();'>
     </form>
@@ -104,6 +104,7 @@
             }
 
             function signDocument() {
+
                 $("body").sign({
                     userId: $('#client_id').val(),
                     privateKey: $('#private_key').val(),
@@ -113,7 +114,7 @@
                     },
                     onSigned: function (e, data) {
                         var result = data;
-                        $("#viewer").attr("src", "https://apps.groupdocs.com/document-viewer/Embed/" + data.documentId);
+                        $("#viewer").attr("src", data.url);
                         $('#viewer').fadeIn("slow");
                     }
                 });

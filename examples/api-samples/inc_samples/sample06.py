@@ -2,7 +2,7 @@
 
 #Import of classes from libraries
 import base64
-import json
+import json, time
 
 
 
@@ -23,13 +23,16 @@ def sample06(request):
     if request.content_type != 'application/json':
         return render_to_response('__main__:templates/sample06.pt', { })
     #Request to json
+
     jsonPostData = request.json_body
+#    import pdb; pdb.set_trace()
     #Get parameters
-    clientId = jsonPostData.get("userId")
-    privateKey = jsonPostData.get("privateKey")
-    documents = jsonPostData.get('documents')
-    signers = jsonPostData.get('signers')
+    clientId = jsonPostData["userId"]
+    privateKey = jsonPostData["privateKey"]
+    documents = jsonPostData['documents']
+    signers = jsonPostData['signers']
     #Checking parameters
+
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(documents) == False or IsNotNull(signers) == False:
         return render_to_response('__main__:templates/sample06.pt',
                                   { 'error' : 'You do not enter you User id or Private key' })
@@ -44,6 +47,7 @@ def sample06(request):
     apiClient = ApiClient(signerReq)
     #Create Signsture API object
     signatureApi = SignatureApi(apiClient)
+#    signatureApi.basePath = basePath
     #Create setting variable for signature SignDocument method
     settings = SignatureSignDocumentSettings()
     settings.documents = documents
@@ -54,10 +58,28 @@ def sample06(request):
     response = signatureApi.SignDocument(clientId, body = settings)
 
     #If request was successfull - set variables for template
+    error = ''
     if response.status == 'Ok':
+        time.sleep(5)
+        getDocumentStatus = signatureApi.GetSignDocumentStatus(clientId, response.result.jobId);
+        if getDocumentStatus.status == "Ok":
 
-        return_data = json.dumps({ 'responseCode' : 200, 'documentId' : response.result.documents[0].documentId })
-        return Response(body = return_data, content_type = 'application/json')
+            guid = getDocumentStatus.result.documents[0].documentId
 
-    return render_to_response('__main__:templates/sample06.pt',
+            iframe = ''
+#            if basePath == "https://api.groupdocs.com/v2.0":
+            iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + guid
+#            elif basePath == "https://dev-api-groupdocs.dynabic.com/v2.0":
+#                iframe = 'https://dev-apps-groupdocs.dynabic.com/document-viewer/embed/' + guid
+#            elif basePath == "https://stage-api-groupdocs.dynabic.com/v2.0":
+#                iframe = 'https://stage-apps-groupdocs.dynabic.com/document-viewer/embed/' + guid
+            return_data = json.dumps({ 'responseCode' : 200, 'url' : iframe })
+            return Response(body = return_data, content_type = 'application/json')
+        else:
+            error = getDocumentStatus.error_message
+            return render_to_response('__main__:templates/sample06.pt',
+                { 'error' : response.error_message })
+    else:
+        error = response.error_message
+        return render_to_response('__main__:templates/sample06.pt',
                           { 'error' : response.error_message })
