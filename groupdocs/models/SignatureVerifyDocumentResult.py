@@ -23,10 +23,16 @@ class SignatureVerifyDocumentResult:
 
     def __init__(self):
         self.swaggerTypes = {
-            'authentic': 'bool'
+            'authentic': 'bool',
+            'datesSigned': 'list[str]',
+            'references': 'list[str]',
+            'recipients': 'list[SignatureEnvelopeRecipientInfo]'
 
         }
 
 
         self.authentic = None # bool
+        self.datesSigned = None # list[str]
+        self.references = None # list[str]
+        self.recipients = None # list[SignatureEnvelopeRecipientInfo]
         

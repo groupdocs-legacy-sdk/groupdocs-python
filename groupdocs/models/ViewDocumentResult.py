@@ -33,6 +33,7 @@ class ViewDocumentResult:
             'token': 'str',
             'pageHtml': 'str',
             'pageCss': 'str',
+            'password': 'str',
             'id': 'float',
             'guid': 'str'
 
@@ -49,6 +50,7 @@ class ViewDocumentResult:
         self.token = None # str
         self.pageHtml = None # str
         self.pageCss = None # str
+        self.password = None # str
         self.id = None # float
         self.guid = None # str
         

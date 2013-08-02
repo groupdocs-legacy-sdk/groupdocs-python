@@ -34,7 +34,9 @@ class SignatureEnvelopeSettings:
             'waterMarkText': 'str',
             'waterMarkImage': 'str',
             'attachSignedDocument': 'bool',
-            'includeViewLink': 'bool'
+            'includeViewLink': 'bool',
+            'canBeCommented': 'bool',
+            'inPersonSign': 'bool'
 
         }
 
@@ -51,4 +53,6 @@ class SignatureEnvelopeSettings:
         self.waterMarkImage = None # str
         self.attachSignedDocument = None # bool
         self.includeViewLink = None # bool
+        self.canBeCommented = None # bool
+        self.inPersonSign = None # bool
         

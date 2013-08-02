@@ -38,6 +38,57 @@ class SystemApi(object):
         self.__basePath = value
 
     
+    def SimulateAssessForPricingPlan(self, userId, discountCode, planId, **kwargs):
+        """Simulate Assess For Pricing Plan
+
+        Args:
+            userId, str: User GUID (required)
+            discountCode, str: Discount Code (optional)
+            planId, str: Subscription Plan Id (optional)
+            
+        Returns: GetInvoicesResponse
+        """
+        if( userId == None or discountCode == None or planId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'discountCode', 'planId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method SimulateAssessForPricingPlan" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/system/{userId}/plans/{planId}/discounts/{discountCode}'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('discountCode' in params):
+            replacement = str(self.apiClient.toPathValue(params['discountCode']))
+            resourcePath = resourcePath.replace('{' + 'discountCode' + '}',
+                                                replacement)
+        if ('planId' in params):
+            replacement = str(self.apiClient.toPathValue(params['planId']))
+            resourcePath = resourcePath.replace('{' + 'planId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetInvoicesResponse')
+        return responseObject
+        
+        
     def GetUserPlan(self, callerId, **kwargs):
         """Get user plan
 
@@ -140,7 +191,7 @@ class SystemApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/system/{callerId}/plans/{family}?invalidate={invalidate}'.replace('*', '')
+        resourcePath = '/system/{callerId}/plans/{family}'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -213,19 +264,19 @@ class SystemApi(object):
         return responseObject
         
         
-    def UpdateSubscriptionPlan(self, userId, productId, userCount, **kwargs):
+    def UpdateSubscriptionPlan(self, userId, productId, body, **kwargs):
         """Update subscription plan user plan
 
         Args:
             userId, str: User GUID (required)
             productId, str: Product ID (required)
-            userCount, str: Subscripition Users Count (optional)
+            body, UpdateSubscriptionPlanInfo: Subscripition Plan Update parameters (required)
             
         Returns: SetUserSubscriptionPlanResponse
         """
-        if( userId == None or productId == None or userCount == None ):
+        if( userId == None or productId == None or body == None ):
             raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'productId', 'userCount']
+        allParams = ['userId', 'productId', 'body']
 
         params = locals()
         for (key, val) in params['kwargs'].iteritems():
@@ -234,9 +285,9 @@ class SystemApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/system/{userId}/subscriptions/{productId}/{userCount}'.replace('*', '')
+        resourcePath = '/system/{userId}/subscriptions/{productId}'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'PUT'
+        method = 'POST'
 
         queryParams = {}
         headerParams = {}
@@ -248,10 +299,6 @@ class SystemApi(object):
         if ('productId' in params):
             replacement = str(self.apiClient.toPathValue(params['productId']))
             resourcePath = resourcePath.replace('{' + 'productId' + '}',
-                                                replacement)
-        if ('userCount' in params):
-            replacement = str(self.apiClient.toPathValue(params['userCount']))
-            resourcePath = resourcePath.replace('{' + 'userCount' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
         response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
@@ -481,6 +528,47 @@ class SystemApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'GetSubscriptionPlanUsageResponse')
+        return responseObject
+        
+        
+    def GetPurchseWizardInfo(self, userId, **kwargs):
+        """Returns purchase wizard info from billing provider
+
+        Args:
+            userId, str: User global unique identifier (required)
+            
+        Returns: GetPurchaseWizardResponse
+        """
+        if( userId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetPurchseWizardInfo" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/system/{userId}/purchase/wizard'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetPurchaseWizardResponse')
         return responseObject
         
         

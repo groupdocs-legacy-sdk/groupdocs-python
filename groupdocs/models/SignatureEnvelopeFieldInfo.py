@@ -38,7 +38,8 @@ class SignatureEnvelopeFieldInfo:
             'fieldType': 'int',
             'acceptableValues': 'str',
             'defaultValue': 'str',
-            'tooltip': 'str'
+            'tooltip': 'str',
+            'guidanceText': 'str'
 
         }
 
@@ -59,4 +60,5 @@ class SignatureEnvelopeFieldInfo:
         self.acceptableValues = None # str
         self.defaultValue = None # str
         self.tooltip = None # str
+        self.guidanceText = None # str
         

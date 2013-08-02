@@ -63,6 +63,9 @@ class UserInfo:
             'is_typewriter_annotation_button_enabled': 'bool',
             'is_watermark_annotation_button_enabled': 'bool',
             'is_annotation_document_name_shown': 'bool',
+            'annotation_navigation_icons': 'list[int]',
+            'annotation_tool_icons': 'list[int]',
+            'annotation_background_color': 'int',
             'viewer_logo': 'list[int]',
             'viewer_options': 'int',
             'is_viewer_navigation_widget_enabled': 'bool',
@@ -71,6 +74,7 @@ class UserInfo:
             'is_viewer_print_widget_enabled': 'bool',
             'is_viewer_help_widget_enabled': 'bool',
             'is_viewer_document_name_shown': 'bool',
+            'isviewer_right_mouse_button_menu_enabled': 'bool',
             'signedupOn': 'long',
             'signedinOn': 'long',
             'signin_count': 'int',
@@ -79,6 +83,7 @@ class UserInfo:
             'signature_desktop_notifications': 'bool',
             'webhook_notification_retries': 'int',
             'webhook_notification_failed_recipients': 'str',
+            'signature_color': 'str',
             'id': 'float',
             'guid': 'str',
             'primary_email': 'str'
@@ -126,6 +131,9 @@ class UserInfo:
         self.is_typewriter_annotation_button_enabled = None # bool
         self.is_watermark_annotation_button_enabled = None # bool
         self.is_annotation_document_name_shown = None # bool
+        self.annotation_navigation_icons = None # list[int]
+        self.annotation_tool_icons = None # list[int]
+        self.annotation_background_color = None # int
         self.viewer_logo = None # list[int]
         self.viewer_options = None # int
         self.is_viewer_navigation_widget_enabled = None # bool
@@ -134,6 +142,7 @@ class UserInfo:
         self.is_viewer_print_widget_enabled = None # bool
         self.is_viewer_help_widget_enabled = None # bool
         self.is_viewer_document_name_shown = None # bool
+        self.isviewer_right_mouse_button_menu_enabled = None # bool
         self.signedupOn = None # long
         self.signedinOn = None # long
         self.signin_count = None # int
@@ -142,6 +151,7 @@ class UserInfo:
         self.signature_desktop_notifications = None # bool
         self.webhook_notification_retries = None # int
         self.webhook_notification_failed_recipients = None # str
+        self.signature_color = None # str
         self.id = None # float
         self.guid = None # str
         self.primary_email = None # str

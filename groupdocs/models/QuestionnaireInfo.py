@@ -26,6 +26,7 @@ class QuestionnaireInfo:
             'resolved_executions': 'int',
             'pages': 'list[QuestionnairePageInfo]',
             'document_ids': 'list[str]',
+            'formats': 'list[str]',
             'id': 'float',
             'guid': 'str',
             'name': 'str',
@@ -47,6 +48,7 @@ class QuestionnaireInfo:
         self.resolved_executions = None # int
         self.pages = None # list[QuestionnairePageInfo]
         self.document_ids = None # list[str]
+        self.formats = None # list[str]
         self.id = None # float
         self.guid = None # str
         self.name = None # str

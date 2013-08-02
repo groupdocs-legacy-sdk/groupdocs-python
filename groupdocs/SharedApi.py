@@ -115,6 +115,40 @@ class SharedApi(object):
         return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
                                           postData, headerParams, FileStream)
         
+    def GetHtml(self, guid, **kwargs):
+        """Get html
+
+        Args:
+            guid, str: GUID (required)
+            
+        Returns: stream
+        """
+        if( guid == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['guid']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetHtml" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/shared/files/{guid}/html'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('guid' in params):
+            replacement = str(self.apiClient.toPathValue(params['guid']))
+            resourcePath = resourcePath.replace('{' + 'guid' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
+        
     def GetPackage(self, path, **kwargs):
         """Get package
 

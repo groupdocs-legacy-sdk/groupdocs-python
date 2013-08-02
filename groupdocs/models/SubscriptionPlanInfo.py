@@ -34,7 +34,8 @@ class SubscriptionPlanInfo:
             'address': 'BillingAddressInfo',
             'price': 'float',
             'currencyCode': 'str',
-            'billingPeriod': 'int'
+            'billingPeriod': 'int',
+            'promoCode': 'str'
 
         }
 
@@ -51,4 +52,5 @@ class SubscriptionPlanInfo:
         self.price = None # float
         self.currencyCode = None # str
         self.billingPeriod = None # int
+        self.promoCode = None # str
         

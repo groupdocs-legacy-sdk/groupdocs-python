@@ -42,7 +42,8 @@ class SignatureEnvelopeFieldSettings:
             'acceptableValues': 'str',
             'defaultValue': 'str',
             'tooltip': 'str',
-            'align': 'int'
+            'align': 'int',
+            'guidanceText': 'str'
 
         }
 
@@ -67,4 +68,5 @@ class SignatureEnvelopeFieldSettings:
         self.defaultValue = None # str
         self.tooltip = None # str
         self.align = None # int
+        self.guidanceText = None # str
         
