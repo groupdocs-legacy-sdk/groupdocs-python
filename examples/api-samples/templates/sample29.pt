@@ -3,63 +3,37 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
-		
-   <h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample26</h3>
+		    <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
+   <h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample29</h3>
 
    <div class='samplecontent' style="padding:10px;">
-   <span class="description"><i>This sample will show how to use Login to be autorized at GroupDocs and to get GroupDocs user infromation using Python SDK</i></span><br/>
+   <span class="description"><i>This sample will show how to use Filepicker.io to upload file to GroupDocs using Python SDK</i></span><br/>
    <br />
    <br />
-   <span class="documentation"><a href="/docs/sample26.html">Docs for this sample</a></span>
+   <span class="documentation"><a href="/docs/sample01.html">Docs for this sample</a></span>
    <br />
-   <div  style="padding:20px; border:1px solid black;">
-        <p> Results: </p>
-        <table style="border:1px double black;">
-          <tr>
-              <th>Field</th><th>Value</th>
-          </tr>
-          <tr>
-               <td>First Name</td><td>${userInfo.firstname|''}</td>
-          </tr>
-          <tr>
-               <td>Last Name</td><td>${userInfo.lastname|''}</td>
-          </tr>
-          <tr>
-               <td>Nick Name</td><td>${userInfo.nickname|''}</td>
-          </tr>
-          <tr>
-               <td>Primary Email</td><td>${userInfo.primary_email|''}</td>
-          </tr>
-          <tr>
-               <td>GUID</td><td>${userInfo.guid|''}</td>
-          </tr>
-          <tr>
-               <td>Private key</td><td>${userInfo.pkey|''}</td>
-          </tr>
-        </table>
-        <p><font color="red">${error|''}</font>
-   </div>
+   <p><font color="red">${error|''}</font>
    <br/>
-   <div id="requestForm" style="padding:20px; border:1px solid black;">
-   <p> Enter data for request and press "Make request" button </p>
-   <form action="/sample26" method = "post" enctype = 'multipart/form-data'>
-        <label for='login'>Login</label>
-                <br />
-                <input type='text' name='login' value="${login|''}" />
-                <br />
-                <label for='password'>Password</label>
-                <br />
-                <input type='text' name='password'  value="${password|''}" />
-                <br />
-                <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
-                <br />
-                <input type ="text" name="server_type" id="server_type" />
-                <br />
-                <input type='submit' value='Make Request'/>
+
+    <div id="requestForm" style="padding:20px; border:1px solid black;">
+        <p> Click "Pick file" to select file which will be uploaded and shown in iframe </p>
+   <form name="gdform" action="/sample29" method = "post" enctype = 'multipart/form-data'>
+        <label for='client_id'>GroupDocs Client ID</label>
+        <br />
+        <input type='text', name='client_id' value="${userId|''}" />
+        <br />
+        <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
+        <br />
+        <input type ="text" name="server_type" id="server_type" />
+        <br />
+        <input id="gdButton" type='filepicker' data-fp-store-access="public" data-fp-apikey="AjhtkJk6rRLWQxanzZAFVz" value='Upload file' data-fp-store-path="files/" onchange="upload(event.fpfile.url);"/>
     </form>
+    <span id="results_status" style="color:red;display:none;"> (Please wait for ajax response) </span>
     </div>
 </div>
-
+<div id="iframeDiv" style="padding:20px; border:1px solid black; display: none;">
+              <iframe id="iframe" frameborder="0" width="800" height="650" src=""></iframe>
+    </div>
 <div style="padding:10px;">
 Choose anothe one sample:
 <ul>
@@ -96,7 +70,46 @@ Choose anothe one sample:
         <li> <a href="/sample31">Sample31 - How to dinamically create Signature Form using data from HTM form</a></li>
 </ul>
 </div>
+<script type="text/javascript">
+      function upload(url) {
+            form = document.forms.gdform;
+            var preLoad = document.getElementById("results_status");
+            preLoad.style.display = "block";
+            document.getElementById("gdButton").style.display = "none";
+            xhttp=new XMLHttpRequest();
+            xhttp.onreadystatechange= function() {
 
+                if (xhttp.readyState==4 && xhttp.status==200){
+                    result = eval( '('+xhttp.responseText+')' );
+                    iframe = result.iframe;
+                    error = result['error'];
+
+                    if (iframe != null) {
+
+                        var button = document.getElementById("gdButton").style.display = "block";
+                        var preLoad = document.getElementById("results_status");
+                        preLoad.style.display = "none";
+                        var iframeDiv = document.getElementById("iframeDiv");
+                          var iframeShow = document.getElementById("iframe");
+                          iframeShow.setAttribute("src", iframe);
+                        iframeDiv.style.display = "block";
+                    } else if (error != null) {
+                        var message = '<span style="color:red;>' + error + '</span>';
+
+                        iframe.style.display = "block";
+
+                    }
+
+                }
+            }
+
+            xhttp.open('POST','/sample29',true);
+            xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            var str= 'url=' + url + '&basePath=' + document.forms.gdform.server_type.value + '&clientId=' + document.forms.gdform.client_id.value;
+            xhttp.send(str);
+
+      }
+  </script>
     </tal:block>
 </metal:main>
 
