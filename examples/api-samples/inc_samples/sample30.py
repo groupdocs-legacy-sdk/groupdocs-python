@@ -19,10 +19,11 @@ def IsNotNull(value):
 def sample30(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
-    
-    file_id = request.POST.get('fileId')
+    file_guid = ""
+    message = ""
+    file_name = request.POST.get('fileName')
     # Checking clientId, privateKey and file_Id
-    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(file_id) == False:
+    if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(file_name) == False:
         return render_to_response('__main__:templates/sample30.pt',
                                   { 'error' : 'You do not enter all parameters' })
 
@@ -36,23 +37,37 @@ def sample30(request):
     api = StorageApi(apiClient)
 
     ####Make a request to Storage API using clientId
-
     try:
-#        Delete file from GroupDocs account
-        delete = api.Delete(clientId, file_id);
-# Check delete dtatus.
-        if delete.status == "Ok":
-#            If status Ok return successful message
-            message = '<font color="green">File was deleted</font> <br />';
+        #Get all files from account
+        allFiles = api.ListEntities(clientId, "", extended = False)
+        if allFiles.status == "Ok":
+            for i in range(len(allFiles.result.files)):
+                if allFiles.result.files[i].name == file_name:
+                    file_guid = allFiles.result.files[i].guid
+            try:
+                if file_guid == "":
+                    message = '<span style="color: red">This file is no longer available</span>'
+                else:
+                    #Delete file from GroupDocs account
+                    delete = api.Delete(clientId, file_guid);
+                    # Check delete dtatus.
+                    if delete.status == "Ok":
+            #            If status Ok return successful message
+                        message = '<span style="color: green">File was deleted</span>'
+                    else:
+                        raise Exception(delete.error_message)
+            except Exception, e:
+                return render_to_response('__main__:templates/sample30.pt',
+                                          { 'error' : str(e) })
         else:
-			raise Exception(delete.error_message)
+            raise Exception(allFiles.error_message)
     except Exception, e:
         return render_to_response('__main__:templates/sample30.pt',
-                                  { 'error' : str(e) })
+            { 'error' : str(e) })
     #If request was successfull - set message variable for template
     return render_to_response('__main__:templates/sample30.pt',
                               { 'userId' : clientId, 
                                'privateKey' : privateKey, 
-                               'file_Id' : file_id, 
+                               'file_name' : file_name,
                                'message' : message },
                               request=request)
