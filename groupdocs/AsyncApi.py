@@ -38,52 +38,6 @@ class AsyncApi(object):
         self.__basePath = value
 
     
-    def GetJob(self, userId, jobId, **kwargs):
-        """Get job
-
-        Args:
-            userId, str: User GUID (required)
-            jobId, str: Job Id or Guid (required)
-            
-        Returns: GetJobResponse
-        """
-        if( userId == None or jobId == None ):
-            raise ApiException(400, "missing required parameters")
-        allParams = ['userId', 'jobId']
-
-        params = locals()
-        for (key, val) in params['kwargs'].iteritems():
-            if key not in allParams:
-                raise TypeError("Got an unexpected keyword argument '%s' to method GetJob" % key)
-            params[key] = val
-        del params['kwargs']
-
-        resourcePath = '/async/{userId}/jobs/{jobId}?format=xml'.replace('*', '')
-        resourcePath = resourcePath.replace('{format}', 'json')
-        method = 'GET'
-
-        queryParams = {}
-        headerParams = {}
-
-        if ('userId' in params):
-            replacement = str(self.apiClient.toPathValue(params['userId']))
-            resourcePath = resourcePath.replace('{' + 'userId' + '}',
-                                                replacement)
-        if ('jobId' in params):
-            replacement = str(self.apiClient.toPathValue(params['jobId']))
-            resourcePath = resourcePath.replace('{' + 'jobId' + '}',
-                                                replacement)
-        postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'GetJobResponse')
-        return responseObject
-        
-        
     def GetJobJson(self, userId, jobId, **kwargs):
         """Get job json
 
@@ -104,7 +58,7 @@ class AsyncApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/async/{userId}/jobs/{jobId}?format=json'.replace('*', '')
+        resourcePath = '/async/{userId}/jobs/{jobId}'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 

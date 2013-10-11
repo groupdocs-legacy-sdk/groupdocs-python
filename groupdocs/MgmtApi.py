@@ -121,6 +121,47 @@ class MgmtApi(object):
         return responseObject
         
         
+    def Revoke(self, userId, **kwargs):
+        """Revoke private key
+
+        Args:
+            userId, str: User GUID (required)
+            
+        Returns: RevokeResponse
+        """
+        if( userId == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method Revoke" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/mgmt/{userId}/revoke'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'PUT'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'RevokeResponse')
+        return responseObject
+        
+        
     def ChangeUserPassword(self, userId, body, **kwargs):
         """Change user password
 

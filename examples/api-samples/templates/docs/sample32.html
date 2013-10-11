@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>sample32.py</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>sample32.py</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h3><i>This sample will show how to create signature form, publish it and configure notification when it was signed</i></h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Import of classes from libraries</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">import</span> base64
+<span class="keyword">import</span> os
+<span class="keyword">import</span> shutil
+<span class="keyword">import</span> random
+<span class="keyword">from</span> pyramid.renderers <span class="keyword">import</span> render_to_response
+<span class="keyword">from</span> groupdocs.SignatureApi <span class="keyword">import</span> SignatureApi
+<span class="keyword">from</span> groupdocs.ApiClient <span class="keyword">import</span> ApiClient
+<span class="keyword">from</span> groupdocs.GroupDocsRequestSigner <span class="keyword">import</span> GroupDocsRequestSigner
+<span class="keyword">from</span> groupdocs.models.WebhookInfo <span class="keyword">import</span> WebhookInfo
+<span class="keyword">from</span> groupdocs.models.SignatureFormSettingsInfo <span class="keyword">import</span> SignatureFormSettingsInfo</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Checking value on null</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">IsNotNull</span><span class="params">(value)</span>:</span>
+    <span class="keyword">return</span> value <span class="keyword">is</span> <span class="keyword">not</span> <span class="built_in">None</span> <span class="keyword">and</span> len(value) &gt; <span class="number">0</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3>Set variables and get POST data</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">sample32</span><span class="params">(request)</span>:</span>
+    clientId = request.POST.get(<span class="string">'client_id'</span>)
+    privateKey = request.POST.get(<span class="string">'private_key'</span>)
+    formGuid = request.POST.get(<span class="string">'form_guid'</span>)
+    templateGuid = request.POST.get(<span class="string">'template_guid'</span>)
+    callbackUrl = request.POST.get(<span class="string">'callbackUrl'</span>)
+    basePath = request.POST.get(<span class="string">'server_type'</span>)
+    email = request.POST.get(<span class="string">'email'</span>)
+    message = <span class="string">""</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Checking clientId, privateKey and file_Id</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">if</span> IsNotNull(clientId) == <span class="built_in">False</span> <span class="keyword">or</span> IsNotNull(privateKey) == <span class="built_in">False</span>:
+        <span class="keyword">return</span> render_to_response(<span class="string">'__main__:templates/sample32.pt'</span>,
+                                  { <span class="string">'error'</span> : <span class="string">'You do not enter all parameters'</span> })</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Create text file</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    fp = open(currentDir + <span class="string">'/../user_info.txt'</span>, <span class="string">'w'</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Write user info to text file</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    fp.write(clientId + <span class="string">"\r\n"</span> + privateKey + <span class="string">"\r\n"</span> + email)
+    fp.close()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h3>Create Signer, ApiClient and Storage Api objects</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Create signer object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    signer = GroupDocsRequestSigner(privateKey)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Create apiClient object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    apiClient = ApiClient(signer)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Create Storage Api object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    signatureApi = SignatureApi(apiClient)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Set base Path</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">if</span> basePath == <span class="string">""</span>:
+        basePath = <span class="string">"https://api.groupdocs.com/v2.0"</span>
+    signatureApi.basePath = basePath</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Create webHook and set callback URL</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    webHook = WebhookInfo()
+    webHook.callbackUrl = callbackUrl</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h3>Make a request to Signature API using clientId</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">if</span> formGuid != <span class="string">""</span>:
+        <span class="keyword">try</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Post form by entered form GUID</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            postForm = signatureApi.PublishSignatureForm(clientId, formGuid, body=webHook)
+            <span class="keyword">if</span> postForm.status == <span class="string">"Ok"</span>:
+                message = <span class="string">'&lt;font color="green"&gt;Form is published successfully&lt;/font&gt;'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Generate iframe url</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="keyword">if</span> basePath == <span class="string">"https://api.groupdocs.com/v2.0"</span>:
+                    iframe = <span class="string">'https://apps.groupdocs.com/signature2/forms/signembed/'</span> + formGuid</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>iframe to dev server</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="keyword">elif</span> basePath == <span class="string">"https://dev-api.groupdocs.com/v2.0"</span>:
+                    iframe = <span class="string">'https://dev-apps.groupdocs.com/signature2/forms/signembed/'</span> + formGuid</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>iframe to test server</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="keyword">elif</span> basePath == <span class="string">"https://stage-apps-groupdocs.dynabic.com/v2.0"</span>:
+                    iframe = <span class="string">'https://stage-apps-groupdocs.dynabic.com/signature2/forms/signembed/'</span> + formGuid
+                <span class="keyword">elif</span> basePath == <span class="string">"http://realtime-api.groupdocs.com"</span>:
+                    iframe = <span class="string">'https://relatime-apps.groupdocs.com/signature2/forms/signembed/'</span> + formGuid
+            <span class="keyword">else</span>:
+                <span class="keyword">raise</span> Exception(postForm.error_message)
+        <span class="keyword">except</span> Exception, e:
+            <span class="keyword">return</span> render_to_response(<span class="string">'__main__:templates/sample32.pt'</span>,
+                { <span class="string">'error'</span> : str(e) })</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>If user select template GUID</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">else</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Create SignatureFormSettingsInfo object and set parameters values</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        formSettings = SignatureFormSettingsInfo()
+        formSettings.notifyOwnerOnSign = <span class="built_in">True</span>
+        rand = random.randint(<span class="number">0</span>, <span class="number">500</span>)
+        formName = <span class="string">'test'</span> + str(rand)
+        <span class="keyword">try</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Create form from template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            createForm = signatureApi.CreateSignatureForm(clientId, name=formName, templateGuid=templateGuid, body=formSettings)
+
+            <span class="keyword">if</span> createForm.status == <span class="string">"Ok"</span>:
+                <span class="keyword">try</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Publish created form</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    postForm = signatureApi.PublishSignatureForm(clientId, createForm.result.form.id, body=webHook)
+                    <span class="keyword">if</span> postForm.status == <span class="string">"Ok"</span>:
+                        message = <span class="string">'&lt;font color="green"&gt;Form is published successfully&lt;/font&gt;'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Generate iframe url</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                        <span class="keyword">if</span> basePath == <span class="string">"https://api.groupdocs.com/v2.0"</span>:
+                            iframe = <span class="string">'https://apps.groupdocs.com/signature2/forms/signembed/'</span> + createForm.result.form.id</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>iframe to dev server</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                        <span class="keyword">elif</span> basePath == <span class="string">"https://dev-api.groupdocs.com/v2.0"</span>:
+                            iframe = <span class="string">'https://dev-apps.groupdocs.com/signature2/forms/signembed/'</span> + createForm.result.form.id</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>iframe to test server</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                        <span class="keyword">elif</span> basePath == <span class="string">"https://stage-apps-groupdocs.dynabic.com/v2.0"</span>:
+                            iframe = <span class="string">'https://stage-apps-groupdocs.dynabic.com/signature2/forms/signembed/'</span> + createForm.result.form.id
+                        <span class="keyword">elif</span> basePath == <span class="string">"http://realtime-api.groupdocs.com"</span>:
+                            iframe = <span class="string">'https://relatime-apps.groupdocs.com/signature2/forms/signembed/'</span> + createForm.result.form.id
+                    <span class="keyword">else</span>:
+                        <span class="keyword">raise</span> Exception(postForm.error_message)
+                <span class="keyword">except</span> Exception, e:
+                    <span class="keyword">return</span> render_to_response(<span class="string">'__main__:templates/sample32.pt'</span>,
+                        { <span class="string">'error'</span> : str(e) })
+            <span class="keyword">else</span>:
+                <span class="keyword">raise</span> Exception(createForm.error_message)
+        <span class="keyword">except</span> Exception, e:
+            <span class="keyword">return</span> render_to_response(<span class="string">'__main__:templates/sample32.pt'</span>,
+                { <span class="string">'error'</span> : str(e) })</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>If request was successfull - set message variable for template</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">return</span> render_to_response(<span class="string">'__main__:templates/sample32.pt'</span>,
+                              { <span class="string">'userId'</span> : clientId, 
+                               <span class="string">'privateKey'</span> : privateKey, 
+                               <span class="string">'form_guid'</span> : formGuid,
+                               <span class="string">'template_guid'</span> : templateGuid,
+                               <span class="string">'url'</span> : iframe,
+                               <span class="string">'email'</span> : email,
+                               <span class="string">'message'</span> : message },
+                              request=request)</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

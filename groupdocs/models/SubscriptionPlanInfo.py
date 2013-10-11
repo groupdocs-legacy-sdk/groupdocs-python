@@ -35,7 +35,8 @@ class SubscriptionPlanInfo:
             'price': 'float',
             'currencyCode': 'str',
             'billingPeriod': 'int',
-            'promoCode': 'str'
+            'promoCode': 'str',
+            'nextAssesmentDate': 'str'
 
         }
 
@@ -53,4 +54,5 @@ class SubscriptionPlanInfo:
         self.currencyCode = None # str
         self.billingPeriod = None # int
         self.promoCode = None # str
+        self.nextAssesmentDate = None # str
         

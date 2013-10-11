@@ -191,7 +191,7 @@ class SystemApi(object):
             params[key] = val
         del params['kwargs']
 
-        resourcePath = '/system/{callerId}/plans/{family}'.replace('*', '')
+        resourcePath = '/system/{callerId}/plans/{family}?invalidate={invalidate}'.replace('*', '')
         resourcePath = resourcePath.replace('{format}', 'json')
         method = 'GET'
 
@@ -569,6 +569,52 @@ class SystemApi(object):
             return None
 
         responseObject = self.apiClient.deserialize(response, 'GetPurchaseWizardResponse')
+        return responseObject
+        
+        
+    def GetTermSuggestions(self, userId, term, **kwargs):
+        """Returns suggestions for a specified term
+
+        Args:
+            userId, str: User global unique identifier (required)
+            term, str: A term to return suggestions for (required)
+            
+        Returns: GetTermSuggestionsResponse
+        """
+        if( userId == None or term == None ):
+            raise ApiException(400, "missing required parameters")
+        allParams = ['userId', 'term']
+
+        params = locals()
+        for (key, val) in params['kwargs'].iteritems():
+            if key not in allParams:
+                raise TypeError("Got an unexpected keyword argument '%s' to method GetTermSuggestions" % key)
+            params[key] = val
+        del params['kwargs']
+
+        resourcePath = '/system/{userId}/terms/{term}/suggestions'.replace('*', '')
+        resourcePath = resourcePath.replace('{format}', 'json')
+        method = 'GET'
+
+        queryParams = {}
+        headerParams = {}
+
+        if ('userId' in params):
+            replacement = str(self.apiClient.toPathValue(params['userId']))
+            resourcePath = resourcePath.replace('{' + 'userId' + '}',
+                                                replacement)
+        if ('term' in params):
+            replacement = str(self.apiClient.toPathValue(params['term']))
+            resourcePath = resourcePath.replace('{' + 'term' + '}',
+                                                replacement)
+        postData = (params['body'] if 'body' in params else None)
+        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams)
+
+        if not response:
+            return None
+
+        responseObject = self.apiClient.deserialize(response, 'GetTermSuggestionsResponse')
         return responseObject
         
         
