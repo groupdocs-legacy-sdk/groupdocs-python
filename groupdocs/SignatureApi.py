@@ -5428,7 +5428,7 @@ class SignatureApi(object):
             envelopeGuid, str: Envelope GUID (required)
             recipientGuid, str: Recipient GUID (required)
             
-        Returns: str
+        Returns: stream
         """
         if( envelopeGuid == None or recipientGuid == None ):
             raise ApiException(400, "missing required parameters")
@@ -5457,15 +5457,8 @@ class SignatureApi(object):
             resourcePath = resourcePath.replace('{' + 'recipientGuid' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
-        
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
     def PublicFillSignatureForm(self, formGuid, **kwargs):
         """Fill signature form
@@ -5762,7 +5755,7 @@ class SignatureApi(object):
             formGuid, str: Form GUID (required)
             participantGuid, str: Participant GUID (required)
             
-        Returns: str
+        Returns: stream
         """
         if( formGuid == None or participantGuid == None ):
             raise ApiException(400, "missing required parameters")
@@ -5791,15 +5784,8 @@ class SignatureApi(object):
             resourcePath = resourcePath.replace('{' + 'participantGuid' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
-        
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
     def GetSignatureFormParticipant(self, formGuid, participantGuid, **kwargs):
         """Get signature form participant
@@ -5975,7 +5961,7 @@ class SignatureApi(object):
             recipientGuid, str: Recipient GUID (required)
             fieldGuid, str: Field GUID (required)
             
-        Returns: str
+        Returns: stream
         """
         if( envelopeGuid == None or recipientGuid == None or fieldGuid == None ):
             raise ApiException(400, "missing required parameters")
@@ -6008,15 +5994,8 @@ class SignatureApi(object):
             resourcePath = resourcePath.replace('{' + 'fieldGuid' + '}',
                                                 replacement)
         postData = (params['body'] if 'body' in params else None)
-        response = self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
-                                          postData, headerParams)
-
-        if not response:
-            return None
-
-        responseObject = self.apiClient.deserialize(response, 'str')
-        return responseObject
-        
+        return self.apiClient.callAPI(self.basePath, resourcePath, method, queryParams,
+                                          postData, headerParams, FileStream)
         
     
 
