@@ -1,3 +1,4 @@
+
 <metal:main
     xmlns:tal="http://xml.zope.org/namespaces/tal"
     xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -135,6 +136,8 @@
                     <li> <a href="/sample29">Sample29 - How to use Filepicker.io to upload document and get it's URL</a></li>
                        <li> <a href="/sample30">Sample30 - How to delete file from GroupDocs Storage</a></li>
                        <li> <a href="/sample31">Sample31 - How to dinamically create Signature Form using data from HTM form</a></li>
+            <li> <a href="/sample32">Sample32 - How to create signature form, publish it and configure notification when it was signed</a></li></ul>
+            <li> <a href="/sample33">Sample33 - How to convert several HTML documents to PDF and merge them to one document</a></li>
         </ul>
 		</div>
     <script type="text/javascript">

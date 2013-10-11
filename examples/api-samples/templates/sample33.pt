@@ -4,42 +4,59 @@
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
 		
-<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample30</h3>
+<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample33</h3>
 
 <div class='samplecontent' style="padding:10px;">
-  <span class="description"> <i>This sample will show how to delete file from GroupDocs using Python SDK</i></span> <br/>
+  <span class="description"> <i>This sample will show how to convert several HTML documents to PDF and merge them to one document using Python SDK</i></span> <br/>
    <br />
    <br />
-  <span class="documentation"> <a href="/docs/sample30.html">Docs for this sample</a></span>
+  <span class="documentation"> <a href="/docs/sample33.html">Docs for this sample</a></span>
    <br />
    <br/><p>You entered: 
    <p>UserId = ${userId|''}
    <p>PrivateKey = ${privateKey|''}
-   <p>File name = ${file_name|''}
+    <p>First URL = ${url1|''}
+    <p>Second URL = ${url2|''}
+    <p>Third URL = ${url3|''}
    <p><font color="red">${error|''}</font>
    <div id="requestForm" style="padding:20px; border:1px solid black;">
-   <p> Enter data for request and press "Download" button </p>
-   <form action="/sample30" method = "post" enctype = 'multipart/form-data'>
-       <label for='client_id'>GroupDocs Client ID</label>
+   <p> Enter data for request and press "Make Request" button </p>
+   <form action="/sample33" method = "post" enctype = 'multipart/form-data'>
+        <br />
+       <label for='client_id'>GroupDocs ClientID</label>
        <br />
-       <input type='text' name='client_id' value="${userId|''}" />
+       <input type='text' id="client_id" name='client_id' value="${userId|''}" />
        <br />
-       <label for='private_key'>GroupDocs Private Key</label>
+       <label for='private_key'>GroupDocs PrivateKey</label>
        <br />
-       <input type='text' name='private_key'  value="${privateKey|''}" />
+       <input type='text' id="private_key" name='private_key'  value="${privateKey|''}" />
        <br />
-       <label for='fileName'>File name</label>
+       <label for='url1'>First URL</label>
        <br />
-       <input type='text' name='fileName'  value="${file_name|''}" />
+       <input type='text' id="url1" name='url1'  value="${url1|''}" size="50"/>
+       <br />
+       <label for='url2'>Second URL</label>
+       <br />
+       <input type='text' id="url2" name='url2'  value="${url2|''}" size="50"/>
+       <br />
+       <label for='url3'>Third URL</label>
+       <br />
+       <input type='text' id="url3" name='url3'  value="${url3|''}" size="50"/>
        <br />
        <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
-      <br />
-      <input type ="text" name="server_type" id="server_type" />
-      <br />
-       <input type='submit' value='Delete'/>
+       <br />
+       <input type ="text" name="server_type" id="server_type" />
+       <br />
+       <input type='submit' value='Make Request'/>
    </form>
-   ${structure:message|''}
    </div>
+
+    <div id = 'result' style="padding:20px; border:1px solid black;" >
+        <p> Results: </p>
+        ${structure:message|''}
+        <iframe id='downloadframe' src="${url|''}" width = '1000' height = '1000'></iframe>
+
+    </div>
    <br/>
  </div>
 
