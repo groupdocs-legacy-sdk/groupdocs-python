@@ -14,8 +14,8 @@ from groupdocs.MergeApi import MergeApi
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 from groupdocs.models.Datasource import Datasource
 from groupdocs.models.DatasourceField import DatasourceField
-from groupdocs.models.SignatureFieldSettings import SignatureFieldSettings
-from groupdocs.models.SignatureEnvelopeFieldSettings import SignatureEnvelopeFieldSettings
+from groupdocs.models.SignatureFieldSettingsInfo  import SignatureFieldSettingsInfo
+from groupdocs.models.SignatureEnvelopeFieldSettingsInfo import SignatureEnvelopeFieldSettingsInfo
 
 import pdb
 # Checking value on null

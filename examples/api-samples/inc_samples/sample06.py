@@ -11,7 +11,7 @@ from pyramid.response import Response
 
 from groupdocs.ApiClient import ApiClient
 from groupdocs.SignatureApi import SignatureApi
-from groupdocs.models.SignatureSignDocumentSettings import SignatureSignDocumentSettings
+from groupdocs.models.SignatureSignDocumentSettingsInfo import SignatureSignDocumentSettingsInfo
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
 
 # Checking value on null
