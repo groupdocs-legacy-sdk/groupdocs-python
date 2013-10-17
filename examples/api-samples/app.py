@@ -140,6 +140,6 @@ if __name__ == '__main__':
 
     config.add_static_view(name='/', path='templates/')
     app = config.make_wsgi_app()
-    server = make_server('0.0.0.0', int(os.environ.get('PORT', '8080')), app)
+    server = make_server('0.0.0.0', int(os.environ.get('PORT', '8181')), app)
     server.serve_forever()
 
