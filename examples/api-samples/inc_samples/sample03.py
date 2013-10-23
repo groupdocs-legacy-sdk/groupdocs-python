@@ -88,17 +88,17 @@ def sample03(request):
     #Generation of Embeded Viewer URL with uploaded file GuId
     iframe = ''
     if basePath == "https://api.groupdocs.com/v2.0":
-        iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + guid + '" frameborder="0" width="720" height="600""></iframe>'
+        iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + guid
     #iframe to dev server
     elif basePath == "https://dev-api.groupdocs.com/v2.0":
-        iframe = '<iframe src="https://dev-apps.groupdocs.com/document-viewer/embed/' + guid + '" frameborder="0" width="720" height="600""></iframe>'
+        iframe = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + guid
     #iframe to test server
     elif basePath == "https://stage-api.groupdocs.com/v2.0":
-        iframe = '<iframe src="https://stage-apps.groupdocs.com/document-viewer/embed/' + guid + '" frameborder="0" width="720" height="600""></iframe>'
+        iframe = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + guid
     #Iframe to realtime server
     elif basePath == "http://realtime-api.groupdocs.com":
-        iframe = '<iframe src="https://realtime-apps.groupdocs.com/document-viewer/embed/' + guid + '" frameborder="0" width="720" height="600""></iframe>'
-
+        iframe = 'https://realtime-apps.groupdocs.com/document-viewer/embed/' + guid
+    iframe = signer.signUrl(iframe)
     message = '<p>File was uploaded to GroupDocs. Here you can see your <strong>' + name + '</strong> file in the GroupDocs Embedded Viewer.</p>'
 
     #If request was successfull - set variables for template

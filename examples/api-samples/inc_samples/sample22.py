@@ -124,11 +124,12 @@ def sample22(request):
 
         # Generating iframe for template
         if basePath == "https://api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
+            iframe = 'https://apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true'
         elif basePath == "https://dev-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://dev-apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
+            iframe = 'https://dev-apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true'
         elif basePath == "https://stage-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://stage-apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true frameborder="0" width="720" height="600"></iframe>'
+            iframe = 'https://stage-apps.groupdocs.com/document-annotation2/embed/' + guid + '?&uid=' + newUser.result.guid + '&download=true'
+        iframe = signer.signUrl(iframe)
 
     errorMessage = newUser.error_message
     # If request was successfull - set variables for template

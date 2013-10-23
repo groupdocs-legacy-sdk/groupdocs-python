@@ -70,18 +70,18 @@ def sample16(request):
 
     #Generation of iframe URL using fileGuId
     if basePath == "https://api.groupdocs.com/v2.0":
-        iframe = '<iframe src="https://apps.groupdocs.com/assembly2/questionnaire-assembly/' + guid + '" frameborder="0" width="100%" height="600""></iframe>'
+        iframe = 'https://apps.groupdocs.com/assembly2/questionnaire-assembly/' + guid
     #iframe to dev server
     elif basePath == "https://dev-api.groupdocs.com/v2.0":
-        iframe = '<iframe src="https://dev-apps.groupdocs.com/assembly2/questionnaire-assembly/' + guid + '" frameborder="0" width="100%" height="600""></iframe>'
+        iframe = 'https://dev-apps.groupdocs.com/assembly2/questionnaire-assembly/' + guid
     #iframe to test server
     elif basePath == "https://stage-api.groupdocs.com/v2.0":
-        iframe = '<iframe src="https://stage-apps.groupdocs.com/assembly2/questionnaire-assembly/' + guid + '" frameborder="0" width="100%" height="600""></iframe>'
+        iframe = 'https://stage-apps.groupdocs.com/assembly2/questionnaire-assembly/' + guid
     #Iframe to realtime server
     elif basePath == "http://realtime-api.groupdocs.com":
-        iframe = '<iframe src="https://realtime-apps.groupdocs.com/assembly2/questionnaire-assembly/' + guid + '" frameborder="0" width="100%" height="600""></iframe>'
+        iframe = 'https://realtime-apps.groupdocs.com/assembly2/questionnaire-assembly/' + guid
 
-
+    iframe = signer.signUrl(iframe)
     # Set variables for template
     return render_to_response('__main__:templates/sample16.pt',
             {'userId' : clientId,

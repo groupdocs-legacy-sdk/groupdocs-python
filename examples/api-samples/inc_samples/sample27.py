@@ -179,7 +179,7 @@ def sample27(request):
                         iframe = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + guid
                     elif basePath == "http://realtime-api.groupdocs.com":
                         iframe = 'http://realtime-apps.groupdocs.com/document-viewer/embed/' + guid
-
+                    iframe = signer.signUrl(iframe)
                 else:
                     raise Exception('Download file failed')
             except Exception, e:

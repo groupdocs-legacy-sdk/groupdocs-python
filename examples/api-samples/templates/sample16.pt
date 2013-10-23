@@ -59,7 +59,7 @@
     <div  style="padding:20px; border:1px solid black;">
         <p> Result: </p>
         ${structure:massage|''}
-        ${structure:iframe|''}
+        <iframe src="${iframe|''}" width="650" height="750"></iframe>
     </div>
 </div>
 

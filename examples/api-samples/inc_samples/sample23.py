@@ -81,13 +81,12 @@ def sample23(request):
     if pageImage.status == "Ok":
         # Generation of iframe URL using pageImage.result.guid
         if basePath == "https://api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid + '?frameborder="0" width="720" height="600"></iframe>'
+            iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid
         elif basePath == "https://dev-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://dev-apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid + '?frameborder="0" width="720" height="600"></iframe>'
+            iframe = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid
         elif basePath == "https://stage-api.groupdocs.com/v2.0":
-            iframe = '<iframe src="https://stage-apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid + '?frameborder="0" width="720" height="600"></iframe>'
-
-
+            iframe = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid
+        iframe = signer.signUrl(iframe)
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample23.pt',
         {

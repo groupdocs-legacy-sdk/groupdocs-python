@@ -97,6 +97,7 @@ def sample09(request):
         #Iframe to realtime server
         elif basePath == "http://realtime-api.groupdocs.com":
             iframe_url = 'https://realtime-apps.groupdocs.com/document-annotation2/embed/' + guid
+    iframe_url = signer.signUrl(iframe_url)
     #If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample09.pt',
                               { 'userId' : clientId,

@@ -20,8 +20,12 @@
    <form name="gdform" action="/sample29" method = "post" enctype = 'multipart/form-data'>
         <label for='client_id'>GroupDocs Client ID</label>
         <br />
-        <input type='text', name='client_id' value="${userId|''}" />
+        <input type='text' name='client_id' value="${userId|''}" />
         <br />
+       <label for='private_key'>GroupDocs Private Key</label>
+       <br />
+       <input type='text' name='private_key'  value="${privateKey|''}" />
+       <br />
         <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
         <br />
         <input type ="text" name="server_type" id="server_type" />
@@ -107,7 +111,7 @@ Choose anothe one sample:
 
             xhttp.open('POST','/sample29',true);
             xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-            var str= 'url=' + url + '&basePath=' + document.forms.gdform.server_type.value + '&clientId=' + document.forms.gdform.client_id.value;
+            var str= 'url=' + url + '&basePath=' + document.forms.gdform.server_type.value + '&clientId=' + document.forms.gdform.client_id.value + '&privateKey=' + document.forms.gdform.private_key.value;;
             xhttp.send(str);
 
       }

@@ -16,7 +16,7 @@ def sample24(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
     url = request.POST.get('url')
-
+    basePath = request.POST.get('server_type')
     # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(url) == False:
         return render_to_response('__main__:templates/sample24.pt',
@@ -30,13 +30,22 @@ def sample24(request):
     apiClient = ApiClient(signer)
     # Create Storage Api object
     storage = StorageApi(apiClient)
-
+    if basePath == "":
+        basePath = 'https://api.groupdocs.com/v2.0'
+    storage.basePath = basePath
     # Upload file to current user storage using entere URl to the file
     upload = storage.UploadWeb(clientId, url)
     # Check if file uploaded successfully
     if upload.status == "Ok":
         # Generation of Embeded Viewer URL with uploaded file GuId
-        iframe = '<iframe src="https://apps.groupdocs.com/document-viewer/Embed/' + upload.result.guid + '" frameborder="0" width="720" height="600"></iframe>'
+    # Generation of iframe URL using pageImage.result.guid
+        if basePath == "https://api.groupdocs.com/v2.0":
+            iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + upload.result.guid
+        elif basePath == "https://dev-api.groupdocs.com/v2.0":
+            iframe = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + upload.result.guid
+        elif basePath == "https://stage-api.groupdocs.com/v2.0":
+            iframe = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + upload.result.guid
+        iframe = signer.signUrl(iframe)
 
 
     # If request was successfull - set variables for template

@@ -115,6 +115,7 @@ def sample33(request):
                                 url = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + fileGuid
                             elif basePath == "http://realtime-api.groupdocs.com":
                                 url = 'http://realtime-apps.groupdocs.com/document-viewer/embed/' + fileGuid
+                            url = signer.signUrl(url)
                         else:
                             raise Exception(getJobDocument.error_message)
                     except Exception, e:
@@ -135,10 +136,10 @@ def sample33(request):
     #If request was successfull - set message variable for template
     return render_to_response('__main__:templates/sample33.pt',
                               { 'userId' : clientId, 
-                               'privateKey' : privateKey, 
-                               'form_guid' : formGuid,
-                               'template_guid' : templateGuid,
-                               'url' : iframe,
-                               'email' : email,
+                               'privateKey' : privateKey,
+                               'url1' : firstUrl,
+                               'url2' : secondUrl,
+                               'url3' : thirdUrl,
+                               'iframe' : url,
                                'message' : message },
                               request=request)

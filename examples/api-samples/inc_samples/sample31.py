@@ -16,6 +16,7 @@ from groupdocs.models.Datasource import Datasource
 from groupdocs.models.DatasourceField import DatasourceField
 from groupdocs.models.SignatureFieldSettingsInfo  import SignatureFieldSettingsInfo
 from groupdocs.models.SignatureEnvelopeFieldSettingsInfo import SignatureEnvelopeFieldSettingsInfo
+from groupdocs.FileStream import FileStream
 
 import pdb
 # Checking value on null
@@ -152,7 +153,7 @@ def sample31(request):
                                             rand = random.randint(0, 500)
                                             fieldName = "singSample" + str(rand)
                                             #Create SignatureFieldSettings object
-                                            fieldSettings = SignatureFieldSettings
+                                            fieldSettings = SignatureFieldSettingsInfo
                                             fieldSettings.name = fieldName
                                             try:
                                                 #Create signatureField
@@ -185,7 +186,7 @@ def sample31(request):
 
                                                                     if getDocuments.status == "Ok":
                                                                         #Create signature field for sign (max LocationX,Y can bee 1.0)
-                                                                        signatureSettings = SignatureEnvelopeFieldSettings
+                                                                        signatureSettings = SignatureEnvelopeFieldSettingsInfo
                                                                         signatureSettings.locationX = "0.15"
                                                                         signatureSettings.locationY = "0.73"
                                                                         signatureSettings.locationWidth = "150"
@@ -206,11 +207,12 @@ def sample31(request):
                                                                                     message = '<p>File was uploaded to GroupDocs. Here you can see your <strong>' + name +  '</strong> file in the GroupDocs Embedded Viewer.</p>';
                                                                                     # Generation of iframe URL using jobInfo.result.outputs[0].guid
                                                                                     if basePath == "https://api.groupdocs.com/v2.0":
-                                                                                        iframe = '<iframe src="https://apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
+                                                                                        iframe = 'https://apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId
                                                                                     elif basePath == "https://dev-api.groupdocs.com/v2.0":
-                                                                                        iframe = '<iframe src="https://dev-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
+                                                                                        iframe = 'https://dev-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId
                                                                                     elif basePath == "https://stage-api.groupdocs.com/v2.0":
-                                                                                        iframe = '<iframe src="https://stage-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
+                                                                                        iframe = 'https://stage-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId
+                                                                                    iframe = signer.signUrl(iframe)
                                                                                 else:
                                                                                     return render_to_response('__main__:templates/sample31.pt',
                                                                                         { 'error' : send.error_message })

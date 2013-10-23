@@ -78,7 +78,7 @@
 			<div id="result" style="padding:20px; border:1px solid black;">
 			    <p> Results: </p>
 			    ${structure:message|''}<br />
-                ${structure:iframe|''}
+                <iframe frameborder="0" width="800" height="650" src="${iframe|''}"></iframe>
 		   </div>
 		   <br/>
 

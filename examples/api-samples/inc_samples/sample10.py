@@ -1,4 +1,4 @@
-####<i>This sample will show how to use <b>MoveFile</b> method from Storage Api to copy/move a file in GroupDocs Storage </i>
+####<i>This sample will show how to share particular document from your GroupDocs account to other GroupDocs users </i>
 
 #Import of classes from libraries
 import base64

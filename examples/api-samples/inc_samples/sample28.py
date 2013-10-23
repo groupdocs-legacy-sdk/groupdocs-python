@@ -62,6 +62,7 @@ def sample28(request):
                                     url = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + fileGuId
                                 elif basePath == "http://realtime-api.groupdocs.com":
                                     url = 'http://realtime-apps.groupdocs.com/document-viewer/embed/' + fileGuId
+                                url = signer.signUrl(url)
                         except Exception, e:
                             return render_to_response('__main__:templates/sample28.pt',
                                 { 'error' : str(e) })

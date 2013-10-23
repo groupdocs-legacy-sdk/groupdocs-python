@@ -22,24 +22,25 @@ def IsNotNull(value):
 def sample06(request):
     if request.content_type != 'application/json':
         return render_to_response('__main__:templates/sample06.pt', { })
-    #Request to json
+        #Request to json
 
     jsonPostData = request.json_body
-#    import pdb; pdb.set_trace()
+    #    import pdb; pdb.set_trace()
     #Get parameters
     clientId = jsonPostData["userId"]
     privateKey = jsonPostData["privateKey"]
     documents = jsonPostData['documents']
     signers = jsonPostData['signers']
+
     #Checking parameters
 
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(documents) == False or IsNotNull(signers) == False:
         return render_to_response('__main__:templates/sample06.pt',
-                                  { 'error' : 'You do not enter you User id or Private key' })
-    #Determination of placeSignatureOn parameter
+            { 'error' : 'You do not enter you User id or Private key' })
+        #Determination of placeSignatureOn parameter
     for i, signer in enumerate(signers):
         signers[i]['placeSignatureOn'] = ''
-    ####Create Signer, ApiClient and Storage Api objects
+        ####Create Signer, ApiClient and Storage Api objects
 
     #Create signer object
     signerReq = GroupDocsRequestSigner(privateKey)
@@ -47,14 +48,12 @@ def sample06(request):
     apiClient = ApiClient(signerReq)
     #Create Signsture API object
     signatureApi = SignatureApi(apiClient)
-#    signatureApi.basePath = basePath
     #Create setting variable for signature SignDocument method
-    settings = SignatureSignDocumentSettings()
+    settings = SignatureSignDocumentSettingsInfo()
     settings.documents = documents
     settings.signers = signers
-####Make a request to Signature Api for sign document
-
-#Sign document using current user id and sign settings
+    ####Make a request to Signature Api for sign document
+    #Sign document using current user id and sign settings
     response = signatureApi.SignDocument(clientId, body = settings)
 
     #If request was successfull - set variables for template
@@ -65,14 +64,8 @@ def sample06(request):
         if getDocumentStatus.status == "Ok":
 
             guid = getDocumentStatus.result.documents[0].documentId
-
-            iframe = ''
-#            if basePath == "https://api.groupdocs.com/v2.0":
             iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + guid
-#            elif basePath == "https://dev-api-groupdocs.dynabic.com/v2.0":
-#                iframe = 'https://dev-apps-groupdocs.dynabic.com/document-viewer/embed/' + guid
-#            elif basePath == "https://stage-api-groupdocs.dynabic.com/v2.0":
-#                iframe = 'https://stage-apps-groupdocs.dynabic.com/document-viewer/embed/' + guid
+            iframe = signerReq.signUrl(iframe)
             return_data = json.dumps({ 'responseCode' : 200, 'url' : iframe })
             return Response(body = return_data, content_type = 'application/json')
         else:
@@ -82,4 +75,4 @@ def sample06(request):
     else:
         error = response.error_message
         return render_to_response('__main__:templates/sample06.pt',
-                          { 'error' : response.error_message })
+            { 'error' : response.error_message })

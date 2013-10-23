@@ -22,11 +22,11 @@
    <form action="/sample03" method = "post" enctype = 'multipart/form-data'>
         <label for='client_id'>GroupDocs Client ID</label>
         <br />
-        <input type='text', name='client_id' />
+        <input type='text' name='client_id' />
         <br />
         <label for='private_key'>GroupDocs Private Key</label>
         <br />
-        <input type='text', name='private_key' />
+        <input type='text' name='private_key' />
         <br />
         <input type="radio" name="sourse" value="local" id="localField" onClick="display('local');" checked >Upload local file </input>
        <br />
@@ -50,7 +50,7 @@
     <div  style="padding:20px; border:1px solid black;">
         <p> Results: </p>
         ${structure:message|''}
-        ${structure:iframe|''}
+        <iframe id="viewer" src="${iframe|''}" frameborder="0" width="600" height="500"></iframe>
     </div>
 </div>
 

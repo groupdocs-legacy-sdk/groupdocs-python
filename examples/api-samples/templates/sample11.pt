@@ -134,7 +134,7 @@
 
 
 			<div  style="padding:20px; border:1px solid black;">
-			    ${structure:iframe|''}
+                <iframe src="${iframe|''}" width="650" height="750"></iframe>
 			</div>
 			<br/>
 		</div>

@@ -31,6 +31,8 @@ def sample32(request):
         return render_to_response('__main__:templates/sample32.pt',
                                   { 'error' : 'You do not enter all parameters' })
 
+    #Get curent work directory
+    currentDir = os.path.dirname(os.path.realpath(__file__))
     #Create text file
     fp = open(currentDir + '/../user_info.txt', 'w')
     #Write user info to text file
@@ -69,6 +71,7 @@ def sample32(request):
                     iframe = 'https://stage-apps-groupdocs.dynabic.com/signature2/forms/signembed/' + formGuid
                 elif basePath == "http://realtime-api.groupdocs.com":
                     iframe = 'https://relatime-apps.groupdocs.com/signature2/forms/signembed/' + formGuid
+                iframe = signer.signUrl(iframe)
             else:
                 raise Exception(postForm.error_message)
         except Exception, e:
@@ -102,6 +105,7 @@ def sample32(request):
                             iframe = 'https://stage-apps-groupdocs.dynabic.com/signature2/forms/signembed/' + createForm.result.form.id
                         elif basePath == "http://realtime-api.groupdocs.com":
                             iframe = 'https://relatime-apps.groupdocs.com/signature2/forms/signembed/' + createForm.result.form.id
+                        iframe = signer.signUrl(iframe)
                     else:
                         raise Exception(postForm.error_message)
                 except Exception, e:

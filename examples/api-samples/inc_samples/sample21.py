@@ -1,7 +1,7 @@
 ### This sample will show how to Create and Upload Envelop to GroupDocs account using Python SDK
 
 # Import of classes from libraries
-import os
+import os, random
 
 from pyramid.renderers import render_to_response
 
@@ -10,6 +10,8 @@ from groupdocs.StorageApi import StorageApi
 from groupdocs.SignatureApi import SignatureApi
 from groupdocs.FileStream import FileStream
 from groupdocs.GroupDocsRequestSigner import GroupDocsRequestSigner
+from groupdocs.models.WebhookInfo import WebhookInfo
+from groupdocs.models.SignatureEnvelopeFieldSettingsInfo import SignatureEnvelopeFieldSettingsInfo
 
 # Checking value on null
 def IsNotNull(value):
@@ -130,48 +132,82 @@ def sample21(request):
     try:
         # Create envelope using user id and entered by user name
         envelop = signature.CreateSignatureEnvelope(clientId, name=fileName)
+        if envelop.status == "Ok":
+            # Add uploaded document to envelope
+            addDocument = signature.AddSignatureEnvelopeDocument(clientId, envelop.result.envelope.id, guid)
+            if addDocument.status == "Ok":
+                # Get role list for curent user
+                recipient = signature.GetRolesList(clientId)
+                if recipient.status == "Ok":
+                    # Get id of role which can sign
+                    roleId = None
+                    for item in recipient.result.roles:
+                        if item.name == "Signer":
+                            roleId = item.id
 
-        # Add uploaded document to envelope
-        signature.AddSignatureEnvelopeDocument(clientId, envelop.result.envelope.id, guid)
+                    # add recipient
+                    addRecipient = signature.AddSignatureEnvelopeRecipient(clientId, envelop.result.envelope.id, email, name, lastName, roleId)
+                    if addRecipient.status == "Ok":
+                        # Get recipient id
+                        getRecipient = signature.GetSignatureEnvelopeRecipients(clientId, envelop.result.envelope.id)
+                        if getRecipient.status == "Ok":
+                            recipientId = getRecipient.result.recipients[0].id
+                            if (IsNotNull(callbackUrl)):
+                                webHook = WebhookInfo
+                                webHook.callbackUrl = callbackUrl
 
-        # Get role list for curent user
-        recipient = signature.GetRolesList(clientId)
-
-        # Get id of role which can sign
-        roleId = None
-        for item in recipient.result.roles:
-            if item.name == "Signer":
-                roleId = item.id
-
-        # add recipient
-        signature.AddSignatureEnvelopeRecipient(clientId, envelop.result.envelope.id, email, name, lastName, roleId)
-
-        # Get recipient id
-        getRecipient = signature.GetSignatureEnvelopeRecipients(clientId, envelop.result.envelope.id)
-        recipientId = getRecipient.result.recipients[0].id
-        if (IsNotNull(callbackUrl)):
-            import StringIO as sio
-            stream = sio.StringIO()
-            stream.write(str(callbackUrl))
-            callback = FileStream(None, None, stream.getvalue())
-
+                            else:
+                                webHook = WebhookInfo
+                                webHook.callbackUrl = ''
+                            getEnvelopDocument = signature.PublicGetEnvelopeDocuments(envelop.result.envelope.id,  recipientId)
+                            if getEnvelopDocument.status == "Ok":
+                                rand = random.randint(0, 500)
+                                SignatureEnvelopeFieldSettings = SignatureEnvelopeFieldSettingsInfo
+                                SignatureEnvelopeFieldSettings.locationX = "0.15"
+                                SignatureEnvelopeFieldSettings.locationY = "0.73"
+                                SignatureEnvelopeFieldSettings.locationWidth = "150"
+                                SignatureEnvelopeFieldSettings.locationHeight = "50"
+                                SignatureEnvelopeFieldSettings.name = "test" + str(rand)
+                                SignatureEnvelopeFieldSettings.forceNewField = True
+                                SignatureEnvelopeFieldSettings.page = "1"
+                                addField = signature.AddSignatureEnvelopeField(clientId, envelop.result.envelope.id, getEnvelopDocument.result.documents[0].documentId, recipientId, "0545e589fb3e27c9bb7a1f59d0e3fcb9", body=SignatureEnvelopeFieldSettings)
+                                if addField.status == "Ok":
+                                    send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id, body=webHook)
+                                    # make result messages
+                                    if send.status == "Ok":
+                                        message = '<p>File was uploaded to GroupDocs. Here you can see your <strong>' + name +  '</strong> file in the GroupDocs Embedded Viewer.</p>';
+                                        # Generation of iframe URL using jobInfo.result.outputs[0].guid
+                                        if basePath == "https://api.groupdocs.com/v2.0":
+                                            iframe = 'https://apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId
+                                        elif basePath == "https://dev-api.groupdocs.com/v2.0":
+                                            iframe = 'https://dev-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId
+                                        elif basePath == "https://stage-api.groupdocs.com/v2.0":
+                                            iframe = 'https://stage-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId
+                                        iframe = signer.signUrl(iframe)
+                                    else:
+                                        return render_to_response('__main__:templates/sample21.pt',
+                                            { 'error' : send.error_message})
+                                else:
+                                    return render_to_response('__main__:templates/sample21.pt',
+                                        { 'error' : addField.error_message })
+                            else:
+                                return render_to_response('__main__:templates/sample21.pt',
+                                    { 'error' : getEnvelopDocument.error_message })
+                        else:
+                            return render_to_response('__main__:templates/sample21.pt',
+                                { 'error' : getRecipient.error_message })
+                    else:
+                        return render_to_response('__main__:templates/sample21.pt',
+                            { 'error' : addRecipient.error_message })
+                else:
+                    return render_to_response('__main__:templates/sample21.pt',
+                        { 'error' : recipient.error_message })
+            else:
+                return render_to_response('__main__:templates/sample21.pt',
+                    { 'error' : addDocument.error_message })
         else:
-            callback = ''
-
-        send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id, callback)
-
-        # make result messages
-        if send.status == "Ok":
-            message = '<p>File was uploaded to GroupDocs. Here you can see your <strong>' + name +  '</strong> file in the GroupDocs Embedded Viewer.</p>';
-
-            # Generation of iframe URL using jobInfo.result.outputs[0].guid
-            if basePath == "https://api.groupdocs.com/v2.0":
-                iframe = '<iframe src="https://apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
-            elif basePath == "https://dev-api.groupdocs.com/v2.0":
-                iframe = '<iframe src="https://dev-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
-            elif basePath == "https://stage-api.groupdocs.com/v2.0":
-                iframe = '<iframe src="https://stage-apps.groupdocs.com/signature/signembed/' + envelop.result.envelope.id + '/' + recipientId + '" frameborder="0" width="720" height="600"></iframe>'
-
+            return render_to_response('__main__:templates/sample21.pt',
+                { 'error' : envelop.error_message })
     except Exception, e:
         return render_to_response('__main__:templates/sample21.pt',
             { 'error' : str(e) })

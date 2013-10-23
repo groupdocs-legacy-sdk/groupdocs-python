@@ -162,17 +162,17 @@ def sample11(request):
             if response.result:
                 #Generation of iframe URL using fileGuId
                 if basePath == "https://api.groupdocs.com/v2.0":
-                    iframe = '<iframe src="https://apps.groupdocs.com/document-annotation2/embed/' + response.result.documentGuid + '" frameborder="0" width="720" height="600"></iframe>'
+                    iframe = 'https://apps.groupdocs.com/document-annotation2/embed/' + response.result.documentGuid
                 #iframe to dev server
                 elif basePath == "https://dev-api.groupdocs.com/v2.0":
-                    iframe = '<iframe src="https://dev-apps.groupdocs.com/document-annotation2/embed/' + response.result.documentGuid + '" frameborder="0" width="720" height="600"></iframe>'
+                    iframe = 'https://dev-apps.groupdocs.com/document-annotation2/embed/' + response.result.documentGuid
                 #iframe to test server
                 elif basePath == "https://stage-api.groupdocs.com/v2.0":
-                    iframe = '<iframe src="https://stage-apps.groupdocs.com/document-annotation2/embed/' + response.result.documentGuid + '" frameborder="0" width="720" height="600"></iframe>'
+                    iframe = 'https://stage-apps.groupdocs.com/document-annotation2/embed/' + response.result.documentGuid
                 #Iframe to realtime server
                 elif basePath == "http://realtime-api.groupdocs.com":
-                    iframe = '<iframe src="https://realtime-apps.groupdocs.com/document-annotation2/embed/' + response.result.documentGuid + '" frameborder="0" width="720" height="600"></iframe>'
-
+                    iframe = 'https://realtime-apps.groupdocs.com/document-annotation2/embed/' + response.result.documentGuid
+            iframe = signer.signUrl(iframe)
     except Exception, e:
         return render_to_response('__main__:templates/sample11.pt',
             { 'error' : str(e) })
