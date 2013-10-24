@@ -53,7 +53,7 @@ def sample30(request):
                     # Check delete dtatus.
                     if delete.status == "Ok":
             #            If status Ok return successful message
-                        message = '<span style="color: green">File was deleted</span>'
+                        message = '<span style="color: green">Done, file deleted from your GroupDocs Storage</span>'
                     else:
                         raise Exception(delete.error_message)
             except Exception, e:
