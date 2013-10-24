@@ -42,9 +42,9 @@ def sample20(request):
     # construct table results
     result = ""
     if info.status == "Ok":
+        result = "<table class='border'>"
+        result += "<tr><td><font color='green'>Change Name</font></td><td><font color='green'>Change</font></td></tr>"
         if info.result.changes is not None:
-            result = "<table class='border'>"
-            result += "<tr><td><font color='green'>Change Name</font></td><td><font color='green'>Change</font></td></tr>"
             for item in info.result.changes:
                 for key in item.__dict__:
                     if key != 'swaggerTypes':
@@ -56,7 +56,7 @@ def sample20(request):
                             result += "<tr><td>" + key + "</td><td>" + unicode(item.__dict__[key]) + "</td></tr>"
 
                 result += "<tr bgcolor='#808080'><td></td><td></td></tr>"
-            result += "</table>"
+        result += "</table>"
 
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample20.pt',

@@ -31,18 +31,18 @@
                    <br />
                    <input type='text' name='private_key'  value="${privateKey|''}" />
                    <br />
-                    <input type="radio" name="sourse" value="form" id="form_radion" onClick="display('form');" checked>From GUID </input>
+                    <input type="radio" name="sourse" value="form" id="form_radion" onClick="display('form');" >From GUID </input>
                    <br />
-                   <input type="radio" name="sourse" value="template" id="template_radio" onClick="display('template');" >Template GUID </input>
+                   <input type="radio" name="sourse" value="template" id="template_radio" onClick="display('template');" checked>Template GUID </input>
                    <br />
                    <br />
-                   <label for="form_guid" id="form_label" >GroupDoc Form Guid</label>
+                   <label for="form_guid" id="form_label" style="display:none;">GroupDoc Form Guid</label>
                    <br />
-                   <input type='text' id="form" name='form_guid' value="${form_guid|''}" />
+                   <input type='text' id="form" name='form_guid' value="${form_guid|''}" style="display:none;"/>
                    <br />
-                   <label for="template_guid" id="template_label" style="display:none;">GroupDocs template Guid</label>
+                   <label for="template_guid" id="template_label" >GroupDocs template Guid</label>
                    <br />
-                   <input type='text' name='template_guid' id="template" value="${tempalte_guid|''}" style="display:none;"/>
+                   <input type='text' name='template_guid' id="template" value="${tempalte_guid|''}" />
                    <br />
                    <label for="email">Email for notification</label>
                    <br />
@@ -110,33 +110,33 @@ Choose another one sample:
 <script>
  function display(_element_id) {
 
-             if (_element_id == "form") {
-                 var element1 = document.getElementById("form");
-                 var element2 = document.getElementById("form_label");
-                 var element3 = document.getElementById("template");
-                 var element4 = document.getElementById("template_label");
+     if (_element_id == "form") {
+         var element1 = document.getElementById("form");
+         var element2 = document.getElementById("form_label");
+         var element3 = document.getElementById("template");
+         var element4 = document.getElementById("template_label");
 
-                 element1.style.display = "inline";
-                 element2.style.display = "inline";
-                 element3.style.display = "none";
-                 element4.style.display = "none";
-
-
-             }
-
-             if (_element_id == "template") {
-                 var element1 = document.getElementById("form");
-                 var element2 = document.getElementById("form_label");
-                 var element3 = document.getElementById("template");
-                 var element4 = document.getElementById("template_label");
-
-                 element1.style.display = "none";
-                 element2.style.display = "none";
-                 element3.style.display = "inline";
-                 element4.style.display = "inline";
+         element1.style.display = "inline";
+         element2.style.display = "inline";
+         element3.style.display = "none";
+         element4.style.display = "none";
 
 
-             }
+     }
+
+     if (_element_id == "template") {
+         var element1 = document.getElementById("form");
+         var element2 = document.getElementById("form_label");
+         var element3 = document.getElementById("template");
+         var element4 = document.getElementById("template_label");
+
+         element1.style.display = "none";
+         element2.style.display = "none";
+         element3.style.display = "inline";
+         element4.style.display = "inline";
+
+
+     }
  }
 </script>
     </tal:block>

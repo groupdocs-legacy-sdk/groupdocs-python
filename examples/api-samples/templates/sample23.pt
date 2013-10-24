@@ -16,7 +16,7 @@
 		   <p>User ID = ${userId|''}
 		   <p>Private key = ${privateKey|''}
 		   <p>FileID = ${fileId|''}
-		   <p><font color="red">${error|''}</font>
+		   <p><span style="color:red">${error|''}</span>
 		   <div id="requestForm" style="padding: 20px; border: 1px solid black;">
 		   <p> Enter data for request and press "Make request" button </p>
 		        <form action="/sample23" method = "post" enctype = 'multipart/form-data'>
@@ -56,7 +56,7 @@
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
 			    <p> Results: </p>
-                <iframe src="${iframe|''}" width="650" height="750"></iframe>
+                ${structure:image|''}
 		   </div>
 		   <br/>
 

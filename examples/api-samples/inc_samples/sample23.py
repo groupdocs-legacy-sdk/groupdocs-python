@@ -18,7 +18,7 @@ def sample23(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
     inputFile = request.POST.get('file')
-    url = request.POST.get('url')
+    urlUpload = request.POST.get('url')
     basePath = request.POST.get('server_type')
     fileId = request.POST.get('fileId')
     guid = ""
@@ -44,14 +44,14 @@ def sample23(request):
     storage.basePath = basePath
     # Set url to choose whot server to use
     doc.basePath = basePath
-    if url != "":
+    if urlUpload != "":
         try:
             # Upload file to current user storage using entere URl to the file
-            upload = storage.UploadWeb(clientId, url)
+            upload = storage.UploadWeb(clientId, urlUpload)
             guid = upload.result.guid
             fileId = ""
         except Exception, e:
-            return render_to_response('__main__:templates/sample16.pt',
+            return render_to_response('__main__:templates/sample23.pt',
                 { 'error' : str(e) })
 
     if inputFile != "":
@@ -70,29 +70,30 @@ def sample23(request):
 
             fileId = ""
         except Exception, e:
-            return render_to_response('__main__:templates/sample16.pt',
+            return render_to_response('__main__:templates/sample23.pt',
                 { 'error' : str(e) })
     if fileId != '':
         guid = fileId
     # Make request yo the Api to get images for all document pages
-    pageImage = doc.ViewDocument(clientId, guid, pageNumber=0, pageCount=-1, width=100)
+    try:
+        pageImage = doc.GetDocumentPagesImageUrls(clientId, guid, '650x500', firstPage=1, pageCount=1, quality=100, usePdf=False, token="")
 
-    # Check the result of the request
-    if pageImage.status == "Ok":
-        # Generation of iframe URL using pageImage.result.guid
-        if basePath == "https://api.groupdocs.com/v2.0":
-            iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid
-        elif basePath == "https://dev-api.groupdocs.com/v2.0":
-            iframe = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid
-        elif basePath == "https://stage-api.groupdocs.com/v2.0":
-            iframe = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + pageImage.result.guid
-        iframe = signer.signUrl(iframe)
+        # Check the result of the request
+        if pageImage.status == "Ok":
+            image = "";
+            for url in pageImage.result.url:
+                image += '<img src="' + url + '"></img><br/>'
+
+    except Exception, e:
+        return render_to_response('__main__:templates/sample23.pt',
+            { 'error' : str(e) })
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample23.pt',
         {
             'userId' : clientId,
             'privateKey' : privateKey,
             'fileId' : guid,
-            'iframe' : iframe
+            'image' : image,
+
         },
         request=request)

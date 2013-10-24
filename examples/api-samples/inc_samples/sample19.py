@@ -129,32 +129,46 @@ def sample19(request):
         if target != "":
             targetFileId = target
     # complare files
-    info = compare.Compare(clientId, sourceFileId, targetFileId, callbackUrl)
-    if info.status == "Ok":
-        # Create AsyncApi object
-        async = AsyncApi(apiClient)
-        async.basePath = basePath
-        time.sleep(5)
-        # get job info
-        jobInfo = async.GetJobDocuments(clientId, info.result.job_id)
-
-        # construct result
-
-        if jobInfo.status == "Ok":
-            # Generation of iframe URL using jobInfo.result.outputs[0].guid
-            if basePath == "https://api.groupdocs.com/v2.0":
-                iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid
-            elif basePath == "https://dev-api.groupdocs.com/v2.0":
-                iframe = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid
-            elif basePath == "https://stage-api.groupdocs.com/v2.0":
-                iframe = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid
-            iframe = signer.signUrl(iframe)
+    try:
+        info = compare.Compare(clientId, sourceFileId, targetFileId, callbackUrl)
+        if info.status == "Ok":
+            # Create AsyncApi object
+            async = AsyncApi(apiClient)
+            async.basePath = basePath
+            # get job info
+            try:
+                counteer = 0
+                while counteer < 5:
+                    time.sleep(5)
+                    jobInfo = async.GetJobDocuments(clientId, info.result.job_id)
+                    # construct result
+                    if jobInfo.status == "Ok":
+                        if jobInfo.result.job_status == "Completed" or jobInfo.result.job_status == "Archived":
+                            # Generation of iframe URL using jobInfo.result.outputs[0].guid
+                            if basePath == "https://api.groupdocs.com/v2.0":
+                                iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid
+                            elif basePath == "https://dev-api.groupdocs.com/v2.0":
+                                iframe = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid
+                            elif basePath == "https://stage-api.groupdocs.com/v2.0":
+                                iframe = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + jobInfo.result.outputs[0].guid
+                            iframe = signer.signUrl(iframe)
+                            break
+                        elif jobInfo.result.job_status == "Postponed":
+                            return render_to_response('__main__:templates/sample19.pt',
+                                { 'error' : "Job is failed" })
+                    else:
+                        return render_to_response('__main__:templates/sample19.pt',
+                            { 'error' : info.error_message })
+                    counteer = counteer + 1
+            except Exception, e:
+                return render_to_response('__main__:templates/sample19.pt',
+                    { 'error' : str(e) })
         else:
             return render_to_response('__main__:templates/sample19.pt',
                 { 'error' : info.error_message })
-    else:
+    except Exception, e:
         return render_to_response('__main__:templates/sample19.pt',
-            { 'error' : info.error_message })
+            { 'error' : str(e) })
     # If request was successfull - set variables for template
     return render_to_response('__main__:templates/sample19.pt',
         {'userId' : clientId,

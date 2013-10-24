@@ -33,12 +33,12 @@
                    <input type='text' name='private_key' value="${privateKey|''}" />
                    <br />
 
-                   <label for='private_key' id="guid" >File ID (GUID)</label>
+                   <label for='template_guid' id="guid" >File ID (GUID)</label>
                    <br />
-                   <input type='text' name='fileId'  id="guidfield" value="" />
+                   <input type='text' name='template_guid'  id="template_guid" value="" />
                    <br />
                    <br />
-                  <label for='private_key'>Callback Url<span class="optional">(Optional)<br />For test Callback you can use this URL: http://groupdocs-python.herokuapp.com//signature_callback</span></label>
+                  <label for='private_key'>Callback Url<span class="optional">(Optional)<br />For test Callback you can use this URL: http://groupdocs-python.herokuapp.com/signature_callback</span></label>
                   <br />
                   <input type='text', name='callbackUrl'  value="${callbackUrl|''}" />
                  <br />

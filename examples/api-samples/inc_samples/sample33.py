@@ -91,6 +91,7 @@ def sample33(request):
             #Change job status
             jobInfo.status = 0
             try:
+                time.sleep(5)
                 #Update job with new status
                 updateJob = asyncApi.UpdateJob(clientId,createJob.result.job_id, jobInfo)
                 if updateJob.status == "Ok":

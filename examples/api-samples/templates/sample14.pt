@@ -21,15 +21,15 @@
 		        <form action="/sample14" method = "post" enctype = 'multipart/form-data'>
 		           <label for='client_id'>GroupDocs Client ID</label>
 		            <br />
-		            <input type='text', name='client_id' value="${userId|''}" />
+		            <input type='text' name='client_id' value="${userId|''}" />
 		            <br />
 		            <label for='private_key'>GroupDocs Private Key</label>
 		            <br />
-		            <input type='text', name='private_key'  value="${privateKey|''}" />
+		            <input type='text' name='private_key'  value="${privateKey|''}" />
                     <br />
 		            <label for='path'>Path</label>
 		            <br />
-		            <input type='text', name='path' value="${path|''}" />
+		            <input type='text' name='path' value="${path|''}" />
 		            <br />
 		            <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
                      <br />
@@ -40,7 +40,7 @@
 		   </div>
 			<div  style="padding:20px; border:1px solid black;">
 			    <p> Results: </p>
-			    <p>List of shares for a folder: <font color="green">${users|''}</font> </p>
+			    <p>List of shares for a folder: <span style="color:green">${users|''}</span> </p>
 		   </div>
 		   <br/>
 		</div>

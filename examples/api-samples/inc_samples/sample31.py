@@ -17,6 +17,7 @@ from groupdocs.models.DatasourceField import DatasourceField
 from groupdocs.models.SignatureFieldSettingsInfo  import SignatureFieldSettingsInfo
 from groupdocs.models.SignatureEnvelopeFieldSettingsInfo import SignatureEnvelopeFieldSettingsInfo
 from groupdocs.FileStream import FileStream
+from groupdocs.models.WebhookInfo import WebhookInfo
 
 import pdb
 # Checking value on null
@@ -34,10 +35,11 @@ def sample31(request):
     street = request.POST.get('street')
     city = request.POST.get('city')
     basePath = request.POST.get('server_type')
-    fileId = request.POST.get('fileId')
+    fileId = request.POST.get('template_guid')
     callbackUrl = request.POST.get('callbackUrl')
     iframe = ''
     message = ''
+    webHook = WebhookInfo
     # Checking required parameters
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False or IsNotNull(email) == False or IsNotNull(name) == False or IsNotNull(country) == False or IsNotNull(street) == False or IsNotNull(city) == False:
         return render_to_response('__main__:templates/sample31.pt',
@@ -173,13 +175,9 @@ def sample31(request):
                                                                 recipientId = getRecipient.result.recipients[0].id
                                                                 #Convert callback string to stream
                                                                 if (IsNotNull(callbackUrl)):
-                                                                    import StringIO as sio
-                                                                    stream = sio.StringIO()
-                                                                    stream.write(str(callbackUrl))
-                                                                    callback = FileStream(None, None, stream.getvalue())
-
+                                                                    webHook.callbackUrl = callbackUrl
                                                                 else:
-                                                                    callback = ''
+                                                                    webHook.callbackUrl = ''
                                                                 try:
                                                                     #Get SignatureEnvelopDocuments
                                                                     getDocuments = signature.GetSignatureEnvelopeDocuments(clientId, envelop.result.envelope.id)
@@ -200,7 +198,7 @@ def sample31(request):
 
                                                                             if addSignatureField.status == "Ok":
                                                                                 #Send created envelop
-                                                                                send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id, callback)
+                                                                                send = signature.SignatureEnvelopeSend(clientId, envelop.result.envelope.id, body = webHook)
                                                                                 # make result messages
 
                                                                                 if send.status == "Ok":
