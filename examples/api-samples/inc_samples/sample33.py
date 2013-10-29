@@ -27,6 +27,7 @@ def sample33(request):
     thirdUrl = request.POST.get('url3')
     basePath = request.POST.get('server_type')
     message = ""
+    iframe = ""
     # Checking clientId, privateKey and file_Id
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False:
         return render_to_response('__main__:templates/sample33.pt',
@@ -72,7 +73,7 @@ def sample33(request):
         jobInfo = JobInfo()
         jobInfo.actions = "convert, combine"
         jobInfo.out_formats = convertType
-        jobInfo.status = -1
+        jobInfo.status = "-1"
         jobInfo.email_results = True
         rand = random.randint(0, 500)
         jobInfo.name = "test" + str(rand)
@@ -89,9 +90,8 @@ def sample33(request):
                     return render_to_response('__main__:templates/sample33.pt',
                         { 'error' : str(e) })
             #Change job status
-            jobInfo.status = 0
+            jobInfo.status = "0"
             try:
-                time.sleep(5)
                 #Update job with new status
                 updateJob = asyncApi.UpdateJob(clientId,createJob.result.job_id, jobInfo)
                 if updateJob.status == "Ok":
@@ -101,22 +101,21 @@ def sample33(request):
                         getJobDocument = asyncApi.GetJobDocuments(clientId, createJob.result.job_id)
 
                         if getJobDocument.status == "Ok":
-                            import pdb
-                            pdb.set_trace()
                             fileGuid = getJobDocument.result.outputs[0].guid
                             #Generation of iframe URL using $pageImage->result->guid
                             #iframe to prodaction server
                             if basePath == "https://api.groupdocs.com/v2.0":
-                                url = 'https://apps.groupdocs.com/document-viewer/embed/' + fileGuid
+                                iframe = 'https://apps.groupdocs.com/document-viewer/embed/' + fileGuid
                             #iframe to dev server
                             elif basePath == "https://dev-api.groupdocs.com/v2.0":
-                                url = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + fileGuid
+                                iframe = 'https://dev-apps.groupdocs.com/document-viewer/embed/' + fileGuid
                             #iframe to test server
                             elif basePath == "https://stage-api.groupdocs.com/v2.0":
-                                url = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + fileGuid
+                                iframe = 'https://stage-apps.groupdocs.com/document-viewer/embed/' + fileGuid
                             elif basePath == "http://realtime-api.groupdocs.com":
-                                url = 'http://realtime-apps.groupdocs.com/document-viewer/embed/' + fileGuid
-                            url = signer.signUrl(url)
+                                iframe = 'http://realtime-apps.groupdocs.com/document-viewer/embed/' + fileGuid
+                            iframe = signer.signUrl(iframe)
+
                         else:
                             raise Exception(getJobDocument.error_message)
                     except Exception, e:
@@ -127,9 +126,8 @@ def sample33(request):
             except Exception, e:
                 return render_to_response('__main__:templates/sample33.pt',
                     { 'error' : str(e) })
-
-            else:
-                raise Exception(createJob.error_message)
+        else:
+            raise Exception(createJob.error_message)
     except Exception, e:
         return render_to_response('__main__:templates/sample33.pt',
             { 'error' : str(e) })
@@ -141,6 +139,6 @@ def sample33(request):
                                'url1' : firstUrl,
                                'url2' : secondUrl,
                                'url3' : thirdUrl,
-                               'iframe' : url,
+                               'iframe' : iframe,
                                'message' : message },
                               request=request)
