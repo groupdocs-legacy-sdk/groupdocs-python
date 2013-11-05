@@ -16,7 +16,7 @@ def IsNotNull(value):
 def sample02(request):
     clientId = request.POST.get('client_id')
     privateKey = request.POST.get('private_key')
-    
+
     if IsNotNull(clientId) == False or IsNotNull(privateKey) == False:
         return render_to_response('__main__:templates/sample02.pt',
                                   { 'error' : 'You do not enter you User id or Private key' })

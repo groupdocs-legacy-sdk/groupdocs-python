@@ -3,43 +3,48 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     use-macro="load: layout.pt">
     <tal:block metal:fill-slot="content">
-		    <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
-   <h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample29</h3>
+		
+<h3 style="text-align:center;"><a href="/">GroupDocs Python SDK Samples</a> - Sample34</h3>
 
-   <div class='samplecontent' style="padding:10px;">
-   <span class="description"><i>This sample will show how to use Filepicker.io to upload file to GroupDocs using Python SDK</i></span><br/>
+<div class='samplecontent' style="padding:10px;">
+  <span class="description"> <i>This sample will show how to create folder in GroupDocs account using Python SDK</i></span> <br/>
    <br />
    <br />
-   <span class="documentation"><a href="/docs/sample01.html">Docs for this sample</a></span>
+  <span class="documentation"> <a href="/docs/sample34.html">Docs for this sample</a></span>
    <br />
+   <br/><p>You entered: 
+   <p>UserId = ${userId|''}
+   <p>PrivateKey = ${privateKey|''}
+   <p>Folder name = ${folder|''}
    <p><font color="red">${error|''}</font>
-   <br/>
-
-    <div id="requestForm" style="padding:20px; border:1px solid black;">
-        <p> Click "Pick file" to select file which will be uploaded and shown in iframe </p>
-   <form name="gdform" action="/sample29" method = "post" enctype = 'multipart/form-data'>
-        <label for='client_id'>GroupDocs Client ID</label>
-        <br />
-        <input type='text' name='client_id' value="${userId|''}" />
-        <br />
+   <div id="requestForm" style="padding:20px; border:1px solid black;">
+   <p> Enter data for request and press "Create folder" button </p>
+   <form action="/sample34" method = "post" enctype = 'multipart/form-data'>
+       <label for='client_id'>GroupDocs Client ID</label>
+       <br />
+       <input type='text' name='client_id' value="${userId|''}" />
+       <br />
        <label for='private_key'>GroupDocs Private Key</label>
        <br />
        <input type='text' name='private_key'  value="${privateKey|''}" />
        <br />
-        <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
-        <br />
-        <input type ="text" name="server_type" id="server_type" />
-        <br />
-        <input id="gdButton" type='filepicker' data-fp-store-access="public" data-fp-apikey="AjhtkJk6rRLWQxanzZAFVz" value='Upload file' data-fp-store-path="files/" onchange="upload(event.fpfile.url);"/>
-    </form>
-    <span id="results_status" style="color:red;display:none;"> (Please wait for ajax response) </span>
-    </div>
-</div>
-<div id="iframeDiv" style="padding:20px; border:1px solid black; display: none;">
-              <iframe id="iframe" frameborder="0" width="800" height="650" src=""></iframe>
-    </div>
+       <label for='folder'>Folder name</label>
+       <br />
+       <input type='text' name='folder'  value="${folder|''}" />
+       <br />
+       <label for='server_type'>Base path<span class="optional">(Optional)</span></label>
+      <br />
+      <input type ="text" name="server_type" id="server_type" />
+      <br />
+       <input type='submit' value='Create folder'/>
+   </form>
+   ${structure:message|''}
+   </div>
+   <br/>
+ </div>
+
 <div style="padding:10px;">
-Choose anothe one sample:
+Choose another one sample:
 <ul>
     <li> <a href="/sample01">Sample01 - How to login to GroupDocs using the API</li>
     <li> <a href="/sample02">Sample02 - How to list files within GroupDocs Storage using the Storage API</li>
@@ -77,46 +82,7 @@ Choose anothe one sample:
     <li> <a href="/sample34">Sample34 - How to create folder in the GroupDOcs account</a></li>
 </ul>
 </div>
-<script type="text/javascript">
-      function upload(url) {
-            form = document.forms.gdform;
-            var preLoad = document.getElementById("results_status");
-            preLoad.style.display = "block";
-            document.getElementById("gdButton").style.display = "none";
-            xhttp=new XMLHttpRequest();
-            xhttp.onreadystatechange= function() {
 
-                if (xhttp.readyState==4 && xhttp.status==200){
-                    result = eval( '('+xhttp.responseText+')' );
-                    iframe = result.iframe;
-                    error = result['error'];
-
-                    if (iframe != null) {
-
-                        var button = document.getElementById("gdButton").style.display = "block";
-                        var preLoad = document.getElementById("results_status");
-                        preLoad.style.display = "none";
-                        var iframeDiv = document.getElementById("iframeDiv");
-                          var iframeShow = document.getElementById("iframe");
-                          iframeShow.setAttribute("src", iframe);
-                        iframeDiv.style.display = "block";
-                    } else if (error != null) {
-                        var message = '<span style="color:red;>' + error + '</span>';
-
-                        iframe.style.display = "block";
-
-                    }
-
-                }
-            }
-
-            xhttp.open('POST','/sample29',true);
-            xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-            var str= 'url=' + url + '&basePath=' + document.forms.gdform.server_type.value + '&clientId=' + document.forms.gdform.client_id.value + '&privateKey=' + document.forms.gdform.private_key.value;;
-            xhttp.send(str);
-
-      }
-  </script>
     </tal:block>
 </metal:main>
 
